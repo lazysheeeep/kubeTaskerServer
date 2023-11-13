@@ -5,12 +5,12 @@ package enttest
 import (
 	"context"
 
-	"github.com/suyuan32/simple-admin-core/rpc/ent"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent"
 	// required by schema hooks.
-	_ "github.com/suyuan32/simple-admin-core/rpc/ent/runtime"
+	_ "github.com/kubeTasker/kubeTaskerServer/rpc/ent/runtime"
 
 	"entgo.io/ent/dialect/sql/schema"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/migrate"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/migrate"
 )
 
 type (

@@ -8,8 +8,8 @@ import (
 	"github.com/zeromicro/go-zero/core/errorx"
 	"strings"
 
-	"github.com/suyuan32/simple-admin-core/api/internal/svc"
-	"github.com/suyuan32/simple-admin-core/api/internal/types"
+	"github.com/kubeTasker/kubeTaskerServer/api/internal/svc"
+	"github.com/kubeTasker/kubeTaskerServer/api/internal/types"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

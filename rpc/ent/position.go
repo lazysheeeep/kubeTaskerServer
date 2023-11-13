@@ -9,7 +9,7 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/position"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/position"
 )
 
 // Position is the model entity for the Position schema.

@@ -11,9 +11,9 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/department"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/predicate"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/user"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/department"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/predicate"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/user"
 )
 
 // DepartmentQuery is the builder for querying Department entities.

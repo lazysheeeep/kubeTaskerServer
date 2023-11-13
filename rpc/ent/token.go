@@ -10,7 +10,7 @@ import (
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	uuid "github.com/gofrs/uuid/v5"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/token"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/token"
 )
 
 // Token is the model entity for the Token schema.

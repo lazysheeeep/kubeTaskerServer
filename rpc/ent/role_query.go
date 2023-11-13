@@ -12,10 +12,10 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	uuid "github.com/gofrs/uuid/v5"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/menu"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/predicate"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/role"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/user"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/menu"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/predicate"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/role"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/user"
 )
 
 // RoleQuery is the builder for querying Role entities.

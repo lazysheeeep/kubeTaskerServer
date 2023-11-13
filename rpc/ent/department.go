@@ -9,7 +9,7 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/department"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/department"
 )
 
 // Department is the model entity for the Department schema.

@@ -9,7 +9,7 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/dictionary"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/dictionary"
 )
 
 // Dictionary is the model entity for the Dictionary schema.

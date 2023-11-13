@@ -5,9 +5,9 @@ import (
 
 	"github.com/suyuan32/simple-admin-common/utils/pointy"
 
-	"github.com/suyuan32/simple-admin-core/rpc/internal/svc"
-	"github.com/suyuan32/simple-admin-core/rpc/internal/utils/errorhandler"
-	"github.com/suyuan32/simple-admin-core/rpc/types/core"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/svc"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/utils/errorhandler"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/types/core"
 
 	"github.com/zeromicro/go-zero/core/logx"
 

@@ -11,9 +11,9 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/dictionary"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/dictionarydetail"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/predicate"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/dictionary"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/dictionarydetail"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/predicate"
 )
 
 // DictionaryQuery is the builder for querying Dictionary entities.

@@ -2,15 +2,15 @@ package base
 
 import (
 	"context"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/types/core"
 	"github.com/suyuan32/simple-admin-common/enum/common"
 	"github.com/suyuan32/simple-admin-common/i18n"
 	"github.com/suyuan32/simple-admin-common/utils/pointy"
-	"github.com/suyuan32/simple-admin-core/rpc/types/core"
 	"github.com/suyuan32/simple-admin-message-center/types/mcms"
 	"github.com/zeromicro/go-zero/core/errorx"
 
-	"github.com/suyuan32/simple-admin-core/api/internal/svc"
-	"github.com/suyuan32/simple-admin-core/api/internal/types"
+	"github.com/kubeTasker/kubeTaskerServer/api/internal/svc"
+	"github.com/kubeTasker/kubeTaskerServer/api/internal/types"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

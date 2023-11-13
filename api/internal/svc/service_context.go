@@ -2,13 +2,13 @@ package svc
 
 import (
 	"context"
+	i18n2 "github.com/kubeTasker/kubeTaskerServer/api/internal/i18n"
+	"github.com/kubeTasker/kubeTaskerServer/api/internal/middleware"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/types/core"
 	"github.com/mojocn/base64Captcha"
 	"github.com/suyuan32/simple-admin-common/enum/common"
 	"github.com/suyuan32/simple-admin-common/i18n"
 	"github.com/suyuan32/simple-admin-common/utils/captcha"
-	i18n2 "github.com/suyuan32/simple-admin-core/api/internal/i18n"
-	"github.com/suyuan32/simple-admin-core/api/internal/middleware"
-	"github.com/suyuan32/simple-admin-core/rpc/types/core"
 	"github.com/suyuan32/simple-admin-message-center/mcmsclient"
 	"github.com/zeromicro/go-zero/core/errorx"
 	"github.com/zeromicro/go-zero/core/logx"
@@ -16,8 +16,8 @@ import (
 
 	"github.com/suyuan32/simple-admin-job/jobclient"
 
-	"github.com/suyuan32/simple-admin-core/api/internal/config"
-	"github.com/suyuan32/simple-admin-core/rpc/coreclient"
+	"github.com/kubeTasker/kubeTaskerServer/api/internal/config"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/coreclient"
 
 	"github.com/casbin/casbin/v2"
 	"github.com/zeromicro/go-zero/core/stores/redis"

@@ -6,17 +6,17 @@ import (
 	"time"
 
 	uuid "github.com/gofrs/uuid/v5"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/api"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/department"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/dictionary"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/dictionarydetail"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/menu"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/oauthprovider"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/position"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/role"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/schema"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/token"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/user"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/api"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/department"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/dictionary"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/dictionarydetail"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/menu"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/oauthprovider"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/position"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/role"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/schema"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/token"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/user"
 )
 
 // The init function reads all schema descriptors with runtime code

@@ -10,8 +10,8 @@ import (
 
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/dictionary"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/dictionarydetail"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/dictionary"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/dictionarydetail"
 )
 
 // DictionaryCreate is the builder for creating a Dictionary entity.
