@@ -5,7 +5,7 @@ ARG PROJECT=core
 # Define the config file name | 定义配置文件名
 ARG CONFIG_FILE=core.yaml
 # Define the author | 定义作者
-ARG AUTHOR="yuansu.china.work@gmail.com"
+ARG AUTHOR=""
 
 LABEL org.opencontainers.image.authors=${AUTHOR}
 

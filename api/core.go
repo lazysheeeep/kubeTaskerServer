@@ -6,7 +6,7 @@
 //		Host: localhost:9100
 //		BasePath: /
 //		Version: 1.2.0
-//		Contact: yuansu.china.work@gmail.com
+//		Contact:
 //		SecurityDefinitions:
 //		  Token:
 //		    type: apiKey
