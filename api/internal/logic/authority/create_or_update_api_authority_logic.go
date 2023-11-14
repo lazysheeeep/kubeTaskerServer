@@ -6,9 +6,9 @@ import (
 
 	"github.com/suyuan32/simple-admin-common/i18n"
 
-	"github.com/suyuan32/simple-admin-core/api/internal/svc"
-	"github.com/suyuan32/simple-admin-core/api/internal/types"
-	"github.com/suyuan32/simple-admin-core/rpc/types/core"
+	"github.com/kubeTasker/kubeTaskerServer/api/internal/svc"
+	"github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/types/core"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

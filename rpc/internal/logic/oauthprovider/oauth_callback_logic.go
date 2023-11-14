@@ -17,14 +17,14 @@ import (
 
 	"github.com/suyuan32/simple-admin-common/i18n"
 
-	"github.com/suyuan32/simple-admin-core/rpc/ent"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/oauthprovider"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/user"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/oauthprovider"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/user"
 
-	user2 "github.com/suyuan32/simple-admin-core/rpc/internal/logic/user"
-	"github.com/suyuan32/simple-admin-core/rpc/internal/svc"
-	"github.com/suyuan32/simple-admin-core/rpc/internal/utils/errorhandler"
-	"github.com/suyuan32/simple-admin-core/rpc/types/core"
+	user2 "github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/user"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/svc"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/utils/errorhandler"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/types/core"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

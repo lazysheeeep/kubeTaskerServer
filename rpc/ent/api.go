@@ -9,7 +9,7 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/api"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/api"
 )
 
 // API is the model entity for the API schema.

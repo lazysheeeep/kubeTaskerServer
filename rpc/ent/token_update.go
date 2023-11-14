@@ -12,8 +12,8 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	uuid "github.com/gofrs/uuid/v5"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/predicate"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/token"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/predicate"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/token"
 )
 
 // TokenUpdate is the builder for updating Token entities.

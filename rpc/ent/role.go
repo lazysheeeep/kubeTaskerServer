@@ -9,7 +9,7 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/role"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/role"
 )
 
 // Role is the model entity for the Role schema.

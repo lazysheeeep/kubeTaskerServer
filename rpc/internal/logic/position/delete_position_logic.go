@@ -5,12 +5,12 @@ import (
 
 	"github.com/zeromicro/go-zero/core/errorx"
 
-	"github.com/suyuan32/simple-admin-core/rpc/ent/position"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/user"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/position"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/user"
 
-	"github.com/suyuan32/simple-admin-core/rpc/internal/svc"
-	"github.com/suyuan32/simple-admin-core/rpc/internal/utils/errorhandler"
-	"github.com/suyuan32/simple-admin-core/rpc/types/core"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/svc"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/utils/errorhandler"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/types/core"
 
 	"github.com/zeromicro/go-zero/core/logx"
 

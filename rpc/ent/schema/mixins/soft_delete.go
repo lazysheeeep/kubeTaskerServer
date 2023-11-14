@@ -11,9 +11,9 @@ import (
 	"entgo.io/ent/schema/field"
 	"entgo.io/ent/schema/mixin"
 
-	gen "github.com/suyuan32/simple-admin-core/rpc/ent"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/hook"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/intercept"
+	gen "github.com/kubeTasker/kubeTaskerServer/rpc/ent"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/hook"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/ent/intercept"
 )
 
 // SoftDeleteMixin implements the soft delete pattern for schemas.

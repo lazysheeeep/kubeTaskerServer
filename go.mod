@@ -1,6 +1,6 @@
-module github.com/suyuan32/simple-admin-core
+module github.com/kubeTasker/kubeTaskerServer
 
-go 1.20
+go 1.21
 
 require (
 	entgo.io/ent v0.12.4

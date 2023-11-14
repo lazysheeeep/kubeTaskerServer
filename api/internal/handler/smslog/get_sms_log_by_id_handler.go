@@ -5,9 +5,9 @@ import (
 
 	"github.com/zeromicro/go-zero/rest/httpx"
 
-	"github.com/suyuan32/simple-admin-core/api/internal/logic/smslog"
-	"github.com/suyuan32/simple-admin-core/api/internal/svc"
-	"github.com/suyuan32/simple-admin-core/api/internal/types"
+	"github.com/kubeTasker/kubeTaskerServer/api/internal/logic/smslog"
+	"github.com/kubeTasker/kubeTaskerServer/api/internal/svc"
+	"github.com/kubeTasker/kubeTaskerServer/api/internal/types"
 )
 
 // swagger:route post /sms_log smslog GetSmsLogById

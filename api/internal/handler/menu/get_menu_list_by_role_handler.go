@@ -5,8 +5,8 @@ import (
 
 	"github.com/zeromicro/go-zero/rest/httpx"
 
-	"github.com/suyuan32/simple-admin-core/api/internal/logic/menu"
-	"github.com/suyuan32/simple-admin-core/api/internal/svc"
+	"github.com/kubeTasker/kubeTaskerServer/api/internal/logic/menu"
+	"github.com/kubeTasker/kubeTaskerServer/api/internal/svc"
 )
 
 // swagger:route get /menu/role/list menu GetMenuListByRole
