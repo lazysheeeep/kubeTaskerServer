@@ -119,3 +119,15 @@ serve-swagger: # Run the swagger server | 运行 swagger 服务
 .PHONY: help
 help: # Show help | 显示帮助
 	@grep -E '^[a-zA-Z0-9 -]+:.*#'  Makefile | sort | while read -r l; do printf "\033[1;32m$$(echo $$l | cut -f 1 -d':')\033[00m:$$(echo $$l | cut -f 2- -d'#')\n"; done
+
+.PHONY: rpc
+rpc:
+	go run  rpc/core.go -f rpc/etc/core_dev.yaml
+
+.PHONY: api
+api:
+	go run  api/core.go -f api/etc/core_dev.yaml
+
+.PHONY: redis
+redis:
+	redis-server
