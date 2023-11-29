@@ -28,6 +28,9 @@ ENT_FEATURE=sql/execquery,intercept
 # The arch of the build | 构建的架构
 GOARCH=amd64
 
+# The directory of the imported package of rpc service proto files | rpc服务的proto文件的引入的包的目录
+RPC_PROTO_INPORT=/root/go/pkg/mod
+
 # ---- You may not need to modify the codes below | 下面的代码大概率不需要更改 ----
 
 GO ?= go
@@ -74,7 +77,7 @@ gen-api: # Generate API files | 生成 API 的代码
 
 .PHONY: gen-rpc
 gen-rpc: # Generate RPC files from proto | 生成 RPC 的代码
-	goctls rpc protoc ./rpc/$(SERVICE_STYLE).proto --style=$(PROJECT_STYLE) --go_out=./rpc/types --go-grpc_out=./rpc/types --zrpc_out=./rpc --style=$(PROJECT_STYLE)
+	goctls rpc protoc -I=. -I=$(RPC_PROTO_INPORT) ./rpc/$(SERVICE_STYLE).proto --style=$(PROJECT_STYLE) --go_out=./rpc/types --go-grpc_out=./rpc/types --zrpc_out=./rpc --style=$(PROJECT_STYLE)
 	@echo "Generate RPC files successfully"
 
 .PHONY: gen-ent
