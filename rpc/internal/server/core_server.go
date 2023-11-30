@@ -18,6 +18,7 @@ import (
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/role"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/token"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/user"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/workflow"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/svc"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/types/core"
 )
@@ -330,4 +331,65 @@ func (s *CoreServer) GetUserByUsername(ctx context.Context, in *core.UsernameReq
 func (s *CoreServer) DeleteUser(ctx context.Context, in *core.UUIDsReq) (*core.BaseResp, error) {
 	l := user.NewDeleteUserLogic(ctx, s.svcCtx)
 	return l.DeleteUser(in)
+}
+
+// Workflow management
+func (s *CoreServer) CreateWorkflow(ctx context.Context, in *core.WorkflowCreateRequest) (*core.WorkflowRespond, error) {
+	l := workflow.NewCreateWorkflowLogic(ctx, s.svcCtx)
+	return l.CreateWorkflow(in)
+}
+
+func (s *CoreServer) GetWorkflow(ctx context.Context, in *core.WorkflowGetRequest) (*core.WorkflowRespond, error) {
+	l := workflow.NewGetWorkflowLogic(ctx, s.svcCtx)
+	return l.GetWorkflow(in)
+}
+
+func (s *CoreServer) ListWorkflows(ctx context.Context, in *core.WorkflowListRequest) (*core.WorkflowListRespnd, error) {
+	l := workflow.NewListWorkflowsLogic(ctx, s.svcCtx)
+	return l.ListWorkflows(in)
+}
+
+func (s *CoreServer) WatchWorkflows(in *core.WatchWorkflowsRequest, stream core.Core_WatchWorkflowsServer) error {
+	l := workflow.NewWatchWorkflowsLogic(stream.Context(), s.svcCtx)
+	return l.WatchWorkflows(in, stream)
+}
+
+func (s *CoreServer) DeleteWorkflow(ctx context.Context, in *core.WorkflowDeleteRequest) (*core.WorkflowDeleteResponse, error) {
+	l := workflow.NewDeleteWorkflowLogic(ctx, s.svcCtx)
+	return l.DeleteWorkflow(in)
+}
+
+func (s *CoreServer) RetryWorkflow(ctx context.Context, in *core.WorkflowRetryRequest) (*core.WorkflowRespond, error) {
+	l := workflow.NewRetryWorkflowLogic(ctx, s.svcCtx)
+	return l.RetryWorkflow(in)
+}
+
+func (s *CoreServer) ResubmitWorkflow(ctx context.Context, in *core.WorkflowResubmitRequest) (*core.WorkflowRespond, error) {
+	l := workflow.NewResubmitWorkflowLogic(ctx, s.svcCtx)
+	return l.ResubmitWorkflow(in)
+}
+
+func (s *CoreServer) ResumeWorkflow(ctx context.Context, in *core.WorkflowResumeRequest) (*core.WorkflowRespond, error) {
+	l := workflow.NewResumeWorkflowLogic(ctx, s.svcCtx)
+	return l.ResumeWorkflow(in)
+}
+
+func (s *CoreServer) SuspendWorkflow(ctx context.Context, in *core.WorkflowSuspendRequest) (*core.WorkflowRespond, error) {
+	l := workflow.NewSuspendWorkflowLogic(ctx, s.svcCtx)
+	return l.SuspendWorkflow(in)
+}
+
+func (s *CoreServer) TerminateWorkflow(ctx context.Context, in *core.WorkflowTerminateRequest) (*core.WorkflowRespond, error) {
+	l := workflow.NewTerminateWorkflowLogic(ctx, s.svcCtx)
+	return l.TerminateWorkflow(in)
+}
+
+func (s *CoreServer) LintWorkflow(ctx context.Context, in *core.WorkflowLintRequest) (*core.WorkflowRespond, error) {
+	l := workflow.NewLintWorkflowLogic(ctx, s.svcCtx)
+	return l.LintWorkflow(in)
+}
+
+func (s *CoreServer) PodLogs(in *core.WorkflowLogRequest, stream core.Core_PodLogsServer) error {
+	l := workflow.NewPodLogsLogic(stream.Context(), s.svcCtx)
+	return l.PodLogs(in, stream)
 }

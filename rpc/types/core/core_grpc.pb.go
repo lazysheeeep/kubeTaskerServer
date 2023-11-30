@@ -77,6 +77,18 @@ const (
 	Core_GetUserById_FullMethodName                         = "/core.Core/getUserById"
 	Core_GetUserByUsername_FullMethodName                   = "/core.Core/getUserByUsername"
 	Core_DeleteUser_FullMethodName                          = "/core.Core/deleteUser"
+	Core_CreateWorkflow_FullMethodName                      = "/core.Core/CreateWorkflow"
+	Core_GetWorkflow_FullMethodName                         = "/core.Core/GetWorkflow"
+	Core_ListWorkflows_FullMethodName                       = "/core.Core/ListWorkflows"
+	Core_WatchWorkflows_FullMethodName                      = "/core.Core/WatchWorkflows"
+	Core_DeleteWorkflow_FullMethodName                      = "/core.Core/DeleteWorkflow"
+	Core_RetryWorkflow_FullMethodName                       = "/core.Core/RetryWorkflow"
+	Core_ResubmitWorkflow_FullMethodName                    = "/core.Core/ResubmitWorkflow"
+	Core_ResumeWorkflow_FullMethodName                      = "/core.Core/ResumeWorkflow"
+	Core_SuspendWorkflow_FullMethodName                     = "/core.Core/SuspendWorkflow"
+	Core_TerminateWorkflow_FullMethodName                   = "/core.Core/TerminateWorkflow"
+	Core_LintWorkflow_FullMethodName                        = "/core.Core/LintWorkflow"
+	Core_PodLogs_FullMethodName                             = "/core.Core/PodLogs"
 )
 
 // CoreClient is the client API for Core service.
@@ -208,6 +220,31 @@ type CoreClient interface {
 	GetUserByUsername(ctx context.Context, in *UsernameReq, opts ...grpc.CallOption) (*UserInfo, error)
 	// group: user
 	DeleteUser(ctx context.Context, in *UUIDsReq, opts ...grpc.CallOption) (*BaseResp, error)
+	// Workflow management
+	// group: workflow
+	CreateWorkflow(ctx context.Context, in *WorkflowCreateRequest, opts ...grpc.CallOption) (*WorkflowRespond, error)
+	// group: workflow
+	GetWorkflow(ctx context.Context, in *WorkflowGetRequest, opts ...grpc.CallOption) (*WorkflowRespond, error)
+	// group: workflow
+	ListWorkflows(ctx context.Context, in *WorkflowListRequest, opts ...grpc.CallOption) (*WorkflowListRespnd, error)
+	// group: workflow
+	WatchWorkflows(ctx context.Context, in *WatchWorkflowsRequest, opts ...grpc.CallOption) (Core_WatchWorkflowsClient, error)
+	// group: workflow
+	DeleteWorkflow(ctx context.Context, in *WorkflowDeleteRequest, opts ...grpc.CallOption) (*WorkflowDeleteResponse, error)
+	// group: workflow
+	RetryWorkflow(ctx context.Context, in *WorkflowRetryRequest, opts ...grpc.CallOption) (*WorkflowRespond, error)
+	// group: workflow
+	ResubmitWorkflow(ctx context.Context, in *WorkflowResubmitRequest, opts ...grpc.CallOption) (*WorkflowRespond, error)
+	// group: workflow
+	ResumeWorkflow(ctx context.Context, in *WorkflowResumeRequest, opts ...grpc.CallOption) (*WorkflowRespond, error)
+	// group: workflow
+	SuspendWorkflow(ctx context.Context, in *WorkflowSuspendRequest, opts ...grpc.CallOption) (*WorkflowRespond, error)
+	// group: workflow
+	TerminateWorkflow(ctx context.Context, in *WorkflowTerminateRequest, opts ...grpc.CallOption) (*WorkflowRespond, error)
+	// group: workflow
+	LintWorkflow(ctx context.Context, in *WorkflowLintRequest, opts ...grpc.CallOption) (*WorkflowRespond, error)
+	// group: workflow
+	PodLogs(ctx context.Context, in *WorkflowLogRequest, opts ...grpc.CallOption) (Core_PodLogsClient, error)
 }
 
 type coreClient struct {
@@ -740,6 +777,160 @@ func (c *coreClient) DeleteUser(ctx context.Context, in *UUIDsReq, opts ...grpc.
 	return out, nil
 }
 
+func (c *coreClient) CreateWorkflow(ctx context.Context, in *WorkflowCreateRequest, opts ...grpc.CallOption) (*WorkflowRespond, error) {
+	out := new(WorkflowRespond)
+	err := c.cc.Invoke(ctx, Core_CreateWorkflow_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) GetWorkflow(ctx context.Context, in *WorkflowGetRequest, opts ...grpc.CallOption) (*WorkflowRespond, error) {
+	out := new(WorkflowRespond)
+	err := c.cc.Invoke(ctx, Core_GetWorkflow_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) ListWorkflows(ctx context.Context, in *WorkflowListRequest, opts ...grpc.CallOption) (*WorkflowListRespnd, error) {
+	out := new(WorkflowListRespnd)
+	err := c.cc.Invoke(ctx, Core_ListWorkflows_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) WatchWorkflows(ctx context.Context, in *WatchWorkflowsRequest, opts ...grpc.CallOption) (Core_WatchWorkflowsClient, error) {
+	stream, err := c.cc.NewStream(ctx, &Core_ServiceDesc.Streams[0], Core_WatchWorkflows_FullMethodName, opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &coreWatchWorkflowsClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type Core_WatchWorkflowsClient interface {
+	Recv() (*WorkflowWatchEvent, error)
+	grpc.ClientStream
+}
+
+type coreWatchWorkflowsClient struct {
+	grpc.ClientStream
+}
+
+func (x *coreWatchWorkflowsClient) Recv() (*WorkflowWatchEvent, error) {
+	m := new(WorkflowWatchEvent)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *coreClient) DeleteWorkflow(ctx context.Context, in *WorkflowDeleteRequest, opts ...grpc.CallOption) (*WorkflowDeleteResponse, error) {
+	out := new(WorkflowDeleteResponse)
+	err := c.cc.Invoke(ctx, Core_DeleteWorkflow_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) RetryWorkflow(ctx context.Context, in *WorkflowRetryRequest, opts ...grpc.CallOption) (*WorkflowRespond, error) {
+	out := new(WorkflowRespond)
+	err := c.cc.Invoke(ctx, Core_RetryWorkflow_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) ResubmitWorkflow(ctx context.Context, in *WorkflowResubmitRequest, opts ...grpc.CallOption) (*WorkflowRespond, error) {
+	out := new(WorkflowRespond)
+	err := c.cc.Invoke(ctx, Core_ResubmitWorkflow_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) ResumeWorkflow(ctx context.Context, in *WorkflowResumeRequest, opts ...grpc.CallOption) (*WorkflowRespond, error) {
+	out := new(WorkflowRespond)
+	err := c.cc.Invoke(ctx, Core_ResumeWorkflow_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) SuspendWorkflow(ctx context.Context, in *WorkflowSuspendRequest, opts ...grpc.CallOption) (*WorkflowRespond, error) {
+	out := new(WorkflowRespond)
+	err := c.cc.Invoke(ctx, Core_SuspendWorkflow_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) TerminateWorkflow(ctx context.Context, in *WorkflowTerminateRequest, opts ...grpc.CallOption) (*WorkflowRespond, error) {
+	out := new(WorkflowRespond)
+	err := c.cc.Invoke(ctx, Core_TerminateWorkflow_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) LintWorkflow(ctx context.Context, in *WorkflowLintRequest, opts ...grpc.CallOption) (*WorkflowRespond, error) {
+	out := new(WorkflowRespond)
+	err := c.cc.Invoke(ctx, Core_LintWorkflow_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) PodLogs(ctx context.Context, in *WorkflowLogRequest, opts ...grpc.CallOption) (Core_PodLogsClient, error) {
+	stream, err := c.cc.NewStream(ctx, &Core_ServiceDesc.Streams[1], Core_PodLogs_FullMethodName, opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &corePodLogsClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type Core_PodLogsClient interface {
+	Recv() (*LogEntry, error)
+	grpc.ClientStream
+}
+
+type corePodLogsClient struct {
+	grpc.ClientStream
+}
+
+func (x *corePodLogsClient) Recv() (*LogEntry, error) {
+	m := new(LogEntry)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // CoreServer is the server API for Core service.
 // All implementations must embed UnimplementedCoreServer
 // for forward compatibility
@@ -869,6 +1060,31 @@ type CoreServer interface {
 	GetUserByUsername(context.Context, *UsernameReq) (*UserInfo, error)
 	// group: user
 	DeleteUser(context.Context, *UUIDsReq) (*BaseResp, error)
+	// Workflow management
+	// group: workflow
+	CreateWorkflow(context.Context, *WorkflowCreateRequest) (*WorkflowRespond, error)
+	// group: workflow
+	GetWorkflow(context.Context, *WorkflowGetRequest) (*WorkflowRespond, error)
+	// group: workflow
+	ListWorkflows(context.Context, *WorkflowListRequest) (*WorkflowListRespnd, error)
+	// group: workflow
+	WatchWorkflows(*WatchWorkflowsRequest, Core_WatchWorkflowsServer) error
+	// group: workflow
+	DeleteWorkflow(context.Context, *WorkflowDeleteRequest) (*WorkflowDeleteResponse, error)
+	// group: workflow
+	RetryWorkflow(context.Context, *WorkflowRetryRequest) (*WorkflowRespond, error)
+	// group: workflow
+	ResubmitWorkflow(context.Context, *WorkflowResubmitRequest) (*WorkflowRespond, error)
+	// group: workflow
+	ResumeWorkflow(context.Context, *WorkflowResumeRequest) (*WorkflowRespond, error)
+	// group: workflow
+	SuspendWorkflow(context.Context, *WorkflowSuspendRequest) (*WorkflowRespond, error)
+	// group: workflow
+	TerminateWorkflow(context.Context, *WorkflowTerminateRequest) (*WorkflowRespond, error)
+	// group: workflow
+	LintWorkflow(context.Context, *WorkflowLintRequest) (*WorkflowRespond, error)
+	// group: workflow
+	PodLogs(*WorkflowLogRequest, Core_PodLogsServer) error
 	mustEmbedUnimplementedCoreServer()
 }
 
@@ -1049,6 +1265,42 @@ func (UnimplementedCoreServer) GetUserByUsername(context.Context, *UsernameReq) 
 }
 func (UnimplementedCoreServer) DeleteUser(context.Context, *UUIDsReq) (*BaseResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteUser not implemented")
+}
+func (UnimplementedCoreServer) CreateWorkflow(context.Context, *WorkflowCreateRequest) (*WorkflowRespond, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateWorkflow not implemented")
+}
+func (UnimplementedCoreServer) GetWorkflow(context.Context, *WorkflowGetRequest) (*WorkflowRespond, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetWorkflow not implemented")
+}
+func (UnimplementedCoreServer) ListWorkflows(context.Context, *WorkflowListRequest) (*WorkflowListRespnd, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListWorkflows not implemented")
+}
+func (UnimplementedCoreServer) WatchWorkflows(*WatchWorkflowsRequest, Core_WatchWorkflowsServer) error {
+	return status.Errorf(codes.Unimplemented, "method WatchWorkflows not implemented")
+}
+func (UnimplementedCoreServer) DeleteWorkflow(context.Context, *WorkflowDeleteRequest) (*WorkflowDeleteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteWorkflow not implemented")
+}
+func (UnimplementedCoreServer) RetryWorkflow(context.Context, *WorkflowRetryRequest) (*WorkflowRespond, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RetryWorkflow not implemented")
+}
+func (UnimplementedCoreServer) ResubmitWorkflow(context.Context, *WorkflowResubmitRequest) (*WorkflowRespond, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ResubmitWorkflow not implemented")
+}
+func (UnimplementedCoreServer) ResumeWorkflow(context.Context, *WorkflowResumeRequest) (*WorkflowRespond, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ResumeWorkflow not implemented")
+}
+func (UnimplementedCoreServer) SuspendWorkflow(context.Context, *WorkflowSuspendRequest) (*WorkflowRespond, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SuspendWorkflow not implemented")
+}
+func (UnimplementedCoreServer) TerminateWorkflow(context.Context, *WorkflowTerminateRequest) (*WorkflowRespond, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TerminateWorkflow not implemented")
+}
+func (UnimplementedCoreServer) LintWorkflow(context.Context, *WorkflowLintRequest) (*WorkflowRespond, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LintWorkflow not implemented")
+}
+func (UnimplementedCoreServer) PodLogs(*WorkflowLogRequest, Core_PodLogsServer) error {
+	return status.Errorf(codes.Unimplemented, "method PodLogs not implemented")
 }
 func (UnimplementedCoreServer) mustEmbedUnimplementedCoreServer() {}
 
@@ -2107,6 +2359,228 @@ func _Core_DeleteUser_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Core_CreateWorkflow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WorkflowCreateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).CreateWorkflow(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_CreateWorkflow_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).CreateWorkflow(ctx, req.(*WorkflowCreateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_GetWorkflow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WorkflowGetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).GetWorkflow(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_GetWorkflow_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).GetWorkflow(ctx, req.(*WorkflowGetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_ListWorkflows_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WorkflowListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).ListWorkflows(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_ListWorkflows_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).ListWorkflows(ctx, req.(*WorkflowListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_WatchWorkflows_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(WatchWorkflowsRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(CoreServer).WatchWorkflows(m, &coreWatchWorkflowsServer{stream})
+}
+
+type Core_WatchWorkflowsServer interface {
+	Send(*WorkflowWatchEvent) error
+	grpc.ServerStream
+}
+
+type coreWatchWorkflowsServer struct {
+	grpc.ServerStream
+}
+
+func (x *coreWatchWorkflowsServer) Send(m *WorkflowWatchEvent) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func _Core_DeleteWorkflow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WorkflowDeleteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).DeleteWorkflow(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_DeleteWorkflow_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).DeleteWorkflow(ctx, req.(*WorkflowDeleteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_RetryWorkflow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WorkflowRetryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).RetryWorkflow(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_RetryWorkflow_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).RetryWorkflow(ctx, req.(*WorkflowRetryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_ResubmitWorkflow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WorkflowResubmitRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).ResubmitWorkflow(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_ResubmitWorkflow_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).ResubmitWorkflow(ctx, req.(*WorkflowResubmitRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_ResumeWorkflow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WorkflowResumeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).ResumeWorkflow(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_ResumeWorkflow_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).ResumeWorkflow(ctx, req.(*WorkflowResumeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_SuspendWorkflow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WorkflowSuspendRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).SuspendWorkflow(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_SuspendWorkflow_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).SuspendWorkflow(ctx, req.(*WorkflowSuspendRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_TerminateWorkflow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WorkflowTerminateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).TerminateWorkflow(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_TerminateWorkflow_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).TerminateWorkflow(ctx, req.(*WorkflowTerminateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_LintWorkflow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WorkflowLintRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).LintWorkflow(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_LintWorkflow_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).LintWorkflow(ctx, req.(*WorkflowLintRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_PodLogs_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(WorkflowLogRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(CoreServer).PodLogs(m, &corePodLogsServer{stream})
+}
+
+type Core_PodLogsServer interface {
+	Send(*LogEntry) error
+	grpc.ServerStream
+}
+
+type corePodLogsServer struct {
+	grpc.ServerStream
+}
+
+func (x *corePodLogsServer) Send(m *LogEntry) error {
+	return x.ServerStream.SendMsg(m)
+}
+
 // Core_ServiceDesc is the grpc.ServiceDesc for Core service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2346,7 +2820,58 @@ var Core_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "deleteUser",
 			Handler:    _Core_DeleteUser_Handler,
 		},
+		{
+			MethodName: "CreateWorkflow",
+			Handler:    _Core_CreateWorkflow_Handler,
+		},
+		{
+			MethodName: "GetWorkflow",
+			Handler:    _Core_GetWorkflow_Handler,
+		},
+		{
+			MethodName: "ListWorkflows",
+			Handler:    _Core_ListWorkflows_Handler,
+		},
+		{
+			MethodName: "DeleteWorkflow",
+			Handler:    _Core_DeleteWorkflow_Handler,
+		},
+		{
+			MethodName: "RetryWorkflow",
+			Handler:    _Core_RetryWorkflow_Handler,
+		},
+		{
+			MethodName: "ResubmitWorkflow",
+			Handler:    _Core_ResubmitWorkflow_Handler,
+		},
+		{
+			MethodName: "ResumeWorkflow",
+			Handler:    _Core_ResumeWorkflow_Handler,
+		},
+		{
+			MethodName: "SuspendWorkflow",
+			Handler:    _Core_SuspendWorkflow_Handler,
+		},
+		{
+			MethodName: "TerminateWorkflow",
+			Handler:    _Core_TerminateWorkflow_Handler,
+		},
+		{
+			MethodName: "LintWorkflow",
+			Handler:    _Core_LintWorkflow_Handler,
+		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "WatchWorkflows",
+			Handler:       _Core_WatchWorkflows_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "PodLogs",
+			Handler:       _Core_PodLogs_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "rpc/core.proto",
 }

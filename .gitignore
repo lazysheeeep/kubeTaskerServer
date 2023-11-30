@@ -11,6 +11,9 @@ node_modules/
 .idea/
 .vscode/
 
+# Log files
+.log/
+
 # Executables
 *.swf
 *.air
