@@ -1,45 +1,72 @@
 syntax = "proto3";
 
 import "k8s.io/apimachinery@v0.28.4/pkg/apis/meta/v1/generated.proto";
-import "github.com/kubeTasker/kubeTasker@v0.0.2/pkg/apis/workflow/v1alpha1/generated.proto";
+import "github.com/argoproj/argo-workflows/pkg/apis/workflow/v1alpha1/generated.proto";
 import "k8s.io/api@v0.28.4/core/v1/generated.proto";
 
 message WorkflowCreateRequest {
     string namespace = 1;
-    github.com.kubeTasker.kubeTasker.pkg.apis.workflow.v1alpha1.Workflow workflow = 2;
-    string instanceID = 3;
+    github.com.argoproj.argo_workflows.v3.pkg.apis.workflow.v1alpha1.Workflow workflow = 2;
+    // This field is no longer used.
+    string instanceID = 3 [ deprecated = true ];
     bool serverDryRun = 4;
     k8s.io.apimachinery.pkg.apis.meta.v1.CreateOptions createOptions = 5;
 }
+
 message WorkflowGetRequest {
     string name = 1;
     string namespace = 2;
     k8s.io.apimachinery.pkg.apis.meta.v1.GetOptions getOptions = 3;
+    // Fields to be included or excluded in the response. e.g. "spec,status.phase", "-status.nodes"
+    string fields = 4;
 }
 
 message WorkflowListRequest {
     string namespace = 1;
     k8s.io.apimachinery.pkg.apis.meta.v1.ListOptions listOptions = 2;
+    // Fields to be included or excluded in the response. e.g. "items.spec,items.status.phase", "-items.status.nodes"
+    string fields = 3;
 }
 
 message WorkflowResubmitRequest {
     string name = 1;
     string namespace = 2;
     bool memoized = 3;
+    repeated string parameters = 5;
 }
 
 message WorkflowRetryRequest {
     string name = 1;
     string namespace = 2;
+    bool restartSuccessful = 3;
+    string nodeFieldSelector = 4;
+    repeated string parameters = 5;
 }
 message WorkflowResumeRequest {
     string name = 1;
     string namespace = 2;
+    string nodeFieldSelector = 3;
 }
 
 message WorkflowTerminateRequest {
     string name = 1;
     string namespace = 2;
+}
+
+message WorkflowStopRequest {
+    string name = 1;
+    string namespace = 2;
+    string nodeFieldSelector = 3;
+    string message = 4;
+}
+
+message WorkflowSetRequest {
+    string name = 1;
+    string namespace = 2;
+    string nodeFieldSelector = 3;
+    string message = 4;
+    string phase = 5;
+    string outputParameters = 6;
 }
 
 message WorkflowSuspendRequest {
@@ -52,12 +79,15 @@ message WorkflowLogRequest {
     string namespace = 2;
     string podName = 3;
     k8s.io.api.core.v1.PodLogOptions logOptions = 4;
+    string grep = 5;
+    string selector = 6;
 }
 
 message WorkflowDeleteRequest {
     string name = 1;
     string namespace = 2;
     k8s.io.apimachinery.pkg.apis.meta.v1.DeleteOptions deleteOptions = 3;
+    bool force = 4;
 }
 
 message WorkflowDeleteResponse {
@@ -66,29 +96,47 @@ message WorkflowDeleteResponse {
 message WatchWorkflowsRequest {
     string namespace = 1;
     k8s.io.apimachinery.pkg.apis.meta.v1.ListOptions listOptions = 2;
+    string fields = 3;
 }
 
 message WorkflowWatchEvent {
-        // the type of change
+    // the type of change
     string type = 1;
-        // the workflow
-    github.com.kubeTasker.kubeTasker.pkg.apis.workflow.v1alpha1.Workflow object = 2;
+    // the workflow
+    github.com.argoproj.argo_workflows.v3.pkg.apis.workflow.v1alpha1.Workflow object = 2;
+}
+
+message WatchEventsRequest {
+    string namespace = 1;
+    k8s.io.apimachinery.pkg.apis.meta.v1.ListOptions listOptions = 2;
 }
 
 message LogEntry {
     string content = 1;
+    string podName = 2;
 }
 
 message WorkflowLintRequest {
     string namespace = 1;
-    github.com.kubeTasker.kubeTasker.pkg.apis.workflow.v1alpha1.Workflow workflow = 2;
-}
-message WorkflowRespond {
-    github.com.kubeTasker.kubeTasker.pkg.apis.workflow.v1alpha1.Workflow workflow=1;
+    github.com.argoproj.argo_workflows.v3.pkg.apis.workflow.v1alpha1.Workflow workflow = 2;
 }
 
-message WorkflowListRespnd {
-    github.com.kubeTasker.kubeTasker.pkg.apis.workflow.v1alpha1.WorkflowList workflowList=1;
+message WorkflowSubmitRequest {
+    string namespace = 1;
+    string resourceKind = 2;
+    string resourceName = 3;
+    github.com.argoproj.argo_workflows.v3.pkg.apis.workflow.v1alpha1.SubmitOpts submitOptions = 4;
+}
+message WorkflowRespond {
+    github.com.argoproj.argo_workflows.v3.pkg.apis.workflow.v1alpha1.Workflow workflow=1;
+}
+
+message WorkflowListRespond {
+    github.com.argoproj.argo_workflows.v3.pkg.apis.workflow.v1alpha1.WorkflowList workflowList=1;
+}
+
+message Event {
+    k8s.io.api.core.v1.Event event = 1;
 }
 
 service Core {
@@ -98,9 +146,11 @@ service Core {
     // group: workflow
     rpc GetWorkflow (WorkflowGetRequest) returns (WorkflowRespond);
     // group: workflow
-    rpc ListWorkflows (WorkflowListRequest) returns (WorkflowListRespnd);
+    rpc ListWorkflows (WorkflowListRequest) returns (WorkflowListRespond);
     // group: workflow
     rpc WatchWorkflows (WatchWorkflowsRequest) returns (stream WorkflowWatchEvent);
+    // group: workflow
+    rpc WatchEvents(WatchEventsRequest) returns (stream Event);
     // group: workflow
     rpc DeleteWorkflow (WorkflowDeleteRequest) returns (WorkflowDeleteResponse);
     // group: workflow
@@ -114,7 +164,15 @@ service Core {
     // group: workflow
     rpc TerminateWorkflow (WorkflowTerminateRequest) returns (WorkflowRespond);
     // group: workflow
+    rpc StopWorkflow(WorkflowStopRequest) returns (WorkflowRespond);
+    // group: workflow
+    rpc SetWorkflow(WorkflowSetRequest) returns (WorkflowRespond);
+    // group: workflow
     rpc LintWorkflow (WorkflowLintRequest) returns (WorkflowRespond);
     // group: workflow
     rpc PodLogs (WorkflowLogRequest) returns (stream LogEntry);
+    // group: workflow
+    rpc WorkflowLogs(WorkflowLogRequest) returns (stream LogEntry);
+    // group: workflow
+    rpc SubmitWorkflow(WorkflowSubmitRequest) returns (WorkflowRespond);
 }

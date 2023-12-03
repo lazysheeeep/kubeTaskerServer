@@ -1,0 +1,371 @@
+syntax = "v1"
+
+info(
+    title: "Workflow management"
+    desc: "Workflow management is often used to access workflow management"
+    author: "kubeTasker"
+    email: ""
+    version: "v1.0"
+)
+
+import "../base.api"
+
+// WorkflowTerminateRequest
+type (
+    WorkflowCreateRequest {
+        // Namespace
+        namespace string `json:"namespace"`
+
+        // Workflow
+        // type :github.com.argoproj.argo_workflows.v3.pkg.apis.workflow.v1alpha1.Workflow
+        workflow TypeNull `json:"workflow"`
+
+        // InstanceID
+        // This field is no longer used.
+        instanceID string `json:"instanceId"`
+
+        // ServerDryRun
+        serverDryRun bool `json:"serverDryRun"`
+
+        // CreateOptions
+        // type: k8s.io.apimachinery.pkg.apis.meta.v1.CreateOptions
+        createOptions TypeNull `json:"createOptions"`
+    }
+
+    WorkflowTerminateRequest {
+        // Name
+        Name  string `json:"name"`
+
+        // Namespace
+        Namespace  string `json:"namespace"`
+    }
+
+        // WorkflowResumeRequest
+    WorkflowResumeRequest {
+        // Name
+        Name  string `json:"name"`
+
+        // Namespace
+        Namespace  string `json:"namespace"`
+
+        // NodeFieldSelector
+        NodeFieldSelector  string `json:"nodeFieldSelector"`
+    }
+
+        // WorkflowLogRequest
+    WorkflowLogRequest {
+        // Name
+        Name  string `json:"name"`
+
+        // Namespace
+        Namespace  string `json:"namespace"`
+
+        // PodName
+        PodName  string `json:"podName"`
+
+        // LogOptions
+        // type: k8s.io.api.core.v1.PodLogOptions
+        LogOptions  TypeNull `json:"logOptions"`
+
+        // Grep
+        Grep  string `json:"grep"`
+
+        // Selector
+        Selector  string `json:"selector"`
+    }
+
+        // WorkflowSetRequest
+    WorkflowSetRequest {
+        // Name
+        Name  string `json:"name"`
+
+        // Namespace
+        Namespace  string `json:"namespace"`
+
+        // NodeFieldSelector
+        NodeFieldSelector  string `json:"nodeFieldSelector"`
+
+        // Message
+        Message  string `json:"message"`
+
+        // Phase
+        Phase  string `json:"phase"`
+
+        // OutputParameters
+        OutputParameters  string `json:"outputParameters"`
+    }
+
+        // WorkflowListRequest
+    WorkflowListRequest {
+        // Namespace
+        Namespace  string `json:"namespace"`
+
+        // ListOptions
+        // type: k8s.io.apimachinery.pkg.apis.meta.v1.ListOptions
+        ListOptions  TypeNull `json:"listOptions"`
+
+        // Fields
+        Fields  string `json:"fields"`
+    }
+
+        // WorkflowDeleteResponse
+    WorkflowDeleteResponse {
+    }
+
+        // WorkflowWatchEvent
+    WorkflowWatchEvent {
+        // Type
+        Type  string `json:"type"`
+
+        // Object
+        // type: github.com.argoproj.argo_workflows.v3.pkg.apis.workflow.v1alpha1.Workflow
+        Object  TypeNull `json:"object"`
+    }
+
+        // LogEntry
+    LogEntry {
+        // Content
+        Content  string `json:"content"`
+
+        // PodName
+        PodName  string `json:"podName"`
+    }
+
+        // WorkflowGetRequest
+    WorkflowGetRequest {
+        // Name
+        Name  string `json:"name"`
+
+        // Namespace
+        Namespace  string `json:"namespace"`
+
+        // GetOptions
+        // type: k8s.io.apimachinery.pkg.apis.meta.v1.GetOptions
+        GetOptions  TypeNull `json:"getOptions"`
+
+        // Fields
+        Fields  string `json:"fields"`
+    }
+
+        // WatchWorkflowsRequest
+    WatchWorkflowsRequest {
+        // Namespace
+        Namespace  string `json:"namespace"`
+
+        // ListOptions
+        // type: k8s.io.apimachinery.pkg.apis.meta.v1.ListOptions
+        ListOptions  TypeNull `json:"listOptions"`
+
+        // Fields
+        Fields  string `json:"fields"`
+    }
+
+        // WorkflowResubmitRequest
+    WorkflowResubmitRequest {
+        // Name
+        Name  string `json:"name"`
+
+        // Namespace
+        Namespace  string `json:"namespace"`
+
+        // Memoized
+        Memoized  bool `json:"memoized"`
+
+        // Parameters
+        Parameters  []string `json:"parameters"`
+    }
+
+        // WorkflowStopRequest
+    WorkflowStopRequest {
+        // Name
+        Name  string `json:"name"`
+
+        // Namespace
+        Namespace  string `json:"namespace"`
+
+        // NodeFieldSelector
+        NodeFieldSelector  string `json:"nodeFieldSelector"`
+
+        // Message
+        Message  string `json:"message"`
+    }
+
+        // WatchEventsRequest
+    WatchEventsRequest {
+        // Namespace
+        Namespace  string `json:"namespace"`
+
+        // ListOptions
+        // type: k8s.io.apimachinery.pkg.apis.meta.v1.ListOptions
+        ListOptions  TypeNull `json:"listOptions"`
+    }
+
+        // WorkflowSuspendRequest
+    WorkflowSuspendRequest {
+        // Name
+        Name  string `json:"name"`
+
+        // Namespace
+        Namespace  string `json:"namespace"`
+    }
+
+        // WorkflowDeleteRequest
+    WorkflowDeleteRequest {
+        // Name
+        Name  string `json:"name"`
+
+        // Namespace
+        Namespace  string `json:"namespace"`
+
+        // DeleteOptions
+        // type: k8s.io.apimachinery.pkg.apis.meta.v1.DeleteOptions
+        DeleteOptions  TypeNull `json:"deleteOptions"`
+
+        // Force
+        Force  bool `json:"force"`
+    }
+
+        // WorkflowLintRequest
+    WorkflowLintRequest {
+        // Namespace
+        Namespace  string `json:"namespace"`
+
+        // Workflow
+        // type: github.com.argoproj.argo_workflows.v3.pkg.apis.workflow.v1alpha1.Workflow
+        Workflow  TypeNull `json:"workflow"`
+    }
+
+        // WorkflowRetryRequest
+    WorkflowRetryRequest {
+        // Name
+        Name  string `json:"name"`
+
+        // Namespace
+        Namespace  string `json:"namespace"`
+
+        // RestartSuccessful
+        RestartSuccessful  bool `json:"restartSuccessful"`
+
+        // NodeFieldSelector
+        NodeFieldSelector  string `json:"nodeFieldSelector"`
+
+        // Parameters
+        Parameters  []string `json:"parameters"`
+    }
+
+        // WorkflowRespond
+    WorkflowRespond {
+        // Workflow
+        // type: github.com.argoproj.argo_workflows.v3.pkg.apis.workflow.v1alpha1.Workflow
+        Workflow  TypeNull `json:"workflow"`
+    }
+
+        // WorkflowListRespond
+    WorkflowListRespond {
+        // WorkflowList
+        // type: github.com.argoproj.argo_workflows.v3.pkg.apis.workflow.v1alpha1.WorkflowList
+        WorkflowList  TypeNull `json:"workflowList"`
+    }
+
+        // Event
+    Event {
+        // Event
+        // type: k8s.io.api.core.v1.Event
+        Event  TypeNull `json:"event"`
+    }
+
+        // WorkflowSubmitRequest
+    WorkflowSubmitRequest {
+        // Namespace
+        Namespace  string `json:"namespace"`
+
+        // ResourceKind
+        ResourceKind  string `json:"resourceKind"`
+
+        // ResourceName
+        ResourceName  string `json:"resourceName"`
+
+        // SubmitOptions
+        // type: github.com.argoproj.argo_workflows.v3.pkg.apis.workflow.v1alpha1.SubmitOpts
+        SubmitOptions  TypeNull `json:"submitOptions"`
+    }
+
+        //
+    typenull {
+
+    }
+)
+@server(
+    jwt: Auth
+    group: workflow
+    middleware: Authority
+)
+service Core {
+    // CreateWorkflow
+    @handler CreateWorkflow
+    post /workflow/create_workflow/:namespace (WorkflowCreateRequest) returns (WorkflowRespond);
+
+    // GetWorkflow
+    @handler GetWorkflow
+    get /workflow/get_workflow/:namespcae/:name (WorkflowGetRequest) returns (WorkflowRespond)
+
+    // ListWorkflows
+    @handler ListWorkflows
+    get /workflow/list_workflows/:namespace (WorkflowListRequest) returns (WorkflowListRespond)
+
+    // WatchWorkflows
+    @handler WatchWorkflows
+    get /workflow/watch_workflows/:namespace (WatchWorkflowsRequest) returns (WorkflowWatchEvent)
+
+    // WatchEvents
+    @handler WatchEvents
+    get /workflow/watch_events/:namespace (WatchEventsRequest) returns (Event)
+
+    // DeleteWorkflow
+    @handler DeleteWorkflow
+    delete /workflow/delete_workflow/:namespace/:name (WorkflowDeleteRequest) returns (WorkflowDeleteResponse)
+
+    // RetryWorkflow
+    @handler RetryWorkflow
+    put /workflow/retry_workflow/:namespace/:name/retey (WorkflowRetryRequest) returns (WorkflowRespond)
+
+    // ResubmitWorkflow
+    @handler ResubmitWorkflow
+    put /workflow/resubmit_workflow/:namespace/:name/resubmit (WorkflowResubmitRequest) returns (WorkflowRespond)
+
+    // ResumeWorkflow
+    @handler ResumeWorkflow
+    put /workflow/resume_workflow/:namespace/:name/resume (WorkflowResumeRequest) returns (WorkflowRespond)
+
+    // SuspendWorkflow
+    @handler SuspendWorkflow
+    put /workflow/suspend_workflow/:namespace/:name/suspend (WorkflowSuspendRequest) returns (WorkflowRespond)
+
+    // TerminateWorkflow
+    @handler TerminateWorkflow
+    put /workflow/terminate_workflow/:namespace/:name/terminate (WorkflowTerminateRequest) returns (WorkflowRespond)
+
+    // StopWorkflow
+    @handler StopWorkflow
+    put /workflow/stop_workflow/:namespace/:name/stop (WorkflowStopRequest) returns (WorkflowRespond)
+
+    // SetWorkflow
+    @handler SetWorkflow
+    put /workflow/set_workflow/:namespace/:name/set (WorkflowSetRequest) returns (WorkflowRespond)
+
+    // LintWorkflow
+    @handler LintWorkflow
+    post /workflow/lint_workflow/:namespace/lint (WorkflowLintRequest) returns (WorkflowRespond)
+
+    @handler PodLogs
+    get /workflow/pod_logs/:namespace/:name/:podName/log (WorkflowLogRequest) returns (LogEntry)
+
+    // WorkflowLogs
+    @handler WorkflowLogs
+    get /workflow/workflow_logs/:namespace/:name/log (WorkflowLogRequest) returns (LogEntry)
+
+    // SubmitWorkflow
+    @handler SubmitWorkflow
+    post /workflow/submit_workflow/:namespace/submit (WorkflowSubmitRequest) returns (WorkflowRespond)
+}
+

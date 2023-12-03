@@ -344,7 +344,7 @@ func (s *CoreServer) GetWorkflow(ctx context.Context, in *core.WorkflowGetReques
 	return l.GetWorkflow(in)
 }
 
-func (s *CoreServer) ListWorkflows(ctx context.Context, in *core.WorkflowListRequest) (*core.WorkflowListRespnd, error) {
+func (s *CoreServer) ListWorkflows(ctx context.Context, in *core.WorkflowListRequest) (*core.WorkflowListRespond, error) {
 	l := workflow.NewListWorkflowsLogic(ctx, s.svcCtx)
 	return l.ListWorkflows(in)
 }
@@ -352,6 +352,11 @@ func (s *CoreServer) ListWorkflows(ctx context.Context, in *core.WorkflowListReq
 func (s *CoreServer) WatchWorkflows(in *core.WatchWorkflowsRequest, stream core.Core_WatchWorkflowsServer) error {
 	l := workflow.NewWatchWorkflowsLogic(stream.Context(), s.svcCtx)
 	return l.WatchWorkflows(in, stream)
+}
+
+func (s *CoreServer) WatchEvents(in *core.WatchEventsRequest, stream core.Core_WatchEventsServer) error {
+	l := workflow.NewWatchEventsLogic(stream.Context(), s.svcCtx)
+	return l.WatchEvents(in, stream)
 }
 
 func (s *CoreServer) DeleteWorkflow(ctx context.Context, in *core.WorkflowDeleteRequest) (*core.WorkflowDeleteResponse, error) {
@@ -384,6 +389,16 @@ func (s *CoreServer) TerminateWorkflow(ctx context.Context, in *core.WorkflowTer
 	return l.TerminateWorkflow(in)
 }
 
+func (s *CoreServer) StopWorkflow(ctx context.Context, in *core.WorkflowStopRequest) (*core.WorkflowRespond, error) {
+	l := workflow.NewStopWorkflowLogic(ctx, s.svcCtx)
+	return l.StopWorkflow(in)
+}
+
+func (s *CoreServer) SetWorkflow(ctx context.Context, in *core.WorkflowSetRequest) (*core.WorkflowRespond, error) {
+	l := workflow.NewSetWorkflowLogic(ctx, s.svcCtx)
+	return l.SetWorkflow(in)
+}
+
 func (s *CoreServer) LintWorkflow(ctx context.Context, in *core.WorkflowLintRequest) (*core.WorkflowRespond, error) {
 	l := workflow.NewLintWorkflowLogic(ctx, s.svcCtx)
 	return l.LintWorkflow(in)
@@ -392,4 +407,14 @@ func (s *CoreServer) LintWorkflow(ctx context.Context, in *core.WorkflowLintRequ
 func (s *CoreServer) PodLogs(in *core.WorkflowLogRequest, stream core.Core_PodLogsServer) error {
 	l := workflow.NewPodLogsLogic(stream.Context(), s.svcCtx)
 	return l.PodLogs(in, stream)
+}
+
+func (s *CoreServer) WorkflowLogs(in *core.WorkflowLogRequest, stream core.Core_WorkflowLogsServer) error {
+	l := workflow.NewWorkflowLogsLogic(stream.Context(), s.svcCtx)
+	return l.WorkflowLogs(in, stream)
+}
+
+func (s *CoreServer) SubmitWorkflow(ctx context.Context, in *core.WorkflowSubmitRequest) (*core.WorkflowRespond, error) {
+	l := workflow.NewSubmitWorkflowLogic(ctx, s.svcCtx)
+	return l.SubmitWorkflow(in)
 }

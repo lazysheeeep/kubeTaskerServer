@@ -9,22 +9,22 @@ import (
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
-type ListWorkflowsLogic struct {
+type WorkflowLogsLogic struct {
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
 	logx.Logger
 }
 
-func NewListWorkflowsLogic(ctx context.Context, svcCtx *svc.ServiceContext) *ListWorkflowsLogic {
-	return &ListWorkflowsLogic{
+func NewWorkflowLogsLogic(ctx context.Context, svcCtx *svc.ServiceContext) *WorkflowLogsLogic {
+	return &WorkflowLogsLogic{
 		ctx:    ctx,
 		svcCtx: svcCtx,
 		Logger: logx.WithContext(ctx),
 	}
 }
 
-func (l *ListWorkflowsLogic) ListWorkflows(in *core.WorkflowListRequest) (*core.WorkflowListRespond, error) {
+func (l *WorkflowLogsLogic) WorkflowLogs(in *core.WorkflowLogRequest, stream core.Core_WorkflowLogsServer) error {
 	// todo: add your logic here and delete this line
 
-	return &core.WorkflowListRespond{}, nil
+	return nil
 }
