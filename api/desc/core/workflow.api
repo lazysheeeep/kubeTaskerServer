@@ -290,9 +290,16 @@ type (
         SubmitOptions  TypeNull `json:"submitOptions"`
     }
 
-        //
-    typenull {
+    WorkflowWatchEventList {
+        workflowWatchEventList []WorkflowWatchEvent `json:"workflowWatchEventList"`
+    }
 
+    EventList {
+        eventList []Event `json:"eventList"`
+    }
+
+    LogEntryList {
+        LogEntryList []LogEntry `json:"logEntryList"`
     }
 )
 @server(
@@ -315,11 +322,11 @@ service Core {
 
     // WatchWorkflows
     @handler WatchWorkflows
-    get /workflow/watch_workflows/:namespace (WatchWorkflowsRequest) returns (WorkflowWatchEvent)
+    get /workflow/watch_workflows/:namespace (WatchWorkflowsRequest) returns (WorkflowWatchEventList)
 
     // WatchEvents
     @handler WatchEvents
-    get /workflow/watch_events/:namespace (WatchEventsRequest) returns (Event)
+    get /workflow/watch_events/:namespace (WatchEventsRequest) returns (EventList)
 
     // DeleteWorkflow
     @handler DeleteWorkflow
@@ -358,11 +365,11 @@ service Core {
     post /workflow/lint_workflow/:namespace/lint (WorkflowLintRequest) returns (WorkflowRespond)
 
     @handler PodLogs
-    get /workflow/pod_logs/:namespace/:name/:podName/log (WorkflowLogRequest) returns (LogEntry)
+    get /workflow/pod_logs/:namespace/:name/:podName/log (WorkflowLogRequest) returns (LogEntryList)
 
     // WorkflowLogs
     @handler WorkflowLogs
-    get /workflow/workflow_logs/:namespace/:name/log (WorkflowLogRequest) returns (LogEntry)
+    get /workflow/workflow_logs/:namespace/:name/log (WorkflowLogRequest) returns (LogEntryList)
 
     // SubmitWorkflow
     @handler SubmitWorkflow

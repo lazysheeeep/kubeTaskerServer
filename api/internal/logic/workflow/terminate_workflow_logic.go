@@ -2,6 +2,7 @@ package workflow
 
 import (
 	"context"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/types/core"
 
 	"github.com/kubeTasker/kubeTaskerServer/api/internal/svc"
 	"github.com/kubeTasker/kubeTaskerServer/api/internal/types"
@@ -24,6 +25,14 @@ func NewTerminateWorkflowLogic(ctx context.Context, svcCtx *svc.ServiceContext) 
 
 func (l *TerminateWorkflowLogic) TerminateWorkflow(req *types.WorkflowTerminateRequest) (resp *types.WorkflowRespond, err error) {
 	// todo: add your logic here and delete this line
-
-	return
+	workflow, err := l.svcCtx.CoreRpc.TerminateWorkflow(l.ctx, &core.WorkflowTerminateRequest{
+		Name:      req.Name,
+		Namespace: req.Namespace,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return &types.WorkflowRespond{
+		Workflow: workflow.Workflow,
+	}, nil
 }

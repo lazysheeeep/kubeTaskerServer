@@ -2,6 +2,7 @@ package workflow
 
 import (
 	"context"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/types/core"
 
 	"github.com/kubeTasker/kubeTaskerServer/api/internal/svc"
 	"github.com/kubeTasker/kubeTaskerServer/api/internal/types"
@@ -23,7 +24,14 @@ func NewDeleteWorkflowLogic(ctx context.Context, svcCtx *svc.ServiceContext) *De
 }
 
 func (l *DeleteWorkflowLogic) DeleteWorkflow(req *types.WorkflowDeleteRequest) (resp *types.WorkflowDeleteResponse, err error) {
-	// todo: add your logic here and delete this line
-
-	return
+	_, err = l.svcCtx.CoreRpc.DeleteWorkflow(l.ctx, &core.WorkflowDeleteRequest{
+		Name:          req.Name,
+		Namespace:     req.Namespace,
+		DeleteOptions: req.DeleteOptions,
+		Force:         req.Force,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return &types.WorkflowDeleteResponse{}, nil
 }
