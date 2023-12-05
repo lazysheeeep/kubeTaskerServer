@@ -2,7 +2,7 @@
 package types
 
 import (
-	"github.com/argoproj/argo-workflows/v3/pkg/apis/workflow/v1alpha1"
+	v1alpha1 "github.com/argoproj/argo-workflows/v3/pkg/apis/workflow/v1alpha1"
 	v11 "k8s.io/api/core/v1"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
@@ -1592,7 +1592,7 @@ type WorkflowCreateRequest struct {
 	Namespace string `json:"namespace"`
 	// Workflow
 	// type :github.com.argoproj.argo_workflows.v3.pkg.apis.workflow.v1alpha1.Workflow
-	Workflow v1alpha1.Workflow `json:"workflow"`
+	Workflow *v1alpha1.Workflow `json:"workflow"`
 	// InstanceID
 	// This field is no longer used.
 	InstanceID string `json:"instanceId"`
@@ -1600,7 +1600,7 @@ type WorkflowCreateRequest struct {
 	ServerDryRun bool `json:"serverDryRun"`
 	// CreateOptions
 	// type: k8s.io.apimachinery.pkg.apis.meta.v1.CreateOptions
-	CreateOptions v1.CreateOptions `json:"createOptions"`
+	CreateOptions *v1.CreateOptions `json:"createOptions"`
 }
 
 type WorkflowTerminateRequest struct {
@@ -1630,7 +1630,7 @@ type WorkflowLogRequest struct {
 	PodName string `json:"podName"`
 	// LogOptions
 	// type: k8s.io.api.core.v1.PodLogOptions
-	LogOptions v11.PodLogOptions `json:"logOptions"`
+	LogOptions *v11.PodLogOptions `json:"logOptions"`
 	// Grep
 	Grep string `json:"grep"`
 	// Selector
@@ -1659,7 +1659,7 @@ type WorkflowListRequest struct {
 	Namespace string `json:"namespace"`
 	// ListOptions
 	// type: k8s.io.apimachinery.pkg.apis.meta.v1.ListOptions
-	ListOptions v1.ListOptions `json:"listOptions"`
+	ListOptions *v1.ListOptions `json:"listOptions"`
 	// Fields
 	Fields string `json:"fields"`
 }
@@ -1674,7 +1674,7 @@ type WorkflowWatchEvent struct {
 	Type string `json:"type"`
 	// Object
 	// type: github.com.argoproj.argo_workflows.v3.pkg.apis.workflow.v1alpha1.Workflow
-	Object v1alpha1.Workflow `json:"object"`
+	Object *v1alpha1.Workflow `json:"object"`
 }
 
 // LogEntry
@@ -1693,7 +1693,7 @@ type WorkflowGetRequest struct {
 	Namespace string `json:"namespace"`
 	// GetOptions
 	// type: k8s.io.apimachinery.pkg.apis.meta.v1.GetOptions
-	GetOptions v1.GetOptions `json:"getOptions"`
+	GetOptions *v1.GetOptions `json:"getOptions"`
 	// Fields
 	Fields string `json:"fields"`
 }
@@ -1704,7 +1704,7 @@ type WatchWorkflowsRequest struct {
 	Namespace string `json:"namespace"`
 	// ListOptions
 	// type: k8s.io.apimachinery.pkg.apis.meta.v1.ListOptions
-	ListOptions v1.ListOptions `json:"listOptions"`
+	ListOptions *v1.ListOptions `json:"listOptions"`
 	// Fields
 	Fields string `json:"fields"`
 }
@@ -1739,7 +1739,7 @@ type WatchEventsRequest struct {
 	Namespace string `json:"namespace"`
 	// ListOptions
 	// type: k8s.io.apimachinery.pkg.apis.meta.v1.ListOptions
-	ListOptions v1.ListOptions `json:"listOptions"`
+	ListOptions *v1.ListOptions `json:"listOptions"`
 }
 
 // WorkflowSuspendRequest
@@ -1758,7 +1758,7 @@ type WorkflowDeleteRequest struct {
 	Namespace string `json:"namespace"`
 	// DeleteOptions
 	// type: k8s.io.apimachinery.pkg.apis.meta.v1.DeleteOptions
-	DeleteOptions v1.DeleteOptions `json:"deleteOptions"`
+	DeleteOptions *v1.DeleteOptions `json:"deleteOptions"`
 	// Force
 	Force bool `json:"force"`
 }
@@ -1769,7 +1769,7 @@ type WorkflowLintRequest struct {
 	Namespace string `json:"namespace"`
 	// Workflow
 	// type: github.com.argoproj.argo_workflows.v3.pkg.apis.workflow.v1alpha1.Workflow
-	Workflow v1alpha1.Workflow `json:"workflow"`
+	Workflow *v1alpha1.Workflow `json:"workflow"`
 }
 
 // WorkflowRetryRequest
@@ -1790,21 +1790,21 @@ type WorkflowRetryRequest struct {
 type WorkflowRespond struct {
 	// Workflow
 	// type: github.com.argoproj.argo_workflows.v3.pkg.apis.workflow.v1alpha1.Workflow
-	Workflow v1alpha1.Workflow `json:"workflow"`
+	Workflow *v1alpha1.Workflow `json:"workflow"`
 }
 
 // WorkflowListRespond
 type WorkflowListRespond struct {
 	// WorkflowList
 	// type: github.com.argoproj.argo_workflows.v3.pkg.apis.workflow.v1alpha1.WorkflowList
-	WorkflowList v1alpha1.WorkflowList `json:"workflowList"`
+	WorkflowList *v1alpha1.WorkflowList `json:"workflowList"`
 }
 
 // Event
 type Event struct {
 	// Event
 	// type: k8s.io.api.core.v1.Event
-	Event v11.Event `json:"event"`
+	Event *v11.Event `json:"event"`
 }
 
 // WorkflowSubmitRequest
@@ -1817,8 +1817,17 @@ type WorkflowSubmitRequest struct {
 	ResourceName string `json:"resourceName"`
 	// SubmitOptions
 	// type: github.com.argoproj.argo_workflows.v3.pkg.apis.workflow.v1alpha1.SubmitOpts
-	SubmitOptions v1alpha1.SubmitOpts `json:"submitOptions"`
+	SubmitOptions *v1alpha1.SubmitOpts `json:"submitOptions"`
 }
 
-type Typenull struct {
+type WorkflowWatchEventList struct {
+	WorkflowWatchEventList []WorkflowWatchEvent `json:"workflowWatchEventList"`
+}
+
+type EventList struct {
+	EventList []Event `json:"eventList"`
+}
+
+type LogEntryList struct {
+	LogEntryList []LogEntry `json:"logEntryList"`
 }

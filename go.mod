@@ -4,13 +4,13 @@ go 1.21
 
 require (
 	entgo.io/ent v0.12.5
-	github.com/argoproj/argo-workflows v2.5.2+incompatible
+	github.com/argoproj/argo-workflows/v3 v3.5.2
 	github.com/casbin/casbin/v2 v2.79.0
 	github.com/duke-git/lancet/v2 v2.2.7
 	github.com/gofrs/uuid/v5 v5.0.0
 	github.com/mojocn/base64Captcha v1.3.5
-	github.com/suyuan32/simple-admin-common v1.2.3
-	github.com/suyuan32/simple-admin-job v1.2.3
+	github.com/suyuan32/simple-admin-common v1.2.4
+	github.com/suyuan32/simple-admin-job v1.2.4
 	github.com/suyuan32/simple-admin-message-center v1.2.3
 	github.com/zeromicro/go-zero v1.6.0
 	golang.org/x/oauth2 v0.15.0
@@ -23,12 +23,8 @@ require (
 require (
 	ariga.io/atlas v0.15.0 // indirect
 	ariga.io/entcache v0.1.1-0.20230414114609-164fed2e1c70 // indirect
-	github.com/Knetic/govaluate v3.0.1-0.20171022003610-9aa49832a739+incompatible // indirect
 	github.com/agext/levenshtein v1.2.3 // indirect
-	github.com/apparentlymart/go-textseg/v13 v13.0.0 // indirect
 	github.com/apparentlymart/go-textseg/v15 v15.0.0 // indirect
-	github.com/argoproj/argo v2.5.2+incompatible // indirect
-	github.com/argoproj/argo-workflows/v3 v3.5.2 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/casbin/ent-adapter v0.3.0 // indirect
 	github.com/casbin/govaluate v1.1.1 // indirect
@@ -41,14 +37,12 @@ require (
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/emicklei/go-restful/v3 v3.11.0 // indirect
 	github.com/fatih/color v1.16.0 // indirect
-	github.com/fsnotify/fsnotify v1.6.0 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.3 // indirect
 	github.com/go-logr/logr v1.3.0 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/go-openapi/inflect v0.19.0 // indirect
 	github.com/go-openapi/jsonpointer v0.20.0 // indirect
 	github.com/go-openapi/jsonreference v0.20.2 // indirect
-	github.com/go-openapi/spec v0.20.9 // indirect
 	github.com/go-openapi/swag v0.22.4 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
@@ -68,6 +62,7 @@ require (
 	github.com/grpc-ecosystem/grpc-gateway v1.16.0 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.18.1 // indirect
 	github.com/hashicorp/hcl/v2 v2.19.1 // indirect
+	github.com/hibiken/asynq v0.24.1 // indirect
 	github.com/jackc/chunkreader/v2 v2.0.1 // indirect
 	github.com/jackc/pgconn v1.14.1 // indirect
 	github.com/jackc/pgio v1.0.0 // indirect
@@ -84,7 +79,6 @@ require (
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/mattn/go-sqlite3 v1.14.18 // indirect
-	github.com/matttproud/golang_protobuf_extensions v1.0.4 // indirect
 	github.com/matttproud/golang_protobuf_extensions/v2 v2.0.0 // indirect
 	github.com/mitchellh/go-wordwrap v1.0.1 // indirect
 	github.com/mitchellh/hashstructure/v2 v2.0.2 // indirect
@@ -100,11 +94,10 @@ require (
 	github.com/prometheus/common v0.45.0 // indirect
 	github.com/prometheus/procfs v0.12.0 // indirect
 	github.com/redis/go-redis/v9 v9.3.0 // indirect
+	github.com/robfig/cron/v3 v3.0.1 // indirect
 	github.com/sirupsen/logrus v1.9.3 // indirect
 	github.com/spaolacci/murmur3 v1.1.0 // indirect
-	github.com/tidwall/gjson v1.17.0 // indirect
-	github.com/tidwall/match v1.1.1 // indirect
-	github.com/tidwall/pretty v1.2.1 // indirect
+	github.com/spf13/cast v1.5.0 // indirect
 	github.com/zclconf/go-cty v1.14.1 // indirect
 	go.etcd.io/etcd/api/v3 v3.5.10 // indirect
 	go.etcd.io/etcd/client/pkg/v3 v3.5.10 // indirect
@@ -119,7 +112,6 @@ require (
 	go.opentelemetry.io/otel/sdk v1.21.0 // indirect
 	go.opentelemetry.io/otel/trace v1.21.0 // indirect
 	go.opentelemetry.io/proto/otlp v1.0.0 // indirect
-	go.uber.org/atomic v1.11.0 // indirect
 	go.uber.org/automaxprocs v1.5.3 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.26.0 // indirect
@@ -148,5 +140,3 @@ require (
 )
 
 replace github.com/zeromicro/go-zero v1.6.0 => github.com/suyuan32/simple-admin-tools v1.6.0
-
-replace github.com/argoproj/argo-workflows v2.5.2+incompatible => /root/go/pkg/mod/github.com/argoproj/argo-workflows

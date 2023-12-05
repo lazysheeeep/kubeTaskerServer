@@ -2,6 +2,7 @@ package workflow
 
 import (
 	"context"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/types/core"
 
 	"github.com/kubeTasker/kubeTaskerServer/api/internal/svc"
 	"github.com/kubeTasker/kubeTaskerServer/api/internal/types"
@@ -24,6 +25,16 @@ func NewResubmitWorkflowLogic(ctx context.Context, svcCtx *svc.ServiceContext) *
 
 func (l *ResubmitWorkflowLogic) ResubmitWorkflow(req *types.WorkflowResubmitRequest) (resp *types.WorkflowRespond, err error) {
 	// todo: add your logic here and delete this line
-
-	return
+	workflow, err := l.svcCtx.CoreRpc.ResubmitWorkflow(l.ctx, &core.WorkflowResubmitRequest{
+		Name:       req.Name,
+		Namespace:  req.Namespace,
+		Memoized:   req.Memoized,
+		Parameters: req.Parameters,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return &types.WorkflowRespond{
+		Workflow: workflow.Workflow,
+	}, nil
 }

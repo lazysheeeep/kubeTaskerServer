@@ -7,7 +7,7 @@
 package core
 
 import (
-	v1alpha1 "github.com/argoproj/argo-workflows/pkg/apis/workflow/v1alpha1"
+	v1alpha1 "github.com/argoproj/argo-workflows/v3/pkg/apis/workflow/v1alpha1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	v11 "k8s.io/api/core/v1"
