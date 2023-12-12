@@ -4,6 +4,7 @@ import (
 	"github.com/suyuan32/simple-admin-common/plugins/casbin"
 	"github.com/zeromicro/go-zero/core/stores/redis"
 	"github.com/zeromicro/go-zero/zrpc"
+	"k8s.io/client-go/rest"
 
 	"github.com/suyuan32/simple-admin-common/config"
 )
@@ -13,4 +14,5 @@ type Config struct {
 	DatabaseConf config.DatabaseConf
 	CasbinConf   casbin.CasbinConf
 	RedisConf    redis.RedisConf
+	K8sConf      rest.Config
 }

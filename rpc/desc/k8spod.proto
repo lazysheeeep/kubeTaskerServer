@@ -7,11 +7,11 @@ import "k8s.io/api@v0.28.4/core/v1/generated.proto";
 message GetPodsReq {
   string filterName = 1;
   string namespace = 2;
-  uint64 limit = 3;
-  uint64 page = 4;
+  int32 limit = 3;
+  int32 page = 4;
 }
 message GetPodsResp {
-  string total = 1;
+  int32 total = 1;
   repeated k8s.io.api.core.v1.Pod items = 2;
 }
 
@@ -61,7 +61,7 @@ message GetPodLogResp {
 message GetPodNumPerNpReq {}
 message PodsNp {
   string namespace = 1;
-  uint64 podNum = 2;
+  int32 podNum = 2;
 }
 message GetPodNumPerNpResp {
   repeated PodsNp podsNps = 1;
@@ -78,7 +78,7 @@ service Core {
   // group: k8sPod
   rpc updatePod (UpdatePodReq) returns (UpdatePodResp);
   // group: k8sPod
-  rpc getPodContainer (GetPodDetailReq) returns (GetPodDetailResp);
+  rpc getPodContainer (GetPodContainerReq) returns (GetPodContainerResp);
   // group: k8sPod
   rpc getPodLog (GetPodLogReq) returns (GetPodLogResp);
   // group: k8sPod

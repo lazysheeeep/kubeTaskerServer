@@ -111,7 +111,7 @@ type (
 		GetPodDetail(ctx context.Context, in *GetPodDetailReq, opts ...grpc.CallOption) (*GetPodDetailResp, error)
 		DeletePod(ctx context.Context, in *DeletePodReq, opts ...grpc.CallOption) (*DeletePodResp, error)
 		UpdatePod(ctx context.Context, in *UpdatePodReq, opts ...grpc.CallOption) (*UpdatePodResp, error)
-		GetPodContainer(ctx context.Context, in *GetPodDetailReq, opts ...grpc.CallOption) (*GetPodDetailResp, error)
+		GetPodContainer(ctx context.Context, in *GetPodContainerReq, opts ...grpc.CallOption) (*GetPodContainerResp, error)
 		GetPodLog(ctx context.Context, in *GetPodLogReq, opts ...grpc.CallOption) (*GetPodLogResp, error)
 		GetPodNumPerNp(ctx context.Context, in *GetPodNumPerNpReq, opts ...grpc.CallOption) (*GetPodNumPerNpResp, error)
 		CreateMenu(ctx context.Context, in *MenuInfo, opts ...grpc.CallOption) (*BaseIDResp, error)
@@ -311,7 +311,7 @@ func (m *defaultCore) UpdatePod(ctx context.Context, in *UpdatePodReq, opts ...g
 	return client.UpdatePod(ctx, in, opts...)
 }
 
-func (m *defaultCore) GetPodContainer(ctx context.Context, in *GetPodDetailReq, opts ...grpc.CallOption) (*GetPodDetailResp, error) {
+func (m *defaultCore) GetPodContainer(ctx context.Context, in *GetPodContainerReq, opts ...grpc.CallOption) (*GetPodContainerResp, error) {
 	client := core.NewCoreClient(m.cli.Conn())
 	return client.GetPodContainer(ctx, in, opts...)
 }

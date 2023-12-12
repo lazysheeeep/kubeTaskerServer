@@ -179,7 +179,7 @@ func (s *CoreServer) UpdatePod(ctx context.Context, in *core.UpdatePodReq) (*cor
 	return l.UpdatePod(in)
 }
 
-func (s *CoreServer) GetPodContainer(ctx context.Context, in *core.GetPodDetailReq) (*core.GetPodDetailResp, error) {
+func (s *CoreServer) GetPodContainer(ctx context.Context, in *core.GetPodContainerReq) (*core.GetPodContainerResp, error) {
 	l := k8sPod.NewGetPodContainerLogic(ctx, s.svcCtx)
 	return l.GetPodContainer(in)
 }

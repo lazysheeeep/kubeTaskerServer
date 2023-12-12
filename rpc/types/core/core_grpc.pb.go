@@ -152,7 +152,7 @@ type CoreClient interface {
 	// group: k8sPod
 	UpdatePod(ctx context.Context, in *UpdatePodReq, opts ...grpc.CallOption) (*UpdatePodResp, error)
 	// group: k8sPod
-	GetPodContainer(ctx context.Context, in *GetPodDetailReq, opts ...grpc.CallOption) (*GetPodDetailResp, error)
+	GetPodContainer(ctx context.Context, in *GetPodContainerReq, opts ...grpc.CallOption) (*GetPodContainerResp, error)
 	// group: k8sPod
 	GetPodLog(ctx context.Context, in *GetPodLogReq, opts ...grpc.CallOption) (*GetPodLogResp, error)
 	// group: k8sPod
@@ -492,8 +492,8 @@ func (c *coreClient) UpdatePod(ctx context.Context, in *UpdatePodReq, opts ...gr
 	return out, nil
 }
 
-func (c *coreClient) GetPodContainer(ctx context.Context, in *GetPodDetailReq, opts ...grpc.CallOption) (*GetPodDetailResp, error) {
-	out := new(GetPodDetailResp)
+func (c *coreClient) GetPodContainer(ctx context.Context, in *GetPodContainerReq, opts ...grpc.CallOption) (*GetPodContainerResp, error) {
+	out := new(GetPodContainerResp)
 	err := c.cc.Invoke(ctx, Core_GetPodContainer_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -891,7 +891,7 @@ type CoreServer interface {
 	// group: k8sPod
 	UpdatePod(context.Context, *UpdatePodReq) (*UpdatePodResp, error)
 	// group: k8sPod
-	GetPodContainer(context.Context, *GetPodDetailReq) (*GetPodDetailResp, error)
+	GetPodContainer(context.Context, *GetPodContainerReq) (*GetPodContainerResp, error)
 	// group: k8sPod
 	GetPodLog(context.Context, *GetPodLogReq) (*GetPodLogResp, error)
 	// group: k8sPod
@@ -1060,7 +1060,7 @@ func (UnimplementedCoreServer) DeletePod(context.Context, *DeletePodReq) (*Delet
 func (UnimplementedCoreServer) UpdatePod(context.Context, *UpdatePodReq) (*UpdatePodResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdatePod not implemented")
 }
-func (UnimplementedCoreServer) GetPodContainer(context.Context, *GetPodDetailReq) (*GetPodDetailResp, error) {
+func (UnimplementedCoreServer) GetPodContainer(context.Context, *GetPodContainerReq) (*GetPodContainerResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPodContainer not implemented")
 }
 func (UnimplementedCoreServer) GetPodLog(context.Context, *GetPodLogReq) (*GetPodLogResp, error) {
@@ -1689,7 +1689,7 @@ func _Core_UpdatePod_Handler(srv interface{}, ctx context.Context, dec func(inte
 }
 
 func _Core_GetPodContainer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetPodDetailReq)
+	in := new(GetPodContainerReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1701,7 +1701,7 @@ func _Core_GetPodContainer_Handler(srv interface{}, ctx context.Context, dec fun
 		FullMethod: Core_GetPodContainer_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CoreServer).GetPodContainer(ctx, req.(*GetPodDetailReq))
+		return srv.(CoreServer).GetPodContainer(ctx, req.(*GetPodContainerReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
