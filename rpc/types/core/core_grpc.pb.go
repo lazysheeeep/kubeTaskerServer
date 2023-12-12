@@ -43,6 +43,13 @@ const (
 	Core_GetDictionaryDetailById_FullMethodName             = "/core.Core/getDictionaryDetailById"
 	Core_DeleteDictionaryDetail_FullMethodName              = "/core.Core/deleteDictionaryDetail"
 	Core_GetDictionaryDetailByDictionaryName_FullMethodName = "/core.Core/getDictionaryDetailByDictionaryName"
+	Core_GetPods_FullMethodName                             = "/core.Core/getPods"
+	Core_GetPodDetail_FullMethodName                        = "/core.Core/getPodDetail"
+	Core_DeletePod_FullMethodName                           = "/core.Core/deletePod"
+	Core_UpdatePod_FullMethodName                           = "/core.Core/updatePod"
+	Core_GetPodContainer_FullMethodName                     = "/core.Core/getPodContainer"
+	Core_GetPodLog_FullMethodName                           = "/core.Core/getPodLog"
+	Core_GetPodNumPerNp_FullMethodName                      = "/core.Core/getPodNumPerNp"
 	Core_CreateMenu_FullMethodName                          = "/core.Core/createMenu"
 	Core_UpdateMenu_FullMethodName                          = "/core.Core/updateMenu"
 	Core_DeleteMenu_FullMethodName                          = "/core.Core/deleteMenu"
@@ -135,6 +142,21 @@ type CoreClient interface {
 	DeleteDictionaryDetail(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error)
 	// group: dictionarydetail
 	GetDictionaryDetailByDictionaryName(ctx context.Context, in *BaseMsg, opts ...grpc.CallOption) (*DictionaryDetailListResp, error)
+	// K8sPod management
+	// group: k8sPod
+	GetPods(ctx context.Context, in *GetPodsReq, opts ...grpc.CallOption) (*GetPodsResp, error)
+	// group: k8sPod
+	GetPodDetail(ctx context.Context, in *GetPodDetailReq, opts ...grpc.CallOption) (*GetPodDetailResp, error)
+	// group: k8sPod
+	DeletePod(ctx context.Context, in *DeletePodReq, opts ...grpc.CallOption) (*DeletePodResp, error)
+	// group: k8sPod
+	UpdatePod(ctx context.Context, in *UpdatePodReq, opts ...grpc.CallOption) (*UpdatePodResp, error)
+	// group: k8sPod
+	GetPodContainer(ctx context.Context, in *GetPodDetailReq, opts ...grpc.CallOption) (*GetPodDetailResp, error)
+	// group: k8sPod
+	GetPodLog(ctx context.Context, in *GetPodLogReq, opts ...grpc.CallOption) (*GetPodLogResp, error)
+	// group: k8sPod
+	GetPodNumPerNp(ctx context.Context, in *GetPodNumPerNpReq, opts ...grpc.CallOption) (*GetPodNumPerNpResp, error)
 	// group: menu
 	CreateMenu(ctx context.Context, in *MenuInfo, opts ...grpc.CallOption) (*BaseIDResp, error)
 	// group: menu
@@ -428,6 +450,69 @@ func (c *coreClient) DeleteDictionaryDetail(ctx context.Context, in *IDsReq, opt
 func (c *coreClient) GetDictionaryDetailByDictionaryName(ctx context.Context, in *BaseMsg, opts ...grpc.CallOption) (*DictionaryDetailListResp, error) {
 	out := new(DictionaryDetailListResp)
 	err := c.cc.Invoke(ctx, Core_GetDictionaryDetailByDictionaryName_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) GetPods(ctx context.Context, in *GetPodsReq, opts ...grpc.CallOption) (*GetPodsResp, error) {
+	out := new(GetPodsResp)
+	err := c.cc.Invoke(ctx, Core_GetPods_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) GetPodDetail(ctx context.Context, in *GetPodDetailReq, opts ...grpc.CallOption) (*GetPodDetailResp, error) {
+	out := new(GetPodDetailResp)
+	err := c.cc.Invoke(ctx, Core_GetPodDetail_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) DeletePod(ctx context.Context, in *DeletePodReq, opts ...grpc.CallOption) (*DeletePodResp, error) {
+	out := new(DeletePodResp)
+	err := c.cc.Invoke(ctx, Core_DeletePod_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) UpdatePod(ctx context.Context, in *UpdatePodReq, opts ...grpc.CallOption) (*UpdatePodResp, error) {
+	out := new(UpdatePodResp)
+	err := c.cc.Invoke(ctx, Core_UpdatePod_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) GetPodContainer(ctx context.Context, in *GetPodDetailReq, opts ...grpc.CallOption) (*GetPodDetailResp, error) {
+	out := new(GetPodDetailResp)
+	err := c.cc.Invoke(ctx, Core_GetPodContainer_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) GetPodLog(ctx context.Context, in *GetPodLogReq, opts ...grpc.CallOption) (*GetPodLogResp, error) {
+	out := new(GetPodLogResp)
+	err := c.cc.Invoke(ctx, Core_GetPodLog_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) GetPodNumPerNp(ctx context.Context, in *GetPodNumPerNpReq, opts ...grpc.CallOption) (*GetPodNumPerNpResp, error) {
+	out := new(GetPodNumPerNpResp)
+	err := c.cc.Invoke(ctx, Core_GetPodNumPerNp_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -796,6 +881,21 @@ type CoreServer interface {
 	DeleteDictionaryDetail(context.Context, *IDsReq) (*BaseResp, error)
 	// group: dictionarydetail
 	GetDictionaryDetailByDictionaryName(context.Context, *BaseMsg) (*DictionaryDetailListResp, error)
+	// K8sPod management
+	// group: k8sPod
+	GetPods(context.Context, *GetPodsReq) (*GetPodsResp, error)
+	// group: k8sPod
+	GetPodDetail(context.Context, *GetPodDetailReq) (*GetPodDetailResp, error)
+	// group: k8sPod
+	DeletePod(context.Context, *DeletePodReq) (*DeletePodResp, error)
+	// group: k8sPod
+	UpdatePod(context.Context, *UpdatePodReq) (*UpdatePodResp, error)
+	// group: k8sPod
+	GetPodContainer(context.Context, *GetPodDetailReq) (*GetPodDetailResp, error)
+	// group: k8sPod
+	GetPodLog(context.Context, *GetPodLogReq) (*GetPodLogResp, error)
+	// group: k8sPod
+	GetPodNumPerNp(context.Context, *GetPodNumPerNpReq) (*GetPodNumPerNpResp, error)
 	// group: menu
 	CreateMenu(context.Context, *MenuInfo) (*BaseIDResp, error)
 	// group: menu
@@ -947,6 +1047,27 @@ func (UnimplementedCoreServer) DeleteDictionaryDetail(context.Context, *IDsReq) 
 }
 func (UnimplementedCoreServer) GetDictionaryDetailByDictionaryName(context.Context, *BaseMsg) (*DictionaryDetailListResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDictionaryDetailByDictionaryName not implemented")
+}
+func (UnimplementedCoreServer) GetPods(context.Context, *GetPodsReq) (*GetPodsResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPods not implemented")
+}
+func (UnimplementedCoreServer) GetPodDetail(context.Context, *GetPodDetailReq) (*GetPodDetailResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPodDetail not implemented")
+}
+func (UnimplementedCoreServer) DeletePod(context.Context, *DeletePodReq) (*DeletePodResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeletePod not implemented")
+}
+func (UnimplementedCoreServer) UpdatePod(context.Context, *UpdatePodReq) (*UpdatePodResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdatePod not implemented")
+}
+func (UnimplementedCoreServer) GetPodContainer(context.Context, *GetPodDetailReq) (*GetPodDetailResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPodContainer not implemented")
+}
+func (UnimplementedCoreServer) GetPodLog(context.Context, *GetPodLogReq) (*GetPodLogResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPodLog not implemented")
+}
+func (UnimplementedCoreServer) GetPodNumPerNp(context.Context, *GetPodNumPerNpReq) (*GetPodNumPerNpResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPodNumPerNp not implemented")
 }
 func (UnimplementedCoreServer) CreateMenu(context.Context, *MenuInfo) (*BaseIDResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateMenu not implemented")
@@ -1491,6 +1612,132 @@ func _Core_GetDictionaryDetailByDictionaryName_Handler(srv interface{}, ctx cont
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CoreServer).GetDictionaryDetailByDictionaryName(ctx, req.(*BaseMsg))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_GetPods_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPodsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).GetPods(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_GetPods_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).GetPods(ctx, req.(*GetPodsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_GetPodDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPodDetailReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).GetPodDetail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_GetPodDetail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).GetPodDetail(ctx, req.(*GetPodDetailReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_DeletePod_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeletePodReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).DeletePod(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_DeletePod_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).DeletePod(ctx, req.(*DeletePodReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_UpdatePod_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdatePodReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).UpdatePod(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_UpdatePod_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).UpdatePod(ctx, req.(*UpdatePodReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_GetPodContainer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPodDetailReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).GetPodContainer(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_GetPodContainer_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).GetPodContainer(ctx, req.(*GetPodDetailReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_GetPodLog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPodLogReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).GetPodLog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_GetPodLog_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).GetPodLog(ctx, req.(*GetPodLogReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_GetPodNumPerNp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPodNumPerNpReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).GetPodNumPerNp(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_GetPodNumPerNp_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).GetPodNumPerNp(ctx, req.(*GetPodNumPerNpReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2209,6 +2456,34 @@ var Core_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getDictionaryDetailByDictionaryName",
 			Handler:    _Core_GetDictionaryDetailByDictionaryName_Handler,
+		},
+		{
+			MethodName: "getPods",
+			Handler:    _Core_GetPods_Handler,
+		},
+		{
+			MethodName: "getPodDetail",
+			Handler:    _Core_GetPodDetail_Handler,
+		},
+		{
+			MethodName: "deletePod",
+			Handler:    _Core_DeletePod_Handler,
+		},
+		{
+			MethodName: "updatePod",
+			Handler:    _Core_UpdatePod_Handler,
+		},
+		{
+			MethodName: "getPodContainer",
+			Handler:    _Core_GetPodContainer_Handler,
+		},
+		{
+			MethodName: "getPodLog",
+			Handler:    _Core_GetPodLog_Handler,
+		},
+		{
+			MethodName: "getPodNumPerNp",
+			Handler:    _Core_GetPodNumPerNp_Handler,
 		},
 		{
 			MethodName: "createMenu",
