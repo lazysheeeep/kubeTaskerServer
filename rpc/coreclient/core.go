@@ -21,6 +21,8 @@ type (
 	BaseResp                 = core.BaseResp
 	BaseUUIDResp             = core.BaseUUIDResp
 	CallbackReq              = core.CallbackReq
+	DeleteConfigMapReq       = core.DeleteConfigMapReq
+	DeleteConfigMapResp      = core.DeleteConfigMapResp
 	DeletePodReq             = core.DeletePodReq
 	DeletePodResp            = core.DeletePodResp
 	DepartmentInfo           = core.DepartmentInfo
@@ -33,6 +35,10 @@ type (
 	DictionaryListReq        = core.DictionaryListReq
 	DictionaryListResp       = core.DictionaryListResp
 	Empty                    = core.Empty
+	GetConfigMapDetailReq    = core.GetConfigMapDetailReq
+	GetConfigMapDetailResp   = core.GetConfigMapDetailResp
+	GetConfigMapsReq         = core.GetConfigMapsReq
+	GetConfigMapsResp        = core.GetConfigMapsResp
 	GetPodContainerReq       = core.GetPodContainerReq
 	GetPodContainerResp      = core.GetPodContainerResp
 	GetPodDetailReq          = core.GetPodDetailReq
@@ -70,6 +76,8 @@ type (
 	TokenListResp            = core.TokenListResp
 	UUIDReq                  = core.UUIDReq
 	UUIDsReq                 = core.UUIDsReq
+	UpdateConfigMapReq       = core.UpdateConfigMapReq
+	UpdateConfigMapResp      = core.UpdateConfigMapResp
 	UpdatePodReq             = core.UpdatePodReq
 	UpdatePodResp            = core.UpdatePodResp
 	UserInfo                 = core.UserInfo
@@ -106,6 +114,11 @@ type (
 		GetDictionaryDetailById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*DictionaryDetailInfo, error)
 		DeleteDictionaryDetail(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error)
 		GetDictionaryDetailByDictionaryName(ctx context.Context, in *BaseMsg, opts ...grpc.CallOption) (*DictionaryDetailListResp, error)
+		// K8sConfigMap management
+		GetConfigMaps(ctx context.Context, in *GetConfigMapsReq, opts ...grpc.CallOption) (*GetConfigMapsResp, error)
+		GetConfigMapDetail(ctx context.Context, in *GetConfigMapDetailReq, opts ...grpc.CallOption) (*GetConfigMapDetailResp, error)
+		DeleteConfigMap(ctx context.Context, in *DeleteConfigMapReq, opts ...grpc.CallOption) (*DeleteConfigMapResp, error)
+		UpdateConfigMap(ctx context.Context, in *UpdateConfigMapReq, opts ...grpc.CallOption) (*UpdateConfigMapResp, error)
 		// K8sPod management
 		GetPods(ctx context.Context, in *GetPodsReq, opts ...grpc.CallOption) (*GetPodsResp, error)
 		GetPodDetail(ctx context.Context, in *GetPodDetailReq, opts ...grpc.CallOption) (*GetPodDetailResp, error)
@@ -288,6 +301,27 @@ func (m *defaultCore) DeleteDictionaryDetail(ctx context.Context, in *IDsReq, op
 func (m *defaultCore) GetDictionaryDetailByDictionaryName(ctx context.Context, in *BaseMsg, opts ...grpc.CallOption) (*DictionaryDetailListResp, error) {
 	client := core.NewCoreClient(m.cli.Conn())
 	return client.GetDictionaryDetailByDictionaryName(ctx, in, opts...)
+}
+
+// K8sConfigMap management
+func (m *defaultCore) GetConfigMaps(ctx context.Context, in *GetConfigMapsReq, opts ...grpc.CallOption) (*GetConfigMapsResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetConfigMaps(ctx, in, opts...)
+}
+
+func (m *defaultCore) GetConfigMapDetail(ctx context.Context, in *GetConfigMapDetailReq, opts ...grpc.CallOption) (*GetConfigMapDetailResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetConfigMapDetail(ctx, in, opts...)
+}
+
+func (m *defaultCore) DeleteConfigMap(ctx context.Context, in *DeleteConfigMapReq, opts ...grpc.CallOption) (*DeleteConfigMapResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.DeleteConfigMap(ctx, in, opts...)
+}
+
+func (m *defaultCore) UpdateConfigMap(ctx context.Context, in *UpdateConfigMapReq, opts ...grpc.CallOption) (*UpdateConfigMapResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.UpdateConfigMap(ctx, in, opts...)
 }
 
 // K8sPod management

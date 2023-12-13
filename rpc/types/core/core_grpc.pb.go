@@ -43,6 +43,10 @@ const (
 	Core_GetDictionaryDetailById_FullMethodName             = "/core.Core/getDictionaryDetailById"
 	Core_DeleteDictionaryDetail_FullMethodName              = "/core.Core/deleteDictionaryDetail"
 	Core_GetDictionaryDetailByDictionaryName_FullMethodName = "/core.Core/getDictionaryDetailByDictionaryName"
+	Core_GetConfigMaps_FullMethodName                       = "/core.Core/getConfigMaps"
+	Core_GetConfigMapDetail_FullMethodName                  = "/core.Core/getConfigMapDetail"
+	Core_DeleteConfigMap_FullMethodName                     = "/core.Core/deleteConfigMap"
+	Core_UpdateConfigMap_FullMethodName                     = "/core.Core/updateConfigMap"
 	Core_GetPods_FullMethodName                             = "/core.Core/getPods"
 	Core_GetPodDetail_FullMethodName                        = "/core.Core/getPodDetail"
 	Core_DeletePod_FullMethodName                           = "/core.Core/deletePod"
@@ -142,20 +146,29 @@ type CoreClient interface {
 	DeleteDictionaryDetail(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error)
 	// group: dictionarydetail
 	GetDictionaryDetailByDictionaryName(ctx context.Context, in *BaseMsg, opts ...grpc.CallOption) (*DictionaryDetailListResp, error)
+	// K8sConfigMap management
+	// group: k8sconfigmap
+	GetConfigMaps(ctx context.Context, in *GetConfigMapsReq, opts ...grpc.CallOption) (*GetConfigMapsResp, error)
+	// group: k8sconfigmap
+	GetConfigMapDetail(ctx context.Context, in *GetConfigMapDetailReq, opts ...grpc.CallOption) (*GetConfigMapDetailResp, error)
+	// group: k8sconfigmap
+	DeleteConfigMap(ctx context.Context, in *DeleteConfigMapReq, opts ...grpc.CallOption) (*DeleteConfigMapResp, error)
+	// group: k8sconfigmap
+	UpdateConfigMap(ctx context.Context, in *UpdateConfigMapReq, opts ...grpc.CallOption) (*UpdateConfigMapResp, error)
 	// K8sPod management
-	// group: k8sPod
+	// group: k8spod
 	GetPods(ctx context.Context, in *GetPodsReq, opts ...grpc.CallOption) (*GetPodsResp, error)
-	// group: k8sPod
+	// group: k8spod
 	GetPodDetail(ctx context.Context, in *GetPodDetailReq, opts ...grpc.CallOption) (*GetPodDetailResp, error)
-	// group: k8sPod
+	// group: k8spod
 	DeletePod(ctx context.Context, in *DeletePodReq, opts ...grpc.CallOption) (*DeletePodResp, error)
-	// group: k8sPod
+	// group: k8spod
 	UpdatePod(ctx context.Context, in *UpdatePodReq, opts ...grpc.CallOption) (*UpdatePodResp, error)
-	// group: k8sPod
+	// group: k8spod
 	GetPodContainer(ctx context.Context, in *GetPodContainerReq, opts ...grpc.CallOption) (*GetPodContainerResp, error)
-	// group: k8sPod
+	// group: k8spod
 	GetPodLog(ctx context.Context, in *GetPodLogReq, opts ...grpc.CallOption) (*GetPodLogResp, error)
-	// group: k8sPod
+	// group: k8spod
 	GetPodNumPerNp(ctx context.Context, in *GetPodNumPerNpReq, opts ...grpc.CallOption) (*GetPodNumPerNpResp, error)
 	// group: menu
 	CreateMenu(ctx context.Context, in *MenuInfo, opts ...grpc.CallOption) (*BaseIDResp, error)
@@ -450,6 +463,42 @@ func (c *coreClient) DeleteDictionaryDetail(ctx context.Context, in *IDsReq, opt
 func (c *coreClient) GetDictionaryDetailByDictionaryName(ctx context.Context, in *BaseMsg, opts ...grpc.CallOption) (*DictionaryDetailListResp, error) {
 	out := new(DictionaryDetailListResp)
 	err := c.cc.Invoke(ctx, Core_GetDictionaryDetailByDictionaryName_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) GetConfigMaps(ctx context.Context, in *GetConfigMapsReq, opts ...grpc.CallOption) (*GetConfigMapsResp, error) {
+	out := new(GetConfigMapsResp)
+	err := c.cc.Invoke(ctx, Core_GetConfigMaps_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) GetConfigMapDetail(ctx context.Context, in *GetConfigMapDetailReq, opts ...grpc.CallOption) (*GetConfigMapDetailResp, error) {
+	out := new(GetConfigMapDetailResp)
+	err := c.cc.Invoke(ctx, Core_GetConfigMapDetail_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) DeleteConfigMap(ctx context.Context, in *DeleteConfigMapReq, opts ...grpc.CallOption) (*DeleteConfigMapResp, error) {
+	out := new(DeleteConfigMapResp)
+	err := c.cc.Invoke(ctx, Core_DeleteConfigMap_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) UpdateConfigMap(ctx context.Context, in *UpdateConfigMapReq, opts ...grpc.CallOption) (*UpdateConfigMapResp, error) {
+	out := new(UpdateConfigMapResp)
+	err := c.cc.Invoke(ctx, Core_UpdateConfigMap_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -881,20 +930,29 @@ type CoreServer interface {
 	DeleteDictionaryDetail(context.Context, *IDsReq) (*BaseResp, error)
 	// group: dictionarydetail
 	GetDictionaryDetailByDictionaryName(context.Context, *BaseMsg) (*DictionaryDetailListResp, error)
+	// K8sConfigMap management
+	// group: k8sconfigmap
+	GetConfigMaps(context.Context, *GetConfigMapsReq) (*GetConfigMapsResp, error)
+	// group: k8sconfigmap
+	GetConfigMapDetail(context.Context, *GetConfigMapDetailReq) (*GetConfigMapDetailResp, error)
+	// group: k8sconfigmap
+	DeleteConfigMap(context.Context, *DeleteConfigMapReq) (*DeleteConfigMapResp, error)
+	// group: k8sconfigmap
+	UpdateConfigMap(context.Context, *UpdateConfigMapReq) (*UpdateConfigMapResp, error)
 	// K8sPod management
-	// group: k8sPod
+	// group: k8spod
 	GetPods(context.Context, *GetPodsReq) (*GetPodsResp, error)
-	// group: k8sPod
+	// group: k8spod
 	GetPodDetail(context.Context, *GetPodDetailReq) (*GetPodDetailResp, error)
-	// group: k8sPod
+	// group: k8spod
 	DeletePod(context.Context, *DeletePodReq) (*DeletePodResp, error)
-	// group: k8sPod
+	// group: k8spod
 	UpdatePod(context.Context, *UpdatePodReq) (*UpdatePodResp, error)
-	// group: k8sPod
+	// group: k8spod
 	GetPodContainer(context.Context, *GetPodContainerReq) (*GetPodContainerResp, error)
-	// group: k8sPod
+	// group: k8spod
 	GetPodLog(context.Context, *GetPodLogReq) (*GetPodLogResp, error)
-	// group: k8sPod
+	// group: k8spod
 	GetPodNumPerNp(context.Context, *GetPodNumPerNpReq) (*GetPodNumPerNpResp, error)
 	// group: menu
 	CreateMenu(context.Context, *MenuInfo) (*BaseIDResp, error)
@@ -1047,6 +1105,18 @@ func (UnimplementedCoreServer) DeleteDictionaryDetail(context.Context, *IDsReq) 
 }
 func (UnimplementedCoreServer) GetDictionaryDetailByDictionaryName(context.Context, *BaseMsg) (*DictionaryDetailListResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDictionaryDetailByDictionaryName not implemented")
+}
+func (UnimplementedCoreServer) GetConfigMaps(context.Context, *GetConfigMapsReq) (*GetConfigMapsResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetConfigMaps not implemented")
+}
+func (UnimplementedCoreServer) GetConfigMapDetail(context.Context, *GetConfigMapDetailReq) (*GetConfigMapDetailResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetConfigMapDetail not implemented")
+}
+func (UnimplementedCoreServer) DeleteConfigMap(context.Context, *DeleteConfigMapReq) (*DeleteConfigMapResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteConfigMap not implemented")
+}
+func (UnimplementedCoreServer) UpdateConfigMap(context.Context, *UpdateConfigMapReq) (*UpdateConfigMapResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateConfigMap not implemented")
 }
 func (UnimplementedCoreServer) GetPods(context.Context, *GetPodsReq) (*GetPodsResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPods not implemented")
@@ -1612,6 +1682,78 @@ func _Core_GetDictionaryDetailByDictionaryName_Handler(srv interface{}, ctx cont
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CoreServer).GetDictionaryDetailByDictionaryName(ctx, req.(*BaseMsg))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_GetConfigMaps_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetConfigMapsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).GetConfigMaps(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_GetConfigMaps_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).GetConfigMaps(ctx, req.(*GetConfigMapsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_GetConfigMapDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetConfigMapDetailReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).GetConfigMapDetail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_GetConfigMapDetail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).GetConfigMapDetail(ctx, req.(*GetConfigMapDetailReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_DeleteConfigMap_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteConfigMapReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).DeleteConfigMap(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_DeleteConfigMap_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).DeleteConfigMap(ctx, req.(*DeleteConfigMapReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_UpdateConfigMap_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateConfigMapReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).UpdateConfigMap(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_UpdateConfigMap_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).UpdateConfigMap(ctx, req.(*UpdateConfigMapReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2456,6 +2598,22 @@ var Core_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getDictionaryDetailByDictionaryName",
 			Handler:    _Core_GetDictionaryDetailByDictionaryName_Handler,
+		},
+		{
+			MethodName: "getConfigMaps",
+			Handler:    _Core_GetConfigMaps_Handler,
+		},
+		{
+			MethodName: "getConfigMapDetail",
+			Handler:    _Core_GetConfigMapDetail_Handler,
+		},
+		{
+			MethodName: "deleteConfigMap",
+			Handler:    _Core_DeleteConfigMap_Handler,
+		},
+		{
+			MethodName: "updateConfigMap",
+			Handler:    _Core_UpdateConfigMap_Handler,
 		},
 		{
 			MethodName: "getPods",

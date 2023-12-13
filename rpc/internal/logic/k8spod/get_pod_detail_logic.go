@@ -1,4 +1,4 @@
-package k8sPod
+package k8spod
 
 import (
 	"context"

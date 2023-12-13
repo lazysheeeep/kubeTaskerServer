@@ -1,4 +1,4 @@
-package k8sPod
+package k8sconfigmap
 
 import (
 	"sort"

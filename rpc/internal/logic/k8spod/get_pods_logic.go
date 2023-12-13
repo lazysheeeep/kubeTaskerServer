@@ -1,4 +1,4 @@
-package k8sPod
+package k8spod
 
 import (
 	"context"
@@ -59,6 +59,6 @@ func (l *GetPodsLogic) GetPods(in *core.GetPodsReq) (*core.GetPodsResp, error) {
 	}
 	return &core.GetPodsResp{
 		Items: items,
-		Total: int32(total),
+		Total: int64(total),
 	}, nil
 }

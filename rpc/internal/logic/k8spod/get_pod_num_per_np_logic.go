@@ -1,4 +1,4 @@
-package k8sPod
+package k8spod
 
 import (
 	"context"
@@ -40,7 +40,7 @@ func (l *GetPodNumPerNpLogic) GetPodNumPerNp(in *core.GetPodNumPerNpReq) (*core.
 		//组装数据
 		podsNp := &core.PodsNp{
 			Namespace: namespace.Name,
-			PodNum:    int32(len(podList.Items)),
+			PodNum:    int64(len(podList.Items)),
 		}
 		//添加到podsNps数组中
 		podsNps = append(podsNps, podsNp)

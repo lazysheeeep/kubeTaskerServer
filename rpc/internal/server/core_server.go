@@ -12,7 +12,8 @@ import (
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/department"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/dictionary"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/dictionarydetail"
-	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/k8sPod"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/k8sconfigmap"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/k8spod"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/menu"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/oauthprovider"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/position"
@@ -158,39 +159,60 @@ func (s *CoreServer) GetDictionaryDetailByDictionaryName(ctx context.Context, in
 	return l.GetDictionaryDetailByDictionaryName(in)
 }
 
+// K8sConfigMap management
+func (s *CoreServer) GetConfigMaps(ctx context.Context, in *core.GetConfigMapsReq) (*core.GetConfigMapsResp, error) {
+	l := k8sconfigmap.NewGetConfigMapsLogic(ctx, s.svcCtx)
+	return l.GetConfigMaps(in)
+}
+
+func (s *CoreServer) GetConfigMapDetail(ctx context.Context, in *core.GetConfigMapDetailReq) (*core.GetConfigMapDetailResp, error) {
+	l := k8sconfigmap.NewGetConfigMapDetailLogic(ctx, s.svcCtx)
+	return l.GetConfigMapDetail(in)
+}
+
+func (s *CoreServer) DeleteConfigMap(ctx context.Context, in *core.DeleteConfigMapReq) (*core.DeleteConfigMapResp, error) {
+	l := k8sconfigmap.NewDeleteConfigMapLogic(ctx, s.svcCtx)
+	return l.DeleteConfigMap(in)
+}
+
+func (s *CoreServer) UpdateConfigMap(ctx context.Context, in *core.UpdateConfigMapReq) (*core.UpdateConfigMapResp, error) {
+	l := k8sconfigmap.NewUpdateConfigMapLogic(ctx, s.svcCtx)
+	return l.UpdateConfigMap(in)
+}
+
 // K8sPod management
 func (s *CoreServer) GetPods(ctx context.Context, in *core.GetPodsReq) (*core.GetPodsResp, error) {
-	l := k8sPod.NewGetPodsLogic(ctx, s.svcCtx)
+	l := k8spod.NewGetPodsLogic(ctx, s.svcCtx)
 	return l.GetPods(in)
 }
 
 func (s *CoreServer) GetPodDetail(ctx context.Context, in *core.GetPodDetailReq) (*core.GetPodDetailResp, error) {
-	l := k8sPod.NewGetPodDetailLogic(ctx, s.svcCtx)
+	l := k8spod.NewGetPodDetailLogic(ctx, s.svcCtx)
 	return l.GetPodDetail(in)
 }
 
 func (s *CoreServer) DeletePod(ctx context.Context, in *core.DeletePodReq) (*core.DeletePodResp, error) {
-	l := k8sPod.NewDeletePodLogic(ctx, s.svcCtx)
+	l := k8spod.NewDeletePodLogic(ctx, s.svcCtx)
 	return l.DeletePod(in)
 }
 
 func (s *CoreServer) UpdatePod(ctx context.Context, in *core.UpdatePodReq) (*core.UpdatePodResp, error) {
-	l := k8sPod.NewUpdatePodLogic(ctx, s.svcCtx)
+	l := k8spod.NewUpdatePodLogic(ctx, s.svcCtx)
 	return l.UpdatePod(in)
 }
 
 func (s *CoreServer) GetPodContainer(ctx context.Context, in *core.GetPodContainerReq) (*core.GetPodContainerResp, error) {
-	l := k8sPod.NewGetPodContainerLogic(ctx, s.svcCtx)
+	l := k8spod.NewGetPodContainerLogic(ctx, s.svcCtx)
 	return l.GetPodContainer(in)
 }
 
 func (s *CoreServer) GetPodLog(ctx context.Context, in *core.GetPodLogReq) (*core.GetPodLogResp, error) {
-	l := k8sPod.NewGetPodLogLogic(ctx, s.svcCtx)
+	l := k8spod.NewGetPodLogLogic(ctx, s.svcCtx)
 	return l.GetPodLog(in)
 }
 
 func (s *CoreServer) GetPodNumPerNp(ctx context.Context, in *core.GetPodNumPerNpReq) (*core.GetPodNumPerNpResp, error) {
-	l := k8sPod.NewGetPodNumPerNpLogic(ctx, s.svcCtx)
+	l := k8spod.NewGetPodNumPerNpLogic(ctx, s.svcCtx)
 	return l.GetPodNumPerNp(in)
 }
 

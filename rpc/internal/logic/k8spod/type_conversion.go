@@ -1,4 +1,4 @@
-package k8sPod
+package k8spod
 
 import "k8s.io/api/core/v1"
 
