@@ -21,8 +21,12 @@ type (
 	BaseResp                 = core.BaseResp
 	BaseUUIDResp             = core.BaseUUIDResp
 	CallbackReq              = core.CallbackReq
+	CreateDeploymentReq      = core.CreateDeploymentReq
+	CreateDeploymentResp     = core.CreateDeploymentResp
 	DeleteConfigMapReq       = core.DeleteConfigMapReq
 	DeleteConfigMapResp      = core.DeleteConfigMapResp
+	DeleteDeploymentReq      = core.DeleteDeploymentReq
+	DeleteDeploymentResp     = core.DeleteDeploymentResp
 	DeletePodReq             = core.DeletePodReq
 	DeletePodResp            = core.DeletePodResp
 	DepartmentInfo           = core.DepartmentInfo
@@ -39,6 +43,12 @@ type (
 	GetConfigMapDetailResp   = core.GetConfigMapDetailResp
 	GetConfigMapsReq         = core.GetConfigMapsReq
 	GetConfigMapsResp        = core.GetConfigMapsResp
+	GetDeployNumPerNpReq     = core.GetDeployNumPerNpReq
+	GetDeployNumPerNpResp    = core.GetDeployNumPerNpResp
+	GetDeploymentDetailReq   = core.GetDeploymentDetailReq
+	GetDeploymentDetailResp  = core.GetDeploymentDetailResp
+	GetDeploymentsReq        = core.GetDeploymentsReq
+	GetDeploymentsResp       = core.GetDeploymentsResp
 	GetPodContainerReq       = core.GetPodContainerReq
 	GetPodContainerResp      = core.GetPodContainerResp
 	GetPodDetailReq          = core.GetPodDetailReq
@@ -66,11 +76,15 @@ type (
 	PositionInfo             = core.PositionInfo
 	PositionListReq          = core.PositionListReq
 	PositionListResp         = core.PositionListResp
+	RestartDeploymentReq     = core.RestartDeploymentReq
+	RestartDeploymentResp    = core.RestartDeploymentResp
 	RoleInfo                 = core.RoleInfo
 	RoleListReq              = core.RoleListReq
 	RoleListResp             = core.RoleListResp
 	RoleMenuAuthorityReq     = core.RoleMenuAuthorityReq
 	RoleMenuAuthorityResp    = core.RoleMenuAuthorityResp
+	ScaleDeploymentReq       = core.ScaleDeploymentReq
+	ScaleDeploymentResp      = core.ScaleDeploymentResp
 	TokenInfo                = core.TokenInfo
 	TokenListReq             = core.TokenListReq
 	TokenListResp            = core.TokenListResp
@@ -78,6 +92,8 @@ type (
 	UUIDsReq                 = core.UUIDsReq
 	UpdateConfigMapReq       = core.UpdateConfigMapReq
 	UpdateConfigMapResp      = core.UpdateConfigMapResp
+	UpdateDeploymentReq      = core.UpdateDeploymentReq
+	UpdateDeploymentResp     = core.UpdateDeploymentResp
 	UpdatePodReq             = core.UpdatePodReq
 	UpdatePodResp            = core.UpdatePodResp
 	UserInfo                 = core.UserInfo
@@ -119,6 +135,15 @@ type (
 		GetConfigMapDetail(ctx context.Context, in *GetConfigMapDetailReq, opts ...grpc.CallOption) (*GetConfigMapDetailResp, error)
 		DeleteConfigMap(ctx context.Context, in *DeleteConfigMapReq, opts ...grpc.CallOption) (*DeleteConfigMapResp, error)
 		UpdateConfigMap(ctx context.Context, in *UpdateConfigMapReq, opts ...grpc.CallOption) (*UpdateConfigMapResp, error)
+		// K8sDeployment management
+		GetDeployments(ctx context.Context, in *GetDeploymentsReq, opts ...grpc.CallOption) (*GetDeploymentsResp, error)
+		GetDeploymentDetail(ctx context.Context, in *GetDeploymentDetailReq, opts ...grpc.CallOption) (*GetDeploymentDetailResp, error)
+		ScaleDeployment(ctx context.Context, in *ScaleDeploymentReq, opts ...grpc.CallOption) (*ScaleDeploymentResp, error)
+		CreateDeployment(ctx context.Context, in *CreateDeploymentReq, opts ...grpc.CallOption) (*CreateDeploymentResp, error)
+		DeleteDeployment(ctx context.Context, in *DeleteDeploymentReq, opts ...grpc.CallOption) (*DeleteDeploymentResp, error)
+		RestartDeployment(ctx context.Context, in *RestartDeploymentReq, opts ...grpc.CallOption) (*RestartDeploymentResp, error)
+		UpdateDeployment(ctx context.Context, in *UpdateDeploymentReq, opts ...grpc.CallOption) (*UpdateDeploymentResp, error)
+		GetDeployNumPerNp(ctx context.Context, in *GetDeployNumPerNpReq, opts ...grpc.CallOption) (*GetDeployNumPerNpResp, error)
 		// K8sPod management
 		GetPods(ctx context.Context, in *GetPodsReq, opts ...grpc.CallOption) (*GetPodsResp, error)
 		GetPodDetail(ctx context.Context, in *GetPodDetailReq, opts ...grpc.CallOption) (*GetPodDetailResp, error)
@@ -322,6 +347,47 @@ func (m *defaultCore) DeleteConfigMap(ctx context.Context, in *DeleteConfigMapRe
 func (m *defaultCore) UpdateConfigMap(ctx context.Context, in *UpdateConfigMapReq, opts ...grpc.CallOption) (*UpdateConfigMapResp, error) {
 	client := core.NewCoreClient(m.cli.Conn())
 	return client.UpdateConfigMap(ctx, in, opts...)
+}
+
+// K8sDeployment management
+func (m *defaultCore) GetDeployments(ctx context.Context, in *GetDeploymentsReq, opts ...grpc.CallOption) (*GetDeploymentsResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetDeployments(ctx, in, opts...)
+}
+
+func (m *defaultCore) GetDeploymentDetail(ctx context.Context, in *GetDeploymentDetailReq, opts ...grpc.CallOption) (*GetDeploymentDetailResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetDeploymentDetail(ctx, in, opts...)
+}
+
+func (m *defaultCore) ScaleDeployment(ctx context.Context, in *ScaleDeploymentReq, opts ...grpc.CallOption) (*ScaleDeploymentResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.ScaleDeployment(ctx, in, opts...)
+}
+
+func (m *defaultCore) CreateDeployment(ctx context.Context, in *CreateDeploymentReq, opts ...grpc.CallOption) (*CreateDeploymentResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.CreateDeployment(ctx, in, opts...)
+}
+
+func (m *defaultCore) DeleteDeployment(ctx context.Context, in *DeleteDeploymentReq, opts ...grpc.CallOption) (*DeleteDeploymentResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.DeleteDeployment(ctx, in, opts...)
+}
+
+func (m *defaultCore) RestartDeployment(ctx context.Context, in *RestartDeploymentReq, opts ...grpc.CallOption) (*RestartDeploymentResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.RestartDeployment(ctx, in, opts...)
+}
+
+func (m *defaultCore) UpdateDeployment(ctx context.Context, in *UpdateDeploymentReq, opts ...grpc.CallOption) (*UpdateDeploymentResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.UpdateDeployment(ctx, in, opts...)
+}
+
+func (m *defaultCore) GetDeployNumPerNp(ctx context.Context, in *GetDeployNumPerNpReq, opts ...grpc.CallOption) (*GetDeployNumPerNpResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetDeployNumPerNp(ctx, in, opts...)
 }
 
 // K8sPod management

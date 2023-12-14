@@ -47,6 +47,14 @@ const (
 	Core_GetConfigMapDetail_FullMethodName                  = "/core.Core/getConfigMapDetail"
 	Core_DeleteConfigMap_FullMethodName                     = "/core.Core/deleteConfigMap"
 	Core_UpdateConfigMap_FullMethodName                     = "/core.Core/updateConfigMap"
+	Core_GetDeployments_FullMethodName                      = "/core.Core/getDeployments"
+	Core_GetDeploymentDetail_FullMethodName                 = "/core.Core/getDeploymentDetail"
+	Core_ScaleDeployment_FullMethodName                     = "/core.Core/scaleDeployment"
+	Core_CreateDeployment_FullMethodName                    = "/core.Core/createDeployment"
+	Core_DeleteDeployment_FullMethodName                    = "/core.Core/deleteDeployment"
+	Core_RestartDeployment_FullMethodName                   = "/core.Core/restartDeployment"
+	Core_UpdateDeployment_FullMethodName                    = "/core.Core/updateDeployment"
+	Core_GetDeployNumPerNp_FullMethodName                   = "/core.Core/getDeployNumPerNp"
 	Core_GetPods_FullMethodName                             = "/core.Core/getPods"
 	Core_GetPodDetail_FullMethodName                        = "/core.Core/getPodDetail"
 	Core_DeletePod_FullMethodName                           = "/core.Core/deletePod"
@@ -155,6 +163,23 @@ type CoreClient interface {
 	DeleteConfigMap(ctx context.Context, in *DeleteConfigMapReq, opts ...grpc.CallOption) (*DeleteConfigMapResp, error)
 	// group: k8sconfigmap
 	UpdateConfigMap(ctx context.Context, in *UpdateConfigMapReq, opts ...grpc.CallOption) (*UpdateConfigMapResp, error)
+	// K8sDeployment management
+	// group: k8sdeployment
+	GetDeployments(ctx context.Context, in *GetDeploymentsReq, opts ...grpc.CallOption) (*GetDeploymentsResp, error)
+	// group: k8sdeployment
+	GetDeploymentDetail(ctx context.Context, in *GetDeploymentDetailReq, opts ...grpc.CallOption) (*GetDeploymentDetailResp, error)
+	// group: k8sdeployment
+	ScaleDeployment(ctx context.Context, in *ScaleDeploymentReq, opts ...grpc.CallOption) (*ScaleDeploymentResp, error)
+	// group: k8sdeployment
+	CreateDeployment(ctx context.Context, in *CreateDeploymentReq, opts ...grpc.CallOption) (*CreateDeploymentResp, error)
+	// group: k8sdeployment
+	DeleteDeployment(ctx context.Context, in *DeleteDeploymentReq, opts ...grpc.CallOption) (*DeleteDeploymentResp, error)
+	// group: k8sdeployment
+	RestartDeployment(ctx context.Context, in *RestartDeploymentReq, opts ...grpc.CallOption) (*RestartDeploymentResp, error)
+	// group: k8sdeployment
+	UpdateDeployment(ctx context.Context, in *UpdateDeploymentReq, opts ...grpc.CallOption) (*UpdateDeploymentResp, error)
+	// group: k8sdeployment
+	GetDeployNumPerNp(ctx context.Context, in *GetDeployNumPerNpReq, opts ...grpc.CallOption) (*GetDeployNumPerNpResp, error)
 	// K8sPod management
 	// group: k8spod
 	GetPods(ctx context.Context, in *GetPodsReq, opts ...grpc.CallOption) (*GetPodsResp, error)
@@ -499,6 +524,78 @@ func (c *coreClient) DeleteConfigMap(ctx context.Context, in *DeleteConfigMapReq
 func (c *coreClient) UpdateConfigMap(ctx context.Context, in *UpdateConfigMapReq, opts ...grpc.CallOption) (*UpdateConfigMapResp, error) {
 	out := new(UpdateConfigMapResp)
 	err := c.cc.Invoke(ctx, Core_UpdateConfigMap_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) GetDeployments(ctx context.Context, in *GetDeploymentsReq, opts ...grpc.CallOption) (*GetDeploymentsResp, error) {
+	out := new(GetDeploymentsResp)
+	err := c.cc.Invoke(ctx, Core_GetDeployments_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) GetDeploymentDetail(ctx context.Context, in *GetDeploymentDetailReq, opts ...grpc.CallOption) (*GetDeploymentDetailResp, error) {
+	out := new(GetDeploymentDetailResp)
+	err := c.cc.Invoke(ctx, Core_GetDeploymentDetail_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) ScaleDeployment(ctx context.Context, in *ScaleDeploymentReq, opts ...grpc.CallOption) (*ScaleDeploymentResp, error) {
+	out := new(ScaleDeploymentResp)
+	err := c.cc.Invoke(ctx, Core_ScaleDeployment_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) CreateDeployment(ctx context.Context, in *CreateDeploymentReq, opts ...grpc.CallOption) (*CreateDeploymentResp, error) {
+	out := new(CreateDeploymentResp)
+	err := c.cc.Invoke(ctx, Core_CreateDeployment_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) DeleteDeployment(ctx context.Context, in *DeleteDeploymentReq, opts ...grpc.CallOption) (*DeleteDeploymentResp, error) {
+	out := new(DeleteDeploymentResp)
+	err := c.cc.Invoke(ctx, Core_DeleteDeployment_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) RestartDeployment(ctx context.Context, in *RestartDeploymentReq, opts ...grpc.CallOption) (*RestartDeploymentResp, error) {
+	out := new(RestartDeploymentResp)
+	err := c.cc.Invoke(ctx, Core_RestartDeployment_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) UpdateDeployment(ctx context.Context, in *UpdateDeploymentReq, opts ...grpc.CallOption) (*UpdateDeploymentResp, error) {
+	out := new(UpdateDeploymentResp)
+	err := c.cc.Invoke(ctx, Core_UpdateDeployment_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) GetDeployNumPerNp(ctx context.Context, in *GetDeployNumPerNpReq, opts ...grpc.CallOption) (*GetDeployNumPerNpResp, error) {
+	out := new(GetDeployNumPerNpResp)
+	err := c.cc.Invoke(ctx, Core_GetDeployNumPerNp_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -939,6 +1036,23 @@ type CoreServer interface {
 	DeleteConfigMap(context.Context, *DeleteConfigMapReq) (*DeleteConfigMapResp, error)
 	// group: k8sconfigmap
 	UpdateConfigMap(context.Context, *UpdateConfigMapReq) (*UpdateConfigMapResp, error)
+	// K8sDeployment management
+	// group: k8sdeployment
+	GetDeployments(context.Context, *GetDeploymentsReq) (*GetDeploymentsResp, error)
+	// group: k8sdeployment
+	GetDeploymentDetail(context.Context, *GetDeploymentDetailReq) (*GetDeploymentDetailResp, error)
+	// group: k8sdeployment
+	ScaleDeployment(context.Context, *ScaleDeploymentReq) (*ScaleDeploymentResp, error)
+	// group: k8sdeployment
+	CreateDeployment(context.Context, *CreateDeploymentReq) (*CreateDeploymentResp, error)
+	// group: k8sdeployment
+	DeleteDeployment(context.Context, *DeleteDeploymentReq) (*DeleteDeploymentResp, error)
+	// group: k8sdeployment
+	RestartDeployment(context.Context, *RestartDeploymentReq) (*RestartDeploymentResp, error)
+	// group: k8sdeployment
+	UpdateDeployment(context.Context, *UpdateDeploymentReq) (*UpdateDeploymentResp, error)
+	// group: k8sdeployment
+	GetDeployNumPerNp(context.Context, *GetDeployNumPerNpReq) (*GetDeployNumPerNpResp, error)
 	// K8sPod management
 	// group: k8spod
 	GetPods(context.Context, *GetPodsReq) (*GetPodsResp, error)
@@ -1117,6 +1231,30 @@ func (UnimplementedCoreServer) DeleteConfigMap(context.Context, *DeleteConfigMap
 }
 func (UnimplementedCoreServer) UpdateConfigMap(context.Context, *UpdateConfigMapReq) (*UpdateConfigMapResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateConfigMap not implemented")
+}
+func (UnimplementedCoreServer) GetDeployments(context.Context, *GetDeploymentsReq) (*GetDeploymentsResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDeployments not implemented")
+}
+func (UnimplementedCoreServer) GetDeploymentDetail(context.Context, *GetDeploymentDetailReq) (*GetDeploymentDetailResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDeploymentDetail not implemented")
+}
+func (UnimplementedCoreServer) ScaleDeployment(context.Context, *ScaleDeploymentReq) (*ScaleDeploymentResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ScaleDeployment not implemented")
+}
+func (UnimplementedCoreServer) CreateDeployment(context.Context, *CreateDeploymentReq) (*CreateDeploymentResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateDeployment not implemented")
+}
+func (UnimplementedCoreServer) DeleteDeployment(context.Context, *DeleteDeploymentReq) (*DeleteDeploymentResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteDeployment not implemented")
+}
+func (UnimplementedCoreServer) RestartDeployment(context.Context, *RestartDeploymentReq) (*RestartDeploymentResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RestartDeployment not implemented")
+}
+func (UnimplementedCoreServer) UpdateDeployment(context.Context, *UpdateDeploymentReq) (*UpdateDeploymentResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateDeployment not implemented")
+}
+func (UnimplementedCoreServer) GetDeployNumPerNp(context.Context, *GetDeployNumPerNpReq) (*GetDeployNumPerNpResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDeployNumPerNp not implemented")
 }
 func (UnimplementedCoreServer) GetPods(context.Context, *GetPodsReq) (*GetPodsResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPods not implemented")
@@ -1754,6 +1892,150 @@ func _Core_UpdateConfigMap_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CoreServer).UpdateConfigMap(ctx, req.(*UpdateConfigMapReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_GetDeployments_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDeploymentsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).GetDeployments(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_GetDeployments_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).GetDeployments(ctx, req.(*GetDeploymentsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_GetDeploymentDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDeploymentDetailReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).GetDeploymentDetail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_GetDeploymentDetail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).GetDeploymentDetail(ctx, req.(*GetDeploymentDetailReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_ScaleDeployment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ScaleDeploymentReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).ScaleDeployment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_ScaleDeployment_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).ScaleDeployment(ctx, req.(*ScaleDeploymentReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_CreateDeployment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateDeploymentReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).CreateDeployment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_CreateDeployment_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).CreateDeployment(ctx, req.(*CreateDeploymentReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_DeleteDeployment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteDeploymentReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).DeleteDeployment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_DeleteDeployment_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).DeleteDeployment(ctx, req.(*DeleteDeploymentReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_RestartDeployment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RestartDeploymentReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).RestartDeployment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_RestartDeployment_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).RestartDeployment(ctx, req.(*RestartDeploymentReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_UpdateDeployment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateDeploymentReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).UpdateDeployment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_UpdateDeployment_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).UpdateDeployment(ctx, req.(*UpdateDeploymentReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_GetDeployNumPerNp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDeployNumPerNpReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).GetDeployNumPerNp(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_GetDeployNumPerNp_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).GetDeployNumPerNp(ctx, req.(*GetDeployNumPerNpReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2614,6 +2896,38 @@ var Core_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "updateConfigMap",
 			Handler:    _Core_UpdateConfigMap_Handler,
+		},
+		{
+			MethodName: "getDeployments",
+			Handler:    _Core_GetDeployments_Handler,
+		},
+		{
+			MethodName: "getDeploymentDetail",
+			Handler:    _Core_GetDeploymentDetail_Handler,
+		},
+		{
+			MethodName: "scaleDeployment",
+			Handler:    _Core_ScaleDeployment_Handler,
+		},
+		{
+			MethodName: "createDeployment",
+			Handler:    _Core_CreateDeployment_Handler,
+		},
+		{
+			MethodName: "deleteDeployment",
+			Handler:    _Core_DeleteDeployment_Handler,
+		},
+		{
+			MethodName: "restartDeployment",
+			Handler:    _Core_RestartDeployment_Handler,
+		},
+		{
+			MethodName: "updateDeployment",
+			Handler:    _Core_UpdateDeployment_Handler,
+		},
+		{
+			MethodName: "getDeployNumPerNp",
+			Handler:    _Core_GetDeployNumPerNp_Handler,
 		},
 		{
 			MethodName: "getPods",

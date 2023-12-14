@@ -4,29 +4,29 @@ import "k8s.io/api@v0.28.4/core/v1/generated.proto";
 
 // getConfigMaps
 message GetConfigMapsReq {
-  string FilterName = 1;
-  string Namespace = 2;
-  int64 Limit = 3;
+  string filter_name = 1;
+  string namespace = 2;
+  int64 limit = 3;
   int64 Page = 4;
 }
 message GetConfigMapsResp {
-  repeated k8s.io.api.core.v1.ConfigMap Items = 1;
-  int64 Total = 2;
+  repeated k8s.io.api.core.v1.ConfigMap items = 1;
+  int64 total = 2;
 }
 
 // getConfigMapDetail
 message GetConfigMapDetailReq {
-  string ConfigMapName = 1;
-  string Namespace = 2;
+  string config_map_name = 1;
+  string namespace = 2;
 }
 message GetConfigMapDetailResp {
-  k8s.io.api.core.v1.ConfigMap ConfigMap = 1;
+  k8s.io.api.core.v1.ConfigMap config_map = 1;
 }
 
 // deleteConfigMap
 message DeleteConfigMapReq {
-  string ConfigMapName = 1;
-  string Namespace = 2;
+  string config_map_mame = 1;
+  string namespace = 2;
 }
 message DeleteConfigMapResp {
 
@@ -34,8 +34,8 @@ message DeleteConfigMapResp {
 
 // updateConfigMap
 message UpdateConfigMapReq {
-  string Namespace = 1;
-  string Content = 2;
+  string namespace = 1;
+  string content = 2;
 }
 message UpdateConfigMapResp {
 

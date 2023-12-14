@@ -13,6 +13,7 @@ import (
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/dictionary"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/dictionarydetail"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/k8sconfigmap"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/k8sdeployment"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/k8spod"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/menu"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/oauthprovider"
@@ -178,6 +179,47 @@ func (s *CoreServer) DeleteConfigMap(ctx context.Context, in *core.DeleteConfigM
 func (s *CoreServer) UpdateConfigMap(ctx context.Context, in *core.UpdateConfigMapReq) (*core.UpdateConfigMapResp, error) {
 	l := k8sconfigmap.NewUpdateConfigMapLogic(ctx, s.svcCtx)
 	return l.UpdateConfigMap(in)
+}
+
+// K8sDeployment management
+func (s *CoreServer) GetDeployments(ctx context.Context, in *core.GetDeploymentsReq) (*core.GetDeploymentsResp, error) {
+	l := k8sdeployment.NewGetDeploymentsLogic(ctx, s.svcCtx)
+	return l.GetDeployments(in)
+}
+
+func (s *CoreServer) GetDeploymentDetail(ctx context.Context, in *core.GetDeploymentDetailReq) (*core.GetDeploymentDetailResp, error) {
+	l := k8sdeployment.NewGetDeploymentDetailLogic(ctx, s.svcCtx)
+	return l.GetDeploymentDetail(in)
+}
+
+func (s *CoreServer) ScaleDeployment(ctx context.Context, in *core.ScaleDeploymentReq) (*core.ScaleDeploymentResp, error) {
+	l := k8sdeployment.NewScaleDeploymentLogic(ctx, s.svcCtx)
+	return l.ScaleDeployment(in)
+}
+
+func (s *CoreServer) CreateDeployment(ctx context.Context, in *core.CreateDeploymentReq) (*core.CreateDeploymentResp, error) {
+	l := k8sdeployment.NewCreateDeploymentLogic(ctx, s.svcCtx)
+	return l.CreateDeployment(in)
+}
+
+func (s *CoreServer) DeleteDeployment(ctx context.Context, in *core.DeleteDeploymentReq) (*core.DeleteDeploymentResp, error) {
+	l := k8sdeployment.NewDeleteDeploymentLogic(ctx, s.svcCtx)
+	return l.DeleteDeployment(in)
+}
+
+func (s *CoreServer) RestartDeployment(ctx context.Context, in *core.RestartDeploymentReq) (*core.RestartDeploymentResp, error) {
+	l := k8sdeployment.NewRestartDeploymentLogic(ctx, s.svcCtx)
+	return l.RestartDeployment(in)
+}
+
+func (s *CoreServer) UpdateDeployment(ctx context.Context, in *core.UpdateDeploymentReq) (*core.UpdateDeploymentResp, error) {
+	l := k8sdeployment.NewUpdateDeploymentLogic(ctx, s.svcCtx)
+	return l.UpdateDeployment(in)
+}
+
+func (s *CoreServer) GetDeployNumPerNp(ctx context.Context, in *core.GetDeployNumPerNpReq) (*core.GetDeployNumPerNpResp, error) {
+	l := k8sdeployment.NewGetDeployNumPerNpLogic(ctx, s.svcCtx)
+	return l.GetDeployNumPerNp(in)
 }
 
 // K8sPod management
