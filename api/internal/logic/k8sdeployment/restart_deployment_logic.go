@@ -25,14 +25,12 @@ func NewRestartDeploymentLogic(ctx context.Context, svcCtx *svc.ServiceContext) 
 
 func (l *RestartDeploymentLogic) RestartDeployment(req *types.RestartDeploymentReq) (resp *types.RestartDeploymentResp, err error) {
 	// todo: add your logic here and delete this line
-	result, err := l.svcCtx.CoreRpc.GetConfigMapDetail(l.ctx, &core.GetConfigMapDetailReq{
-		ConfigMapName: req.ConfigMapName,
-		Namespace:     req.Namespace,
+	_, err = l.svcCtx.CoreRpc.RestartDeployment(l.ctx, &core.RestartDeploymentReq{
+		DeploymentName: req.DeploymentName,
+		Namespace:      req.Namespace,
 	})
 	if err != nil {
 		return nil, err
 	}
-	return &types.GetConfigMapDetailResp{
-		ConfigMap: result.ConfigMap,
-	}, err
+	return nil, err
 }

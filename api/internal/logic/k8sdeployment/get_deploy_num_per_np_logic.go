@@ -29,14 +29,14 @@ func (l *GetDeployNumPerNpLogic) GetDeployNumPerNp(req *types.GetDeployNumPerNpR
 	if err != nil {
 		return nil, err
 	}
-	deploysNps := make([]*types.DeploysNp,len(result.DeploysNps))
-	for _,v:=range result.DeploysNps{
-		deploysNps = append(deploysNps,&types.DeploysNp{
+	deploysNps := make([]*types.DeploysNp, len(result.DeploysNps))
+	for _, v := range result.DeploysNps {
+		deploysNps = append(deploysNps, &types.DeploysNp{
 			Namespace: v.Namespace,
 			DeployNum: v.DeployNum,
 		})
 	}
 	return &types.GetDeployNumPerNpResp{
-		DeploysNps: ;
+		DeploysNps: deploysNps,
 	}, err
 }

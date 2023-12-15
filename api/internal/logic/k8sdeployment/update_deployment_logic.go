@@ -25,14 +25,12 @@ func NewUpdateDeploymentLogic(ctx context.Context, svcCtx *svc.ServiceContext) *
 
 func (l *UpdateDeploymentLogic) UpdateDeployment(req *types.UpdateDeploymentReq) (resp *types.UpdateDeploymentResp, err error) {
 	// todo: add your logic here and delete this line
-	result, err := l.svcCtx.CoreRpc.GetConfigMapDetail(l.ctx, &core.GetConfigMapDetailReq{
-		ConfigMapName: req.ConfigMapName,
-		Namespace:     req.Namespace,
+	_, err = l.svcCtx.CoreRpc.UpdateDeployment(l.ctx, &core.UpdateDeploymentReq{
+		Namespace: req.Namespace,
+		Content:   req.Content,
 	})
 	if err != nil {
 		return nil, err
 	}
-	return &types.GetConfigMapDetailResp{
-		ConfigMap: result.ConfigMap,
-	}, err
+	return nil, err
 }

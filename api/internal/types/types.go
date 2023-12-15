@@ -1676,7 +1676,7 @@ type GetDeploymentsReq struct {
 type GetDeploymentsResp struct {
 	// Items
 	// []k8s.io.api.apps.v1.Deployment
-	Items *[]appsv1.Deployment `json:"items"`
+	Items []*appsv1.Deployment `json:"items"`
 	// Total
 	Total int64 `json:"total"`
 }
@@ -1826,7 +1826,7 @@ type GetPodsResp struct {
 	Total int64 `json:"total"`
 	// Items
 	// []k8s.io.api.core.v1.Pod
-	Items *[]v1.Pod `json:"items"`
+	Items []*v1.Pod `json:"items"`
 }
 
 // GetPodDetailReq
@@ -1923,7 +1923,7 @@ type PodsNp struct {
 // swagger:model GetPodNumPerNpResp
 type GetPodNumPerNpResp struct {
 	// PodsNps
-	PodsNps []PodsNp `json:"podsNps"`
+	PodsNps []*PodsNp `json:"podsNps"`
 }
 
 // GetServicesReq
@@ -1944,7 +1944,7 @@ type GetServicesReq struct {
 type GetServicesResp struct {
 	// Items
 	// []k8s.io.api.core.v1.Service
-	Items *[]v1.Service `json:"items"`
+	Items []*v1.Service `json:"items"`
 	// Total
 	Total int64 `json:"total"`
 }
@@ -1982,7 +1982,7 @@ type CreateServiceReq struct {
 	// NodePort
 	NodePort int64 `json:"nodePort"`
 	// Label
-	Label []Label `json:"label"`
+	Label Label `json:"label"`
 }
 
 // CreateServiceResp

@@ -25,14 +25,15 @@ func NewScaleDeploymentLogic(ctx context.Context, svcCtx *svc.ServiceContext) *S
 
 func (l *ScaleDeploymentLogic) ScaleDeployment(req *types.ScaleDeploymentReq) (resp *types.ScaleDeploymentResp, err error) {
 	// todo: add your logic here and delete this line
-	result, err := l.svcCtx.CoreRpc.GetConfigMapDetail(l.ctx, &core.GetConfigMapDetailReq{
-		ConfigMapName: req.ConfigMapName,
-		Namespace:     req.Namespace,
+	result, err := l.svcCtx.CoreRpc.ScaleDeployment(l.ctx, &core.ScaleDeploymentReq{
+		DeploymentName: req.DeploymentName,
+		Namespace:      req.Namespace,
+		ScaleNum:       req.ScaleNum,
 	})
 	if err != nil {
 		return nil, err
 	}
-	return &types.GetConfigMapDetailResp{
-		ConfigMap: result.ConfigMap,
+	return &types.ScaleDeploymentResp{
+		Replica: result.Replica,
 	}, err
 }

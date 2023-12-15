@@ -3,6 +3,7 @@ package k8sdeployment
 import (
 	"context"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/types/core"
+	v1 "k8s.io/api/apps/v1"
 
 	"github.com/kubeTasker/kubeTaskerServer/api/internal/svc"
 	"github.com/kubeTasker/kubeTaskerServer/api/internal/types"
@@ -25,14 +26,21 @@ func NewGetDeploymentsLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Ge
 
 func (l *GetDeploymentsLogic) GetDeployments(req *types.GetDeploymentsReq) (resp *types.GetDeploymentsResp, err error) {
 	// todo: add your logic here and delete this line
-	result, err := l.svcCtx.CoreRpc.GetConfigMapDetail(l.ctx, &core.GetConfigMapDetailReq{
-		ConfigMapName: req.ConfigMapName,
-		Namespace:     req.Namespace,
+	result, err := l.svcCtx.CoreRpc.GetDeployments(l.ctx, &core.GetDeploymentsReq{
+		FilterName: req.FilterName,
+		Namespace:  req.Namespace,
+		Limit:      req.Limit,
+		Page:       req.Page,
 	})
 	if err != nil {
 		return nil, err
 	}
-	return &types.GetConfigMapDetailResp{
-		ConfigMap: result.ConfigMap,
+	items := make([]*v1.Deployment, len(resp.Items))
+	for _, v := range resp.Items {
+		items = append(items, v)
+	}
+	return &types.GetDeploymentsResp{
+		Items: items,
+		Total: result.Total,
 	}, err
 }

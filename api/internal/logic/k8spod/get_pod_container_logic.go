@@ -25,14 +25,14 @@ func NewGetPodContainerLogic(ctx context.Context, svcCtx *svc.ServiceContext) *G
 
 func (l *GetPodContainerLogic) GetPodContainer(req *types.GetPodContainerReq) (resp *types.GetPodContainerResp, err error) {
 	// todo: add your logic here and delete this line
-	result, err := l.svcCtx.CoreRpc.GetConfigMapDetail(l.ctx, &core.GetConfigMapDetailReq{
-		ConfigMapName: req.ConfigMapName,
-		Namespace:     req.Namespace,
+	result, err := l.svcCtx.CoreRpc.GetPodContainer(l.ctx, &core.GetPodContainerReq{
+		PodName:   req.PodName,
+		Namespace: req.Namespace,
 	})
 	if err != nil {
 		return nil, err
 	}
-	return &types.GetConfigMapDetailResp{
-		ConfigMap: result.ConfigMap,
+	return &types.GetPodContainerResp{
+		Containers: result.Containers,
 	}, err
 }

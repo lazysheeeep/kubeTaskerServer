@@ -25,14 +25,18 @@ func NewGetPodNumPerNpLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Ge
 
 func (l *GetPodNumPerNpLogic) GetPodNumPerNp(req *types.GetPodNumPerNpReq) (resp *types.GetPodNumPerNpResp, err error) {
 	// todo: add your logic here and delete this line
-	result, err := l.svcCtx.CoreRpc.GetConfigMapDetail(l.ctx, &core.GetConfigMapDetailReq{
-		ConfigMapName: req.ConfigMapName,
-		Namespace:     req.Namespace,
-	})
+	result, err := l.svcCtx.CoreRpc.GetPodNumPerNp(l.ctx, &core.GetPodNumPerNpReq{})
 	if err != nil {
 		return nil, err
 	}
-	return &types.GetConfigMapDetailResp{
-		ConfigMap: result.ConfigMap,
+	podsNps := make([]*types.PodsNp, len(result.PodsNps))
+	for _, v := range result.PodsNps {
+		podsNps = append(podsNps, &types.PodsNp{
+			Namespace: v.Namespace,
+			PodNum:    v.PodNum,
+		})
+	}
+	return &types.GetPodNumPerNpResp{
+		PodsNps: podsNps,
 	}, err
 }

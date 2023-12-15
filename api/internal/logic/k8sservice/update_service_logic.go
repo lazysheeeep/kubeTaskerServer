@@ -25,14 +25,12 @@ func NewUpdateServiceLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Upd
 
 func (l *UpdateServiceLogic) UpdateService(req *types.UpdateServiceReq) (resp *types.UpdateServiceResp, err error) {
 	// todo: add your logic here and delete this line
-	result, err := l.svcCtx.CoreRpc.GetConfigMapDetail(l.ctx, &core.GetConfigMapDetailReq{
-		ConfigMapName: req.ConfigMapName,
-		Namespace:     req.Namespace,
+	_, err = l.svcCtx.CoreRpc.UpdateService(l.ctx, &core.UpdateServiceReq{
+		Namespace: req.Namespace,
+		Content:   req.Content,
 	})
 	if err != nil {
 		return nil, err
 	}
-	return &types.GetConfigMapDetailResp{
-		ConfigMap: result.ConfigMap,
-	}, err
+	return nil, err
 }
