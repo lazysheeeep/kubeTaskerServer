@@ -25,7 +25,7 @@ message GetConfigMapDetailResp {
 
 // deleteConfigMap
 message DeleteConfigMapReq {
-  string config_map_mame = 1;
+  string config_map_name = 1;
   string namespace = 2;
 }
 message DeleteConfigMapResp {
@@ -41,8 +41,8 @@ message UpdateConfigMapResp {
 
 }
 
+// K8sConfigMap management
 service Core {
-  // K8sConfigMap management
   // group: k8sconfigmap
   rpc getConfigMaps (GetConfigMapsReq) returns (GetConfigMapsResp);
   // group: k8sconfigmap

@@ -1,0 +1,182 @@
+import "../base.api"
+
+type (
+    // GetDeploymentsReq
+    GetDeploymentsReq {
+        // FilterName
+        FilterName  string `json:"filterName"`
+        // Namespace
+        Namespace  string `json:"namespace"`
+        // Limit
+        Limit  int64 `json:"limit"`
+        // Page
+        Page  int64 `json:"page"`
+    }
+
+        // GetDeploymentsResp
+    GetDeploymentsResp {
+        // Items
+        // []k8s.io.api.apps.v1.Deployment
+        Items  TypeNull `json:"items"`
+        // Total
+        Total  int64 `json:"total"`
+    }
+
+        // GetDeploymentDetailReq
+    GetDeploymentDetailReq {
+        // DeploymentName
+        DeploymentName  string `json:"deploymentName"`
+
+        // Namespace
+        Namespace  string `json:"namespace"`
+
+    }
+
+        // GetDeploymentDetailResp
+    GetDeploymentDetailResp {
+        // Deployment
+        // k8s.io.api.apps.v1.Deployment
+        Deployment  TypeNull `json:"deployment"`
+    }
+
+        // ScaleDeploymentReq
+    ScaleDeploymentReq {
+        // DeploymentName
+        DeploymentName  string `json:"deploymentName"`
+        // Namespace
+        Namespace  string `json:"namespace"`
+        // ScaleNum
+        ScaleNum  int64 `json:"scaleNum"`
+    }
+
+    // ScaleDeploymentResp
+    ScaleDeploymentResp {
+        // Replica
+        Replica  int64 `json:"replica"`
+    }
+
+        // CreateDeploymentReq
+    CreateDeploymentReq {
+        // Name
+        Name  string `json:"name"`
+        // Namespace
+        Namespace  string `json:"namespace"`
+        // Replicas
+        Replicas  int32 `json:"replicas"`
+        // Image
+        Image  string `json:"image"`
+        // Label
+        Label  map(string)`json:"label"`
+        // Cpu
+        Cpu  string `json:"cpu"`
+        // Memory
+        Memory  string `json:"memory"`
+        // ContainerPort
+        ContainerPort  int32 `json:"containerPort"`
+        // HealthCheck
+        HealthCheck  bool `json:"healthCheck"`
+        // HealthPath
+        HealthPath  string `json:"healthPath"`
+    }
+
+    // CreateDeploymentResp
+    CreateDeploymentResp {
+    }
+
+    // DeleteDeploymentReq
+    DeleteDeploymentReq {
+    // DeploymentName
+    DeploymentName  string `json:"deploymentName"`
+
+    // Namespace
+    Namespace  string `json:"namespace"`
+
+    }
+
+    // DeleteDeploymentResp
+    DeleteDeploymentResp {
+    }
+
+    // RestartDeploymentReq
+    RestartDeploymentReq {
+    // DeploymentName
+    DeploymentName  string `json:"deploymentName"`
+
+    // Namespace
+    Namespace  string `json:"namespace"`
+
+    }
+
+    // RestartDeploymentResp
+    RestartDeploymentResp {
+    }
+
+    // UpdateDeploymentReq
+    UpdateDeploymentReq {
+    // Namespace
+    Namespace  string `json:"namespace"`
+
+    // Content
+    Content  string `json:"content"`
+
+    }
+
+    // UpdateDeploymentResp
+    UpdateDeploymentResp {
+    }
+
+        // GetDeployNumPerNpReq
+    GetDeployNumPerNpReq {
+    }
+
+    // DeploysNp
+    DeploysNp {
+        Namespace string `json:"namespace"`
+        DeployNum int64 `json:"deployNum"`
+    }
+
+        // GetDeployNumPerNpResp
+    GetDeployNumPerNpResp {
+        // DeploysNps
+        DeploysNps  []DeploysNp `json:"deploysNps"`
+    }
+
+)
+@server(
+    jwt: Auth
+    group: menu
+    middleware: Authority
+)
+service Core {
+    // getDeployments
+    @handler getDeployments
+    post /k8sdeployment/get_deployments (GetDeploymentsReq) returns (GetDeploymentsResp)
+
+    // getDeploymentDetail
+    @handler getDeploymentDetail
+    post /k8sdeployment/get_deployment_detail (GetDeploymentDetailReq) returns (GetDeploymentDetailResp)
+
+    // scaleDeployment
+    @handler scaleDeployment
+    post /k8sdeployment/scale_deployment (ScaleDeploymentReq) returns (ScaleDeploymentResp)
+
+    // createDeployment
+    @handler createDeployment
+    post /k8sdeployment/create_deployment (CreateDeploymentReq) returns (CreateDeploymentResp)
+
+    // deleteDeployment
+    @handler deleteDeployment
+    post /k8sdeployment/delete_deployment (DeleteDeploymentReq) returns (DeleteDeploymentResp)
+
+    // restartDeployment
+    @handler restartDeployment
+    post /k8sdeployment/restart_deployment (RestartDeploymentReq) returns (RestartDeploymentResp)
+
+    // updateDeployment
+    @handler updateDeployment
+    post /k8sdeployment/update_deployment (UpdateDeploymentReq) returns (UpdateDeploymentResp)
+
+    // getDeployNumPerNp
+    @handler getDeployNumPerNp
+    post /k8sdeployment/get_deploy_num_per_np (GetDeployNumPerNpReq) returns (GetDeployNumPerNpResp)
+}

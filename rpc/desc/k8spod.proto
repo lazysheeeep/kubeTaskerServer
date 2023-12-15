@@ -66,8 +66,8 @@ message GetPodNumPerNpResp {
   repeated PodsNp pods_nps = 1;
 }
 
+// K8sPod management
 service Core {
-  // K8sPod management
   // group: k8spod
   rpc getPods (GetPodsReq) returns (GetPodsResp);
   // group: k8spod

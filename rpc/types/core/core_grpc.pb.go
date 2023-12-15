@@ -159,7 +159,6 @@ type CoreClient interface {
 	DeleteDictionaryDetail(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error)
 	// group: dictionarydetail
 	GetDictionaryDetailByDictionaryName(ctx context.Context, in *BaseMsg, opts ...grpc.CallOption) (*DictionaryDetailListResp, error)
-	// K8sConfigMap management
 	// group: k8sconfigmap
 	GetConfigMaps(ctx context.Context, in *GetConfigMapsReq, opts ...grpc.CallOption) (*GetConfigMapsResp, error)
 	// group: k8sconfigmap
@@ -168,7 +167,6 @@ type CoreClient interface {
 	DeleteConfigMap(ctx context.Context, in *DeleteConfigMapReq, opts ...grpc.CallOption) (*DeleteConfigMapResp, error)
 	// group: k8sconfigmap
 	UpdateConfigMap(ctx context.Context, in *UpdateConfigMapReq, opts ...grpc.CallOption) (*UpdateConfigMapResp, error)
-	// K8sDeployment management
 	// group: k8sdeployment
 	GetDeployments(ctx context.Context, in *GetDeploymentsReq, opts ...grpc.CallOption) (*GetDeploymentsResp, error)
 	// group: k8sdeployment
@@ -185,7 +183,6 @@ type CoreClient interface {
 	UpdateDeployment(ctx context.Context, in *UpdateDeploymentReq, opts ...grpc.CallOption) (*UpdateDeploymentResp, error)
 	// group: k8sdeployment
 	GetDeployNumPerNp(ctx context.Context, in *GetDeployNumPerNpReq, opts ...grpc.CallOption) (*GetDeployNumPerNpResp, error)
-	// K8sPod management
 	// group: k8spod
 	GetPods(ctx context.Context, in *GetPodsReq, opts ...grpc.CallOption) (*GetPodsResp, error)
 	// group: k8spod
@@ -200,7 +197,6 @@ type CoreClient interface {
 	GetPodLog(ctx context.Context, in *GetPodLogReq, opts ...grpc.CallOption) (*GetPodLogResp, error)
 	// group: k8spod
 	GetPodNumPerNp(ctx context.Context, in *GetPodNumPerNpReq, opts ...grpc.CallOption) (*GetPodNumPerNpResp, error)
-	// K8sService management
 	// group: k8sservice
 	GetServices(ctx context.Context, in *GetServicesReq, opts ...grpc.CallOption) (*GetServicesResp, error)
 	// group: k8sservice
@@ -1088,7 +1084,6 @@ type CoreServer interface {
 	DeleteDictionaryDetail(context.Context, *IDsReq) (*BaseResp, error)
 	// group: dictionarydetail
 	GetDictionaryDetailByDictionaryName(context.Context, *BaseMsg) (*DictionaryDetailListResp, error)
-	// K8sConfigMap management
 	// group: k8sconfigmap
 	GetConfigMaps(context.Context, *GetConfigMapsReq) (*GetConfigMapsResp, error)
 	// group: k8sconfigmap
@@ -1097,7 +1092,6 @@ type CoreServer interface {
 	DeleteConfigMap(context.Context, *DeleteConfigMapReq) (*DeleteConfigMapResp, error)
 	// group: k8sconfigmap
 	UpdateConfigMap(context.Context, *UpdateConfigMapReq) (*UpdateConfigMapResp, error)
-	// K8sDeployment management
 	// group: k8sdeployment
 	GetDeployments(context.Context, *GetDeploymentsReq) (*GetDeploymentsResp, error)
 	// group: k8sdeployment
@@ -1114,7 +1108,6 @@ type CoreServer interface {
 	UpdateDeployment(context.Context, *UpdateDeploymentReq) (*UpdateDeploymentResp, error)
 	// group: k8sdeployment
 	GetDeployNumPerNp(context.Context, *GetDeployNumPerNpReq) (*GetDeployNumPerNpResp, error)
-	// K8sPod management
 	// group: k8spod
 	GetPods(context.Context, *GetPodsReq) (*GetPodsResp, error)
 	// group: k8spod
@@ -1129,7 +1122,6 @@ type CoreServer interface {
 	GetPodLog(context.Context, *GetPodLogReq) (*GetPodLogResp, error)
 	// group: k8spod
 	GetPodNumPerNp(context.Context, *GetPodNumPerNpReq) (*GetPodNumPerNpResp, error)
-	// K8sService management
 	// group: k8sservice
 	GetServices(context.Context, *GetServicesReq) (*GetServicesResp, error)
 	// group: k8sservice

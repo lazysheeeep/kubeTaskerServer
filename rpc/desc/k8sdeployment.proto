@@ -88,9 +88,8 @@ message DeploysNp {
 message GetDeployNumPerNpResp {
   repeated DeploysNp deploys_nps = 1;
 }
-
+// K8sDeployment management
 service Core {
-  // K8sDeployment management
   // group: k8sdeployment
   rpc getDeployments (GetDeploymentsReq) returns (GetDeploymentsResp);
   // group: k8sdeployment

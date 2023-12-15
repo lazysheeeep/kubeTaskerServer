@@ -55,8 +55,8 @@ message UpdateServiceResp {
 
 }
 
+// K8sService management
 service Core {
-  // K8sService management
   // group: k8sservice
   rpc getServices (GetServicesReq) returns (GetServicesResp);
   // group: k8sservice

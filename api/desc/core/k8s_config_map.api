@@ -1,0 +1,86 @@
+import "../base.api"
+
+type (
+    // GetConfigMapsReq
+    GetConfigMapsReq {
+        // FilterName
+        FilterName  string `json:"filterName"`
+        // Namespace
+        Namespace  string `json:"namespace"`
+        // Limit
+        Limit  int64 `json:"limit"`
+        // Page
+        Page  int64 `json:"page"`
+    }
+
+    // GetConfigMapsResp
+    GetConfigMapsResp {
+        // Items
+        // []k8s.io.api.core.v1.ConfigMap
+        Items  TypeNull `json:"items"`
+        // Total
+        Total  int64 `json:"total"`
+    }
+
+        // GetConfigMapDetailReq
+    GetConfigMapDetailReq {
+        // ConfigMapName
+        ConfigMapName  string `json:"configMapName"`
+        // Namespace
+        Namespace  string `json:"namespace"`
+    }
+
+        // GetConfigMapDetailResp
+    GetConfigMapDetailResp {
+        // ConfigMap
+        // k8s.io.api.core.v1.ConfigMap
+        ConfigMap  TypeNull `json:"configMap"`
+    }
+
+    // DeleteConfigMapReq
+    DeleteConfigMapReq {
+        // ConfigMapName
+        ConfigMapName  string `json:"configMapName"`
+        // Namespace
+        Namespace  string `json:"namespace"`
+    }
+
+    // DeleteConfigMapResp
+    DeleteConfigMapResp {
+    }
+
+    // UpdateConfigMapResp
+    UpdateConfigMapResp {
+    }
+
+    // UpdateConfigMapReq
+    UpdateConfigMapReq {
+        // Namespace
+        Namespace  string `json:"namespace"`
+        // Content
+        Content  string `json:"content"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: k8sconfigmap
+    middleware: Authority
+)
+service Core {
+    // getConfigMaps
+    @handler getConfigMaps
+    post /k8sconfigmap/get_config_maps (GetConfigMapsReq) returns (GetConfigMapsResp)
+
+    // getConfigMapDetail
+    @handler getConfigMapDetail
+    post /k8sconfigmap/get_config_map_detail (GetConfigMapDetailReq) returns (GetConfigMapDetailResp)
+
+    // deleteConfigMap
+    @handler deleteConfigMap
+    delete /k8sconfigmap/delete_config_map (DeleteConfigMapReq) returns (DeleteConfigMapResp)
+
+    // updateConfigMap
+    @handler updateConfigMap
+    put /k8sconfigmap/update_config_map (UpdateConfigMapReq) returns (UpdateConfigMapResp)
+}

@@ -161,7 +161,6 @@ func (s *CoreServer) GetDictionaryDetailByDictionaryName(ctx context.Context, in
 	return l.GetDictionaryDetailByDictionaryName(in)
 }
 
-// K8sConfigMap management
 func (s *CoreServer) GetConfigMaps(ctx context.Context, in *core.GetConfigMapsReq) (*core.GetConfigMapsResp, error) {
 	l := k8sconfigmap.NewGetConfigMapsLogic(ctx, s.svcCtx)
 	return l.GetConfigMaps(in)
@@ -182,7 +181,6 @@ func (s *CoreServer) UpdateConfigMap(ctx context.Context, in *core.UpdateConfigM
 	return l.UpdateConfigMap(in)
 }
 
-// K8sDeployment management
 func (s *CoreServer) GetDeployments(ctx context.Context, in *core.GetDeploymentsReq) (*core.GetDeploymentsResp, error) {
 	l := k8sdeployment.NewGetDeploymentsLogic(ctx, s.svcCtx)
 	return l.GetDeployments(in)
@@ -223,7 +221,6 @@ func (s *CoreServer) GetDeployNumPerNp(ctx context.Context, in *core.GetDeployNu
 	return l.GetDeployNumPerNp(in)
 }
 
-// K8sPod management
 func (s *CoreServer) GetPods(ctx context.Context, in *core.GetPodsReq) (*core.GetPodsResp, error) {
 	l := k8spod.NewGetPodsLogic(ctx, s.svcCtx)
 	return l.GetPods(in)
@@ -259,7 +256,6 @@ func (s *CoreServer) GetPodNumPerNp(ctx context.Context, in *core.GetPodNumPerNp
 	return l.GetPodNumPerNp(in)
 }
 
-// K8sService management
 func (s *CoreServer) GetServices(ctx context.Context, in *core.GetServicesReq) (*core.GetServicesResp, error) {
 	l := k8sservice.NewGetServicesLogic(ctx, s.svcCtx)
 	return l.GetServices(in)

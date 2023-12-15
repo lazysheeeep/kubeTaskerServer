@@ -141,12 +141,10 @@ type (
 		GetDictionaryDetailById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*DictionaryDetailInfo, error)
 		DeleteDictionaryDetail(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error)
 		GetDictionaryDetailByDictionaryName(ctx context.Context, in *BaseMsg, opts ...grpc.CallOption) (*DictionaryDetailListResp, error)
-		// K8sConfigMap management
 		GetConfigMaps(ctx context.Context, in *GetConfigMapsReq, opts ...grpc.CallOption) (*GetConfigMapsResp, error)
 		GetConfigMapDetail(ctx context.Context, in *GetConfigMapDetailReq, opts ...grpc.CallOption) (*GetConfigMapDetailResp, error)
 		DeleteConfigMap(ctx context.Context, in *DeleteConfigMapReq, opts ...grpc.CallOption) (*DeleteConfigMapResp, error)
 		UpdateConfigMap(ctx context.Context, in *UpdateConfigMapReq, opts ...grpc.CallOption) (*UpdateConfigMapResp, error)
-		// K8sDeployment management
 		GetDeployments(ctx context.Context, in *GetDeploymentsReq, opts ...grpc.CallOption) (*GetDeploymentsResp, error)
 		GetDeploymentDetail(ctx context.Context, in *GetDeploymentDetailReq, opts ...grpc.CallOption) (*GetDeploymentDetailResp, error)
 		ScaleDeployment(ctx context.Context, in *ScaleDeploymentReq, opts ...grpc.CallOption) (*ScaleDeploymentResp, error)
@@ -155,7 +153,6 @@ type (
 		RestartDeployment(ctx context.Context, in *RestartDeploymentReq, opts ...grpc.CallOption) (*RestartDeploymentResp, error)
 		UpdateDeployment(ctx context.Context, in *UpdateDeploymentReq, opts ...grpc.CallOption) (*UpdateDeploymentResp, error)
 		GetDeployNumPerNp(ctx context.Context, in *GetDeployNumPerNpReq, opts ...grpc.CallOption) (*GetDeployNumPerNpResp, error)
-		// K8sPod management
 		GetPods(ctx context.Context, in *GetPodsReq, opts ...grpc.CallOption) (*GetPodsResp, error)
 		GetPodDetail(ctx context.Context, in *GetPodDetailReq, opts ...grpc.CallOption) (*GetPodDetailResp, error)
 		DeletePod(ctx context.Context, in *DeletePodReq, opts ...grpc.CallOption) (*DeletePodResp, error)
@@ -163,7 +160,6 @@ type (
 		GetPodContainer(ctx context.Context, in *GetPodContainerReq, opts ...grpc.CallOption) (*GetPodContainerResp, error)
 		GetPodLog(ctx context.Context, in *GetPodLogReq, opts ...grpc.CallOption) (*GetPodLogResp, error)
 		GetPodNumPerNp(ctx context.Context, in *GetPodNumPerNpReq, opts ...grpc.CallOption) (*GetPodNumPerNpResp, error)
-		// K8sService management
 		GetServices(ctx context.Context, in *GetServicesReq, opts ...grpc.CallOption) (*GetServicesResp, error)
 		GetServiceDetail(ctx context.Context, in *GetServiceDetailReq, opts ...grpc.CallOption) (*GetServiceDetailResp, error)
 		CreateService(ctx context.Context, in *CreateServiceReq, opts ...grpc.CallOption) (*CreateServiceResp, error)
@@ -345,7 +341,6 @@ func (m *defaultCore) GetDictionaryDetailByDictionaryName(ctx context.Context, i
 	return client.GetDictionaryDetailByDictionaryName(ctx, in, opts...)
 }
 
-// K8sConfigMap management
 func (m *defaultCore) GetConfigMaps(ctx context.Context, in *GetConfigMapsReq, opts ...grpc.CallOption) (*GetConfigMapsResp, error) {
 	client := core.NewCoreClient(m.cli.Conn())
 	return client.GetConfigMaps(ctx, in, opts...)
@@ -366,7 +361,6 @@ func (m *defaultCore) UpdateConfigMap(ctx context.Context, in *UpdateConfigMapRe
 	return client.UpdateConfigMap(ctx, in, opts...)
 }
 
-// K8sDeployment management
 func (m *defaultCore) GetDeployments(ctx context.Context, in *GetDeploymentsReq, opts ...grpc.CallOption) (*GetDeploymentsResp, error) {
 	client := core.NewCoreClient(m.cli.Conn())
 	return client.GetDeployments(ctx, in, opts...)
@@ -407,7 +401,6 @@ func (m *defaultCore) GetDeployNumPerNp(ctx context.Context, in *GetDeployNumPer
 	return client.GetDeployNumPerNp(ctx, in, opts...)
 }
 
-// K8sPod management
 func (m *defaultCore) GetPods(ctx context.Context, in *GetPodsReq, opts ...grpc.CallOption) (*GetPodsResp, error) {
 	client := core.NewCoreClient(m.cli.Conn())
 	return client.GetPods(ctx, in, opts...)
@@ -443,7 +436,6 @@ func (m *defaultCore) GetPodNumPerNp(ctx context.Context, in *GetPodNumPerNpReq,
 	return client.GetPodNumPerNp(ctx, in, opts...)
 }
 
-// K8sService management
 func (m *defaultCore) GetServices(ctx context.Context, in *GetServicesReq, opts ...grpc.CallOption) (*GetServicesResp, error) {
 	client := core.NewCoreClient(m.cli.Conn())
 	return client.GetServices(ctx, in, opts...)
