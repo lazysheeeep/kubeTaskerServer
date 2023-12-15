@@ -3,39 +3,11 @@ syntax = "proto3";
 package core;
 option go_package="./core";
 
-import "k8s.io/api@v0.28.4/apps/v1/generated.proto";
-
 import "k8s.io/api@v0.28.4/core/v1/generated.proto";
 
-message MenuRoleInfo {
-  uint64 id = 1;
-  uint64 menu_id = 2;
-  uint64 role_id = 3;
-}
+import "k8s.io/api@v0.28.4/apps/v1/generated.proto";
 
-message BaseResp {
-  string msg = 1;
-}
-
-message BaseMsg {
-  string msg = 1;
-}
-
-message DictionaryInfo {
-  optional uint64 id = 1;
-  optional int64 created_at = 2;
-  optional int64 updated_at = 3;
-  optional uint32 status = 4;
-  optional string title = 5;
-  optional string name = 6;
-  optional string desc = 7;
-}
-
-//  scaleDeployment
-message ScaleDeploymentReq {
-  string deployment_name = 1;
-  string namespace = 2;
-}
+message UpdateDeploymentResp {}
 
 //  deletePod
 message DeletePodReq {
@@ -49,105 +21,11 @@ message GetPodContainerReq {
   string namespace = 2;
 }
 
-message MenuInfoList {
-  uint64 total = 1;
-  repeated MenuInfo data = 2;
-}
-
-message BaseUUIDResp {
-  string id = 1;
-  string msg = 2;
-}
-
-//  getConfigMaps
-message GetConfigMapsReq {
-  string filter_name = 1;
-  string namespace = 2;
-  int64 limit = 3;
-  int64 Page = 4;
-}
-
-//  getDeploymentDetail
-message GetDeploymentDetailReq {
-  string deployment_name = 1;
-  string namespace = 2;
-}
-
-//  getDeployNumPerNp
-message GetDeployNumPerNpReq {}
-
-message OauthRedirectResp {
-  string url = 1;
-}
-
-message UserListResp {
-  uint64 total = 1;
-  repeated UserInfo data = 2;
-}
-
-message UsernameReq {
-  string username = 1;
-}
-
-message UpdateConfigMapResp {}
-
-message GetDeploymentDetailResp {
-  k8s.io.api.apps.v1.Deployment items = 1;
-}
-
-//  createDeployment
-message CreateDeploymentReq {
-  string name = 1;
-  string namespace = 2;
-  int64 replicas = 3;
-  string image = 4;
-  map<string,string> label = 5;
-  string cpu = 6;
-  string memory = 7;
-  string container_port = 8;
-  bool health_check = 9;
-  string health_path = 10;
-}
-
-//  restartDeployment
-message RestartDeploymentReq {
-  string deployment_name = 1;
-  string namespace = 2;
-}
-
-message UpdateDeploymentResp {}
-
-message MenuRoleListResp {
-  uint64 total = 1;
-  repeated MenuRoleInfo data = 2;
-}
-
-message RoleListReq {
-  uint64 page = 1;
-  uint64 page_size = 2;
-  optional string name = 3;
-  optional string code = 4;
-  optional string default_router = 5;
-}
-
-message UUIDsReq {
-  repeated string ids = 1;
-}
-
-message DepartmentListResp {
-  uint64 total = 1;
-  repeated DepartmentInfo data = 2;
-}
-
-//  deleteDeployment
-message DeleteDeploymentReq {
-  string deployment_name = 1;
-  string namespace = 2;
-}
-
-message GetPodsResp {
-  int64 total = 1;
-  repeated k8s.io.api.core.v1.Pod items = 2;
+//  getPodLog
+message GetPodLogReq {
+  string container_name = 1;
+  string pod_name = 2;
+  string namespace = 3;
 }
 
 message OauthProviderInfo {
@@ -165,8 +43,136 @@ message OauthProviderInfo {
   optional string info_url = 12;
 }
 
+message PositionListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string name = 3;
+  optional string code = 4;
+  optional string remark = 5;
+}
+
+//  return the role's authorization menu's ids
+message RoleMenuAuthorityResp {
+  repeated uint64 menu_id = 1;
+}
+
 message UUIDReq {
   string id = 1;
+}
+
+message DictionaryListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string name = 3;
+}
+
+//  restartDeployment
+message RestartDeploymentReq {
+  string deployment_name = 1;
+  string namespace = 2;
+}
+
+//  getDeployNumPerNp
+message GetDeployNumPerNpReq {}
+
+message GetPodsResp {
+  int64 total = 1;
+  repeated k8s.io.api.core.v1.Pod items = 2;
+}
+
+message TokenListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string username = 3;
+  optional string nickname = 4;
+  optional string email = 5;
+  optional string uuid = 6;
+}
+
+//  authorization message
+message RoleMenuAuthorityReq {
+  uint64 role_id = 1;
+  repeated uint64 menu_id = 2;
+}
+
+message IDReq {
+  uint64 id = 1;
+}
+
+message BaseMsg {
+  string msg = 1;
+}
+
+message DepartmentInfo {
+  optional uint64 id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional uint32 status = 4;
+  optional uint32 sort = 5;
+  optional string name = 6;
+  optional string ancestors = 7;
+  optional string leader = 8;
+  optional string phone = 9;
+  optional string email = 10;
+  optional string remark = 11;
+  optional uint64 parent_id = 12;
+}
+
+message GetConfigMapsResp {
+  repeated k8s.io.api.core.v1.ConfigMap items = 1;
+  int64 total = 2;
+}
+
+//  updateConfigMap
+message UpdateConfigMapReq {
+  string namespace = 1;
+  string content = 2;
+}
+
+message PodsNp {
+  string namespace = 1;
+  int64 pod_num = 2;
+}
+
+message UUIDsReq {
+  repeated string ids = 1;
+}
+
+//  getDeployments
+message GetDeploymentsReq {
+  string filter_name = 1;
+  string namespace = 2;
+  int64 limit = 3;
+  int64 page = 4;
+}
+
+//  updateDeployment
+message UpdateDeploymentReq {
+  string namespace = 1;
+  string content = 2;
+}
+
+message MenuRoleInfo {
+  uint64 id = 1;
+  uint64 menu_id = 2;
+  uint64 role_id = 3;
+}
+
+message BaseIDResp {
+  uint64 id = 1;
+  string msg = 2;
+}
+
+//  getPods
+message GetPodsReq {
+  string filter_name = 1;
+  string namespace = 2;
+  int64 limit = 3;
+  int64 page = 4;
+}
+
+message GetPodContainerResp {
+  repeated string containers = 1;
 }
 
 message MenuInfo {
@@ -185,6 +191,152 @@ message MenuInfo {
   optional uint32 menu_type = 13;
 }
 
+message RoleInfo {
+  optional uint64 id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional uint32 status = 4;
+  optional string name = 5;
+  optional string code = 6;
+  optional string default_router = 7;
+  optional string remark = 8;
+  optional uint32 sort = 9;
+}
+
+message PageInfoReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+}
+
+//  scaleDeployment
+message ScaleDeploymentReq {
+  string deployment_name = 1;
+  string namespace = 2;
+  int64 scale_num = 3;
+}
+
+message RestartDeploymentResp {}
+
+message DeploysNp {
+  string namespace = 1;
+  int64 deploy_num = 2;
+}
+
+message PositionInfo {
+  optional uint64 id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional uint32 status = 4;
+  optional uint32 sort = 5;
+  optional string name = 6;
+  optional string code = 7;
+  optional string remark = 8;
+}
+
+message UserListResp {
+  uint64 total = 1;
+  repeated UserInfo data = 2;
+}
+
+//  createDeployment
+message CreateDeploymentReq {
+  string name = 1;
+  string namespace = 2;
+  int32 replicas = 3;
+  string image = 4;
+  map<string,string> label = 5;
+  string cpu = 6;
+  string memory = 7;
+  int32 container_port = 8;
+  bool health_check = 9;
+  string health_path = 10;
+}
+
+message GetPodNumPerNpResp {
+  repeated PodsNp pods_nps = 1;
+}
+
+message MenuInfoList {
+  uint64 total = 1;
+  repeated MenuInfo data = 2;
+}
+
+message PositionListResp {
+  uint64 total = 1;
+  repeated PositionInfo data = 2;
+}
+
+message TokenListResp {
+  uint64 total = 1;
+  repeated TokenInfo data = 2;
+}
+
+message GetPodLogResp {
+  string log = 1;
+}
+
+message ApiListResp {
+  uint64 total = 1;
+  repeated ApiInfo data = 2;
+}
+
+message IDsReq {
+  repeated uint64 ids = 1;
+}
+
+message DictionaryInfo {
+  optional uint64 id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional uint32 status = 4;
+  optional string title = 5;
+  optional string name = 6;
+  optional string desc = 7;
+}
+
+message GetConfigMapDetailResp {
+  k8s.io.api.core.v1.ConfigMap config_map = 1;
+}
+
+message ScaleDeploymentResp {
+  int64 replica = 1;
+}
+
+//  getPodDetail
+message GetPodDetailReq {
+  string pod_name = 1;
+  string namespace = 2;
+}
+
+message UpdatePodResp {}
+
+message CallbackReq {
+  string state = 1;
+  string code = 2;
+}
+
+message TokenInfo {
+  optional string id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional uint32 status = 4;
+  optional string uuid = 5;
+  optional string token = 6;
+  optional string source = 7;
+  optional int64 expired_at = 8;
+}
+
+message DepartmentListResp {
+  uint64 total = 1;
+  repeated DepartmentInfo data = 2;
+}
+
+message UpdateConfigMapResp {}
+
+message GetDeployNumPerNpResp {
+  repeated DeploysNp deploys_nps = 1;
+}
+
 message Meta {
   optional string title = 1;
   optional string icon = 2;
@@ -200,181 +352,46 @@ message Meta {
   optional string real_path = 12;
 }
 
-message OauthProviderListResp {
-  uint64 total = 1;
-  repeated OauthProviderInfo data = 2;
+message OauthRedirectResp {
+  string url = 1;
 }
 
-message ScaleDeploymentResp {
-  int64 replica = 1;
-}
-
-message DeletePodResp {}
-
-message GetPodContainerResp {
-  repeated string containers = 1;
-}
-
-message PodsNp {
-  string namespace = 1;
-  int64 pod_num = 2;
-}
-
-message TokenListReq {
-  uint64 page = 1;
-  uint64 page_size = 2;
-  optional string username = 3;
-  optional string nickname = 4;
-  optional string email = 5;
-  optional string uuid = 6;
-}
-
-//  getConfigMapDetail
-message GetConfigMapDetailReq {
-  string config_map_name = 1;
-  string namespace = 2;
-}
-
-message GetConfigMapDetailResp {
-  k8s.io.api.core.v1.ConfigMap config_map = 1;
-}
-
-message GetDeployNumPerNpResp {
-  string namespace = 1;
-  int64 deploy_num = 2;
-}
-
-message OauthProviderListReq {
+message RoleListReq {
   uint64 page = 1;
   uint64 page_size = 2;
   optional string name = 3;
+  optional string code = 4;
+  optional string default_router = 5;
 }
 
-message CallbackReq {
-  string state = 1;
-  string code = 2;
+message UsernameReq {
+  string username = 1;
 }
 
-message OauthLoginReq {
-  string state = 1;
-  string provider = 2;
+message BaseResp {
+  string msg = 1;
 }
 
-message TokenListResp {
-  uint64 total = 1;
-  repeated TokenInfo data = 2;
+message BaseUUIDResp {
+  string id = 1;
+  string msg = 2;
 }
 
-message DepartmentListReq {
+message DictionaryDetailListReq {
   uint64 page = 1;
   uint64 page_size = 2;
-  optional string name = 3;
-  optional string leader = 4;
+  optional uint64 dictionary_id = 3;
+  optional string key = 4;
+}
+
+message GetDeploymentDetailResp {
+  k8s.io.api.apps.v1.Deployment deployment = 1;
 }
 
 message DeleteDeploymentResp {}
 
-message UpdatePodResp {}
-
-//  getPodLog
-message GetPodLogReq {
-  string container_name = 1;
-  string pod_name = 2;
-  string namespace = 3;
-}
-
-message PositionInfo {
-  optional uint64 id = 1;
-  optional int64 created_at = 2;
-  optional int64 updated_at = 3;
-  optional uint32 status = 4;
-  optional uint32 sort = 5;
-  optional string name = 6;
-  optional string code = 7;
-  optional string remark = 8;
-}
-
-message RoleInfo {
-  optional uint64 id = 1;
-  optional int64 created_at = 2;
-  optional int64 updated_at = 3;
-  optional uint32 status = 4;
-  optional string name = 5;
-  optional string code = 6;
-  optional string default_router = 7;
-  optional string remark = 8;
-  optional uint32 sort = 9;
-}
-
-message TokenInfo {
-  optional string id = 1;
-  optional int64 created_at = 2;
-  optional int64 updated_at = 3;
-  optional uint32 status = 4;
-  optional string uuid = 5;
-  optional string token = 6;
-  optional string source = 7;
-  optional int64 expired_at = 8;
-}
-
-//  return the role's authorization menu's ids
-message RoleMenuAuthorityResp {
-  repeated uint64 menu_id = 1;
-}
-
-message GetPodDetailResp {
-  k8s.io.api.core.v1.Pod pod = 1;
-}
-
-message RoleListResp {
-  uint64 total = 1;
-  repeated RoleInfo data = 2;
-}
-
-message PageInfoReq {
-  uint64 page = 1;
-  uint64 page_size = 2;
-}
-
-message GetPodLogResp {
-  string log = 1;
-}
-
-message ApiInfo {
-  optional uint64 id = 1;
-  optional int64 created_at = 2;
-  optional int64 updated_at = 3;
-  optional string path = 4;
-  optional string description = 5;
-  optional string api_group = 6;
-  optional string method = 7;
-  optional bool is_required = 8;
-}
-
-message IDReq {
-  uint64 id = 1;
-}
-
-message DictionaryDetailInfo {
-  optional uint64 id = 1;
-  optional int64 created_at = 2;
-  optional int64 updated_at = 3;
-  optional uint32 status = 4;
-  optional string title = 5;
-  optional string key = 6;
-  optional string value = 7;
-  optional uint64 dictionary_id = 8;
-  optional uint32 sort = 9;
-}
-
-message GetConfigMapsResp {
-  repeated k8s.io.api.core.v1.ConfigMap items = 1;
-  int64 total = 2;
-}
-
-message DeleteConfigMapResp {}
-
-message CreateDeploymentResp {}
+//  getPodNumPerNp
+message GetPodNumPerNpReq {}
 
 message UserInfo {
   optional string id = 1;
@@ -396,51 +413,11 @@ message UserInfo {
   repeated string role_name = 17;
 }
 
-message IDsReq {
-  repeated uint64 ids = 1;
-}
-
-//  getPods
-message GetPodsReq {
-  string filter_name = 1;
-  string namespace = 2;
-  int64 limit = 3;
-  int64 page = 4;
-}
-
-//  getPodDetail
-message GetPodDetailReq {
-  string pod_name = 1;
-  string namespace = 2;
-}
-
-message PositionListResp {
-  uint64 total = 1;
-  repeated PositionInfo data = 2;
-}
-
-message BaseIDResp {
-  uint64 id = 1;
-  string msg = 2;
-}
-
-message DictionaryDetailListReq {
+message DepartmentListReq {
   uint64 page = 1;
   uint64 page_size = 2;
-  optional uint64 dictionary_id = 3;
-  optional string key = 4;
-}
-
-//  deleteConfigMap
-message DeleteConfigMapReq {
-  string config_map_mame = 1;
-  string namespace = 2;
-}
-
-//  updateConfigMap
-message UpdateConfigMapReq {
-  string namespace = 1;
-  string content = 2;
+  optional string name = 3;
+  optional string leader = 4;
 }
 
 //  updatePod
@@ -449,16 +426,89 @@ message UpdatePodReq {
   string content = 2;
 }
 
-//  getPodNumPerNp
-message GetPodNumPerNpReq {}
+message DictionaryDetailListResp {
+  uint64 total = 1;
+  repeated DictionaryDetailInfo data = 2;
+}
 
-message PositionListReq {
+message GetDeploymentsResp {
+  repeated k8s.io.api.apps.v1.Deployment items = 1;
+  int64 total = 2;
+}
+
+message OauthProviderListResp {
+  uint64 total = 1;
+  repeated OauthProviderInfo data = 2;
+}
+
+message RoleListResp {
+  uint64 total = 1;
+  repeated RoleInfo data = 2;
+}
+
+message ApiInfo {
+  optional uint64 id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional string path = 4;
+  optional string description = 5;
+  optional string api_group = 6;
+  optional string method = 7;
+  optional bool is_required = 8;
+}
+
+//  base message
+message Empty {}
+
+message DictionaryDetailInfo {
+  optional uint64 id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional uint32 status = 4;
+  optional string title = 5;
+  optional string key = 6;
+  optional string value = 7;
+  optional uint64 dictionary_id = 8;
+  optional uint32 sort = 9;
+}
+
+//  getConfigMaps
+message GetConfigMapsReq {
+  string filter_name = 1;
+  string namespace = 2;
+  int64 limit = 3;
+  int64 Page = 4;
+}
+
+//  getConfigMapDetail
+message GetConfigMapDetailReq {
+  string config_map_name = 1;
+  string namespace = 2;
+}
+
+message MenuRoleListResp {
+  uint64 total = 1;
+  repeated MenuRoleInfo data = 2;
+}
+
+message OauthProviderListReq {
   uint64 page = 1;
   uint64 page_size = 2;
   optional string name = 3;
-  optional string code = 4;
-  optional string remark = 5;
 }
+
+message DictionaryListResp {
+  uint64 total = 1;
+  repeated DictionaryInfo data = 2;
+}
+
+//  deleteDeployment
+message DeleteDeploymentReq {
+  string deployment_name = 1;
+  string namespace = 2;
+}
+
+message DeletePodResp {}
 
 message ApiListReq {
   uint64 page = 1;
@@ -470,15 +520,29 @@ message ApiListReq {
   optional string is_default = 7;
 }
 
-//  base message
-message Empty {}
-
-//  getDeployments
-message GetDeploymentsReq {
-  string filter_name = 1;
+//  deleteConfigMap
+message DeleteConfigMapReq {
+  string config_map_mame = 1;
   string namespace = 2;
-  int64 limit = 3;
-  int64 page = 4;
+}
+
+message DeleteConfigMapResp {}
+
+//  getDeploymentDetail
+message GetDeploymentDetailReq {
+  string deployment_name = 1;
+  string namespace = 2;
+}
+
+message CreateDeploymentResp {}
+
+message GetPodDetailResp {
+  k8s.io.api.core.v1.Pod pod = 1;
+}
+
+message OauthLoginReq {
+  string state = 1;
+  string provider = 2;
 }
 
 message UserListReq {
@@ -491,65 +555,6 @@ message UserListReq {
   repeated uint64 role_ids = 7;
   optional uint64 department_id = 8;
   repeated uint64 position_ids = 9;
-}
-
-message DepartmentInfo {
-  optional uint64 id = 1;
-  optional int64 created_at = 2;
-  optional int64 updated_at = 3;
-  optional uint32 status = 4;
-  optional uint32 sort = 5;
-  optional string name = 6;
-  optional string ancestors = 7;
-  optional string leader = 8;
-  optional string phone = 9;
-  optional string email = 10;
-  optional string remark = 11;
-  optional uint64 parent_id = 12;
-}
-
-message DictionaryListReq {
-  uint64 page = 1;
-  uint64 page_size = 2;
-  optional string name = 3;
-}
-
-message GetDeploymentsResp {
-  repeated k8s.io.api.apps.v1.Deployment items = 1;
-  int64 total = 2;
-}
-
-message RestartDeploymentResp {}
-
-message GetPodNumPerNpResp {
-  repeated PodsNp pods_nps = 1;
-}
-
-message ApiListResp {
-  uint64 total = 1;
-  repeated ApiInfo data = 2;
-}
-
-//  authorization message
-message RoleMenuAuthorityReq {
-  uint64 role_id = 1;
-  repeated uint64 menu_id = 2;
-}
-
-message DictionaryListResp {
-  uint64 total = 1;
-  repeated DictionaryInfo data = 2;
-}
-
-message DictionaryDetailListResp {
-  uint64 total = 1;
-  repeated DictionaryDetailInfo data = 2;
-}
-
-//  updateDeployment
-message UpdateDeploymentReq {
-  string namespace = 1;
-  string content = 2;
 }
 
 service Core {

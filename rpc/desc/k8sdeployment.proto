@@ -20,13 +20,14 @@ message GetDeploymentDetailReq {
   string namespace = 2;
 }
 message GetDeploymentDetailResp {
-  k8s.io.api.apps.v1.Deployment items = 1;
+  k8s.io.api.apps.v1.Deployment deployment = 1;
 }
 
 // scaleDeployment
 message ScaleDeploymentReq {
   string deployment_name = 1;
   string namespace = 2;
+  int64 scale_num = 3;
 }
 message ScaleDeploymentResp {
   int64 replica = 1;
@@ -36,12 +37,12 @@ message ScaleDeploymentResp {
 message CreateDeploymentReq {
   string name = 1;
   string namespace = 2;
-  int64 replicas = 3;
+  int32 replicas = 3;
   string image = 4;
   map<string,string> label = 5;
   string cpu = 6;
   string memory = 7;
-  string container_port = 8;
+  int32 container_port = 8;
   bool health_check = 9;
   string health_path = 10;
 }
@@ -80,9 +81,12 @@ message UpdateDeploymentResp {
 message GetDeployNumPerNpReq {
 
 }
-message GetDeployNumPerNpResp {
+message DeploysNp {
   string namespace = 1;
   int64 deploy_num = 2;
+}
+message GetDeployNumPerNpResp {
+  repeated DeploysNp deploys_nps = 1;
 }
 
 service Core {

@@ -2,6 +2,8 @@ package k8sdeployment
 
 import (
 	"context"
+	"errors"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/svc"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/types/core"
@@ -23,8 +25,15 @@ func NewGetDeploymentDetailLogic(ctx context.Context, svcCtx *svc.ServiceContext
 	}
 }
 
+// 获取deployment详情
 func (l *GetDeploymentDetailLogic) GetDeploymentDetail(in *core.GetDeploymentDetailReq) (*core.GetDeploymentDetailResp, error) {
 	// todo: add your logic here and delete this line
-
-	return &core.GetDeploymentDetailResp{}, nil
+	deployment, err := l.svcCtx.K8s.AppsV1().Deployments(in.Namespace).Get(context.TODO(), in.DeploymentName, metav1.GetOptions{})
+	if err != nil {
+		l.Error(errors.New("获取Deployment详情失败, " + err.Error()))
+		return nil, errors.New("获取Deployment详情失败, " + err.Error())
+	}
+	return &core.GetDeploymentDetailResp{
+		Deployment: deployment,
+	}, nil
 }

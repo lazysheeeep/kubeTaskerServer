@@ -32,6 +32,7 @@ type (
 	DepartmentInfo           = core.DepartmentInfo
 	DepartmentListReq        = core.DepartmentListReq
 	DepartmentListResp       = core.DepartmentListResp
+	DeploysNp                = core.DeploysNp
 	DictionaryDetailInfo     = core.DictionaryDetailInfo
 	DictionaryDetailListReq  = core.DictionaryDetailListReq
 	DictionaryDetailListResp = core.DictionaryDetailListResp
