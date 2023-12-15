@@ -62,6 +62,11 @@ const (
 	Core_GetPodContainer_FullMethodName                     = "/core.Core/getPodContainer"
 	Core_GetPodLog_FullMethodName                           = "/core.Core/getPodLog"
 	Core_GetPodNumPerNp_FullMethodName                      = "/core.Core/getPodNumPerNp"
+	Core_GetServices_FullMethodName                         = "/core.Core/getServices"
+	Core_GetServiceDetail_FullMethodName                    = "/core.Core/getServiceDetail"
+	Core_CreateService_FullMethodName                       = "/core.Core/createService"
+	Core_DeleteService_FullMethodName                       = "/core.Core/deleteService"
+	Core_UpdateService_FullMethodName                       = "/core.Core/updateService"
 	Core_CreateMenu_FullMethodName                          = "/core.Core/createMenu"
 	Core_UpdateMenu_FullMethodName                          = "/core.Core/updateMenu"
 	Core_DeleteMenu_FullMethodName                          = "/core.Core/deleteMenu"
@@ -195,6 +200,17 @@ type CoreClient interface {
 	GetPodLog(ctx context.Context, in *GetPodLogReq, opts ...grpc.CallOption) (*GetPodLogResp, error)
 	// group: k8spod
 	GetPodNumPerNp(ctx context.Context, in *GetPodNumPerNpReq, opts ...grpc.CallOption) (*GetPodNumPerNpResp, error)
+	// K8sService management
+	// group: k8sservice
+	GetServices(ctx context.Context, in *GetServicesReq, opts ...grpc.CallOption) (*GetServicesResp, error)
+	// group: k8sservice
+	GetServiceDetail(ctx context.Context, in *GetServiceDetailReq, opts ...grpc.CallOption) (*GetServiceDetailResp, error)
+	// group: k8sservice
+	CreateService(ctx context.Context, in *CreateServiceReq, opts ...grpc.CallOption) (*CreateServiceResp, error)
+	// group: k8sservice
+	DeleteService(ctx context.Context, in *DeleteServiceReq, opts ...grpc.CallOption) (*DeleteServiceResp, error)
+	// group: k8sservice
+	UpdateService(ctx context.Context, in *UpdateServiceReq, opts ...grpc.CallOption) (*UpdateServiceResp, error)
 	// group: menu
 	CreateMenu(ctx context.Context, in *MenuInfo, opts ...grpc.CallOption) (*BaseIDResp, error)
 	// group: menu
@@ -665,6 +681,51 @@ func (c *coreClient) GetPodNumPerNp(ctx context.Context, in *GetPodNumPerNpReq, 
 	return out, nil
 }
 
+func (c *coreClient) GetServices(ctx context.Context, in *GetServicesReq, opts ...grpc.CallOption) (*GetServicesResp, error) {
+	out := new(GetServicesResp)
+	err := c.cc.Invoke(ctx, Core_GetServices_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) GetServiceDetail(ctx context.Context, in *GetServiceDetailReq, opts ...grpc.CallOption) (*GetServiceDetailResp, error) {
+	out := new(GetServiceDetailResp)
+	err := c.cc.Invoke(ctx, Core_GetServiceDetail_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) CreateService(ctx context.Context, in *CreateServiceReq, opts ...grpc.CallOption) (*CreateServiceResp, error) {
+	out := new(CreateServiceResp)
+	err := c.cc.Invoke(ctx, Core_CreateService_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) DeleteService(ctx context.Context, in *DeleteServiceReq, opts ...grpc.CallOption) (*DeleteServiceResp, error) {
+	out := new(DeleteServiceResp)
+	err := c.cc.Invoke(ctx, Core_DeleteService_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) UpdateService(ctx context.Context, in *UpdateServiceReq, opts ...grpc.CallOption) (*UpdateServiceResp, error) {
+	out := new(UpdateServiceResp)
+	err := c.cc.Invoke(ctx, Core_UpdateService_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *coreClient) CreateMenu(ctx context.Context, in *MenuInfo, opts ...grpc.CallOption) (*BaseIDResp, error) {
 	out := new(BaseIDResp)
 	err := c.cc.Invoke(ctx, Core_CreateMenu_FullMethodName, in, out, opts...)
@@ -1068,6 +1129,17 @@ type CoreServer interface {
 	GetPodLog(context.Context, *GetPodLogReq) (*GetPodLogResp, error)
 	// group: k8spod
 	GetPodNumPerNp(context.Context, *GetPodNumPerNpReq) (*GetPodNumPerNpResp, error)
+	// K8sService management
+	// group: k8sservice
+	GetServices(context.Context, *GetServicesReq) (*GetServicesResp, error)
+	// group: k8sservice
+	GetServiceDetail(context.Context, *GetServiceDetailReq) (*GetServiceDetailResp, error)
+	// group: k8sservice
+	CreateService(context.Context, *CreateServiceReq) (*CreateServiceResp, error)
+	// group: k8sservice
+	DeleteService(context.Context, *DeleteServiceReq) (*DeleteServiceResp, error)
+	// group: k8sservice
+	UpdateService(context.Context, *UpdateServiceReq) (*UpdateServiceResp, error)
 	// group: menu
 	CreateMenu(context.Context, *MenuInfo) (*BaseIDResp, error)
 	// group: menu
@@ -1276,6 +1348,21 @@ func (UnimplementedCoreServer) GetPodLog(context.Context, *GetPodLogReq) (*GetPo
 }
 func (UnimplementedCoreServer) GetPodNumPerNp(context.Context, *GetPodNumPerNpReq) (*GetPodNumPerNpResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPodNumPerNp not implemented")
+}
+func (UnimplementedCoreServer) GetServices(context.Context, *GetServicesReq) (*GetServicesResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetServices not implemented")
+}
+func (UnimplementedCoreServer) GetServiceDetail(context.Context, *GetServiceDetailReq) (*GetServiceDetailResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetServiceDetail not implemented")
+}
+func (UnimplementedCoreServer) CreateService(context.Context, *CreateServiceReq) (*CreateServiceResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateService not implemented")
+}
+func (UnimplementedCoreServer) DeleteService(context.Context, *DeleteServiceReq) (*DeleteServiceResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteService not implemented")
+}
+func (UnimplementedCoreServer) UpdateService(context.Context, *UpdateServiceReq) (*UpdateServiceResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateService not implemented")
 }
 func (UnimplementedCoreServer) CreateMenu(context.Context, *MenuInfo) (*BaseIDResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateMenu not implemented")
@@ -2166,6 +2253,96 @@ func _Core_GetPodNumPerNp_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Core_GetServices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetServicesReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).GetServices(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_GetServices_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).GetServices(ctx, req.(*GetServicesReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_GetServiceDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetServiceDetailReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).GetServiceDetail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_GetServiceDetail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).GetServiceDetail(ctx, req.(*GetServiceDetailReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_CreateService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateServiceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).CreateService(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_CreateService_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).CreateService(ctx, req.(*CreateServiceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_DeleteService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteServiceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).DeleteService(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_DeleteService_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).DeleteService(ctx, req.(*DeleteServiceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_UpdateService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateServiceReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).UpdateService(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_UpdateService_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).UpdateService(ctx, req.(*UpdateServiceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Core_CreateMenu_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MenuInfo)
 	if err := dec(in); err != nil {
@@ -2956,6 +3133,26 @@ var Core_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getPodNumPerNp",
 			Handler:    _Core_GetPodNumPerNp_Handler,
+		},
+		{
+			MethodName: "getServices",
+			Handler:    _Core_GetServices_Handler,
+		},
+		{
+			MethodName: "getServiceDetail",
+			Handler:    _Core_GetServiceDetail_Handler,
+		},
+		{
+			MethodName: "createService",
+			Handler:    _Core_CreateService_Handler,
+		},
+		{
+			MethodName: "deleteService",
+			Handler:    _Core_DeleteService_Handler,
+		},
+		{
+			MethodName: "updateService",
+			Handler:    _Core_UpdateService_Handler,
 		},
 		{
 			MethodName: "createMenu",

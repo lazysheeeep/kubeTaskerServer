@@ -23,12 +23,16 @@ type (
 	CallbackReq              = core.CallbackReq
 	CreateDeploymentReq      = core.CreateDeploymentReq
 	CreateDeploymentResp     = core.CreateDeploymentResp
+	CreateServiceReq         = core.CreateServiceReq
+	CreateServiceResp        = core.CreateServiceResp
 	DeleteConfigMapReq       = core.DeleteConfigMapReq
 	DeleteConfigMapResp      = core.DeleteConfigMapResp
 	DeleteDeploymentReq      = core.DeleteDeploymentReq
 	DeleteDeploymentResp     = core.DeleteDeploymentResp
 	DeletePodReq             = core.DeletePodReq
 	DeletePodResp            = core.DeletePodResp
+	DeleteServiceReq         = core.DeleteServiceReq
+	DeleteServiceResp        = core.DeleteServiceResp
 	DepartmentInfo           = core.DepartmentInfo
 	DepartmentListReq        = core.DepartmentListReq
 	DepartmentListResp       = core.DepartmentListResp
@@ -60,6 +64,10 @@ type (
 	GetPodNumPerNpResp       = core.GetPodNumPerNpResp
 	GetPodsReq               = core.GetPodsReq
 	GetPodsResp              = core.GetPodsResp
+	GetServiceDetailReq      = core.GetServiceDetailReq
+	GetServiceDetailResp     = core.GetServiceDetailResp
+	GetServicesReq           = core.GetServicesReq
+	GetServicesResp          = core.GetServicesResp
 	IDReq                    = core.IDReq
 	IDsReq                   = core.IDsReq
 	MenuInfo                 = core.MenuInfo
@@ -97,6 +105,8 @@ type (
 	UpdateDeploymentResp     = core.UpdateDeploymentResp
 	UpdatePodReq             = core.UpdatePodReq
 	UpdatePodResp            = core.UpdatePodResp
+	UpdateServiceReq         = core.UpdateServiceReq
+	UpdateServiceResp        = core.UpdateServiceResp
 	UserInfo                 = core.UserInfo
 	UserListReq              = core.UserListReq
 	UserListResp             = core.UserListResp
@@ -153,6 +163,12 @@ type (
 		GetPodContainer(ctx context.Context, in *GetPodContainerReq, opts ...grpc.CallOption) (*GetPodContainerResp, error)
 		GetPodLog(ctx context.Context, in *GetPodLogReq, opts ...grpc.CallOption) (*GetPodLogResp, error)
 		GetPodNumPerNp(ctx context.Context, in *GetPodNumPerNpReq, opts ...grpc.CallOption) (*GetPodNumPerNpResp, error)
+		// K8sService management
+		GetServices(ctx context.Context, in *GetServicesReq, opts ...grpc.CallOption) (*GetServicesResp, error)
+		GetServiceDetail(ctx context.Context, in *GetServiceDetailReq, opts ...grpc.CallOption) (*GetServiceDetailResp, error)
+		CreateService(ctx context.Context, in *CreateServiceReq, opts ...grpc.CallOption) (*CreateServiceResp, error)
+		DeleteService(ctx context.Context, in *DeleteServiceReq, opts ...grpc.CallOption) (*DeleteServiceResp, error)
+		UpdateService(ctx context.Context, in *UpdateServiceReq, opts ...grpc.CallOption) (*UpdateServiceResp, error)
 		CreateMenu(ctx context.Context, in *MenuInfo, opts ...grpc.CallOption) (*BaseIDResp, error)
 		UpdateMenu(ctx context.Context, in *MenuInfo, opts ...grpc.CallOption) (*BaseResp, error)
 		DeleteMenu(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*BaseResp, error)
@@ -425,6 +441,32 @@ func (m *defaultCore) GetPodLog(ctx context.Context, in *GetPodLogReq, opts ...g
 func (m *defaultCore) GetPodNumPerNp(ctx context.Context, in *GetPodNumPerNpReq, opts ...grpc.CallOption) (*GetPodNumPerNpResp, error) {
 	client := core.NewCoreClient(m.cli.Conn())
 	return client.GetPodNumPerNp(ctx, in, opts...)
+}
+
+// K8sService management
+func (m *defaultCore) GetServices(ctx context.Context, in *GetServicesReq, opts ...grpc.CallOption) (*GetServicesResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetServices(ctx, in, opts...)
+}
+
+func (m *defaultCore) GetServiceDetail(ctx context.Context, in *GetServiceDetailReq, opts ...grpc.CallOption) (*GetServiceDetailResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetServiceDetail(ctx, in, opts...)
+}
+
+func (m *defaultCore) CreateService(ctx context.Context, in *CreateServiceReq, opts ...grpc.CallOption) (*CreateServiceResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.CreateService(ctx, in, opts...)
+}
+
+func (m *defaultCore) DeleteService(ctx context.Context, in *DeleteServiceReq, opts ...grpc.CallOption) (*DeleteServiceResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.DeleteService(ctx, in, opts...)
+}
+
+func (m *defaultCore) UpdateService(ctx context.Context, in *UpdateServiceReq, opts ...grpc.CallOption) (*UpdateServiceResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.UpdateService(ctx, in, opts...)
 }
 
 func (m *defaultCore) CreateMenu(ctx context.Context, in *MenuInfo, opts ...grpc.CallOption) (*BaseIDResp, error) {

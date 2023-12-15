@@ -15,6 +15,7 @@ import (
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/k8sconfigmap"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/k8sdeployment"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/k8spod"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/k8sservice"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/menu"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/oauthprovider"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/position"
@@ -256,6 +257,32 @@ func (s *CoreServer) GetPodLog(ctx context.Context, in *core.GetPodLogReq) (*cor
 func (s *CoreServer) GetPodNumPerNp(ctx context.Context, in *core.GetPodNumPerNpReq) (*core.GetPodNumPerNpResp, error) {
 	l := k8spod.NewGetPodNumPerNpLogic(ctx, s.svcCtx)
 	return l.GetPodNumPerNp(in)
+}
+
+// K8sService management
+func (s *CoreServer) GetServices(ctx context.Context, in *core.GetServicesReq) (*core.GetServicesResp, error) {
+	l := k8sservice.NewGetServicesLogic(ctx, s.svcCtx)
+	return l.GetServices(in)
+}
+
+func (s *CoreServer) GetServiceDetail(ctx context.Context, in *core.GetServiceDetailReq) (*core.GetServiceDetailResp, error) {
+	l := k8sservice.NewGetServiceDetailLogic(ctx, s.svcCtx)
+	return l.GetServiceDetail(in)
+}
+
+func (s *CoreServer) CreateService(ctx context.Context, in *core.CreateServiceReq) (*core.CreateServiceResp, error) {
+	l := k8sservice.NewCreateServiceLogic(ctx, s.svcCtx)
+	return l.CreateService(in)
+}
+
+func (s *CoreServer) DeleteService(ctx context.Context, in *core.DeleteServiceReq) (*core.DeleteServiceResp, error) {
+	l := k8sservice.NewDeleteServiceLogic(ctx, s.svcCtx)
+	return l.DeleteService(in)
+}
+
+func (s *CoreServer) UpdateService(ctx context.Context, in *core.UpdateServiceReq) (*core.UpdateServiceResp, error) {
+	l := k8sservice.NewUpdateServiceLogic(ctx, s.svcCtx)
+	return l.UpdateService(in)
 }
 
 func (s *CoreServer) CreateMenu(ctx context.Context, in *core.MenuInfo) (*core.BaseIDResp, error) {
