@@ -1,13 +1,102 @@
 import "../base.api"
 
 type (
+    // GetServicesReq
+    GetServicesReq {
+        // FilterName
+        FilterName  string `json:"filterName"`
+        // Namespace
+        Namespace  string `json:"namespace"`
+        // Limit
+        Limit  int64 `json:"limit"`
+        // Page
+        Page  int64 `json:"page"`
+    }
+    // GetServicesResp
+    GetServicesResp {
+        // Items
+        // []k8s.io.api.core.v1.Service
+        Items  TypeNull `json:"items"`
+        // Total
+        Total  int64 `json:"total"`
+    }
 
+    // GetServiceDetailReq
+    GetServiceDetailReq {
+        // ServiceName
+        ServiceName  string `json:"serviceName"`
+        // Namespace
+        Namespace  string `json:"namespace"`
+    }
+    // GetServiceDetailResp
+    GetServiceDetailResp {
+        // Service
+        // k8s.io.api.core.v1.Service
+        Service  TypeNull `json:"service"`
+    }
+
+    // CreateServiceReq
+    CreateServiceReq {
+        // Name
+        Name  string `json:"name"`
+        // Namespace
+        Namespace  string `json:"namespace"`
+        // Type
+        Type  string `json:"type"`
+        // ContainerPort
+        ContainerPort  int64 `json:"containerPort"`
+        // Port
+        Port  int64 `json:"port"`
+        // NodePort
+        NodePort  int64 `json:"nodePort"`
+        // Label
+        Label  []Label `json:"label"`
+    }
+    // CreateServiceResp
+    CreateServiceResp {
+    }
+
+    // DeleteServiceReq
+    DeleteServiceReq {
+        // ServiceName
+        ServiceName  string `json:"serviceName"`
+        // Namespace
+        Namespace  string `json:"namespace"`
+    }
+    // DeleteServiceResp
+    DeleteServiceResp {
+    }
+
+    // UpdateServiceReq
+    UpdateServiceReq {
+        // Namespace
+        Namespace  string `json:"namespace"`
+        // Content
+        Content  string `json:"content"`
+    }
+    // UpdateServiceResp
+    UpdateServiceResp {
+    }
 )
 @server(
     jwt: Auth
-    group: menu
+    group: k8sservice
     middleware: Authority
 )
 service Core {
-
+    // getServices
+    @handler getServices
+    post /k8sservice/get_services (GetServicesReq) returns (GetServicesResp)
+    // getServiceDetail
+    @handler getServiceDetail
+    post /k8sservice/get_service_detail (GetServiceDetailReq) returns (GetServiceDetailResp)
+    // createService
+    @handler createService
+    post /k8sservice/create_service (CreateServiceReq) returns (CreateServiceResp)
+    // deleteService
+    @handler deleteService
+    post /k8sservice/delete_service (DeleteServiceReq) returns (DeleteServiceResp)
+    // updateService
+    @handler updateService
+    post /k8sservice/update_service (UpdateServiceReq) returns (UpdateServiceResp)
 }

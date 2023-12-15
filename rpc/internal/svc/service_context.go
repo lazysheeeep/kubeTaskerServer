@@ -4,6 +4,7 @@ import (
 	"github.com/kubeTasker/kubeTaskerServer/rpc/ent"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/config"
 	"k8s.io/client-go/kubernetes"
+	"k8s.io/client-go/tools/clientcmd"
 
 	"github.com/zeromicro/go-zero/core/logx"
 	"github.com/zeromicro/go-zero/core/stores/redis"
@@ -24,7 +25,15 @@ func NewServiceContext(c config.Config) *ServiceContext {
 		ent.Driver(c.DatabaseConf.NewNoCacheDriver()),
 		ent.Debug(), // debug mode
 	)
-	k8sClient, err := kubernetes.NewForConfig(&c.K8sConf)
+
+	K8sRestConfig, err := clientcmd.BuildConfigFromFlags("", c.KubeConfigPath.Path)
+	if err != nil {
+		panic("Failed to obtain the K8s configuration:" + err.Error())
+		return nil
+	} else {
+		logx.Info("K8s configuration successfully obtained!")
+	}
+	k8sClient, err := kubernetes.NewForConfig(K8sRestConfig)
 	if err != nil {
 		logx.Error("failed to connect to the k8s, please check the k8s configuration.")
 		return nil

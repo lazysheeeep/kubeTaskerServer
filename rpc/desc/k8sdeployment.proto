@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-import "k8s.io/api@v0.28.4/apps/v1/generated.proto";
+import "k8s.io/api/apps/v1/generated.proto";
 
 // getDeployments
 message GetDeploymentsReq {
@@ -88,6 +88,7 @@ message DeploysNp {
 message GetDeployNumPerNpResp {
   repeated DeploysNp deploys_nps = 1;
 }
+
 // K8sDeployment management
 service Core {
   // group: k8sdeployment

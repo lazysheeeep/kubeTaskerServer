@@ -13,7 +13,7 @@ type (
         Page  int64 `json:"page"`
     }
 
-        // GetDeploymentsResp
+    // GetDeploymentsResp
     GetDeploymentsResp {
         // Items
         // []k8s.io.api.apps.v1.Deployment
@@ -22,7 +22,7 @@ type (
         Total  int64 `json:"total"`
     }
 
-        // GetDeploymentDetailReq
+    // GetDeploymentDetailReq
     GetDeploymentDetailReq {
         // DeploymentName
         DeploymentName  string `json:"deploymentName"`
@@ -55,7 +55,8 @@ type (
         Replica  int64 `json:"replica"`
     }
 
-        // CreateDeploymentReq
+
+    // CreateDeploymentReq
     CreateDeploymentReq {
         // Name
         Name  string `json:"name"`
@@ -66,7 +67,7 @@ type (
         // Image
         Image  string `json:"image"`
         // Label
-        Label  map(string)`json:"label"`
+        Label  Label `json:"label"`
         // Cpu
         Cpu  string `json:"cpu"`
         // Memory
@@ -86,11 +87,9 @@ type (
     // DeleteDeploymentReq
     DeleteDeploymentReq {
     // DeploymentName
-    DeploymentName  string `json:"deploymentName"`
-
+        DeploymentName  string `json:"deploymentName"`
     // Namespace
-    Namespace  string `json:"namespace"`
-
+        Namespace  string `json:"namespace"`
     }
 
     // DeleteDeploymentResp
@@ -99,12 +98,10 @@ type (
 
     // RestartDeploymentReq
     RestartDeploymentReq {
-    // DeploymentName
-    DeploymentName  string `json:"deploymentName"`
-
-    // Namespace
-    Namespace  string `json:"namespace"`
-
+        // DeploymentName
+        DeploymentName  string `json:"deploymentName"`
+        // Namespace
+        Namespace  string `json:"namespace"`
     }
 
     // RestartDeploymentResp
@@ -113,12 +110,10 @@ type (
 
     // UpdateDeploymentReq
     UpdateDeploymentReq {
-    // Namespace
-    Namespace  string `json:"namespace"`
-
-    // Content
-    Content  string `json:"content"`
-
+        // Namespace
+        Namespace  string `json:"namespace"`
+        // Content
+        Content  string `json:"content"`
     }
 
     // UpdateDeploymentResp
@@ -144,38 +139,31 @@ type (
 )
 @server(
     jwt: Auth
-    group: menu
+    group: k8sdeployment
     middleware: Authority
 )
 service Core {
     // getDeployments
     @handler getDeployments
     post /k8sdeployment/get_deployments (GetDeploymentsReq) returns (GetDeploymentsResp)
-
     // getDeploymentDetail
     @handler getDeploymentDetail
     post /k8sdeployment/get_deployment_detail (GetDeploymentDetailReq) returns (GetDeploymentDetailResp)
-
     // scaleDeployment
     @handler scaleDeployment
     post /k8sdeployment/scale_deployment (ScaleDeploymentReq) returns (ScaleDeploymentResp)
-
     // createDeployment
     @handler createDeployment
     post /k8sdeployment/create_deployment (CreateDeploymentReq) returns (CreateDeploymentResp)
-
     // deleteDeployment
     @handler deleteDeployment
     post /k8sdeployment/delete_deployment (DeleteDeploymentReq) returns (DeleteDeploymentResp)
-
     // restartDeployment
     @handler restartDeployment
     post /k8sdeployment/restart_deployment (RestartDeploymentReq) returns (RestartDeploymentResp)
-
     // updateDeployment
     @handler updateDeployment
     post /k8sdeployment/update_deployment (UpdateDeploymentReq) returns (UpdateDeploymentResp)
-
     // getDeployNumPerNp
     @handler getDeployNumPerNp
     post /k8sdeployment/get_deploy_num_per_np (GetDeployNumPerNpReq) returns (GetDeployNumPerNpResp)

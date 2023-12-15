@@ -49,16 +49,16 @@ type (
     DeleteConfigMapResp {
     }
 
-    // UpdateConfigMapResp
-    UpdateConfigMapResp {
-    }
-
     // UpdateConfigMapReq
     UpdateConfigMapReq {
         // Namespace
         Namespace  string `json:"namespace"`
         // Content
         Content  string `json:"content"`
+    }
+
+    // UpdateConfigMapResp
+    UpdateConfigMapResp {
     }
 )
 

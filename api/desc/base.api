@@ -12,6 +12,11 @@ type (
     TypeNull {
 
     }
+    // Label
+    Label {
+        Key string `json:"key"`
+        Value string `json:"value"`
+    }
 )
 
 
