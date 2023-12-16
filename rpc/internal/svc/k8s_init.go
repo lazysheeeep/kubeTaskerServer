@@ -1,6 +1,7 @@
 package svc
 
 import (
+	"errors"
 	"log"
 	"os"
 
@@ -15,11 +16,14 @@ type K8sConfig struct {
 	clientset    *kubernetes.Clientset
 }
 
-func K8sInit() *kubernetes.Clientset {
+func K8sInit() (*kubernetes.Clientset, error) {
 	var k8sConfig K8sConfig
 	initKubeClientConfig(&k8sConfig)
-	initKubeClient(&k8sConfig)
-	return k8sConfig.clientset
+	err := initKubeClient(&k8sConfig)
+	if err != nil {
+		return nil, err
+	}
+	return k8sConfig.clientset, nil
 }
 
 func initKubeClientConfig(k8sConfig *K8sConfig) {
@@ -30,19 +34,20 @@ func initKubeClientConfig(k8sConfig *K8sConfig) {
 	k8sConfig.clientConfig = clientcmd.NewInteractiveDeferredLoadingClientConfig(loadingRules, &overrides, os.Stdin)
 }
 
-func initKubeClient(k8sConfig *K8sConfig) *kubernetes.Clientset {
+func initKubeClient(k8sConfig *K8sConfig) (err error) {
 	if k8sConfig.clientset != nil {
-		return k8sConfig.clientset
+		return errors.New("fail to k8sConfig.clientset init")
 	}
-	var err error
 	k8sConfig.restConfig, err = k8sConfig.clientConfig.ClientConfig()
 	if err != nil {
 		log.Fatal(err)
+		return err
 	}
 
 	k8sConfig.clientset, err = kubernetes.NewForConfig(k8sConfig.restConfig)
 	if err != nil {
 		log.Fatal(err)
+		return err
 	}
-	return k8sConfig.clientset
+	return nil
 }

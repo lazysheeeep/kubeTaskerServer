@@ -18,17 +18,22 @@ type ServiceContext struct {
 	K8s    *kubernetes.Clientset
 }
 
-func NewServiceContext(c config.Config) *ServiceContext {
+func NewServiceContext(c config.Config) (*ServiceContext, error) {
 	db := ent.NewClient(
 		ent.Log(logx.Info), // logger
 		ent.Driver(c.DatabaseConf.NewNoCacheDriver()),
 		ent.Debug(), // debug mode
 	)
 
+	k8s, err := K8sInit()
+	if err != nil {
+		return nil, err
+	}
+
 	return &ServiceContext{
 		Config: c,
 		DB:     db,
 		Redis:  redis.MustNewRedis(c.RedisConf),
-		K8s:    K8sInit(),
-	}
+		K8s:    k8s,
+	}, nil
 }

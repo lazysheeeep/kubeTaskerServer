@@ -24,10 +24,13 @@ func main() {
 
 	var c config.Config
 	conf.MustLoad(*configFile, &c, conf.UseEnv())
-	ctx := svc.NewServiceContext(c)
+	ctx, err := svc.NewServiceContext(c)
 
 	if ctx == nil {
 		logx.Error("failed to obtain the related service, please check the configuration of the related service.")
+		return
+	} else if err != nil {
+		logx.Error(err.Error())
 		return
 	}
 
