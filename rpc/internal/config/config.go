@@ -9,11 +9,7 @@ import (
 
 type Config struct {
 	zrpc.RpcServerConf
-	DatabaseConf   config.DatabaseConf
-	CasbinConf     casbin.CasbinConf
-	RedisConf      redis.RedisConf
-	KubeConfigPath K8sConfigPath
-}
-type K8sConfigPath struct {
-	Path string
+	DatabaseConf config.DatabaseConf
+	CasbinConf   casbin.CasbinConf
+	RedisConf    redis.RedisConf
 }
