@@ -1644,3 +1644,50 @@ type GetNamespaceDetailReq struct {
 	// NamespaceName
 	NamespaceName string `json:"namespaceName"`
 }
+
+// GetNodeDetailReq | 获取节点详情信息请求
+// swagger:model GetNodeDetailReq
+type GetNodeDetailReq struct {
+	// NodeName
+	NodeName string `json:"nodeName"`
+}
+
+// GetNodeDetailResp | 获取节点详情信息应答
+// swagger:model GetNodeDetailResp
+type GetNodeDetailResp struct {
+	// Msg
+	Msg string `json:"msg"`
+	// Data
+	Data GetNodeDetailData `json:"data"`
+}
+
+// GetNodeDetailData | 节点详情信息
+type GetNodeDetailData struct {
+	Node *v1.Node `json:"node"`
+}
+
+// GetNodesReq
+// swagger:model GetNodesReq
+type GetNodesReq struct {
+	// FilterName
+	FilterName string `json:"filterName"`
+	// Page
+	Page int64 `json:"page"`
+	// Limit
+	Limit int64 `json:"limit"`
+}
+
+// GetNodesResp
+// swagger:model GetNodesResp
+type GetNodesResp struct {
+	// Msg
+	Msg string `json:"msg"`
+	// Data
+	Data GetNodesData `json:"data"`
+}
+
+// GetNodesData | 节点list信息
+type GetNodesData struct {
+	Items []*v1.Node `json:"items"`
+	Total int64 `json:"total"`
+}

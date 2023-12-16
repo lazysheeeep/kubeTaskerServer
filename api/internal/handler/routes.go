@@ -14,6 +14,7 @@ import (
 	emaillog "github.com/kubeTasker/kubeTaskerServer/api/internal/handler/emaillog"
 	emailprovider "github.com/kubeTasker/kubeTaskerServer/api/internal/handler/emailprovider"
 	k8snamespace "github.com/kubeTasker/kubeTaskerServer/api/internal/handler/k8snamespace"
+	k8snode "github.com/kubeTasker/kubeTaskerServer/api/internal/handler/k8snode"
 	menu "github.com/kubeTasker/kubeTaskerServer/api/internal/handler/menu"
 	messagesender "github.com/kubeTasker/kubeTaskerServer/api/internal/handler/messagesender"
 	oauthprovider "github.com/kubeTasker/kubeTaskerServer/api/internal/handler/oauthprovider"
@@ -796,6 +797,25 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					Method:  http.MethodPost,
 					Path:    "/k8s_namespace/delete_namespace",
 					Handler: k8snamespace.DeleteNamespaceHandler(serverCtx),
+				},
+			}...,
+		),
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+	)
+
+	server.AddRoutes(
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.Authority},
+			[]rest.Route{
+				{
+					Method:  http.MethodPost,
+					Path:    "/k8snode/get_nodes",
+					Handler: k8snode.GetNodesHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/k8snode/get_node_detail",
+					Handler: k8snode.GetNodeDetailHandler(serverCtx),
 				},
 			}...,
 		),

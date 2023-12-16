@@ -41,6 +41,12 @@ type (
 	GetNamespacesData        = core.GetNamespacesData
 	GetNamespacesReq         = core.GetNamespacesReq
 	GetNamespacesResp        = core.GetNamespacesResp
+	GetNodeDetailData        = core.GetNodeDetailData
+	GetNodeDetailReq         = core.GetNodeDetailReq
+	GetNodeDetailResp        = core.GetNodeDetailResp
+	GetNodesData             = core.GetNodesData
+	GetNodesReq              = core.GetNodesReq
+	GetNodesResp             = core.GetNodesResp
 	GetPodContainerReq       = core.GetPodContainerReq
 	GetPodContainerResp      = core.GetPodContainerResp
 	GetPodDetailReq          = core.GetPodDetailReq
@@ -117,6 +123,8 @@ type (
 		GetNamespaces(ctx context.Context, in *GetNamespacesReq, opts ...grpc.CallOption) (*GetNamespacesResp, error)
 		GetNamespaceDetail(ctx context.Context, in *GetNamespaceDetailReq, opts ...grpc.CallOption) (*GetNamespaceDetailResp, error)
 		DeleteNamespace(ctx context.Context, in *DeleteNamespaceReq, opts ...grpc.CallOption) (*DeleteNamespaceResp, error)
+		GetNodes(ctx context.Context, in *GetNodesReq, opts ...grpc.CallOption) (*GetNodesResp, error)
+		GetNodeDetail(ctx context.Context, in *GetNodeDetailReq, opts ...grpc.CallOption) (*GetNodeDetailResp, error)
 		// K8sPod management
 		GetPods(ctx context.Context, in *GetPodsReq, opts ...grpc.CallOption) (*GetPodsResp, error)
 		GetPodDetail(ctx context.Context, in *GetPodDetailReq, opts ...grpc.CallOption) (*GetPodDetailResp, error)
@@ -314,6 +322,16 @@ func (m *defaultCore) GetNamespaceDetail(ctx context.Context, in *GetNamespaceDe
 func (m *defaultCore) DeleteNamespace(ctx context.Context, in *DeleteNamespaceReq, opts ...grpc.CallOption) (*DeleteNamespaceResp, error) {
 	client := core.NewCoreClient(m.cli.Conn())
 	return client.DeleteNamespace(ctx, in, opts...)
+}
+
+func (m *defaultCore) GetNodes(ctx context.Context, in *GetNodesReq, opts ...grpc.CallOption) (*GetNodesResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetNodes(ctx, in, opts...)
+}
+
+func (m *defaultCore) GetNodeDetail(ctx context.Context, in *GetNodeDetailReq, opts ...grpc.CallOption) (*GetNodeDetailResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetNodeDetail(ctx, in, opts...)
 }
 
 // K8sPod management

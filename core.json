@@ -1237,6 +1237,62 @@
         }
       }
     },
+    "/k8snode/get_node_detail": {
+      "post": {
+        "description": "getNodeDetail",
+        "tags": [
+          "k8snode"
+        ],
+        "summary": "getNodeDetail",
+        "operationId": "GetNodeDetail",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/GetNodeDetailReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GetNodeDetailResp",
+            "schema": {
+              "$ref": "#/definitions/GetNodeDetailResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8snode/get_nodes": {
+      "post": {
+        "description": "getNodes",
+        "tags": [
+          "k8snode"
+        ],
+        "summary": "getNodes",
+        "operationId": "GetNodes",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/GetNodesReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GetNodesResp",
+            "schema": {
+              "$ref": "#/definitions/GetNodesResp"
+            }
+          }
+        }
+      }
+    },
     "/menu/create": {
       "post": {
         "description": "Create menu information | 创建菜单",
@@ -4522,6 +4578,82 @@
       "properties": {
         "data": {
           "$ref": "#/definitions/GetNamespacesData"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetNodeDetailData": {
+      "description": "GetNodeDetailData | 节点详情信息",
+      "type": "object",
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetNodeDetailReq": {
+      "description": "GetNodeDetailReq | 获取节点详情信息请求",
+      "type": "object",
+      "properties": {
+        "nodeName": {
+          "description": "NodeName",
+          "type": "string",
+          "x-go-name": "NodeName"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetNodeDetailResp": {
+      "description": "GetNodeDetailResp | 获取节点详情信息应答",
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/GetNodeDetailData"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetNodesData": {
+      "description": "GetNodesData | 节点list信息",
+      "type": "object",
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetNodesReq": {
+      "description": "GetNodesReq",
+      "type": "object",
+      "properties": {
+        "filterName": {
+          "description": "FilterName",
+          "type": "string",
+          "x-go-name": "FilterName"
+        },
+        "limit": {
+          "description": "Limit",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Limit"
+        },
+        "page": {
+          "description": "Page",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Page"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetNodesResp": {
+      "description": "GetNodesResp",
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/GetNodesData"
         },
         "msg": {
           "description": "Msg",

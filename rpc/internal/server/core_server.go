@@ -14,6 +14,7 @@ import (
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/dictionarydetail"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/k8sPod"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/k8snamespace"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/k8snode"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/menu"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/oauthprovider"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/position"
@@ -172,6 +173,16 @@ func (s *CoreServer) GetNamespaceDetail(ctx context.Context, in *core.GetNamespa
 func (s *CoreServer) DeleteNamespace(ctx context.Context, in *core.DeleteNamespaceReq) (*core.DeleteNamespaceResp, error) {
 	l := k8snamespace.NewDeleteNamespaceLogic(ctx, s.svcCtx)
 	return l.DeleteNamespace(in)
+}
+
+func (s *CoreServer) GetNodes(ctx context.Context, in *core.GetNodesReq) (*core.GetNodesResp, error) {
+	l := k8snode.NewGetNodesLogic(ctx, s.svcCtx)
+	return l.GetNodes(in)
+}
+
+func (s *CoreServer) GetNodeDetail(ctx context.Context, in *core.GetNodeDetailReq) (*core.GetNodeDetailResp, error) {
+	l := k8snode.NewGetNodeDetailLogic(ctx, s.svcCtx)
+	return l.GetNodeDetail(in)
 }
 
 // K8sPod management

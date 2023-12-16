@@ -32,5 +32,8 @@ message GetNodeDetailData {
 }
 
 service Core {
-  //group: k8s
+  //group: k8snode
+  rpc getNodes(GetNodesReq) returns (GetNodesResp);
+  //group: k8snode
+  rpc getNodeDetail(GetNodeDetailReq) returns (GetNodeDetailResp);
 }

@@ -46,6 +46,8 @@ const (
 	Core_GetNamespaces_FullMethodName                       = "/core.Core/getNamespaces"
 	Core_GetNamespaceDetail_FullMethodName                  = "/core.Core/getNamespaceDetail"
 	Core_DeleteNamespace_FullMethodName                     = "/core.Core/deleteNamespace"
+	Core_GetNodes_FullMethodName                            = "/core.Core/getNodes"
+	Core_GetNodeDetail_FullMethodName                       = "/core.Core/getNodeDetail"
 	Core_GetPods_FullMethodName                             = "/core.Core/getPods"
 	Core_GetPodDetail_FullMethodName                        = "/core.Core/getPodDetail"
 	Core_DeletePod_FullMethodName                           = "/core.Core/deletePod"
@@ -151,6 +153,10 @@ type CoreClient interface {
 	GetNamespaceDetail(ctx context.Context, in *GetNamespaceDetailReq, opts ...grpc.CallOption) (*GetNamespaceDetailResp, error)
 	// group: k8snamespace
 	DeleteNamespace(ctx context.Context, in *DeleteNamespaceReq, opts ...grpc.CallOption) (*DeleteNamespaceResp, error)
+	// group: k8snode
+	GetNodes(ctx context.Context, in *GetNodesReq, opts ...grpc.CallOption) (*GetNodesResp, error)
+	// group: k8snode
+	GetNodeDetail(ctx context.Context, in *GetNodeDetailReq, opts ...grpc.CallOption) (*GetNodeDetailResp, error)
 	// K8sPod management
 	// group: k8sPod
 	GetPods(ctx context.Context, in *GetPodsReq, opts ...grpc.CallOption) (*GetPodsResp, error)
@@ -486,6 +492,24 @@ func (c *coreClient) GetNamespaceDetail(ctx context.Context, in *GetNamespaceDet
 func (c *coreClient) DeleteNamespace(ctx context.Context, in *DeleteNamespaceReq, opts ...grpc.CallOption) (*DeleteNamespaceResp, error) {
 	out := new(DeleteNamespaceResp)
 	err := c.cc.Invoke(ctx, Core_DeleteNamespace_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) GetNodes(ctx context.Context, in *GetNodesReq, opts ...grpc.CallOption) (*GetNodesResp, error) {
+	out := new(GetNodesResp)
+	err := c.cc.Invoke(ctx, Core_GetNodes_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) GetNodeDetail(ctx context.Context, in *GetNodeDetailReq, opts ...grpc.CallOption) (*GetNodeDetailResp, error) {
+	out := new(GetNodeDetailResp)
+	err := c.cc.Invoke(ctx, Core_GetNodeDetail_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -923,6 +947,10 @@ type CoreServer interface {
 	GetNamespaceDetail(context.Context, *GetNamespaceDetailReq) (*GetNamespaceDetailResp, error)
 	// group: k8snamespace
 	DeleteNamespace(context.Context, *DeleteNamespaceReq) (*DeleteNamespaceResp, error)
+	// group: k8snode
+	GetNodes(context.Context, *GetNodesReq) (*GetNodesResp, error)
+	// group: k8snode
+	GetNodeDetail(context.Context, *GetNodeDetailReq) (*GetNodeDetailResp, error)
 	// K8sPod management
 	// group: k8sPod
 	GetPods(context.Context, *GetPodsReq) (*GetPodsResp, error)
@@ -1098,6 +1126,12 @@ func (UnimplementedCoreServer) GetNamespaceDetail(context.Context, *GetNamespace
 }
 func (UnimplementedCoreServer) DeleteNamespace(context.Context, *DeleteNamespaceReq) (*DeleteNamespaceResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteNamespace not implemented")
+}
+func (UnimplementedCoreServer) GetNodes(context.Context, *GetNodesReq) (*GetNodesResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetNodes not implemented")
+}
+func (UnimplementedCoreServer) GetNodeDetail(context.Context, *GetNodeDetailReq) (*GetNodeDetailResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetNodeDetail not implemented")
 }
 func (UnimplementedCoreServer) GetPods(context.Context, *GetPodsReq) (*GetPodsResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPods not implemented")
@@ -1717,6 +1751,42 @@ func _Core_DeleteNamespace_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CoreServer).DeleteNamespace(ctx, req.(*DeleteNamespaceReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_GetNodes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetNodesReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).GetNodes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_GetNodes_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).GetNodes(ctx, req.(*GetNodesReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_GetNodeDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetNodeDetailReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).GetNodeDetail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Core_GetNodeDetail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).GetNodeDetail(ctx, req.(*GetNodeDetailReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2573,6 +2643,14 @@ var Core_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "deleteNamespace",
 			Handler:    _Core_DeleteNamespace_Handler,
+		},
+		{
+			MethodName: "getNodes",
+			Handler:    _Core_GetNodes_Handler,
+		},
+		{
+			MethodName: "getNodeDetail",
+			Handler:    _Core_GetNodeDetail_Handler,
 		},
 		{
 			MethodName: "getPods",
