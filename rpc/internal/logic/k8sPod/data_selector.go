@@ -11,7 +11,7 @@ import (
 )
 
 // dataselector 用于排序,过滤,分页的数据类型
-type dataSelector struct {
+type DataSelector struct {
 	GenericDataList []DataCell
 	DataSelect      *DataSelectQuery
 }
@@ -41,28 +41,28 @@ type PaginateQuery struct {
 
 // 实现自定义的排序方法,需要重写Len,Swap,Less方法
 // Len用于获取数组的长度
-func (d *dataSelector) Len() int {
+func (d *DataSelector) Len() int {
 	return len(d.GenericDataList)
 }
 
 // Swap用于数据比较大小后的位置变更
-func (d *dataSelector) Swap(i, j int) {
+func (d *DataSelector) Swap(i, j int) {
 	d.GenericDataList[i], d.GenericDataList[j] = d.GenericDataList[j], d.GenericDataList[i]
 }
 
 // Less用于比较大小
-func (d *dataSelector) Less(i, j int) bool {
+func (d *DataSelector) Less(i, j int) bool {
 	return d.GenericDataList[i].GetCreation().Before(d.GenericDataList[j].GetCreation())
 }
 
 // 重写以上三个方法,用sort.Sort 方法触发排序
-func (d *dataSelector) Sort() *dataSelector {
+func (d *DataSelector) Sort() *DataSelector {
 	sort.Sort(d)
 	return d
 }
 
 // Filter方法用于过滤,比较数据Name属性,若包含则返回
-func (d *dataSelector) Filter() *dataSelector {
+func (d *DataSelector) Filter() *DataSelector {
 	if d.DataSelect.Filter.Name == "" {
 		return d
 	}
@@ -84,7 +84,7 @@ func (d *dataSelector) Filter() *dataSelector {
 }
 
 // Paginate 分页,根据Limit和Page的传参,取一定范围内的数据返回
-func (d *dataSelector) Paginate() *dataSelector {
+func (d *DataSelector) Paginate() *DataSelector {
 	limit := d.DataSelect.Paginate.Limit
 	page := d.DataSelect.Paginate.Page
 	//验证参数合法，若参数不合法，则返回所有数据

@@ -29,7 +29,7 @@ ENT_FEATURE=sql/execquery,intercept
 GOARCH=amd64
 
 # The directory of the imported package of rpc service proto files | rpc服务的proto文件的引入的包的目录
-RPC_PROTO_INPORT=/root/go/pkg/mod
+RPC_PROTO_INPORT= /home/potatomine/code/pkg/mod
 
 # ---- You may not need to modify the codes below | 下面的代码大概率不需要更改 ----
 

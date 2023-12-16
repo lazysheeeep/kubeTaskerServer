@@ -1,0 +1,86 @@
+type (
+    // GetNamespacesReq | 请求获取命名空间list
+    GetNamespacesReq {
+        // FilterName
+        FilterName  string `json:"filterName"`
+
+        // Page
+        Page  int64 `json:"page"`
+
+        // Limit
+        Limit  int64 `json:"limit"`
+
+    }
+
+    // GetNamespaceDetailResp | 返回命名空间详细信息
+    GetNamespaceDetailResp {
+        // Msg
+        Msg  string `json:"msg"`
+
+        // Data
+        Data  GetNamespaceDetailData `json:"data"`
+
+    }
+
+    // GetNamespaceDetailData | 命名空间详细信息数据
+    GetNamespaceDetailData {
+    }
+
+    // DeleteNamespaceReq | 删除命名空间请求
+    DeleteNamespaceReq {
+        // NamespaceName
+        NamespaceName  string `json:"namespaceName"`
+
+    }
+
+    // DeleteNamespaceResp | 删除命名空间返回值
+    DeleteNamespaceResp {
+        // Msg
+        Msg  string `json:"msg"`
+
+        // Data
+        Data  string `json:"data"`
+
+    }
+
+    // GetNamespacesResp | 获取命名空间返回
+    GetNamespacesResp {
+        // Msg
+        Msg  string `json:"msg"`
+
+        // Data
+        Data  GetNamespacesData `json:"data"`
+
+    }
+
+    // GetNamespacesData | 获取命名空间list数据
+    GetNamespacesData {
+    }
+
+    // GetNamespaceDetailReq | 获取命名空间详细信息请求
+    GetNamespaceDetailReq {
+        // NamespaceName
+        NamespaceName  string `json:"namespaceName"`
+
+    }
+)
+
+@server(
+    jwt: Auth
+    group: k8snamespace
+    middleware: Authority
+)
+
+service Core{
+    // getNamespaces
+    @handler getNamespaces
+    post /k8s_namespace/get_namespaces (GetNamespacesReq) returns (GetNamespacesResp)
+
+    // getNamespaceDetail
+    @handler getNamespaceDetail
+    post /k8s_namespace/get_namespace_detail (GetNamespaceDetailReq) returns (GetNamespaceDetailResp)
+
+    // deleteNamespace
+    @handler deleteNamespace
+    post /k8s_namespace/delete_namespace (DeleteNamespaceReq) returns (DeleteNamespaceResp)
+}

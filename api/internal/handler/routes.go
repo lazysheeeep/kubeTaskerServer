@@ -13,6 +13,7 @@ import (
 	dictionarydetail "github.com/kubeTasker/kubeTaskerServer/api/internal/handler/dictionarydetail"
 	emaillog "github.com/kubeTasker/kubeTaskerServer/api/internal/handler/emaillog"
 	emailprovider "github.com/kubeTasker/kubeTaskerServer/api/internal/handler/emailprovider"
+	k8snamespace "github.com/kubeTasker/kubeTaskerServer/api/internal/handler/k8snamespace"
 	menu "github.com/kubeTasker/kubeTaskerServer/api/internal/handler/menu"
 	messagesender "github.com/kubeTasker/kubeTaskerServer/api/internal/handler/messagesender"
 	oauthprovider "github.com/kubeTasker/kubeTaskerServer/api/internal/handler/oauthprovider"
@@ -771,6 +772,30 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					Method:  http.MethodPost,
 					Path:    "/email/send",
 					Handler: messagesender.SendEmailHandler(serverCtx),
+				},
+			}...,
+		),
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+	)
+
+	server.AddRoutes(
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.Authority},
+			[]rest.Route{
+				{
+					Method:  http.MethodPost,
+					Path:    "/k8s_namespace/get_namespaces",
+					Handler: k8snamespace.GetNamespacesHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/k8s_namespace/get_namespace_detail",
+					Handler: k8snamespace.GetNamespaceDetailHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/k8s_namespace/delete_namespace",
+					Handler: k8snamespace.DeleteNamespaceHandler(serverCtx),
 				},
 			}...,
 		),

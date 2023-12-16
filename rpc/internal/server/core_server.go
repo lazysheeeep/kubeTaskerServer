@@ -13,6 +13,7 @@ import (
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/dictionary"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/dictionarydetail"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/k8sPod"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/k8snamespace"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/menu"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/oauthprovider"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/position"
@@ -156,6 +157,21 @@ func (s *CoreServer) DeleteDictionaryDetail(ctx context.Context, in *core.IDsReq
 func (s *CoreServer) GetDictionaryDetailByDictionaryName(ctx context.Context, in *core.BaseMsg) (*core.DictionaryDetailListResp, error) {
 	l := dictionarydetail.NewGetDictionaryDetailByDictionaryNameLogic(ctx, s.svcCtx)
 	return l.GetDictionaryDetailByDictionaryName(in)
+}
+
+func (s *CoreServer) GetNamespaces(ctx context.Context, in *core.GetNamespacesReq) (*core.GetNamespacesResp, error) {
+	l := k8snamespace.NewGetNamespacesLogic(ctx, s.svcCtx)
+	return l.GetNamespaces(in)
+}
+
+func (s *CoreServer) GetNamespaceDetail(ctx context.Context, in *core.GetNamespaceDetailReq) (*core.GetNamespaceDetailResp, error) {
+	l := k8snamespace.NewGetNamespaceDetailLogic(ctx, s.svcCtx)
+	return l.GetNamespaceDetail(in)
+}
+
+func (s *CoreServer) DeleteNamespace(ctx context.Context, in *core.DeleteNamespaceReq) (*core.DeleteNamespaceResp, error) {
+	l := k8snamespace.NewDeleteNamespaceLogic(ctx, s.svcCtx)
+	return l.DeleteNamespace(in)
 }
 
 // K8sPod management

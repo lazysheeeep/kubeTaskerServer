@@ -21,6 +21,8 @@ type (
 	BaseResp                 = core.BaseResp
 	BaseUUIDResp             = core.BaseUUIDResp
 	CallbackReq              = core.CallbackReq
+	DeleteNamespaceReq       = core.DeleteNamespaceReq
+	DeleteNamespaceResp      = core.DeleteNamespaceResp
 	DeletePodReq             = core.DeletePodReq
 	DeletePodResp            = core.DeletePodResp
 	DepartmentInfo           = core.DepartmentInfo
@@ -33,6 +35,12 @@ type (
 	DictionaryListReq        = core.DictionaryListReq
 	DictionaryListResp       = core.DictionaryListResp
 	Empty                    = core.Empty
+	GetNamespaceDetailData   = core.GetNamespaceDetailData
+	GetNamespaceDetailReq    = core.GetNamespaceDetailReq
+	GetNamespaceDetailResp   = core.GetNamespaceDetailResp
+	GetNamespacesData        = core.GetNamespacesData
+	GetNamespacesReq         = core.GetNamespacesReq
+	GetNamespacesResp        = core.GetNamespacesResp
 	GetPodContainerReq       = core.GetPodContainerReq
 	GetPodContainerResp      = core.GetPodContainerResp
 	GetPodDetailReq          = core.GetPodDetailReq
@@ -106,6 +114,9 @@ type (
 		GetDictionaryDetailById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*DictionaryDetailInfo, error)
 		DeleteDictionaryDetail(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error)
 		GetDictionaryDetailByDictionaryName(ctx context.Context, in *BaseMsg, opts ...grpc.CallOption) (*DictionaryDetailListResp, error)
+		GetNamespaces(ctx context.Context, in *GetNamespacesReq, opts ...grpc.CallOption) (*GetNamespacesResp, error)
+		GetNamespaceDetail(ctx context.Context, in *GetNamespaceDetailReq, opts ...grpc.CallOption) (*GetNamespaceDetailResp, error)
+		DeleteNamespace(ctx context.Context, in *DeleteNamespaceReq, opts ...grpc.CallOption) (*DeleteNamespaceResp, error)
 		// K8sPod management
 		GetPods(ctx context.Context, in *GetPodsReq, opts ...grpc.CallOption) (*GetPodsResp, error)
 		GetPodDetail(ctx context.Context, in *GetPodDetailReq, opts ...grpc.CallOption) (*GetPodDetailResp, error)
@@ -288,6 +299,21 @@ func (m *defaultCore) DeleteDictionaryDetail(ctx context.Context, in *IDsReq, op
 func (m *defaultCore) GetDictionaryDetailByDictionaryName(ctx context.Context, in *BaseMsg, opts ...grpc.CallOption) (*DictionaryDetailListResp, error) {
 	client := core.NewCoreClient(m.cli.Conn())
 	return client.GetDictionaryDetailByDictionaryName(ctx, in, opts...)
+}
+
+func (m *defaultCore) GetNamespaces(ctx context.Context, in *GetNamespacesReq, opts ...grpc.CallOption) (*GetNamespacesResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetNamespaces(ctx, in, opts...)
+}
+
+func (m *defaultCore) GetNamespaceDetail(ctx context.Context, in *GetNamespaceDetailReq, opts ...grpc.CallOption) (*GetNamespaceDetailResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetNamespaceDetail(ctx, in, opts...)
+}
+
+func (m *defaultCore) DeleteNamespace(ctx context.Context, in *DeleteNamespaceReq, opts ...grpc.CallOption) (*DeleteNamespaceResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.DeleteNamespace(ctx, in, opts...)
 }
 
 // K8sPod management
