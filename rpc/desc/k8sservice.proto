@@ -6,12 +6,16 @@ import "k8s.io/api@v0.28.4/core/v1/generated.proto";
 message GetServicesReq {
   string filter_name = 1;
   string namespace = 2;
-  int64 limit = 3;
-  int64 page = 4;
+  int64 page = 3;
+  int64 limit = 4;
 }
-message GetServicesResp {
+message GetServicesData {
   repeated k8s.io.api.core.v1.Service items = 1;
   int64 total = 2;
+}
+message GetServicesResp {
+  string msg = 1;
+  GetServicesData data = 2;
 }
 
 // getServiceDetail
@@ -20,7 +24,8 @@ message GetServiceDetailReq {
   string namespace = 2;
 }
 message GetServiceDetailResp {
-  k8s.io.api.core.v1.Service service = 1;
+  string msg = 1;
+  k8s.io.api.core.v1.Service data = 2;
 }
 
 // createService
@@ -28,13 +33,13 @@ message CreateServiceReq {
   string name = 1;
   string namespace = 2;
   string type = 3;
-  int64 container_port = 4;
-  int64 port = 5;
-  int64 node_port = 6;
+  int32 container_port = 4;
+  int32 port = 5;
+  int32 node_port = 6;
   map<string,string> label = 7;
 }
 message CreateServiceResp {
-
+  string msg = 1;
 }
 
 // deleteService
@@ -43,7 +48,7 @@ message DeleteServiceReq {
   string namespace = 2;
 }
 message DeleteServiceResp {
-
+  string msg = 1;
 }
 
 // updateService
@@ -52,7 +57,7 @@ message UpdateServiceReq {
   string content = 2;
 }
 message UpdateServiceResp {
-
+  string msg = 1;
 }
 
 // K8sService management

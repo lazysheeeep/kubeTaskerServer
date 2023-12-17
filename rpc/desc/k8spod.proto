@@ -9,9 +9,13 @@ message GetPodsReq {
   int64 limit = 3;
   int64 page = 4;
 }
-message GetPodsResp {
+message GetPodsData {
   int64 total = 1;
   repeated k8s.io.api.core.v1.Pod items = 2;
+}
+message GetPodsResp {
+  string msg = 1;
+  GetPodsData data = 2;
 }
 
 // getPodDetail
@@ -20,7 +24,8 @@ message GetPodDetailReq {
   string namespace = 2;
 }
 message GetPodDetailResp {
-  k8s.io.api.core.v1.Pod pod = 1;
+  string msg = 1;
+  k8s.io.api.core.v1.Pod data = 2;
 }
 
 // deletePod
@@ -28,14 +33,18 @@ message DeletePodReq {
   string pod_name = 1;
   string namespace = 2;
 }
-message DeletePodResp {}
+message DeletePodResp {
+  string msg = 1;
+}
 
 // updatePod
 message UpdatePodReq {
   string namespace = 1;
   string content = 2;
 }
-message UpdatePodResp {}
+message UpdatePodResp {
+  string msg = 1;
+}
 
 // getPodContainer
 message GetPodContainerReq {
@@ -43,7 +52,8 @@ message GetPodContainerReq {
   string namespace = 2;
 }
 message GetPodContainerResp {
-  repeated string containers = 1;
+  string msg = 1;
+  repeated string data = 2;
 }
 
 // getPodLog
@@ -53,17 +63,19 @@ message GetPodLogReq {
   string namespace = 3;
 }
 message GetPodLogResp {
-  string log = 1;
+  string meg = 1;
+  string data = 2;
 }
 
 // getPodNumPerNp
 message GetPodNumPerNpReq {}
-message PodsNp {
+message GetPodNumPerNpData {
   string namespace = 1;
   int64 pod_num = 2;
 }
 message GetPodNumPerNpResp {
-  repeated PodsNp pods_nps = 1;
+  string msg = 1;
+  repeated GetPodNumPerNpData data = 2;
 }
 
 // K8sPod management

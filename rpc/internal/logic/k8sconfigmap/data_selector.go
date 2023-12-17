@@ -5,9 +5,7 @@ import (
 	"strings"
 	"time"
 
-	appsv1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
-	nwv1 "k8s.io/api/networking/v1"
 )
 
 // dataselector 用于排序,过滤,分页的数据类型
@@ -33,40 +31,40 @@ type FilterQuery struct {
 	Name string
 }
 
-// 分页:Limit和Page Limit是单页的数据条数,Page是第几页
+// PaginateQuery 分页:Limit和Page Limit是单页的数据条数,Page是第几页
 type PaginateQuery struct {
 	Page  int
 	Limit int
 }
 
-// 实现自定义的排序方法,需要重写Len,Swap,Less方法
+// Len 实现自定义的排序方法,需要重写Len,Swap,Less方法
 // Len用于获取数组的长度
 func (d *dataSelector) Len() int {
 	return len(d.GenericDataList)
 }
 
-// Swap用于数据比较大小后的位置变更
+// Swap 用于数据比较大小后的位置变更
 func (d *dataSelector) Swap(i, j int) {
 	d.GenericDataList[i], d.GenericDataList[j] = d.GenericDataList[j], d.GenericDataList[i]
 }
 
-// Less用于比较大小
+// Less 用于比较大小
 func (d *dataSelector) Less(i, j int) bool {
 	return d.GenericDataList[i].GetCreation().Before(d.GenericDataList[j].GetCreation())
 }
 
-// 重写以上三个方法,用sort.Sort 方法触发排序
+// Sort 重写以上三个方法,用sort.Sort 方法触发排序
 func (d *dataSelector) Sort() *dataSelector {
 	sort.Sort(d)
 	return d
 }
 
-// Filter方法用于过滤,比较数据Name属性,若包含则返回
+// Filter 方法用于过滤,比较数据Name属性,若包含则返回
 func (d *dataSelector) Filter() *dataSelector {
 	if d.DataSelect.Filter.Name == "" {
 		return d
 	}
-	filtered := []DataCell{}
+	filtered := make([]DataCell, 0)
 	for _, value := range d.GenericDataList {
 		// 定义是否匹配的标签变量,默认是匹配的
 		matches := true
@@ -103,95 +101,6 @@ func (d *dataSelector) Paginate() *dataSelector {
 	return d
 }
 
-// 定义podCell, 重写GetCreation和GetName 方法后,可以进行数据转换
-// covev1.Pod --> podCell  --> DataCell
-// appsv1.Deployment --> deployCell --> DataCell
-type podCell corev1.Pod
-
-// 重写DataCell接口的两个方法
-func (p podCell) GetCreation() time.Time {
-	return p.CreationTimestamp.Time
-}
-func (p podCell) GetName() string {
-	return p.Name
-}
-
-// deployCell
-type deploymentCell appsv1.Deployment
-
-func (d deploymentCell) GetCreation() time.Time {
-	return d.CreationTimestamp.Time
-}
-func (d deploymentCell) GetName() string {
-	return d.Name
-}
-
-// daemonCell
-type daemonSetCell appsv1.DaemonSet
-
-func (d daemonSetCell) GetCreation() time.Time {
-	return d.CreationTimestamp.Time
-}
-
-func (d daemonSetCell) GetName() string {
-	return d.Name
-}
-
-// statefulSetCell
-type statefulSetCell appsv1.StatefulSet
-
-func (s statefulSetCell) GetCreation() time.Time {
-	return s.CreationTimestamp.Time
-}
-
-func (s statefulSetCell) GetName() string {
-	return s.Name
-}
-
-// NodeCell
-type nodeCell corev1.Node
-
-func (n nodeCell) GetCreation() time.Time {
-	return n.CreationTimestamp.Time
-}
-
-func (n nodeCell) GetName() string {
-	return n.Name
-}
-
-// Namespace
-type namespaceCell corev1.Namespace
-
-func (n namespaceCell) GetCreation() time.Time {
-	return n.CreationTimestamp.Time
-}
-
-func (n namespaceCell) GetName() string {
-	return n.Name
-}
-
-// Pv
-type pvCell corev1.PersistentVolume
-
-func (p pvCell) GetCreation() time.Time {
-	return p.CreationTimestamp.Time
-}
-
-func (p pvCell) GetName() string {
-	return p.Name
-}
-
-// pvc
-type pvcCell corev1.PersistentVolumeClaim
-
-func (p pvcCell) GetCreation() time.Time {
-	return p.CreationTimestamp.Time
-}
-
-func (p pvcCell) GetName() string {
-	return p.Name
-}
-
 // configmap
 type configMapCell corev1.ConfigMap
 
@@ -201,37 +110,4 @@ func (c configMapCell) GetCreation() time.Time {
 
 func (c configMapCell) GetName() string {
 	return c.Name
-}
-
-// secret
-type secretCell corev1.Secret
-
-func (s secretCell) GetCreation() time.Time {
-	return s.CreationTimestamp.Time
-}
-
-func (s secretCell) GetName() string {
-	return s.Name
-}
-
-// service
-type serviceCell corev1.Service
-
-func (s serviceCell) GetCreation() time.Time {
-	return s.CreationTimestamp.Time
-}
-
-func (s serviceCell) GetName() string {
-	return s.Name
-}
-
-// Ingress
-type ingressCell nwv1.Ingress
-
-func (i ingressCell) GetCreation() time.Time {
-	return i.CreationTimestamp.Time
-}
-
-func (i ingressCell) GetName() string {
-	return i.Name
 }

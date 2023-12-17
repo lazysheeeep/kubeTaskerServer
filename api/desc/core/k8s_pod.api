@@ -12,13 +12,20 @@ type (
         // Page
         Page  int64 `json:"page"`
     }
-    // GetPodsResp
-    GetPodsResp {
+    // GetPodsRespData
+    GetPodsRespData {
         // Total
         Total  int64 `json:"total"`
         // Items
         // []k8s.io.api.core.v1.Pod
         Items  TypeNull `json:"items"`
+    }
+    // GetPodsResp
+    GetPodsResp {
+        // Msg
+        Msg string `json:"msg"`
+        // Data
+        Data TypeNull `json:"data"`
     }
 
     // GetPodDetailReq
@@ -30,9 +37,11 @@ type (
     }
     // GetPodDetailResp
     GetPodDetailResp {
-        // Pod
+        // Msg
+        Msg string `json:"msg"`
+        // Data
         // k8s.io.api.core.v1.Pod
-        Pod  TypeNull `json:"pod"`
+        Data TypeNull `json:"data"`
     }
 
     // DeletePodReq
@@ -44,6 +53,10 @@ type (
     }
     // DeletePodResp
     DeletePodResp {
+        // Msg
+        Msg string `json:"msg"`
+        // Data
+        Data TypeNull `json:"data"`
     }
 
     // UpdatePodReq
@@ -55,6 +68,10 @@ type (
     }
     // UpdatePodResp
     UpdatePodResp {
+        // Msg
+        Msg string `json:"msg"`
+        // Data
+        Data TypeNull `json:"data"`
     }
 
     // GetPodContainerReq
@@ -66,8 +83,10 @@ type (
     }
     // GetPodContainerResp
     GetPodContainerResp {
-        // Containers
-        Containers  []string `json:"containers"`
+        // Msg
+        Msg string `json:"msg"`
+        // Data
+        Data []string `json:"data"`
     }
 
     // GetPodLogReq
@@ -81,8 +100,10 @@ type (
     }
     // GetPodLogResp
     GetPodLogResp {
-        // Log
-        Log  string `json:"log"`
+        // Msg
+        Msg string `json:"msg"`
+        // Data
+        Data string `json:"data"`
     }
 
     // GetPodNumPerNpReq
@@ -100,9 +121,9 @@ type (
     }
 )
 @server(
-    jwt: Auth
+    //jwt: Auth
     group: k8spod
-    middleware: Authority
+    //middleware: Authority
 )
 service Core {
     // getPods

@@ -16,6 +16,7 @@ type UpdateConfigMapLogic struct {
 	svcCtx *svc.ServiceContext
 }
 
+// 更新configmap
 func NewUpdateConfigMapLogic(ctx context.Context, svcCtx *svc.ServiceContext) *UpdateConfigMapLogic {
 	return &UpdateConfigMapLogic{
 		Logger: logx.WithContext(ctx),

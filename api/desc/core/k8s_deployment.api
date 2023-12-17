@@ -12,32 +12,37 @@ type (
         // Page
         Page  int64 `json:"page"`
     }
-
     // GetDeploymentsResp
-    GetDeploymentsResp {
+    GetDeploymentsRespData {
         // Items
         // []k8s.io.api.apps.v1.Deployment
         Items  TypeNull `json:"items"`
         // Total
         Total  int64 `json:"total"`
     }
+    GetDeploymentsResp {
+        // Msg
+        Msg string `json:"msg"`
+        // Data
+        Data GetDeploymentsRespData `json:"data"`
+    }
 
     // GetDeploymentDetailReq
     GetDeploymentDetailReq {
         // DeploymentName
         DeploymentName  string `json:"deploymentName"`
-
         // Namespace
         Namespace  string `json:"namespace"`
-
     }
-
         // GetDeploymentDetailResp
     GetDeploymentDetailResp {
-        // Deployment
+        // Msg
+        Msg string `json:"msg"`
+        // Data
         // k8s.io.api.apps.v1.Deployment
-        Deployment  TypeNull `json:"deployment"`
+        Data TypeNull `json:"data"`
     }
+
 
         // ScaleDeploymentReq
     ScaleDeploymentReq {
@@ -48,11 +53,12 @@ type (
         // ScaleNum
         ScaleNum  int64 `json:"scaleNum"`
     }
-
     // ScaleDeploymentResp
     ScaleDeploymentResp {
-        // Replica
-        Replica  int64 `json:"replica"`
+        // Msg
+        Msg string `json:"msg"`
+        // Data
+        Data string `json:"data"`
     }
 
 
@@ -67,7 +73,8 @@ type (
         // Image
         Image  string `json:"image"`
         // Label
-        Label  Label `json:"label"`
+        // map[string]string
+        Label  TypeNull `json:"label"`
         // Cpu
         Cpu  string `json:"cpu"`
         // Memory
@@ -79,9 +86,12 @@ type (
         // HealthPath
         HealthPath  string `json:"healthPath"`
     }
-
     // CreateDeploymentResp
     CreateDeploymentResp {
+        // Msg
+        Msg string `json:"msg"`
+        // Data
+        Data TypeNull `json:"data"`
     }
 
     // DeleteDeploymentReq
@@ -91,9 +101,12 @@ type (
     // Namespace
         Namespace  string `json:"namespace"`
     }
-
     // DeleteDeploymentResp
     DeleteDeploymentResp {
+        // Msg
+        Msg string `json:"msg"`
+        // Data
+        Data TypeNull `json:"data"`
     }
 
     // RestartDeploymentReq
@@ -103,9 +116,12 @@ type (
         // Namespace
         Namespace  string `json:"namespace"`
     }
-
     // RestartDeploymentResp
     RestartDeploymentResp {
+        // Msg
+        Msg string `json:"msg"`
+        // Data
+        Data TypeNull `json:"data"`
     }
 
     // UpdateDeploymentReq
@@ -115,32 +131,35 @@ type (
         // Content
         Content  string `json:"content"`
     }
-
     // UpdateDeploymentResp
     UpdateDeploymentResp {
+        // Msg
+        Msg string `json:"msg"`
+        // Data
+        Data TypeNull `json:"data"`
     }
 
         // GetDeployNumPerNpReq
     GetDeployNumPerNpReq {
     }
-
     // DeploysNp
-    DeploysNp {
+    GetDeployNumPerNpRespData {
         Namespace string `json:"namespace"`
-        DeployNum int64 `json:"deployNum"`
+        DeploymentNum int64 `json:"deploymentNum"`
     }
-
         // GetDeployNumPerNpResp
     GetDeployNumPerNpResp {
-        // DeploysNps
-        DeploysNps  []DeploysNp `json:"deploysNps"`
+        // Msg
+        Msg string `json:"msg"`
+        // Data
+        Data []GetDeployNumPerNpRespData `json:"data"`
     }
 
 )
 @server(
-    jwt: Auth
+    //jwt: Auth
     group: k8sdeployment
-    middleware: Authority
+    //middleware: Authority
 )
 service Core {
     // getDeployments

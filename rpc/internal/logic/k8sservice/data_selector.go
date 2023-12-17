@@ -5,9 +5,7 @@ import (
 	"strings"
 	"time"
 
-	appsv1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
-	nwv1 "k8s.io/api/networking/v1"
 )
 
 // dataselector 用于排序,过滤,分页的数据类型
@@ -103,117 +101,6 @@ func (d *dataSelector) Paginate() *dataSelector {
 	return d
 }
 
-// 定义podCell, 重写GetCreation和GetName 方法后,可以进行数据转换
-// covev1.Pod --> podCell  --> DataCell
-// appsv1.Deployment --> deployCell --> DataCell
-type podCell corev1.Pod
-
-// 重写DataCell接口的两个方法
-func (p podCell) GetCreation() time.Time {
-	return p.CreationTimestamp.Time
-}
-func (p podCell) GetName() string {
-	return p.Name
-}
-
-// deployCell
-type deploymentCell appsv1.Deployment
-
-func (d deploymentCell) GetCreation() time.Time {
-	return d.CreationTimestamp.Time
-}
-func (d deploymentCell) GetName() string {
-	return d.Name
-}
-
-// daemonCell
-type daemonSetCell appsv1.DaemonSet
-
-func (d daemonSetCell) GetCreation() time.Time {
-	return d.CreationTimestamp.Time
-}
-
-func (d daemonSetCell) GetName() string {
-	return d.Name
-}
-
-// statefulSetCell
-type statefulSetCell appsv1.StatefulSet
-
-func (s statefulSetCell) GetCreation() time.Time {
-	return s.CreationTimestamp.Time
-}
-
-func (s statefulSetCell) GetName() string {
-	return s.Name
-}
-
-// NodeCell
-type nodeCell corev1.Node
-
-func (n nodeCell) GetCreation() time.Time {
-	return n.CreationTimestamp.Time
-}
-
-func (n nodeCell) GetName() string {
-	return n.Name
-}
-
-// Namespace
-type namespaceCell corev1.Namespace
-
-func (n namespaceCell) GetCreation() time.Time {
-	return n.CreationTimestamp.Time
-}
-
-func (n namespaceCell) GetName() string {
-	return n.Name
-}
-
-// Pv
-type pvCell corev1.PersistentVolume
-
-func (p pvCell) GetCreation() time.Time {
-	return p.CreationTimestamp.Time
-}
-
-func (p pvCell) GetName() string {
-	return p.Name
-}
-
-// pvc
-type pvcCell corev1.PersistentVolumeClaim
-
-func (p pvcCell) GetCreation() time.Time {
-	return p.CreationTimestamp.Time
-}
-
-func (p pvcCell) GetName() string {
-	return p.Name
-}
-
-// configmap
-type configMapCell corev1.ConfigMap
-
-func (c configMapCell) GetCreation() time.Time {
-	return c.CreationTimestamp.Time
-}
-
-func (c configMapCell) GetName() string {
-	return c.Name
-}
-
-// secret
-type secretCell corev1.Secret
-
-func (s secretCell) GetCreation() time.Time {
-	return s.CreationTimestamp.Time
-}
-
-func (s secretCell) GetName() string {
-	return s.Name
-}
-
 // service
 type serviceCell corev1.Service
 
@@ -223,15 +110,4 @@ func (s serviceCell) GetCreation() time.Time {
 
 func (s serviceCell) GetName() string {
 	return s.Name
-}
-
-// Ingress
-type ingressCell nwv1.Ingress
-
-func (i ingressCell) GetCreation() time.Time {
-	return i.CreationTimestamp.Time
-}
-
-func (i ingressCell) GetName() string {
-	return i.Name
 }

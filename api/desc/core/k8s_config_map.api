@@ -12,14 +12,20 @@ type (
         // Page
         Page  int64 `json:"page"`
     }
-
-    // GetConfigMapsResp
-    GetConfigMapsResp {
+    // GetConfigMapsRespData
+    GetConfigMapsRespData {
         // Items
         // []k8s.io.api.core.v1.ConfigMap
         Items  TypeNull `json:"items"`
         // Total
         Total  int64 `json:"total"`
+    }
+    // GetConfigMapsResp
+    GetConfigMapsResp {
+        // Msg
+        Msg string `json:"msg"`
+        // Data
+        Data GetConfigMapsRespData `json:"data"`
     }
 
         // GetConfigMapDetailReq
@@ -29,12 +35,13 @@ type (
         // Namespace
         Namespace  string `json:"namespace"`
     }
-
-        // GetConfigMapDetailResp
-    GetConfigMapDetailResp {
-        // ConfigMap
+    // GetConfigMapDetailResp
+    GetConfigMapDetailRespDate {
+        // Msg
+        Msg string `json:"msg"`
+        // Data
         // k8s.io.api.core.v1.ConfigMap
-        ConfigMap  TypeNull `json:"configMap"`
+        Data TypeNull `json:"data"`
     }
 
     // DeleteConfigMapReq
@@ -44,9 +51,12 @@ type (
         // Namespace
         Namespace  string `json:"namespace"`
     }
-
     // DeleteConfigMapResp
     DeleteConfigMapResp {
+        // Msg
+        Msg string `json:"msg"`
+        // Data
+        Data TypeNull `json:"data"`
     }
 
     // UpdateConfigMapReq
@@ -56,31 +66,34 @@ type (
         // Content
         Content  string `json:"content"`
     }
-
     // UpdateConfigMapResp
     UpdateConfigMapResp {
+        // Msg
+        Msg string `json:"msg"`
+        // Data
+        Data TypeNull `json:"data"`
     }
 )
 
 @server(
-    jwt: Auth
+    //jwt: Auth
     group: k8sconfigmap
-    middleware: Authority
+    //middleware: Authority
 )
 service Core {
-    // getConfigMaps
+    // getConfigMaps | 获取configmap列表，支持过滤、排序、分页
     @handler getConfigMaps
     post /k8sconfigmap/get_config_maps (GetConfigMapsReq) returns (GetConfigMapsResp)
 
-    // getConfigMapDetail
+    // getConfigMapDetail | 获取configmap详情
     @handler getConfigMapDetail
     post /k8sconfigmap/get_config_map_detail (GetConfigMapDetailReq) returns (GetConfigMapDetailResp)
 
-    // deleteConfigMap
+    // deleteConfigMap | 删除configmap
     @handler deleteConfigMap
     delete /k8sconfigmap/delete_config_map (DeleteConfigMapReq) returns (DeleteConfigMapResp)
 
-    // updateConfigMap
+    // updateConfigMap | 更新configmap
     @handler updateConfigMap
     put /k8sconfigmap/update_config_map (UpdateConfigMapReq) returns (UpdateConfigMapResp)
 }

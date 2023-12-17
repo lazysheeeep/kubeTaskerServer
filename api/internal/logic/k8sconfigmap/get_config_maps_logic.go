@@ -23,6 +23,7 @@ func NewGetConfigMapsLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Get
 		svcCtx: svcCtx}
 }
 
+// 获取configmap列表，支持过滤、排序、分页
 func (l *GetConfigMapsLogic) GetConfigMaps(req *types.GetConfigMapsReq) (resp *types.GetConfigMapsResp, err error) {
 	// todo: add your logic here and delete this line
 	result, err := l.svcCtx.CoreRpc.GetConfigMaps(l.ctx, &core.GetConfigMapsReq{

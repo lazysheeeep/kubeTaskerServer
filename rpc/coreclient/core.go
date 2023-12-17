@@ -36,7 +36,6 @@ type (
 	DepartmentInfo           = core.DepartmentInfo
 	DepartmentListReq        = core.DepartmentListReq
 	DepartmentListResp       = core.DepartmentListResp
-	DeploysNp                = core.DeploysNp
 	DictionaryDetailInfo     = core.DictionaryDetailInfo
 	DictionaryDetailListReq  = core.DictionaryDetailListReq
 	DictionaryDetailListResp = core.DictionaryDetailListResp
@@ -46,12 +45,15 @@ type (
 	Empty                    = core.Empty
 	GetConfigMapDetailReq    = core.GetConfigMapDetailReq
 	GetConfigMapDetailResp   = core.GetConfigMapDetailResp
+	GetConfigMapsData        = core.GetConfigMapsData
 	GetConfigMapsReq         = core.GetConfigMapsReq
 	GetConfigMapsResp        = core.GetConfigMapsResp
+	GetDeployNumPerNpData    = core.GetDeployNumPerNpData
 	GetDeployNumPerNpReq     = core.GetDeployNumPerNpReq
 	GetDeployNumPerNpResp    = core.GetDeployNumPerNpResp
 	GetDeploymentDetailReq   = core.GetDeploymentDetailReq
 	GetDeploymentDetailResp  = core.GetDeploymentDetailResp
+	GetDeploymentsData       = core.GetDeploymentsData
 	GetDeploymentsReq        = core.GetDeploymentsReq
 	GetDeploymentsResp       = core.GetDeploymentsResp
 	GetPodContainerReq       = core.GetPodContainerReq
@@ -60,12 +62,15 @@ type (
 	GetPodDetailResp         = core.GetPodDetailResp
 	GetPodLogReq             = core.GetPodLogReq
 	GetPodLogResp            = core.GetPodLogResp
+	GetPodNumPerNpData       = core.GetPodNumPerNpData
 	GetPodNumPerNpReq        = core.GetPodNumPerNpReq
 	GetPodNumPerNpResp       = core.GetPodNumPerNpResp
+	GetPodsData              = core.GetPodsData
 	GetPodsReq               = core.GetPodsReq
 	GetPodsResp              = core.GetPodsResp
 	GetServiceDetailReq      = core.GetServiceDetailReq
 	GetServiceDetailResp     = core.GetServiceDetailResp
+	GetServicesData          = core.GetServicesData
 	GetServicesReq           = core.GetServicesReq
 	GetServicesResp          = core.GetServicesResp
 	IDReq                    = core.IDReq
@@ -81,7 +86,6 @@ type (
 	OauthProviderListResp    = core.OauthProviderListResp
 	OauthRedirectResp        = core.OauthRedirectResp
 	PageInfoReq              = core.PageInfoReq
-	PodsNp                   = core.PodsNp
 	PositionInfo             = core.PositionInfo
 	PositionListReq          = core.PositionListReq
 	PositionListResp         = core.PositionListResp

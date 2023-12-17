@@ -79,9 +79,9 @@ type (
     }
 )
 @server(
-    jwt: Auth
+    //jwt: Auth
     group: k8sservice
-    middleware: Authority
+    //middleware: Authority
 )
 service Core {
     // getServices

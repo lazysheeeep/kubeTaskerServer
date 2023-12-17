@@ -16,6 +16,7 @@ type DeleteConfigMapLogic struct {
 	svcCtx *svc.ServiceContext
 }
 
+// 删除configmap
 func NewDeleteConfigMapLogic(ctx context.Context, svcCtx *svc.ServiceContext) *DeleteConfigMapLogic {
 	return &DeleteConfigMapLogic{
 		Logger: logx.WithContext(ctx),

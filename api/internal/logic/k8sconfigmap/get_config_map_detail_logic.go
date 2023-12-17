@@ -16,6 +16,7 @@ type GetConfigMapDetailLogic struct {
 	svcCtx *svc.ServiceContext
 }
 
+// 获取configmap详情
 func NewGetConfigMapDetailLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetConfigMapDetailLogic {
 	return &GetConfigMapDetailLogic{
 		Logger: logx.WithContext(ctx),

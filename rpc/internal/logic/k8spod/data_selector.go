@@ -31,40 +31,40 @@ type FilterQuery struct {
 	Name string
 }
 
-// 分页:Limit和Page Limit是单页的数据条数,Page是第几页
+// PaginateQuery 分页:Limit和Page Limit是单页的数据条数,Page是第几页
 type PaginateQuery struct {
 	Page  int
 	Limit int
 }
 
-// 实现自定义的排序方法,需要重写Len,Swap,Less方法
-// Len用于获取数组的长度
+// Len 实现自定义的排序方法,需要重写Len,Swap,Less方法
+// Len 用于获取数组的长度
 func (d *dataSelector) Len() int {
 	return len(d.GenericDataList)
 }
 
-// Swap用于数据比较大小后的位置变更
+// Swap 用于数据比较大小后的位置变更
 func (d *dataSelector) Swap(i, j int) {
 	d.GenericDataList[i], d.GenericDataList[j] = d.GenericDataList[j], d.GenericDataList[i]
 }
 
-// Less用于比较大小
+// Less 用于比较大小
 func (d *dataSelector) Less(i, j int) bool {
 	return d.GenericDataList[i].GetCreation().Before(d.GenericDataList[j].GetCreation())
 }
 
-// 重写以上三个方法,用sort.Sort 方法触发排序
+// Sort 重写以上三个方法,用sort.Sort 方法触发排序
 func (d *dataSelector) Sort() *dataSelector {
 	sort.Sort(d)
 	return d
 }
 
-// Filter方法用于过滤,比较数据Name属性,若包含则返回
+// Filter 方法用于过滤,比较数据Name属性,若包含则返回
 func (d *dataSelector) Filter() *dataSelector {
 	if d.DataSelect.Filter.Name == "" {
 		return d
 	}
-	filtered := []DataCell{}
+	filtered := make([]DataCell, 0)
 	for _, value := range d.GenericDataList {
 		// 定义是否匹配的标签变量,默认是匹配的
 		matches := true
@@ -106,7 +106,7 @@ func (d *dataSelector) Paginate() *dataSelector {
 // appsv1.Deployment --> deployCell --> DataCell
 type podCell corev1.Pod
 
-// 重写DataCell接口的两个方法
+// GetCreation 重写DataCell接口的两个方法
 func (p podCell) GetCreation() time.Time {
 	return p.CreationTimestamp.Time
 }

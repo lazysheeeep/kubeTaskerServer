@@ -1,17 +1,21 @@
 syntax = "proto3";
 
-import "k8s.io/api/apps/v1/generated.proto";
+import "k8s.io/api@v0.28.4/apps/v1/generated.proto";
 
 // getDeployments
 message GetDeploymentsReq {
   string filter_name = 1;
   string namespace = 2;
-  int64 limit = 3;
-  int64 page = 4;
+  int64 page = 3;
+  int64 limit = 4;
 }
-message GetDeploymentsResp{
+message GetDeploymentsData {
   repeated k8s.io.api.apps.v1.Deployment items = 1;
   int64 total = 2;
+}
+message GetDeploymentsResp {
+  string meg = 1;
+    GetDeploymentsData data = 2;
 }
 
 // getDeploymentDetail
@@ -20,7 +24,8 @@ message GetDeploymentDetailReq {
   string namespace = 2;
 }
 message GetDeploymentDetailResp {
-  k8s.io.api.apps.v1.Deployment deployment = 1;
+  string msg = 1;
+  k8s.io.api.apps.v1.Deployment data = 2;
 }
 
 // scaleDeployment
@@ -30,7 +35,8 @@ message ScaleDeploymentReq {
   int64 scale_num = 3;
 }
 message ScaleDeploymentResp {
-  int64 replica = 1;
+  string msg = 1;
+  string data = 2;
 }
 
 // createDeployment
@@ -47,7 +53,7 @@ message CreateDeploymentReq {
   string health_path = 10;
 }
 message CreateDeploymentResp {
-
+  string msg = 1;
 }
 
 // deleteDeployment
@@ -56,7 +62,7 @@ message DeleteDeploymentReq {
   string namespace = 2;
 }
 message DeleteDeploymentResp {
-
+  string msg = 1;
 }
 
 // restartDeployment
@@ -65,7 +71,7 @@ message RestartDeploymentReq {
   string namespace = 2;
 }
 message RestartDeploymentResp {
-
+  string msg = 1;
 }
 
 // updateDeployment
@@ -74,19 +80,20 @@ message UpdateDeploymentReq {
   string content = 2;
 }
 message UpdateDeploymentResp {
-
+  string msg = 1;
 }
 
 // getDeployNumPerNp
 message GetDeployNumPerNpReq {
 
 }
-message DeploysNp {
+message GetDeployNumPerNpData {
   string namespace = 1;
-  int64 deploy_num = 2;
+  int64 deployment_num = 2;
 }
 message GetDeployNumPerNpResp {
-  repeated DeploysNp deploys_nps = 1;
+  string msg = 1;
+  repeated GetDeployNumPerNpData data = 2;
 }
 
 // K8sDeployment management

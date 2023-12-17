@@ -4141,12 +4141,7 @@
           "x-go-name": "Image"
         },
         "label": {
-          "description": "Label",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Label"
-          },
-          "x-go-name": "Label"
+          "$ref": "#/definitions/Label"
         },
         "memory": {
           "description": "Memory",
