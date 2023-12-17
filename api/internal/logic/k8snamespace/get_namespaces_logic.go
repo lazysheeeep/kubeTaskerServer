@@ -30,14 +30,11 @@ func (l *GetNamespacesLogic) GetNamespaces(req *types.GetNamespacesReq) (resp *t
 		Page:       req.Page,
 		Limit:      req.Limit,
 	})
-	if err != nil { //返回nil看不到报错信息了烙铁！
-		return nil, err
-	}
 	return &types.GetNamespacesResp{
 		Msg: result.Msg,
 		Data: types.GetNamespacesData{
 			Items: result.Data.Items,
 			Total: result.Data.Total,
 		},
-	}, nil
+	}, err
 }

@@ -26,13 +26,10 @@ func NewGetNamespaceDetailLogic(ctx context.Context, svcCtx *svc.ServiceContext)
 func (l *GetNamespaceDetailLogic) GetNamespaceDetail(req *types.GetNamespaceDetailReq) (resp *types.GetNamespaceDetailResp, err error) {
 	// todo: add your logic here and delete this line
 	result, err := l.svcCtx.CoreRpc.GetNamespaceDetail(l.ctx, &core.GetNamespaceDetailReq{NamespaceName: req.NamespaceName})
-	if err != nil {
-		return nil, err
-	}
 	return &types.GetNamespaceDetailResp{
 		Msg: result.Msg,
 		Data: types.GetNamespaceDetailData{
 			Namespace: result.Data.Namespace,
 		},
-	}, nil
+	}, err
 }

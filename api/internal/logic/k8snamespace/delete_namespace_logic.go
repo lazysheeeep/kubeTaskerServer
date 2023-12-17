@@ -28,11 +28,8 @@ func (l *DeleteNamespaceLogic) DeleteNamespace(req *types.DeleteNamespaceReq) (r
 	result, err := l.svcCtx.CoreRpc.DeleteNamespace(l.ctx, &core.DeleteNamespaceReq{
 		NamespaceName: req.NamespaceName,
 	})
-	if err != nil {
-		return nil, err
-	}
 	return &types.DeleteNamespaceResp{
 		Msg:  result.Msg,
 		Data: result.Data,
-	}, nil
+	}, err
 }

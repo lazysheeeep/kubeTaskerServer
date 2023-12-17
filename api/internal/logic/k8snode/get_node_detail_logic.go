@@ -28,13 +28,10 @@ func (l *GetNodeDetailLogic) GetNodeDetail(req *types.GetNodeDetailReq) (resp *t
 	result, err := l.svcCtx.CoreRpc.GetNodeDetail(l.ctx, &core.GetNodeDetailReq{
 		NodeName: req.NodeName,
 	})
-	if err != nil {
-		return nil, err
-	}
 	return &types.GetNodeDetailResp{
 		Msg: result.Msg,
 		Data: types.GetNodeDetailData{
 			Node: result.Data.Node,
 		},
-	}, nil
+	}, err
 }

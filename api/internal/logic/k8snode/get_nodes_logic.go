@@ -30,14 +30,11 @@ func (l *GetNodesLogic) GetNodes(req *types.GetNodesReq) (resp *types.GetNodesRe
 		Page:       req.Page,
 		Limit:      req.Limit,
 	})
-	if err != nil {
-		return nil, err
-	}
 	return &types.GetNodesResp{
 		Msg: result.Msg,
 		Data: types.GetNodesData{
 			Items: result.Data.Items,
 			Total: result.Data.Total,
 		},
-	}, nil
+	}, err
 }
