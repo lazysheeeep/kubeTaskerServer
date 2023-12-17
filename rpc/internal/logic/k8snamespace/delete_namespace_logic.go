@@ -30,7 +30,10 @@ func (l *DeleteNamespaceLogic) DeleteNamespace(in *core.DeleteNamespaceReq) (*co
 	err := l.svcCtx.K8s.CoreV1().Namespaces().Delete(context.TODO(), in.NamespaceName, metav1.DeleteOptions{})
 	if err != nil {
 		l.Logger.Error(errors.New("获取Namespace详情失败, " + err.Error()))
-		return nil, errors.New("获取Namespace详情失败, " + err.Error())
+		return &core.DeleteNamespaceResp{
+			Msg:  "获取Namespace详情失败," + err.Error(),
+			Data: "",
+		}, nil
 	}
 	return &core.DeleteNamespaceResp{
 		Msg:  "成功！",

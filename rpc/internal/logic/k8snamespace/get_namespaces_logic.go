@@ -31,7 +31,10 @@ func (l *GetNamespacesLogic) GetNamespaces(in *core.GetNamespacesReq) (*core.Get
 	namespaceList, err := l.svcCtx.K8s.CoreV1().Namespaces().List(context.TODO(), metav1.ListOptions{})
 	if err != nil {
 		l.Logger.Error(errors.New("获取Namespace列表失败, " + err.Error()))
-		return nil, errors.New("获取Namespace列表失败, " + err.Error())
+		return &core.GetNamespacesResp{
+			Msg:  "获取Namespace列表失败, " + err.Error(),
+			Data: nil,
+		}, nil
 	}
 	selectableData := &dataSelector{
 		GenericDataList: toCells(namespaceList.Items),
@@ -50,7 +53,7 @@ func (l *GetNamespacesLogic) GetNamespaces(in *core.GetNamespacesReq) (*core.Get
 
 	//将[]DataCell类型的namespace列表转为v1.namespace列表
 	namespaces := fromCells(data.GenericDataList)
-	items := make([]*corev1.Namespace, len(namespaces))
+	items := make([]*corev1.Namespace, 0)
 	for _, item := range namespaces {
 		items = append(items, &item)
 	}

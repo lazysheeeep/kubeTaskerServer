@@ -51,7 +51,7 @@ func (l *GetNodesLogic) GetNodes(in *core.GetNodesReq) (*core.GetNodesResp, erro
 
 	//将[]DataCell类型的node列表转为v1.node列表
 	nodes := fromCells(data.GenericDataList)
-	items := make([]*corev1.Node, len(nodes))
+	items := make([]*corev1.Node, 0)
 	for _, item := range nodes {
 		items = append(items, &item)
 	}

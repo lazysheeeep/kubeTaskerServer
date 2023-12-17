@@ -780,27 +780,23 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	)
 
 	server.AddRoutes(
-		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.Authority},
-			[]rest.Route{
-				{
-					Method:  http.MethodPost,
-					Path:    "/k8s_namespace/get_namespaces",
-					Handler: k8snamespace.GetNamespacesHandler(serverCtx),
-				},
-				{
-					Method:  http.MethodPost,
-					Path:    "/k8s_namespace/get_namespace_detail",
-					Handler: k8snamespace.GetNamespaceDetailHandler(serverCtx),
-				},
-				{
-					Method:  http.MethodPost,
-					Path:    "/k8s_namespace/delete_namespace",
-					Handler: k8snamespace.DeleteNamespaceHandler(serverCtx),
-				},
-			}...,
-		),
-		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+		[]rest.Route{
+			{
+				Method:  http.MethodPost,
+				Path:    "/k8s_namespace/get_namespaces",
+				Handler: k8snamespace.GetNamespacesHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/k8s_namespace/get_namespace_detail",
+				Handler: k8snamespace.GetNamespaceDetailHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/k8s_namespace/delete_namespace",
+				Handler: k8snamespace.DeleteNamespaceHandler(serverCtx),
+			},
+		},
 	)
 
 	server.AddRoutes(
