@@ -32,8 +32,11 @@ func (l *GetNamespacesLogic) GetNamespaces(in *core.GetNamespacesReq) (*core.Get
 	if err != nil {
 		l.Logger.Error(errors.New("获取Namespace列表失败, " + err.Error()))
 		return &core.GetNamespacesResp{
-			Msg:  "获取Namespace列表失败, " + err.Error(),
-			Data: nil,
+			Msg: "获取Namespace列表失败, " + err.Error(),
+			Data: &core.GetNamespacesData{
+				Items: nil,
+				Total: 0,
+			},
 		}, nil
 	}
 	selectableData := &dataSelector{

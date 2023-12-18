@@ -29,7 +29,12 @@ func (l *GetNodeDetailLogic) GetNodeDetail(in *core.GetNodeDetailReq) (*core.Get
 	node, err := l.svcCtx.K8s.CoreV1().Nodes().Get(context.TODO(), in.NodeName, metav1.GetOptions{})
 	if err != nil {
 		l.Logger.Error(errors.New("获取Node详情失败, " + err.Error()))
-		return nil, errors.New("获取Node详情失败, " + err.Error())
+		return &core.GetNodeDetailResp{
+			Msg: "获取Node详情失败, " + err.Error(),
+			Data: &core.GetNodeDetailData{
+				Node: nil,
+			},
+		}, nil
 	}
 
 	return &core.GetNodeDetailResp{

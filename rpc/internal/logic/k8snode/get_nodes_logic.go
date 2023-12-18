@@ -31,7 +31,13 @@ func (l *GetNodesLogic) GetNodes(in *core.GetNodesReq) (*core.GetNodesResp, erro
 	nodeList, err := l.svcCtx.K8s.CoreV1().Nodes().List(context.TODO(), metav1.ListOptions{})
 	if err != nil {
 		l.Logger.Error(errors.New("获取Node列表失败, " + err.Error()))
-		return nil, errors.New("获取Node列表失败, " + err.Error())
+		return &core.GetNodesResp{
+			Msg: "获取Node列表失败, " + err.Error(),
+			Data: &core.GetNodesData{
+				Items: nil,
+				Total: 0,
+			},
+		}, nil
 	}
 	//将nodeList中的node列表(Items)，放进dataselector对象中，进行排序
 	selectableData := &dataSelector{

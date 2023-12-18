@@ -33,7 +33,7 @@ func (l *GetNamespaceDetailLogic) GetNamespaceDetail(in *core.GetNamespaceDetail
 		return &core.GetNamespaceDetailResp{
 			Msg: "获取Namespace详情失败, " + err.Error(),
 			Data: &core.GetNamespaceDetailData{
-				Namespace: namespace,
+				Namespace: nil,
 			},
 		}, nil
 	}

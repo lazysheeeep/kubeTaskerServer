@@ -37,6 +37,6 @@ func (l *DeleteNamespaceLogic) DeleteNamespace(in *core.DeleteNamespaceReq) (*co
 	}
 	return &core.DeleteNamespaceResp{
 		Msg:  "成功！",
-		Data: "",
+		Data: "成功删除namespace:" + in.NamespaceName,
 	}, nil
 }

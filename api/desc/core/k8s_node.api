@@ -58,9 +58,9 @@ type(
 service Core {
     // getNodes
     @handler getNodes
-    post /k8snode/get_nodes (GetNodesReq) returns (GetNodesResp)
+    get /k8snode/get_nodes (GetNodesReq) returns (GetNodesResp)
 
     // getNodeDetail
     @handler getNodeDetail
-    post /k8snode/get_node_detail (GetNodeDetailReq) returns (GetNodeDetailResp)
+    get /k8snode/get_node_detail (GetNodeDetailReq) returns (GetNodeDetailResp)
 }
