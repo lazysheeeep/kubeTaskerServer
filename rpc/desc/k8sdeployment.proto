@@ -15,7 +15,7 @@ message GetDeploymentsData {
 }
 message GetDeploymentsResp {
   string meg = 1;
-    GetDeploymentsData data = 2;
+  GetDeploymentsData data = 2;
 }
 
 // getDeploymentDetail
@@ -84,9 +84,7 @@ message UpdateDeploymentResp {
 }
 
 // getDeployNumPerNp
-message GetDeployNumPerNpReq {
-
-}
+message GetDeployNumPerNpReq {}
 message GetDeployNumPerNpData {
   string namespace = 1;
   int64 deployment_num = 2;

@@ -35,12 +35,15 @@ func (l *GetDeploymentsLogic) GetDeployments(req *types.GetDeploymentsReq) (resp
 	if err != nil {
 		return nil, err
 	}
-	items := make([]*v1.Deployment, len(resp.Items))
-	for _, v := range resp.Items {
+	items := make([]*v1.Deployment, 0)
+	for _, v := range resp.Data.Items {
 		items = append(items, v)
 	}
 	return &types.GetDeploymentsResp{
-		Items: items,
-		Total: result.Total,
+		Msg: result.Meg,
+		Data: types.GetDeploymentsData{
+			Items: items,
+			Total: result.Data.Total,
+		},
 	}, err
 }

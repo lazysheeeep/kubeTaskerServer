@@ -26,12 +26,11 @@ func NewUpdateConfigMapLogic(ctx context.Context, svcCtx *svc.ServiceContext) *U
 
 func (l *UpdateConfigMapLogic) UpdateConfigMap(req *types.UpdateConfigMapReq) (resp *types.UpdateConfigMapResp, err error) {
 	// todo: add your logic here and delete this line
-	_, err = l.svcCtx.CoreRpc.UpdateConfigMap(l.ctx, &core.UpdateConfigMapReq{
+	result, err := l.svcCtx.CoreRpc.UpdateConfigMap(l.ctx, &core.UpdateConfigMapReq{
 		Namespace: req.Namespace,
 		Content:   req.Content,
 	})
-	if err != nil {
-		return nil, err
-	}
-	return nil, err
+	return &types.UpdateConfigMapResp{
+		Msg: result.Msg,
+	}, err
 }

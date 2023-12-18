@@ -12,13 +12,18 @@ type (
         // Page
         Page  int64 `json:"page"`
     }
-    // GetServicesResp
-    GetServicesResp {
+    // GetServicesData
+    GetServicesData {
         // Items
         // []k8s.io.api.core.v1.Service
         Items  TypeNull `json:"items"`
         // Total
         Total  int64 `json:"total"`
+    }
+    // GetServicesResp
+    GetServicesResp {
+        Msg string `json:"msg"`
+        Data GetServicesData `json:"data"`
     }
 
     // GetServiceDetailReq
@@ -30,9 +35,11 @@ type (
     }
     // GetServiceDetailResp
     GetServiceDetailResp {
+        // Msg
+        Msg string `json:"msg"`
         // Service
         // k8s.io.api.core.v1.Service
-        Service  TypeNull `json:"service"`
+        Data  TypeNull `json:"data"`
     }
 
     // CreateServiceReq
@@ -44,16 +51,18 @@ type (
         // Type
         Type  string `json:"type"`
         // ContainerPort
-        ContainerPort  int64 `json:"containerPort"`
+        ContainerPort  int32 `json:"containerPort"`
         // Port
-        Port  int64 `json:"port"`
+        Port  int32 `json:"port"`
         // NodePort
-        NodePort  int64 `json:"nodePort"`
+        NodePort  int32 `json:"nodePort"`
         // Label
-        Label  []Label `json:"label"`
+        // map<string,string>
+        Label  TypeNull `json:"label"`
     }
     // CreateServiceResp
     CreateServiceResp {
+        Msg string `json:"msg"`
     }
 
     // DeleteServiceReq
@@ -65,6 +74,7 @@ type (
     }
     // DeleteServiceResp
     DeleteServiceResp {
+        Msg string `json:"msg"`
     }
 
     // UpdateServiceReq
@@ -76,6 +86,7 @@ type (
     }
     // UpdateServiceResp
     UpdateServiceResp {
+        Msg string `json:"msg"`
     }
 )
 @server(
@@ -84,19 +95,19 @@ type (
     //middleware: Authority
 )
 service Core {
-    // getServices
+    // getServices | 获取service列表，支持过滤、排序、分页
     @handler getServices
     post /k8sservice/get_services (GetServicesReq) returns (GetServicesResp)
-    // getServiceDetail
+    // getServiceDetail | 获取service详情
     @handler getServiceDetail
     post /k8sservice/get_service_detail (GetServiceDetailReq) returns (GetServiceDetailResp)
-    // createService
+    // createService | 创建service
     @handler createService
     post /k8sservice/create_service (CreateServiceReq) returns (CreateServiceResp)
-    // deleteService
+    // deleteService | 删除service
     @handler deleteService
-    post /k8sservice/delete_service (DeleteServiceReq) returns (DeleteServiceResp)
-    // updateService
+    delete /k8sservice/delete_service (DeleteServiceReq) returns (DeleteServiceResp)
+    // updateService | 更新service
     @handler updateService
-    post /k8sservice/update_service (UpdateServiceReq) returns (UpdateServiceResp)
+    put /k8sservice/update_service (UpdateServiceReq) returns (UpdateServiceResp)
 }

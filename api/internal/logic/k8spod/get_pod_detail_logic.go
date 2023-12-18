@@ -33,6 +33,7 @@ func (l *GetPodDetailLogic) GetPodDetail(req *types.GetPodDetailReq) (resp *type
 		return nil, err
 	}
 	return &types.GetPodDetailResp{
-		Pod: result.Pod,
+		Msg:  result.Msg,
+		Data: result.Data,
 	}, err
 }

@@ -4141,7 +4141,7 @@
           "x-go-name": "Image"
         },
         "label": {
-          "$ref": "#/definitions/Label"
+          "$ref": "#/definitions/TypeNull"
         },
         "memory": {
           "description": "Memory",
@@ -4170,6 +4170,13 @@
     "CreateDeploymentResp": {
       "description": "CreateDeploymentResp",
       "type": "object",
+      "properties": {
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "CreateOrUpdateApiAuthorityReq": {
@@ -4205,16 +4212,11 @@
         "containerPort": {
           "description": "ContainerPort",
           "type": "integer",
-          "format": "int64",
+          "format": "int32",
           "x-go-name": "ContainerPort"
         },
         "label": {
-          "description": "Label",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Label"
-          },
-          "x-go-name": "Label"
+          "$ref": "#/definitions/TypeNull"
         },
         "name": {
           "description": "Name",
@@ -4229,13 +4231,13 @@
         "nodePort": {
           "description": "NodePort",
           "type": "integer",
-          "format": "int64",
+          "format": "int32",
           "x-go-name": "NodePort"
         },
         "port": {
           "description": "Port",
           "type": "integer",
-          "format": "int64",
+          "format": "int32",
           "x-go-name": "Port"
         },
         "type": {
@@ -4249,6 +4251,12 @@
     "CreateServiceResp": {
       "description": "CreateServiceResp",
       "type": "object",
+      "properties": {
+        "msg": {
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "DeleteConfigMapReq": {
@@ -4271,6 +4279,13 @@
     "DeleteConfigMapResp": {
       "description": "DeleteConfigMapResp",
       "type": "object",
+      "properties": {
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "DeleteDeploymentReq": {
@@ -4293,6 +4308,13 @@
     "DeleteDeploymentResp": {
       "description": "DeleteDeploymentResp",
       "type": "object",
+      "properties": {
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "DeletePodReq": {
@@ -4315,6 +4337,13 @@
     "DeletePodResp": {
       "description": "DeletePodResp",
       "type": "object",
+      "properties": {
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "DeleteServiceReq": {
@@ -4337,6 +4366,12 @@
     "DeleteServiceResp": {
       "description": "DeleteServiceResp",
       "type": "object",
+      "properties": {
+        "msg": {
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "DepartmentInfo": {
@@ -4529,22 +4564,6 @@
           "description": "Message | 提示信息",
           "type": "string",
           "x-go-name": "Msg"
-        }
-      },
-      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
-    },
-    "DeploysNp": {
-      "description": "DeploysNp",
-      "type": "object",
-      "properties": {
-        "deployNum": {
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "DeployNum"
-        },
-        "namespace": {
-          "type": "string",
-          "x-go-name": "Namespace"
         }
       },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
@@ -5254,8 +5273,29 @@
       "description": "GetConfigMapDetailResp",
       "type": "object",
       "properties": {
-        "configMap": {
+        "data": {
           "$ref": "#/definitions/TypeNull"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetConfigMapsData": {
+      "description": "GetConfigMapsRespData",
+      "type": "object",
+      "properties": {
+        "items": {
+          "$ref": "#/definitions/TypeNull"
+        },
+        "total": {
+          "description": "Total",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Total"
         }
       },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
@@ -5293,14 +5333,29 @@
       "description": "GetConfigMapsResp",
       "type": "object",
       "properties": {
-        "items": {
-          "$ref": "#/definitions/TypeNull"
+        "data": {
+          "$ref": "#/definitions/GetConfigMapsData"
         },
-        "total": {
-          "description": "Total",
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetDeployNumPerNpData": {
+      "description": "DeploysNp",
+      "type": "object",
+      "properties": {
+        "deploymentNum": {
           "type": "integer",
           "format": "int64",
-          "x-go-name": "Total"
+          "x-go-name": "DeploymentNum"
+        },
+        "namespace": {
+          "type": "string",
+          "x-go-name": "Namespace"
         }
       },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
@@ -5314,13 +5369,18 @@
       "description": "GetDeployNumPerNpResp",
       "type": "object",
       "properties": {
-        "deploysNps": {
-          "description": "DeploysNps",
+        "data": {
+          "description": "Data",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/DeploysNp"
+            "$ref": "#/definitions/GetDeployNumPerNpData"
           },
-          "x-go-name": "DeploysNps"
+          "x-go-name": "Data"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
         }
       },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
@@ -5346,8 +5406,29 @@
       "description": "GetDeploymentDetailResp",
       "type": "object",
       "properties": {
-        "deployment": {
+        "data": {
           "$ref": "#/definitions/TypeNull"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetDeploymentsData": {
+      "description": "GetDeploymentsResp",
+      "type": "object",
+      "properties": {
+        "items": {
+          "$ref": "#/definitions/TypeNull"
+        },
+        "total": {
+          "description": "Total",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Total"
         }
       },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
@@ -5382,17 +5463,15 @@
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "GetDeploymentsResp": {
-      "description": "GetDeploymentsResp",
       "type": "object",
       "properties": {
-        "items": {
-          "$ref": "#/definitions/TypeNull"
+        "data": {
+          "$ref": "#/definitions/GetDeploymentsData"
         },
-        "total": {
-          "description": "Total",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "Total"
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
         }
       },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
@@ -5418,13 +5497,18 @@
       "description": "GetPodContainerResp",
       "type": "object",
       "properties": {
-        "containers": {
-          "description": "Containers",
+        "data": {
+          "description": "Data",
           "type": "array",
           "items": {
             "type": "string"
           },
-          "x-go-name": "Containers"
+          "x-go-name": "Data"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
         }
       },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
@@ -5450,8 +5534,13 @@
       "description": "GetPodDetailResp",
       "type": "object",
       "properties": {
-        "pod": {
+        "data": {
           "$ref": "#/definitions/TypeNull"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
         }
       },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
@@ -5482,10 +5571,31 @@
       "description": "GetPodLogResp",
       "type": "object",
       "properties": {
-        "log": {
-          "description": "Log",
+        "data": {
+          "description": "Data",
           "type": "string",
-          "x-go-name": "Log"
+          "x-go-name": "Data"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetPodNumPerNpData": {
+      "description": "PodsNp",
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "type": "string",
+          "x-go-name": "Namespace"
+        },
+        "podNum": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "PodNum"
         }
       },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
@@ -5499,13 +5609,34 @@
       "description": "GetPodNumPerNpResp",
       "type": "object",
       "properties": {
-        "podsNps": {
+        "data": {
           "description": "PodsNps",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/PodsNp"
+            "$ref": "#/definitions/GetPodNumPerNpData"
           },
-          "x-go-name": "PodsNps"
+          "x-go-name": "Data"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetPodsData": {
+      "description": "GetPodsRespData",
+      "type": "object",
+      "properties": {
+        "items": {
+          "$ref": "#/definitions/TypeNull"
+        },
+        "total": {
+          "description": "Total",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Total"
         }
       },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
@@ -5543,14 +5674,13 @@
       "description": "GetPodsResp",
       "type": "object",
       "properties": {
-        "items": {
-          "$ref": "#/definitions/TypeNull"
+        "data": {
+          "$ref": "#/definitions/GetPodsData"
         },
-        "total": {
-          "description": "Total",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "Total"
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
         }
       },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
@@ -5576,8 +5706,29 @@
       "description": "GetServiceDetailResp",
       "type": "object",
       "properties": {
-        "service": {
+        "data": {
           "$ref": "#/definitions/TypeNull"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetServicesData": {
+      "description": "GetServicesData",
+      "type": "object",
+      "properties": {
+        "items": {
+          "$ref": "#/definitions/TypeNull"
+        },
+        "total": {
+          "description": "Total",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Total"
         }
       },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
@@ -5615,14 +5766,12 @@
       "description": "GetServicesResp",
       "type": "object",
       "properties": {
-        "items": {
-          "$ref": "#/definitions/TypeNull"
+        "data": {
+          "$ref": "#/definitions/GetServicesData"
         },
-        "total": {
-          "description": "Total",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "Total"
+        "msg": {
+          "type": "string",
+          "x-go-name": "Msg"
         }
       },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
@@ -5673,21 +5822,6 @@
             "format": "uint64"
           },
           "x-go-name": "Ids"
-        }
-      },
-      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
-    },
-    "Label": {
-      "description": "Label",
-      "type": "object",
-      "properties": {
-        "key": {
-          "type": "string",
-          "x-go-name": "Key"
-        },
-        "value": {
-          "type": "string",
-          "x-go-name": "Value"
         }
       },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
@@ -6546,22 +6680,6 @@
       },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
-    "PodsNp": {
-      "description": "PodsNp",
-      "type": "object",
-      "properties": {
-        "namespace": {
-          "type": "string",
-          "x-go-name": "Namespace"
-        },
-        "podNum": {
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "PodNum"
-        }
-      },
-      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
-    },
     "PositionInfo": {
       "description": "The response data of position information | 职位信息",
       "type": "object",
@@ -7009,6 +7127,13 @@
     "RestartDeploymentResp": {
       "description": "RestartDeploymentResp",
       "type": "object",
+      "properties": {
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "RoleInfo": {
@@ -7222,11 +7347,15 @@
       "description": "ScaleDeploymentResp",
       "type": "object",
       "properties": {
-        "replica": {
-          "description": "Replica",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "Replica"
+        "data": {
+          "description": "Data",
+          "type": "string",
+          "x-go-name": "Data"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
         }
       },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
@@ -8139,6 +8268,13 @@
     "UpdateConfigMapResp": {
       "description": "UpdateConfigMapResp",
       "type": "object",
+      "properties": {
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "UpdateDeploymentReq": {
@@ -8161,6 +8297,13 @@
     "UpdateDeploymentResp": {
       "description": "UpdateDeploymentResp",
       "type": "object",
+      "properties": {
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "UpdatePodReq": {
@@ -8183,6 +8326,13 @@
     "UpdatePodResp": {
       "description": "UpdatePodResp",
       "type": "object",
+      "properties": {
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "UpdateServiceReq": {
@@ -8205,6 +8355,12 @@
     "UpdateServiceResp": {
       "description": "UpdateServiceResp",
       "type": "object",
+      "properties": {
+        "msg": {
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "UserBaseIDInfo": {

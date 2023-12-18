@@ -32,15 +32,15 @@ func (l *GetServicesLogic) GetServices(req *types.GetServicesReq) (resp *types.G
 		Limit:      req.Limit,
 		Page:       req.Page,
 	})
-	items := make([]*v1.Service, len(result.Items))
-	for _, v := range result.Items {
+	items := make([]*v1.Service, 0)
+	for _, v := range result.Data.Items {
 		items = append(items, v)
 	}
-	if err != nil {
-		return nil, err
-	}
 	return &types.GetServicesResp{
-		Items: items,
-		Total: result.Total,
+		Msg: result.Msg,
+		Data: types.GetServicesData{
+			Items: items,
+			Total: result.Data.Total,
+		},
 	}, err
 }

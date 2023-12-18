@@ -25,17 +25,16 @@ func NewCreateServiceLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Cre
 
 func (l *CreateServiceLogic) CreateService(req *types.CreateServiceReq) (resp *types.CreateServiceResp, err error) {
 	// todo: add your logic here and delete this line
-	_, err = l.svcCtx.CoreRpc.CreateService(l.ctx, &core.CreateServiceReq{
+	result, err := l.svcCtx.CoreRpc.CreateService(l.ctx, &core.CreateServiceReq{
 		Name:          req.Name,
 		Namespace:     req.Namespace,
 		Type:          req.Type,
 		ContainerPort: req.ContainerPort,
 		Port:          req.Port,
 		NodePort:      req.NodePort,
-		Label:         map[string]string{req.Label.Key: req.Label.Value},
+		Label:         req.Label,
 	})
-	if err != nil {
-		return nil, err
-	}
-	return nil, err
+	return &types.CreateServiceResp{
+		Msg: result.Msg,
+	}, err
 }

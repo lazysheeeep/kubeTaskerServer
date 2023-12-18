@@ -30,10 +30,8 @@ func (l *GetConfigMapDetailLogic) GetConfigMapDetail(req *types.GetConfigMapDeta
 		ConfigMapName: req.ConfigMapName,
 		Namespace:     req.Namespace,
 	})
-	if err != nil {
-		return nil, err
-	}
 	return &types.GetConfigMapDetailResp{
-		ConfigMap: result.ConfigMap,
+		Msg:  result.Msg,
+		Data: result.Data,
 	}, err
 }

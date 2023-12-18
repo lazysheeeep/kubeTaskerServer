@@ -13,7 +13,7 @@ type (
         Page  int64 `json:"page"`
     }
     // GetConfigMapsRespData
-    GetConfigMapsRespData {
+    GetConfigMapsData {
         // Items
         // []k8s.io.api.core.v1.ConfigMap
         Items  TypeNull `json:"items"`
@@ -25,7 +25,7 @@ type (
         // Msg
         Msg string `json:"msg"`
         // Data
-        Data GetConfigMapsRespData `json:"data"`
+        Data GetConfigMapsData `json:"data"`
     }
 
         // GetConfigMapDetailReq
@@ -36,7 +36,7 @@ type (
         Namespace  string `json:"namespace"`
     }
     // GetConfigMapDetailResp
-    GetConfigMapDetailRespDate {
+    GetConfigMapDetailResp {
         // Msg
         Msg string `json:"msg"`
         // Data
@@ -55,8 +55,6 @@ type (
     DeleteConfigMapResp {
         // Msg
         Msg string `json:"msg"`
-        // Data
-        Data TypeNull `json:"data"`
     }
 
     // UpdateConfigMapReq
@@ -70,8 +68,6 @@ type (
     UpdateConfigMapResp {
         // Msg
         Msg string `json:"msg"`
-        // Data
-        Data TypeNull `json:"data"`
     }
 )
 

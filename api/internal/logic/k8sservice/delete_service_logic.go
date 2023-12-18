@@ -25,12 +25,11 @@ func NewDeleteServiceLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Del
 
 func (l *DeleteServiceLogic) DeleteService(req *types.DeleteServiceReq) (resp *types.DeleteServiceResp, err error) {
 	// todo: add your logic here and delete this line
-	_, err = l.svcCtx.CoreRpc.DeleteService(l.ctx, &core.DeleteServiceReq{
+	result, err := l.svcCtx.CoreRpc.DeleteService(l.ctx, &core.DeleteServiceReq{
 		ServiceName: req.ServiceName,
 		Namespace:   req.Namespace,
 	})
-	if err != nil {
-		return nil, err
-	}
-	return nil, nil
+	return &types.DeleteServiceResp{
+		Msg: result.Msg,
+	}, nil
 }

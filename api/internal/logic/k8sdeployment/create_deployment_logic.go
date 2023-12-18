@@ -25,23 +25,19 @@ func NewCreateDeploymentLogic(ctx context.Context, svcCtx *svc.ServiceContext) *
 
 func (l *CreateDeploymentLogic) CreateDeployment(req *types.CreateDeploymentReq) (resp *types.CreateDeploymentResp, err error) {
 	// todo: add your logic here and delete this line
-	label := map[string]string{
-		req.Label.Key: req.Label.Value,
-	}
-	_, err = l.svcCtx.CoreRpc.CreateDeployment(l.ctx, &core.CreateDeploymentReq{
+	result, err := l.svcCtx.CoreRpc.CreateDeployment(l.ctx, &core.CreateDeploymentReq{
 		Name:          req.Name,
 		Namespace:     req.Namespace,
 		Replicas:      req.Replicas,
 		Image:         req.Image,
-		Label:         label,
+		Label:         req.Label,
 		Cpu:           req.Cpu,
 		Memory:        req.Memory,
 		ContainerPort: req.ContainerPort,
 		HealthCheck:   req.HealthCheck,
 		HealthPath:    req.HealthPath,
 	})
-	if err != nil {
-		return nil, err
-	}
-	return nil, err
+	return &types.CreateDeploymentResp{
+		Msg: result.Msg,
+	}, err
 }

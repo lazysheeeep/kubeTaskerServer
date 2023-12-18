@@ -34,6 +34,7 @@ func (l *ScaleDeploymentLogic) ScaleDeployment(req *types.ScaleDeploymentReq) (r
 		return nil, err
 	}
 	return &types.ScaleDeploymentResp{
-		Replica: result.Replica,
+		Msg:  result.Msg,
+		Data: result.Data,
 	}, err
 }

@@ -33,6 +33,7 @@ func (l *GetPodContainerLogic) GetPodContainer(req *types.GetPodContainerReq) (r
 		return nil, err
 	}
 	return &types.GetPodContainerResp{
-		Containers: result.Containers,
+		Msg:  result.Msg,
+		Data: result.Data,
 	}, err
 }

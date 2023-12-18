@@ -34,6 +34,7 @@ func (l *GetPodLogLogic) GetPodLog(req *types.GetPodLogReq) (resp *types.GetPodL
 		return nil, err
 	}
 	return &types.GetPodLogResp{
-		Log: result.Log,
+		Msg:  result.Meg,
+		Data: result.Data,
 	}, err
 }

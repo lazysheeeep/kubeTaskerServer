@@ -29,10 +29,8 @@ func (l *GetServiceDetailLogic) GetServiceDetail(req *types.GetServiceDetailReq)
 		ServiceName: req.ServiceName,
 		Namespace:   req.Namespace,
 	})
-	if err != nil {
-		return nil, err
-	}
 	return &types.GetServiceDetailResp{
-		Service: result.Service,
+		Msg:  result.Msg,
+		Data: result.Data,
 	}, err
 }

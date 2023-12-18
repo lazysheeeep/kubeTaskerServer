@@ -13,7 +13,7 @@ type (
         Page  int64 `json:"page"`
     }
     // GetPodsRespData
-    GetPodsRespData {
+    GetPodsData {
         // Total
         Total  int64 `json:"total"`
         // Items
@@ -25,7 +25,7 @@ type (
         // Msg
         Msg string `json:"msg"`
         // Data
-        Data TypeNull `json:"data"`
+        Data GetPodsData `json:"data"`
     }
 
     // GetPodDetailReq
@@ -55,8 +55,6 @@ type (
     DeletePodResp {
         // Msg
         Msg string `json:"msg"`
-        // Data
-        Data TypeNull `json:"data"`
     }
 
     // UpdatePodReq
@@ -70,8 +68,6 @@ type (
     UpdatePodResp {
         // Msg
         Msg string `json:"msg"`
-        // Data
-        Data TypeNull `json:"data"`
     }
 
     // GetPodContainerReq
@@ -107,17 +103,18 @@ type (
     }
 
     // GetPodNumPerNpReq
-    GetPodNumPerNpReq {
-    }
+    GetPodNumPerNpReq {}
     // PodsNp
-    PodsNp {
+    GetPodNumPerNpData {
         Namespace string `json:"namespace"`
         PodNum int64 `json:"podNum"`
     }
     // GetPodNumPerNpResp
     GetPodNumPerNpResp {
+        // Msg
+        Msg string `json:"msg"`
         // PodsNps
-        PodsNps  []PodsNp `json:"podsNps"`
+        Data  []GetPodNumPerNpData `json:"data"`
     }
 )
 @server(
@@ -126,25 +123,25 @@ type (
     //middleware: Authority
 )
 service Core {
-    // getPods
+    // getPods | 获取pod列表,支持分页,过滤,排序
     @handler getPods
     post /k8spod/get_pods (GetPodsReq) returns (GetPodsResp)
-    // getPodDetail
+    // getPodDetail | 获取pod详情
     @handler getPodDetail
     post /k8spod/get_pod_detail (GetPodDetailReq) returns (GetPodDetailResp)
-    // deletePod
+    // deletePod | 删除Pod
     @handler deletePod
     post /k8spod/delete_pod (DeletePodReq) returns (DeletePodResp)
-    // updatePod
+    // updatePod | 更新pod
     @handler updatePod
-    post /k8spod/update_pod (UpdatePodReq) returns (UpdatePodResp)
-    // getPodContainer
+    put /k8spod/update_pod (UpdatePodReq) returns (UpdatePodResp)
+    // getPodContainer | 获取pod容器
     @handler getPodContainer
-    post /k8spod/get_pod_container (GetPodContainerReq) returns (GetPodContainerResp)
-    // getPodLog
+    get /k8spod/get_pod_container (GetPodContainerReq) returns (GetPodContainerResp)
+    // getPodLog | 获取pod中容器日志
     @handler getPodLog
-    post /k8spod/get_pod_log (GetPodLogReq) returns (GetPodLogResp)
-    // getPodNumPerNp
+    get /k8spod/get_pod_log (GetPodLogReq) returns (GetPodLogResp)
+    // getPodNumPerNp | 获取每个namespace的pod数量
     @handler getPodNumPerNp
     post /k8spod/get_pod_num_per_np (GetPodNumPerNpReq) returns (GetPodNumPerNpResp)
 }

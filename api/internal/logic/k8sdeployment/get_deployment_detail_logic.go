@@ -29,10 +29,8 @@ func (l *GetDeploymentDetailLogic) GetDeploymentDetail(req *types.GetDeploymentD
 		DeploymentName: req.DeploymentName,
 		Namespace:      req.Namespace,
 	})
-	if err != nil {
-		return nil, err
-	}
 	return &types.GetDeploymentDetailResp{
-		Deployment: result.Deployment,
+		Msg:  result.Msg,
+		Data: result.Data,
 	}, err
 }

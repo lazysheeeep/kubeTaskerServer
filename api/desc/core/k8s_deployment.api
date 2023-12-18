@@ -13,7 +13,7 @@ type (
         Page  int64 `json:"page"`
     }
     // GetDeploymentsResp
-    GetDeploymentsRespData {
+    GetDeploymentsData {
         // Items
         // []k8s.io.api.apps.v1.Deployment
         Items  TypeNull `json:"items"`
@@ -24,7 +24,7 @@ type (
         // Msg
         Msg string `json:"msg"`
         // Data
-        Data GetDeploymentsRespData `json:"data"`
+        Data GetDeploymentsData `json:"data"`
     }
 
     // GetDeploymentDetailReq
@@ -90,8 +90,6 @@ type (
     CreateDeploymentResp {
         // Msg
         Msg string `json:"msg"`
-        // Data
-        Data TypeNull `json:"data"`
     }
 
     // DeleteDeploymentReq
@@ -105,8 +103,6 @@ type (
     DeleteDeploymentResp {
         // Msg
         Msg string `json:"msg"`
-        // Data
-        Data TypeNull `json:"data"`
     }
 
     // RestartDeploymentReq
@@ -120,8 +116,6 @@ type (
     RestartDeploymentResp {
         // Msg
         Msg string `json:"msg"`
-        // Data
-        Data TypeNull `json:"data"`
     }
 
     // UpdateDeploymentReq
@@ -135,15 +129,12 @@ type (
     UpdateDeploymentResp {
         // Msg
         Msg string `json:"msg"`
-        // Data
-        Data TypeNull `json:"data"`
     }
 
         // GetDeployNumPerNpReq
-    GetDeployNumPerNpReq {
-    }
+    GetDeployNumPerNpReq {}
     // DeploysNp
-    GetDeployNumPerNpRespData {
+    GetDeployNumPerNpData {
         Namespace string `json:"namespace"`
         DeploymentNum int64 `json:"deploymentNum"`
     }
@@ -152,7 +143,7 @@ type (
         // Msg
         Msg string `json:"msg"`
         // Data
-        Data []GetDeployNumPerNpRespData `json:"data"`
+        Data []GetDeployNumPerNpData `json:"data"`
     }
 
 )
@@ -162,28 +153,28 @@ type (
     //middleware: Authority
 )
 service Core {
-    // getDeployments
+    // getDeployments | 获取deployment列表，支持过滤、排序、分页
     @handler getDeployments
     post /k8sdeployment/get_deployments (GetDeploymentsReq) returns (GetDeploymentsResp)
-    // getDeploymentDetail
+    // getDeploymentDetail | 获取deployment详情
     @handler getDeploymentDetail
     post /k8sdeployment/get_deployment_detail (GetDeploymentDetailReq) returns (GetDeploymentDetailResp)
-    // scaleDeployment
+    // scaleDeployment | 设置deployment副本数
     @handler scaleDeployment
-    post /k8sdeployment/scale_deployment (ScaleDeploymentReq) returns (ScaleDeploymentResp)
-    // createDeployment
+    put /k8sdeployment/scale_deployment (ScaleDeploymentReq) returns (ScaleDeploymentResp)
+    // createDeployment | 创建deployment
     @handler createDeployment
     post /k8sdeployment/create_deployment (CreateDeploymentReq) returns (CreateDeploymentResp)
-    // deleteDeployment
+    // deleteDeployment | 删除deployment
     @handler deleteDeployment
-    post /k8sdeployment/delete_deployment (DeleteDeploymentReq) returns (DeleteDeploymentResp)
-    // restartDeployment
+    delete /k8sdeployment/delete_deployment (DeleteDeploymentReq) returns (DeleteDeploymentResp)
+    // restartDeployment | 重启deployment
     @handler restartDeployment
-    post /k8sdeployment/restart_deployment (RestartDeploymentReq) returns (RestartDeploymentResp)
-    // updateDeployment
+    put /k8sdeployment/restart_deployment (RestartDeploymentReq) returns (RestartDeploymentResp)
+    // updateDeployment | 更新deployment
     @handler updateDeployment
-    post /k8sdeployment/update_deployment (UpdateDeploymentReq) returns (UpdateDeploymentResp)
-    // getDeployNumPerNp
+    put /k8sdeployment/update_deployment (UpdateDeploymentReq) returns (UpdateDeploymentResp)
+    // getDeployNumPerNp | 获取每个namespace的pod数量
     @handler getDeployNumPerNp
     post /k8sdeployment/get_deploy_num_per_np (GetDeployNumPerNpReq) returns (GetDeployNumPerNpResp)
 }

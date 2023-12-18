@@ -27,16 +27,20 @@ func (l *GetDeployNumPerNpLogic) GetDeployNumPerNp(req *types.GetDeployNumPerNpR
 	// todo: add your logic here and delete this line
 	result, err := l.svcCtx.CoreRpc.GetDeployNumPerNp(l.ctx, &core.GetDeployNumPerNpReq{})
 	if err != nil {
-		return nil, err
+		return &types.GetDeployNumPerNpResp{
+			Msg:  result.Msg,
+			Data: nil,
+		}, err
 	}
-	deploysNps := make([]*types.DeploysNp, len(result.DeploysNps))
-	for _, v := range result.DeploysNps {
-		deploysNps = append(deploysNps, &types.DeploysNp{
-			Namespace: v.Namespace,
-			DeployNum: v.DeployNum,
+	getDeployNumPerNpData := make([]types.GetDeployNumPerNpData, 0)
+	for _, v := range result.Data {
+		getDeployNumPerNpData = append(getDeployNumPerNpData, types.GetDeployNumPerNpData{
+			Namespace:     v.Namespace,
+			DeploymentNum: v.DeploymentNum,
 		})
 	}
 	return &types.GetDeployNumPerNpResp{
-		DeploysNps: deploysNps,
+		Msg:  result.Msg,
+		Data: getDeployNumPerNpData,
 	}, err
 }

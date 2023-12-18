@@ -32,11 +32,11 @@ func (l *GetConfigMapsLogic) GetConfigMaps(req *types.GetConfigMapsReq) (resp *t
 		Limit:      req.Limit,
 		Page:       req.Page,
 	})
-	if err != nil {
-		return nil, err
-	}
 	return &types.GetConfigMapsResp{
-		Items: result.Items,
-		Total: resp.Total,
+		Msg: result.Msg,
+		Data: types.GetConfigMapsData{
+			Items: result.Data.Items,
+			Total: resp.Data.Total,
+		},
 	}, err
 }
