@@ -784,17 +784,17 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			[]rest.Middleware{serverCtx.Authority},
 			[]rest.Route{
 				{
-					Method:  http.MethodPost,
+					Method:  http.MethodGet,
 					Path:    "/k8s_namespace/get_namespaces",
 					Handler: k8snamespace.GetNamespacesHandler(serverCtx),
 				},
 				{
-					Method:  http.MethodPost,
+					Method:  http.MethodGet,
 					Path:    "/k8s_namespace/get_namespace_detail",
 					Handler: k8snamespace.GetNamespaceDetailHandler(serverCtx),
 				},
 				{
-					Method:  http.MethodPost,
+					Method:  http.MethodDelete,
 					Path:    "/k8s_namespace/delete_namespace",
 					Handler: k8snamespace.DeleteNamespaceHandler(serverCtx),
 				},
@@ -804,17 +804,21 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	)
 
 	server.AddRoutes(
-		[]rest.Route{
-			{
-				Method:  http.MethodGet,
-				Path:    "/k8snode/get_nodes",
-				Handler: k8snode.GetNodesHandler(serverCtx),
-			},
-			{
-				Method:  http.MethodGet,
-				Path:    "/k8snode/get_node_detail",
-				Handler: k8snode.GetNodeDetailHandler(serverCtx),
-			},
-		},
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.Authority},
+			[]rest.Route{
+				{
+					Method:  http.MethodGet,
+					Path:    "/k8s_node/get_nodes",
+					Handler: k8snode.GetNodesHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodGet,
+					Path:    "/k8s_node/get_node_detail",
+					Handler: k8snode.GetNodeDetailHandler(serverCtx),
+				},
+			}...,
+		),
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
 	)
 }
