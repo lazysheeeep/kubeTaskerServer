@@ -1237,6 +1237,342 @@
         }
       }
     },
+    "/k8sconfigmap/delete_config_map": {
+      "delete": {
+        "description": "deleteConfigMap",
+        "tags": [
+          "k8sconfigmap"
+        ],
+        "summary": "deleteConfigMap",
+        "operationId": "DeleteConfigMap",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/DeleteConfigMapReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "DeleteConfigMapResp",
+            "schema": {
+              "$ref": "#/definitions/DeleteConfigMapResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8sconfigmap/get_config_map_detail": {
+      "post": {
+        "description": "getConfigMapDetail",
+        "tags": [
+          "k8sconfigmap"
+        ],
+        "summary": "getConfigMapDetail",
+        "operationId": "GetConfigMapDetail",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/GetConfigMapDetailReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GetConfigMapDetailResp",
+            "schema": {
+              "$ref": "#/definitions/GetConfigMapDetailResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8sconfigmap/get_config_maps": {
+      "post": {
+        "description": "getConfigMaps",
+        "tags": [
+          "k8sconfigmap"
+        ],
+        "summary": "getConfigMaps",
+        "operationId": "GetConfigMaps",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/GetConfigMapsReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GetConfigMapsResp",
+            "schema": {
+              "$ref": "#/definitions/GetConfigMapsResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8sconfigmap/update_config_map": {
+      "put": {
+        "description": "updateConfigMap",
+        "tags": [
+          "k8sconfigmap"
+        ],
+        "summary": "updateConfigMap",
+        "operationId": "UpdateConfigMap",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/UpdateConfigMapReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "UpdateConfigMapResp",
+            "schema": {
+              "$ref": "#/definitions/UpdateConfigMapResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8sdeployment/create_deployment": {
+      "post": {
+        "description": "createDeployment",
+        "tags": [
+          "k8sdeployment"
+        ],
+        "summary": "createDeployment",
+        "operationId": "CreateDeployment",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/CreateDeploymentReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "CreateDeploymentResp",
+            "schema": {
+              "$ref": "#/definitions/CreateDeploymentResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8sdeployment/delete_deployment": {
+      "post": {
+        "description": "deleteDeployment",
+        "tags": [
+          "k8sdeployment"
+        ],
+        "summary": "deleteDeployment",
+        "operationId": "DeleteDeployment",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/DeleteDeploymentReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "DeleteDeploymentResp",
+            "schema": {
+              "$ref": "#/definitions/DeleteDeploymentResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8sdeployment/get_deploy_num_per_np": {
+      "post": {
+        "description": "getDeployNumPerNp",
+        "tags": [
+          "k8sdeployment"
+        ],
+        "summary": "getDeployNumPerNp",
+        "operationId": "GetDeployNumPerNp",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/GetDeployNumPerNpReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GetDeployNumPerNpResp",
+            "schema": {
+              "$ref": "#/definitions/GetDeployNumPerNpResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8sdeployment/get_deployment_detail": {
+      "post": {
+        "description": "getDeploymentDetail",
+        "tags": [
+          "k8sdeployment"
+        ],
+        "summary": "getDeploymentDetail",
+        "operationId": "GetDeploymentDetail",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/GetDeploymentDetailReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GetDeploymentDetailResp",
+            "schema": {
+              "$ref": "#/definitions/GetDeploymentDetailResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8sdeployment/get_deployments": {
+      "post": {
+        "description": "getDeployments",
+        "tags": [
+          "k8sdeployment"
+        ],
+        "summary": "getDeployments",
+        "operationId": "GetDeployments",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/GetDeploymentsReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GetDeploymentsResp",
+            "schema": {
+              "$ref": "#/definitions/GetDeploymentsResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8sdeployment/restart_deployment": {
+      "post": {
+        "description": "restartDeployment",
+        "tags": [
+          "k8sdeployment"
+        ],
+        "summary": "restartDeployment",
+        "operationId": "RestartDeployment",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/RestartDeploymentReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "RestartDeploymentResp",
+            "schema": {
+              "$ref": "#/definitions/RestartDeploymentResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8sdeployment/scale_deployment": {
+      "post": {
+        "description": "scaleDeployment",
+        "tags": [
+          "k8sdeployment"
+        ],
+        "summary": "scaleDeployment",
+        "operationId": "ScaleDeployment",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/ScaleDeploymentReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ScaleDeploymentResp",
+            "schema": {
+              "$ref": "#/definitions/ScaleDeploymentResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8sdeployment/update_deployment": {
+      "post": {
+        "description": "updateDeployment",
+        "tags": [
+          "k8sdeployment"
+        ],
+        "summary": "updateDeployment",
+        "operationId": "UpdateDeployment",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/UpdateDeploymentReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "UpdateDeploymentResp",
+            "schema": {
+              "$ref": "#/definitions/UpdateDeploymentResp"
+            }
+          }
+        }
+      }
+    },
     "/k8snode/get_node_detail": {
       "post": {
         "description": "getNodeDetail",
@@ -1288,6 +1624,342 @@
             "description": "GetNodesResp",
             "schema": {
               "$ref": "#/definitions/GetNodesResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8spod/delete_pod": {
+      "post": {
+        "description": "deletePod",
+        "tags": [
+          "k8spod"
+        ],
+        "summary": "deletePod",
+        "operationId": "DeletePod",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/DeletePodReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "DeletePodResp",
+            "schema": {
+              "$ref": "#/definitions/DeletePodResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8spod/get_pod_container": {
+      "post": {
+        "description": "getPodContainer",
+        "tags": [
+          "k8spod"
+        ],
+        "summary": "getPodContainer",
+        "operationId": "GetPodContainer",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/GetPodContainerReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GetPodContainerResp",
+            "schema": {
+              "$ref": "#/definitions/GetPodContainerResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8spod/get_pod_detail": {
+      "post": {
+        "description": "getPodDetail",
+        "tags": [
+          "k8spod"
+        ],
+        "summary": "getPodDetail",
+        "operationId": "GetPodDetail",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/GetPodDetailReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GetPodDetailResp",
+            "schema": {
+              "$ref": "#/definitions/GetPodDetailResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8spod/get_pod_log": {
+      "post": {
+        "description": "getPodLog",
+        "tags": [
+          "k8spod"
+        ],
+        "summary": "getPodLog",
+        "operationId": "GetPodLog",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/GetPodLogReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GetPodLogResp",
+            "schema": {
+              "$ref": "#/definitions/GetPodLogResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8spod/get_pod_num_per_np": {
+      "post": {
+        "description": "getPodNumPerNp",
+        "tags": [
+          "k8spod"
+        ],
+        "summary": "getPodNumPerNp",
+        "operationId": "GetPodNumPerNp",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/GetPodNumPerNpReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GetPodNumPerNpResp",
+            "schema": {
+              "$ref": "#/definitions/GetPodNumPerNpResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8spod/get_pods": {
+      "post": {
+        "description": "getPods",
+        "tags": [
+          "k8spod"
+        ],
+        "summary": "getPods",
+        "operationId": "GetPods",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/GetPodsReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GetPodsResp",
+            "schema": {
+              "$ref": "#/definitions/GetPodsResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8spod/update_pod": {
+      "post": {
+        "description": "updatePod",
+        "tags": [
+          "k8spod"
+        ],
+        "summary": "updatePod",
+        "operationId": "UpdatePod",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/UpdatePodReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "UpdatePodResp",
+            "schema": {
+              "$ref": "#/definitions/UpdatePodResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8sservice/create_service": {
+      "post": {
+        "description": "createService",
+        "tags": [
+          "k8sservice"
+        ],
+        "summary": "createService",
+        "operationId": "CreateService",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/CreateServiceReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "CreateServiceResp",
+            "schema": {
+              "$ref": "#/definitions/CreateServiceResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8sservice/delete_service": {
+      "post": {
+        "description": "deleteService",
+        "tags": [
+          "k8sservice"
+        ],
+        "summary": "deleteService",
+        "operationId": "DeleteService",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/DeleteServiceReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "DeleteServiceResp",
+            "schema": {
+              "$ref": "#/definitions/DeleteServiceResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8sservice/get_service_detail": {
+      "post": {
+        "description": "getServiceDetail",
+        "tags": [
+          "k8sservice"
+        ],
+        "summary": "getServiceDetail",
+        "operationId": "GetServiceDetail",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/GetServiceDetailReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GetServiceDetailResp",
+            "schema": {
+              "$ref": "#/definitions/GetServiceDetailResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8sservice/get_services": {
+      "post": {
+        "description": "getServices",
+        "tags": [
+          "k8sservice"
+        ],
+        "summary": "getServices",
+        "operationId": "GetServices",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/GetServicesReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GetServicesResp",
+            "schema": {
+              "$ref": "#/definitions/GetServicesResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8sservice/update_service": {
+      "post": {
+        "description": "updateService",
+        "tags": [
+          "k8sservice"
+        ],
+        "summary": "updateService",
+        "operationId": "UpdateService",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/UpdateServiceReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "UpdateServiceResp",
+            "schema": {
+              "$ref": "#/definitions/UpdateServiceResp"
             }
           }
         }
@@ -3578,6 +4250,75 @@
       },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
+    "CreateDeploymentReq": {
+      "description": "CreateDeploymentReq",
+      "type": "object",
+      "properties": {
+        "containerPort": {
+          "description": "ContainerPort",
+          "type": "integer",
+          "format": "int32",
+          "x-go-name": "ContainerPort"
+        },
+        "cpu": {
+          "description": "Cpu",
+          "type": "string",
+          "x-go-name": "Cpu"
+        },
+        "healthCheck": {
+          "description": "HealthCheck",
+          "type": "boolean",
+          "x-go-name": "HealthCheck"
+        },
+        "healthPath": {
+          "description": "HealthPath",
+          "type": "string",
+          "x-go-name": "HealthPath"
+        },
+        "image": {
+          "description": "Image",
+          "type": "string",
+          "x-go-name": "Image"
+        },
+        "label": {
+          "$ref": "#/definitions/TypeNull"
+        },
+        "memory": {
+          "description": "Memory",
+          "type": "string",
+          "x-go-name": "Memory"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string",
+          "x-go-name": "Name"
+        },
+        "namespace": {
+          "description": "Namespace",
+          "type": "string",
+          "x-go-name": "Namespace"
+        },
+        "replicas": {
+          "description": "Replicas",
+          "type": "integer",
+          "format": "int32",
+          "x-go-name": "Replicas"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "CreateDeploymentResp": {
+      "description": "CreateDeploymentResp",
+      "type": "object",
+      "properties": {
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
     "CreateOrUpdateApiAuthorityReq": {
       "description": "Create or update api authorization information request | 创建或更新API授权信息",
       "type": "object",
@@ -3600,6 +4341,118 @@
           "format": "uint64",
           "maximum": 1000,
           "x-go-name": "RoleId"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "CreateServiceReq": {
+      "description": "CreateServiceReq",
+      "type": "object",
+      "properties": {
+        "containerPort": {
+          "description": "ContainerPort",
+          "type": "integer",
+          "format": "int32",
+          "x-go-name": "ContainerPort"
+        },
+        "label": {
+          "$ref": "#/definitions/TypeNull"
+        },
+        "name": {
+          "description": "Name",
+          "type": "string",
+          "x-go-name": "Name"
+        },
+        "namespace": {
+          "description": "Namespace",
+          "type": "string",
+          "x-go-name": "Namespace"
+        },
+        "nodePort": {
+          "description": "NodePort",
+          "type": "integer",
+          "format": "int32",
+          "x-go-name": "NodePort"
+        },
+        "port": {
+          "description": "Port",
+          "type": "integer",
+          "format": "int32",
+          "x-go-name": "Port"
+        },
+        "type": {
+          "description": "Type",
+          "type": "string",
+          "x-go-name": "Type"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "CreateServiceResp": {
+      "description": "CreateServiceResp",
+      "type": "object",
+      "properties": {
+        "msg": {
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "DeleteConfigMapReq": {
+      "description": "DeleteConfigMapReq",
+      "type": "object",
+      "properties": {
+        "configMapName": {
+          "description": "ConfigMapName",
+          "type": "string",
+          "x-go-name": "ConfigMapName"
+        },
+        "namespace": {
+          "description": "Namespace",
+          "type": "string",
+          "x-go-name": "Namespace"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "DeleteConfigMapResp": {
+      "description": "DeleteConfigMapResp",
+      "type": "object",
+      "properties": {
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "DeleteDeploymentReq": {
+      "description": "DeleteDeploymentReq",
+      "type": "object",
+      "properties": {
+        "deploymentName": {
+          "description": "DeploymentName",
+          "type": "string",
+          "x-go-name": "DeploymentName"
+        },
+        "namespace": {
+          "description": "Namespace",
+          "type": "string",
+          "x-go-name": "Namespace"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "DeleteDeploymentResp": {
+      "description": "DeleteDeploymentResp",
+      "type": "object",
+      "properties": {
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
         }
       },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
@@ -3627,6 +4480,63 @@
         },
         "msg": {
           "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "DeletePodReq": {
+      "description": "DeletePodReq",
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "description": "Namespace",
+          "type": "string",
+          "x-go-name": "Namespace"
+        },
+        "podName": {
+          "description": "PodName",
+          "type": "string",
+          "x-go-name": "PodName"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "DeletePodResp": {
+      "description": "DeletePodResp",
+      "type": "object",
+      "properties": {
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "DeleteServiceReq": {
+      "description": "DeleteServiceReq",
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "description": "Namespace",
+          "type": "string",
+          "x-go-name": "Namespace"
+        },
+        "serviceName": {
+          "description": "ServiceName",
+          "type": "string",
+          "x-go-name": "ServiceName"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "DeleteServiceResp": {
+      "description": "DeleteServiceResp",
+      "type": "object",
+      "properties": {
+        "msg": {
           "type": "string",
           "x-go-name": "Msg"
         }
@@ -4511,6 +5421,230 @@
       },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
+    "GetConfigMapDetailReq": {
+      "description": "GetConfigMapDetailReq",
+      "type": "object",
+      "properties": {
+        "configMapName": {
+          "description": "ConfigMapName",
+          "type": "string",
+          "x-go-name": "ConfigMapName"
+        },
+        "namespace": {
+          "description": "Namespace",
+          "type": "string",
+          "x-go-name": "Namespace"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetConfigMapDetailResp": {
+      "description": "GetConfigMapDetailResp",
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/TypeNull"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetConfigMapsData": {
+      "description": "GetConfigMapsRespData",
+      "type": "object",
+      "properties": {
+        "items": {
+          "$ref": "#/definitions/TypeNull"
+        },
+        "total": {
+          "description": "Total",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Total"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetConfigMapsReq": {
+      "description": "GetConfigMapsReq",
+      "type": "object",
+      "properties": {
+        "filterName": {
+          "description": "FilterName",
+          "type": "string",
+          "x-go-name": "FilterName"
+        },
+        "limit": {
+          "description": "Limit",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Limit"
+        },
+        "namespace": {
+          "description": "Namespace",
+          "type": "string",
+          "x-go-name": "Namespace"
+        },
+        "page": {
+          "description": "Page",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Page"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetConfigMapsResp": {
+      "description": "GetConfigMapsResp",
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/GetConfigMapsData"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetDeployNumPerNpData": {
+      "description": "DeploysNp",
+      "type": "object",
+      "properties": {
+        "deploymentNum": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "DeploymentNum"
+        },
+        "namespace": {
+          "type": "string",
+          "x-go-name": "Namespace"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetDeployNumPerNpReq": {
+      "description": "GetDeployNumPerNpReq",
+      "type": "object",
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetDeployNumPerNpResp": {
+      "description": "GetDeployNumPerNpResp",
+      "type": "object",
+      "properties": {
+        "data": {
+          "description": "Data",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GetDeployNumPerNpData"
+          },
+          "x-go-name": "Data"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetDeploymentDetailReq": {
+      "description": "GetDeploymentDetailReq",
+      "type": "object",
+      "properties": {
+        "deploymentName": {
+          "description": "DeploymentName",
+          "type": "string",
+          "x-go-name": "DeploymentName"
+        },
+        "namespace": {
+          "description": "Namespace",
+          "type": "string",
+          "x-go-name": "Namespace"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetDeploymentDetailResp": {
+      "description": "GetDeploymentDetailResp",
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/TypeNull"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetDeploymentsData": {
+      "description": "GetDeploymentsResp",
+      "type": "object",
+      "properties": {
+        "items": {
+          "$ref": "#/definitions/TypeNull"
+        },
+        "total": {
+          "description": "Total",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Total"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetDeploymentsReq": {
+      "description": "GetDeploymentsReq",
+      "type": "object",
+      "properties": {
+        "filterName": {
+          "description": "FilterName",
+          "type": "string",
+          "x-go-name": "FilterName"
+        },
+        "limit": {
+          "description": "Limit",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Limit"
+        },
+        "namespace": {
+          "description": "Namespace",
+          "type": "string",
+          "x-go-name": "Namespace"
+        },
+        "page": {
+          "description": "Page",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Page"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetDeploymentsResp": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/GetDeploymentsData"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
     "GetNamespaceDetailData": {
       "description": "GetNamespaceDetailData | 命名空间详细信息数据",
       "type": "object",
@@ -4657,6 +5791,306 @@
         },
         "msg": {
           "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetPodContainerReq": {
+      "description": "GetPodContainerReq",
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "description": "Namespace",
+          "type": "string",
+          "x-go-name": "Namespace"
+        },
+        "podName": {
+          "description": "PodName",
+          "type": "string",
+          "x-go-name": "PodName"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetPodContainerResp": {
+      "description": "GetPodContainerResp",
+      "type": "object",
+      "properties": {
+        "data": {
+          "description": "Data",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-go-name": "Data"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetPodDetailReq": {
+      "description": "GetPodDetailReq",
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "description": "Namespace",
+          "type": "string",
+          "x-go-name": "Namespace"
+        },
+        "podName": {
+          "description": "PodName",
+          "type": "string",
+          "x-go-name": "PodName"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetPodDetailResp": {
+      "description": "GetPodDetailResp",
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/TypeNull"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetPodLogReq": {
+      "description": "GetPodLogReq",
+      "type": "object",
+      "properties": {
+        "containerName": {
+          "description": "ContainerName",
+          "type": "string",
+          "x-go-name": "ContainerName"
+        },
+        "namespace": {
+          "description": "Namespace",
+          "type": "string",
+          "x-go-name": "Namespace"
+        },
+        "podName": {
+          "description": "PodName",
+          "type": "string",
+          "x-go-name": "PodName"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetPodLogResp": {
+      "description": "GetPodLogResp",
+      "type": "object",
+      "properties": {
+        "data": {
+          "description": "Data",
+          "type": "string",
+          "x-go-name": "Data"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetPodNumPerNpData": {
+      "description": "PodsNp",
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "type": "string",
+          "x-go-name": "Namespace"
+        },
+        "podNum": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "PodNum"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetPodNumPerNpReq": {
+      "description": "GetPodNumPerNpReq",
+      "type": "object",
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetPodNumPerNpResp": {
+      "description": "GetPodNumPerNpResp",
+      "type": "object",
+      "properties": {
+        "data": {
+          "description": "PodsNps",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GetPodNumPerNpData"
+          },
+          "x-go-name": "Data"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetPodsData": {
+      "description": "GetPodsRespData",
+      "type": "object",
+      "properties": {
+        "items": {
+          "$ref": "#/definitions/TypeNull"
+        },
+        "total": {
+          "description": "Total",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Total"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetPodsReq": {
+      "description": "GetPodsReq",
+      "type": "object",
+      "properties": {
+        "filterName": {
+          "description": "FilterName",
+          "type": "string",
+          "x-go-name": "FilterName"
+        },
+        "limit": {
+          "description": "Limit",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Limit"
+        },
+        "namespace": {
+          "description": "Namespace",
+          "type": "string",
+          "x-go-name": "Namespace"
+        },
+        "page": {
+          "description": "Page",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Page"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetPodsResp": {
+      "description": "GetPodsResp",
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/GetPodsData"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetServiceDetailReq": {
+      "description": "GetServiceDetailReq",
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "description": "Namespace",
+          "type": "string",
+          "x-go-name": "Namespace"
+        },
+        "serviceName": {
+          "description": "ServiceName",
+          "type": "string",
+          "x-go-name": "ServiceName"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetServiceDetailResp": {
+      "description": "GetServiceDetailResp",
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/TypeNull"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetServicesData": {
+      "description": "GetServicesData",
+      "type": "object",
+      "properties": {
+        "items": {
+          "$ref": "#/definitions/TypeNull"
+        },
+        "total": {
+          "description": "Total",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Total"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetServicesReq": {
+      "description": "GetServicesReq",
+      "type": "object",
+      "properties": {
+        "filterName": {
+          "description": "FilterName",
+          "type": "string",
+          "x-go-name": "FilterName"
+        },
+        "limit": {
+          "description": "Limit",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Limit"
+        },
+        "namespace": {
+          "description": "Namespace",
+          "type": "string",
+          "x-go-name": "Namespace"
+        },
+        "page": {
+          "description": "Page",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Page"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetServicesResp": {
+      "description": "GetServicesResp",
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/GetServicesData"
+        },
+        "msg": {
           "type": "string",
           "x-go-name": "Msg"
         }
@@ -5994,6 +7428,35 @@
       },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
+    "RestartDeploymentReq": {
+      "description": "RestartDeploymentReq",
+      "type": "object",
+      "properties": {
+        "deploymentName": {
+          "description": "DeploymentName",
+          "type": "string",
+          "x-go-name": "DeploymentName"
+        },
+        "namespace": {
+          "description": "Namespace",
+          "type": "string",
+          "x-go-name": "Namespace"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "RestartDeploymentResp": {
+      "description": "RestartDeploymentResp",
+      "type": "object",
+      "properties": {
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
     "RoleInfo": {
       "description": "The response data of role information | 角色信息",
       "type": "object",
@@ -6172,6 +7635,46 @@
         },
         "msg": {
           "description": "Message | 提示信息",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "ScaleDeploymentReq": {
+      "description": "ScaleDeploymentReq",
+      "type": "object",
+      "properties": {
+        "deploymentName": {
+          "description": "DeploymentName",
+          "type": "string",
+          "x-go-name": "DeploymentName"
+        },
+        "namespace": {
+          "description": "Namespace",
+          "type": "string",
+          "x-go-name": "Namespace"
+        },
+        "scaleNum": {
+          "description": "ScaleNum",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "ScaleNum"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "ScaleDeploymentResp": {
+      "description": "ScaleDeploymentResp",
+      "type": "object",
+      "properties": {
+        "data": {
+          "description": "Data",
+          "type": "string",
+          "x-go-name": "Data"
+        },
+        "msg": {
+          "description": "Msg",
           "type": "string",
           "x-go-name": "Msg"
         }
@@ -7028,6 +8531,10 @@
       },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
+    "TypeNull": {
+      "type": "object",
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
     "UUIDReq": {
       "description": "Basic UUID request | 基础UUID参数请求",
       "type": "object",
@@ -7058,6 +8565,121 @@
             "type": "string"
           },
           "x-go-name": "Ids"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "UpdateConfigMapReq": {
+      "description": "UpdateConfigMapReq",
+      "type": "object",
+      "properties": {
+        "content": {
+          "description": "Content",
+          "type": "string",
+          "x-go-name": "Content"
+        },
+        "namespace": {
+          "description": "Namespace",
+          "type": "string",
+          "x-go-name": "Namespace"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "UpdateConfigMapResp": {
+      "description": "UpdateConfigMapResp",
+      "type": "object",
+      "properties": {
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "UpdateDeploymentReq": {
+      "description": "UpdateDeploymentReq",
+      "type": "object",
+      "properties": {
+        "content": {
+          "description": "Content",
+          "type": "string",
+          "x-go-name": "Content"
+        },
+        "namespace": {
+          "description": "Namespace",
+          "type": "string",
+          "x-go-name": "Namespace"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "UpdateDeploymentResp": {
+      "description": "UpdateDeploymentResp",
+      "type": "object",
+      "properties": {
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "UpdatePodReq": {
+      "description": "UpdatePodReq",
+      "type": "object",
+      "properties": {
+        "content": {
+          "description": "Content",
+          "type": "string",
+          "x-go-name": "Content"
+        },
+        "namespace": {
+          "description": "Namespace",
+          "type": "string",
+          "x-go-name": "Namespace"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "UpdatePodResp": {
+      "description": "UpdatePodResp",
+      "type": "object",
+      "properties": {
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "UpdateServiceReq": {
+      "description": "UpdateServiceReq",
+      "type": "object",
+      "properties": {
+        "content": {
+          "description": "Content",
+          "type": "string",
+          "x-go-name": "Content"
+        },
+        "namespace": {
+          "description": "Namespace",
+          "type": "string",
+          "x-go-name": "Namespace"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "UpdateServiceResp": {
+      "description": "UpdateServiceResp",
+      "type": "object",
+      "properties": {
+        "msg": {
+          "type": "string",
+          "x-go-name": "Msg"
         }
       },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"

@@ -12,9 +12,12 @@ import (
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/department"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/dictionary"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/dictionarydetail"
-	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/k8sPod"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/k8sconfigmap"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/k8sdeployment"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/k8snamespace"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/k8snode"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/k8spod"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/k8sservice"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/menu"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/oauthprovider"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/position"
@@ -160,6 +163,66 @@ func (s *CoreServer) GetDictionaryDetailByDictionaryName(ctx context.Context, in
 	return l.GetDictionaryDetailByDictionaryName(in)
 }
 
+func (s *CoreServer) GetConfigMaps(ctx context.Context, in *core.GetConfigMapsReq) (*core.GetConfigMapsResp, error) {
+	l := k8sconfigmap.NewGetConfigMapsLogic(ctx, s.svcCtx)
+	return l.GetConfigMaps(in)
+}
+
+func (s *CoreServer) GetConfigMapDetail(ctx context.Context, in *core.GetConfigMapDetailReq) (*core.GetConfigMapDetailResp, error) {
+	l := k8sconfigmap.NewGetConfigMapDetailLogic(ctx, s.svcCtx)
+	return l.GetConfigMapDetail(in)
+}
+
+func (s *CoreServer) DeleteConfigMap(ctx context.Context, in *core.DeleteConfigMapReq) (*core.DeleteConfigMapResp, error) {
+	l := k8sconfigmap.NewDeleteConfigMapLogic(ctx, s.svcCtx)
+	return l.DeleteConfigMap(in)
+}
+
+func (s *CoreServer) UpdateConfigMap(ctx context.Context, in *core.UpdateConfigMapReq) (*core.UpdateConfigMapResp, error) {
+	l := k8sconfigmap.NewUpdateConfigMapLogic(ctx, s.svcCtx)
+	return l.UpdateConfigMap(in)
+}
+
+func (s *CoreServer) GetDeployments(ctx context.Context, in *core.GetDeploymentsReq) (*core.GetDeploymentsResp, error) {
+	l := k8sdeployment.NewGetDeploymentsLogic(ctx, s.svcCtx)
+	return l.GetDeployments(in)
+}
+
+func (s *CoreServer) GetDeploymentDetail(ctx context.Context, in *core.GetDeploymentDetailReq) (*core.GetDeploymentDetailResp, error) {
+	l := k8sdeployment.NewGetDeploymentDetailLogic(ctx, s.svcCtx)
+	return l.GetDeploymentDetail(in)
+}
+
+func (s *CoreServer) ScaleDeployment(ctx context.Context, in *core.ScaleDeploymentReq) (*core.ScaleDeploymentResp, error) {
+	l := k8sdeployment.NewScaleDeploymentLogic(ctx, s.svcCtx)
+	return l.ScaleDeployment(in)
+}
+
+func (s *CoreServer) CreateDeployment(ctx context.Context, in *core.CreateDeploymentReq) (*core.CreateDeploymentResp, error) {
+	l := k8sdeployment.NewCreateDeploymentLogic(ctx, s.svcCtx)
+	return l.CreateDeployment(in)
+}
+
+func (s *CoreServer) DeleteDeployment(ctx context.Context, in *core.DeleteDeploymentReq) (*core.DeleteDeploymentResp, error) {
+	l := k8sdeployment.NewDeleteDeploymentLogic(ctx, s.svcCtx)
+	return l.DeleteDeployment(in)
+}
+
+func (s *CoreServer) RestartDeployment(ctx context.Context, in *core.RestartDeploymentReq) (*core.RestartDeploymentResp, error) {
+	l := k8sdeployment.NewRestartDeploymentLogic(ctx, s.svcCtx)
+	return l.RestartDeployment(in)
+}
+
+func (s *CoreServer) UpdateDeployment(ctx context.Context, in *core.UpdateDeploymentReq) (*core.UpdateDeploymentResp, error) {
+	l := k8sdeployment.NewUpdateDeploymentLogic(ctx, s.svcCtx)
+	return l.UpdateDeployment(in)
+}
+
+func (s *CoreServer) GetDeployNumPerNp(ctx context.Context, in *core.GetDeployNumPerNpReq) (*core.GetDeployNumPerNpResp, error) {
+	l := k8sdeployment.NewGetDeployNumPerNpLogic(ctx, s.svcCtx)
+	return l.GetDeployNumPerNp(in)
+}
+
 func (s *CoreServer) GetNamespaces(ctx context.Context, in *core.GetNamespacesReq) (*core.GetNamespacesResp, error) {
 	l := k8snamespace.NewGetNamespacesLogic(ctx, s.svcCtx)
 	return l.GetNamespaces(in)
@@ -185,40 +248,64 @@ func (s *CoreServer) GetNodeDetail(ctx context.Context, in *core.GetNodeDetailRe
 	return l.GetNodeDetail(in)
 }
 
-// K8sPod management
 func (s *CoreServer) GetPods(ctx context.Context, in *core.GetPodsReq) (*core.GetPodsResp, error) {
-	l := k8sPod.NewGetPodsLogic(ctx, s.svcCtx)
+	l := k8spod.NewGetPodsLogic(ctx, s.svcCtx)
 	return l.GetPods(in)
 }
 
 func (s *CoreServer) GetPodDetail(ctx context.Context, in *core.GetPodDetailReq) (*core.GetPodDetailResp, error) {
-	l := k8sPod.NewGetPodDetailLogic(ctx, s.svcCtx)
+	l := k8spod.NewGetPodDetailLogic(ctx, s.svcCtx)
 	return l.GetPodDetail(in)
 }
 
 func (s *CoreServer) DeletePod(ctx context.Context, in *core.DeletePodReq) (*core.DeletePodResp, error) {
-	l := k8sPod.NewDeletePodLogic(ctx, s.svcCtx)
+	l := k8spod.NewDeletePodLogic(ctx, s.svcCtx)
 	return l.DeletePod(in)
 }
 
 func (s *CoreServer) UpdatePod(ctx context.Context, in *core.UpdatePodReq) (*core.UpdatePodResp, error) {
-	l := k8sPod.NewUpdatePodLogic(ctx, s.svcCtx)
+	l := k8spod.NewUpdatePodLogic(ctx, s.svcCtx)
 	return l.UpdatePod(in)
 }
 
 func (s *CoreServer) GetPodContainer(ctx context.Context, in *core.GetPodContainerReq) (*core.GetPodContainerResp, error) {
-	l := k8sPod.NewGetPodContainerLogic(ctx, s.svcCtx)
+	l := k8spod.NewGetPodContainerLogic(ctx, s.svcCtx)
 	return l.GetPodContainer(in)
 }
 
 func (s *CoreServer) GetPodLog(ctx context.Context, in *core.GetPodLogReq) (*core.GetPodLogResp, error) {
-	l := k8sPod.NewGetPodLogLogic(ctx, s.svcCtx)
+	l := k8spod.NewGetPodLogLogic(ctx, s.svcCtx)
 	return l.GetPodLog(in)
 }
 
 func (s *CoreServer) GetPodNumPerNp(ctx context.Context, in *core.GetPodNumPerNpReq) (*core.GetPodNumPerNpResp, error) {
-	l := k8sPod.NewGetPodNumPerNpLogic(ctx, s.svcCtx)
+	l := k8spod.NewGetPodNumPerNpLogic(ctx, s.svcCtx)
 	return l.GetPodNumPerNp(in)
+}
+
+func (s *CoreServer) GetServices(ctx context.Context, in *core.GetServicesReq) (*core.GetServicesResp, error) {
+	l := k8sservice.NewGetServicesLogic(ctx, s.svcCtx)
+	return l.GetServices(in)
+}
+
+func (s *CoreServer) GetServiceDetail(ctx context.Context, in *core.GetServiceDetailReq) (*core.GetServiceDetailResp, error) {
+	l := k8sservice.NewGetServiceDetailLogic(ctx, s.svcCtx)
+	return l.GetServiceDetail(in)
+}
+
+func (s *CoreServer) CreateService(ctx context.Context, in *core.CreateServiceReq) (*core.CreateServiceResp, error) {
+	l := k8sservice.NewCreateServiceLogic(ctx, s.svcCtx)
+	return l.CreateService(in)
+}
+
+func (s *CoreServer) DeleteService(ctx context.Context, in *core.DeleteServiceReq) (*core.DeleteServiceResp, error) {
+	l := k8sservice.NewDeleteServiceLogic(ctx, s.svcCtx)
+	return l.DeleteService(in)
+}
+
+func (s *CoreServer) UpdateService(ctx context.Context, in *core.UpdateServiceReq) (*core.UpdateServiceResp, error) {
+	l := k8sservice.NewUpdateServiceLogic(ctx, s.svcCtx)
+	return l.UpdateService(in)
 }
 
 func (s *CoreServer) CreateMenu(ctx context.Context, in *core.MenuInfo) (*core.BaseIDResp, error) {

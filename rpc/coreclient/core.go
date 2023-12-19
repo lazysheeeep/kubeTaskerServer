@@ -21,10 +21,20 @@ type (
 	BaseResp                 = core.BaseResp
 	BaseUUIDResp             = core.BaseUUIDResp
 	CallbackReq              = core.CallbackReq
+	CreateDeploymentReq      = core.CreateDeploymentReq
+	CreateDeploymentResp     = core.CreateDeploymentResp
+	CreateServiceReq         = core.CreateServiceReq
+	CreateServiceResp        = core.CreateServiceResp
+	DeleteConfigMapReq       = core.DeleteConfigMapReq
+	DeleteConfigMapResp      = core.DeleteConfigMapResp
+	DeleteDeploymentReq      = core.DeleteDeploymentReq
+	DeleteDeploymentResp     = core.DeleteDeploymentResp
 	DeleteNamespaceReq       = core.DeleteNamespaceReq
 	DeleteNamespaceResp      = core.DeleteNamespaceResp
 	DeletePodReq             = core.DeletePodReq
 	DeletePodResp            = core.DeletePodResp
+	DeleteServiceReq         = core.DeleteServiceReq
+	DeleteServiceResp        = core.DeleteServiceResp
 	DepartmentInfo           = core.DepartmentInfo
 	DepartmentListReq        = core.DepartmentListReq
 	DepartmentListResp       = core.DepartmentListResp
@@ -35,6 +45,19 @@ type (
 	DictionaryListReq        = core.DictionaryListReq
 	DictionaryListResp       = core.DictionaryListResp
 	Empty                    = core.Empty
+	GetConfigMapDetailReq    = core.GetConfigMapDetailReq
+	GetConfigMapDetailResp   = core.GetConfigMapDetailResp
+	GetConfigMapsData        = core.GetConfigMapsData
+	GetConfigMapsReq         = core.GetConfigMapsReq
+	GetConfigMapsResp        = core.GetConfigMapsResp
+	GetDeployNumPerNpData    = core.GetDeployNumPerNpData
+	GetDeployNumPerNpReq     = core.GetDeployNumPerNpReq
+	GetDeployNumPerNpResp    = core.GetDeployNumPerNpResp
+	GetDeploymentDetailReq   = core.GetDeploymentDetailReq
+	GetDeploymentDetailResp  = core.GetDeploymentDetailResp
+	GetDeploymentsData       = core.GetDeploymentsData
+	GetDeploymentsReq        = core.GetDeploymentsReq
+	GetDeploymentsResp       = core.GetDeploymentsResp
 	GetNamespaceDetailData   = core.GetNamespaceDetailData
 	GetNamespaceDetailReq    = core.GetNamespaceDetailReq
 	GetNamespaceDetailResp   = core.GetNamespaceDetailResp
@@ -53,10 +76,17 @@ type (
 	GetPodDetailResp         = core.GetPodDetailResp
 	GetPodLogReq             = core.GetPodLogReq
 	GetPodLogResp            = core.GetPodLogResp
+	GetPodNumPerNpData       = core.GetPodNumPerNpData
 	GetPodNumPerNpReq        = core.GetPodNumPerNpReq
 	GetPodNumPerNpResp       = core.GetPodNumPerNpResp
+	GetPodsData              = core.GetPodsData
 	GetPodsReq               = core.GetPodsReq
 	GetPodsResp              = core.GetPodsResp
+	GetServiceDetailReq      = core.GetServiceDetailReq
+	GetServiceDetailResp     = core.GetServiceDetailResp
+	GetServicesData          = core.GetServicesData
+	GetServicesReq           = core.GetServicesReq
+	GetServicesResp          = core.GetServicesResp
 	IDReq                    = core.IDReq
 	IDsReq                   = core.IDsReq
 	MenuInfo                 = core.MenuInfo
@@ -70,22 +100,31 @@ type (
 	OauthProviderListResp    = core.OauthProviderListResp
 	OauthRedirectResp        = core.OauthRedirectResp
 	PageInfoReq              = core.PageInfoReq
-	PodsNp                   = core.PodsNp
 	PositionInfo             = core.PositionInfo
 	PositionListReq          = core.PositionListReq
 	PositionListResp         = core.PositionListResp
+	RestartDeploymentReq     = core.RestartDeploymentReq
+	RestartDeploymentResp    = core.RestartDeploymentResp
 	RoleInfo                 = core.RoleInfo
 	RoleListReq              = core.RoleListReq
 	RoleListResp             = core.RoleListResp
 	RoleMenuAuthorityReq     = core.RoleMenuAuthorityReq
 	RoleMenuAuthorityResp    = core.RoleMenuAuthorityResp
+	ScaleDeploymentReq       = core.ScaleDeploymentReq
+	ScaleDeploymentResp      = core.ScaleDeploymentResp
 	TokenInfo                = core.TokenInfo
 	TokenListReq             = core.TokenListReq
 	TokenListResp            = core.TokenListResp
 	UUIDReq                  = core.UUIDReq
 	UUIDsReq                 = core.UUIDsReq
+	UpdateConfigMapReq       = core.UpdateConfigMapReq
+	UpdateConfigMapResp      = core.UpdateConfigMapResp
+	UpdateDeploymentReq      = core.UpdateDeploymentReq
+	UpdateDeploymentResp     = core.UpdateDeploymentResp
 	UpdatePodReq             = core.UpdatePodReq
 	UpdatePodResp            = core.UpdatePodResp
+	UpdateServiceReq         = core.UpdateServiceReq
+	UpdateServiceResp        = core.UpdateServiceResp
 	UserInfo                 = core.UserInfo
 	UserListReq              = core.UserListReq
 	UserListResp             = core.UserListResp
@@ -120,12 +159,23 @@ type (
 		GetDictionaryDetailById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*DictionaryDetailInfo, error)
 		DeleteDictionaryDetail(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error)
 		GetDictionaryDetailByDictionaryName(ctx context.Context, in *BaseMsg, opts ...grpc.CallOption) (*DictionaryDetailListResp, error)
+		GetConfigMaps(ctx context.Context, in *GetConfigMapsReq, opts ...grpc.CallOption) (*GetConfigMapsResp, error)
+		GetConfigMapDetail(ctx context.Context, in *GetConfigMapDetailReq, opts ...grpc.CallOption) (*GetConfigMapDetailResp, error)
+		DeleteConfigMap(ctx context.Context, in *DeleteConfigMapReq, opts ...grpc.CallOption) (*DeleteConfigMapResp, error)
+		UpdateConfigMap(ctx context.Context, in *UpdateConfigMapReq, opts ...grpc.CallOption) (*UpdateConfigMapResp, error)
+		GetDeployments(ctx context.Context, in *GetDeploymentsReq, opts ...grpc.CallOption) (*GetDeploymentsResp, error)
+		GetDeploymentDetail(ctx context.Context, in *GetDeploymentDetailReq, opts ...grpc.CallOption) (*GetDeploymentDetailResp, error)
+		ScaleDeployment(ctx context.Context, in *ScaleDeploymentReq, opts ...grpc.CallOption) (*ScaleDeploymentResp, error)
+		CreateDeployment(ctx context.Context, in *CreateDeploymentReq, opts ...grpc.CallOption) (*CreateDeploymentResp, error)
+		DeleteDeployment(ctx context.Context, in *DeleteDeploymentReq, opts ...grpc.CallOption) (*DeleteDeploymentResp, error)
+		RestartDeployment(ctx context.Context, in *RestartDeploymentReq, opts ...grpc.CallOption) (*RestartDeploymentResp, error)
+		UpdateDeployment(ctx context.Context, in *UpdateDeploymentReq, opts ...grpc.CallOption) (*UpdateDeploymentResp, error)
+		GetDeployNumPerNp(ctx context.Context, in *GetDeployNumPerNpReq, opts ...grpc.CallOption) (*GetDeployNumPerNpResp, error)
 		GetNamespaces(ctx context.Context, in *GetNamespacesReq, opts ...grpc.CallOption) (*GetNamespacesResp, error)
 		GetNamespaceDetail(ctx context.Context, in *GetNamespaceDetailReq, opts ...grpc.CallOption) (*GetNamespaceDetailResp, error)
 		DeleteNamespace(ctx context.Context, in *DeleteNamespaceReq, opts ...grpc.CallOption) (*DeleteNamespaceResp, error)
 		GetNodes(ctx context.Context, in *GetNodesReq, opts ...grpc.CallOption) (*GetNodesResp, error)
 		GetNodeDetail(ctx context.Context, in *GetNodeDetailReq, opts ...grpc.CallOption) (*GetNodeDetailResp, error)
-		// K8sPod management
 		GetPods(ctx context.Context, in *GetPodsReq, opts ...grpc.CallOption) (*GetPodsResp, error)
 		GetPodDetail(ctx context.Context, in *GetPodDetailReq, opts ...grpc.CallOption) (*GetPodDetailResp, error)
 		DeletePod(ctx context.Context, in *DeletePodReq, opts ...grpc.CallOption) (*DeletePodResp, error)
@@ -133,6 +183,11 @@ type (
 		GetPodContainer(ctx context.Context, in *GetPodContainerReq, opts ...grpc.CallOption) (*GetPodContainerResp, error)
 		GetPodLog(ctx context.Context, in *GetPodLogReq, opts ...grpc.CallOption) (*GetPodLogResp, error)
 		GetPodNumPerNp(ctx context.Context, in *GetPodNumPerNpReq, opts ...grpc.CallOption) (*GetPodNumPerNpResp, error)
+		GetServices(ctx context.Context, in *GetServicesReq, opts ...grpc.CallOption) (*GetServicesResp, error)
+		GetServiceDetail(ctx context.Context, in *GetServiceDetailReq, opts ...grpc.CallOption) (*GetServiceDetailResp, error)
+		CreateService(ctx context.Context, in *CreateServiceReq, opts ...grpc.CallOption) (*CreateServiceResp, error)
+		DeleteService(ctx context.Context, in *DeleteServiceReq, opts ...grpc.CallOption) (*DeleteServiceResp, error)
+		UpdateService(ctx context.Context, in *UpdateServiceReq, opts ...grpc.CallOption) (*UpdateServiceResp, error)
 		CreateMenu(ctx context.Context, in *MenuInfo, opts ...grpc.CallOption) (*BaseIDResp, error)
 		UpdateMenu(ctx context.Context, in *MenuInfo, opts ...grpc.CallOption) (*BaseResp, error)
 		DeleteMenu(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*BaseResp, error)
@@ -309,6 +364,66 @@ func (m *defaultCore) GetDictionaryDetailByDictionaryName(ctx context.Context, i
 	return client.GetDictionaryDetailByDictionaryName(ctx, in, opts...)
 }
 
+func (m *defaultCore) GetConfigMaps(ctx context.Context, in *GetConfigMapsReq, opts ...grpc.CallOption) (*GetConfigMapsResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetConfigMaps(ctx, in, opts...)
+}
+
+func (m *defaultCore) GetConfigMapDetail(ctx context.Context, in *GetConfigMapDetailReq, opts ...grpc.CallOption) (*GetConfigMapDetailResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetConfigMapDetail(ctx, in, opts...)
+}
+
+func (m *defaultCore) DeleteConfigMap(ctx context.Context, in *DeleteConfigMapReq, opts ...grpc.CallOption) (*DeleteConfigMapResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.DeleteConfigMap(ctx, in, opts...)
+}
+
+func (m *defaultCore) UpdateConfigMap(ctx context.Context, in *UpdateConfigMapReq, opts ...grpc.CallOption) (*UpdateConfigMapResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.UpdateConfigMap(ctx, in, opts...)
+}
+
+func (m *defaultCore) GetDeployments(ctx context.Context, in *GetDeploymentsReq, opts ...grpc.CallOption) (*GetDeploymentsResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetDeployments(ctx, in, opts...)
+}
+
+func (m *defaultCore) GetDeploymentDetail(ctx context.Context, in *GetDeploymentDetailReq, opts ...grpc.CallOption) (*GetDeploymentDetailResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetDeploymentDetail(ctx, in, opts...)
+}
+
+func (m *defaultCore) ScaleDeployment(ctx context.Context, in *ScaleDeploymentReq, opts ...grpc.CallOption) (*ScaleDeploymentResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.ScaleDeployment(ctx, in, opts...)
+}
+
+func (m *defaultCore) CreateDeployment(ctx context.Context, in *CreateDeploymentReq, opts ...grpc.CallOption) (*CreateDeploymentResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.CreateDeployment(ctx, in, opts...)
+}
+
+func (m *defaultCore) DeleteDeployment(ctx context.Context, in *DeleteDeploymentReq, opts ...grpc.CallOption) (*DeleteDeploymentResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.DeleteDeployment(ctx, in, opts...)
+}
+
+func (m *defaultCore) RestartDeployment(ctx context.Context, in *RestartDeploymentReq, opts ...grpc.CallOption) (*RestartDeploymentResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.RestartDeployment(ctx, in, opts...)
+}
+
+func (m *defaultCore) UpdateDeployment(ctx context.Context, in *UpdateDeploymentReq, opts ...grpc.CallOption) (*UpdateDeploymentResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.UpdateDeployment(ctx, in, opts...)
+}
+
+func (m *defaultCore) GetDeployNumPerNp(ctx context.Context, in *GetDeployNumPerNpReq, opts ...grpc.CallOption) (*GetDeployNumPerNpResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetDeployNumPerNp(ctx, in, opts...)
+}
+
 func (m *defaultCore) GetNamespaces(ctx context.Context, in *GetNamespacesReq, opts ...grpc.CallOption) (*GetNamespacesResp, error) {
 	client := core.NewCoreClient(m.cli.Conn())
 	return client.GetNamespaces(ctx, in, opts...)
@@ -334,7 +449,6 @@ func (m *defaultCore) GetNodeDetail(ctx context.Context, in *GetNodeDetailReq, o
 	return client.GetNodeDetail(ctx, in, opts...)
 }
 
-// K8sPod management
 func (m *defaultCore) GetPods(ctx context.Context, in *GetPodsReq, opts ...grpc.CallOption) (*GetPodsResp, error) {
 	client := core.NewCoreClient(m.cli.Conn())
 	return client.GetPods(ctx, in, opts...)
@@ -368,6 +482,31 @@ func (m *defaultCore) GetPodLog(ctx context.Context, in *GetPodLogReq, opts ...g
 func (m *defaultCore) GetPodNumPerNp(ctx context.Context, in *GetPodNumPerNpReq, opts ...grpc.CallOption) (*GetPodNumPerNpResp, error) {
 	client := core.NewCoreClient(m.cli.Conn())
 	return client.GetPodNumPerNp(ctx, in, opts...)
+}
+
+func (m *defaultCore) GetServices(ctx context.Context, in *GetServicesReq, opts ...grpc.CallOption) (*GetServicesResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetServices(ctx, in, opts...)
+}
+
+func (m *defaultCore) GetServiceDetail(ctx context.Context, in *GetServiceDetailReq, opts ...grpc.CallOption) (*GetServiceDetailResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetServiceDetail(ctx, in, opts...)
+}
+
+func (m *defaultCore) CreateService(ctx context.Context, in *CreateServiceReq, opts ...grpc.CallOption) (*CreateServiceResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.CreateService(ctx, in, opts...)
+}
+
+func (m *defaultCore) DeleteService(ctx context.Context, in *DeleteServiceReq, opts ...grpc.CallOption) (*DeleteServiceResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.DeleteService(ctx, in, opts...)
+}
+
+func (m *defaultCore) UpdateService(ctx context.Context, in *UpdateServiceReq, opts ...grpc.CallOption) (*UpdateServiceResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.UpdateService(ctx, in, opts...)
 }
 
 func (m *defaultCore) CreateMenu(ctx context.Context, in *MenuInfo, opts ...grpc.CallOption) (*BaseIDResp, error) {

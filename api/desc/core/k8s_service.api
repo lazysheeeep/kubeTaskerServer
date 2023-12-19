@@ -1,0 +1,113 @@
+import "../base.api"
+
+type (
+    // GetServicesReq
+    GetServicesReq {
+        // FilterName
+        FilterName  string `json:"filterName"`
+        // Namespace
+        Namespace  string `json:"namespace"`
+        // Limit
+        Limit  int64 `json:"limit"`
+        // Page
+        Page  int64 `json:"page"`
+    }
+    // GetServicesData
+    GetServicesData {
+        // Items
+        // []k8s.io.api.core.v1.Service
+        Items  TypeNull `json:"items,omitempty"`
+        // Total
+        Total  int64 `json:"total"`
+    }
+    // GetServicesResp
+    GetServicesResp {
+        Msg string `json:"msg"`
+        Data *GetServicesData `json:"data"`
+    }
+
+    // GetServiceDetailReq
+    GetServiceDetailReq {
+        // ServiceName
+        ServiceName  string `json:"serviceName"`
+        // Namespace
+        Namespace  string `json:"namespace"`
+    }
+    // GetServiceDetailResp
+    GetServiceDetailResp {
+        // Msg
+        Msg string `json:"msg"`
+        // Service
+        // k8s.io.api.core.v1.Service
+        Data  TypeNull `json:"data,omitempty"`
+    }
+
+    // CreateServiceReq
+    CreateServiceReq {
+        // Name
+        Name  string `json:"name"`
+        // Namespace
+        Namespace  string `json:"namespace"`
+        // Type
+        Type  string `json:"type"`
+        // ContainerPort
+        ContainerPort  int32 `json:"containerPort"`
+        // Port
+        Port  int32 `json:"port"`
+        // NodePort
+        NodePort  int32 `json:"nodePort"`
+        // Label
+        // map[string]string
+        Label  TypeNull `json:"label,omitempty"`
+    }
+    // CreateServiceResp
+    CreateServiceResp {
+        Msg string `json:"msg"`
+    }
+
+    // DeleteServiceReq
+    DeleteServiceReq {
+        // ServiceName
+        ServiceName  string `json:"serviceName"`
+        // Namespace
+        Namespace  string `json:"namespace"`
+    }
+    // DeleteServiceResp
+    DeleteServiceResp {
+        Msg string `json:"msg"`
+    }
+
+    // UpdateServiceReq
+    UpdateServiceReq {
+        // Namespace
+        Namespace  string `json:"namespace"`
+        // Content
+        Content  string `json:"content"`
+    }
+    // UpdateServiceResp
+    UpdateServiceResp {
+        Msg string `json:"msg"`
+    }
+)
+@server(
+    //jwt: Auth
+    group: k8sservice
+    //middleware: Authority
+)
+service Core {
+    // getServices | 获取service列表，支持过滤、排序、分页
+    @handler getServices
+    post /k8sservice/get_services (GetServicesReq) returns (GetServicesResp)
+    // getServiceDetail | 获取service详情
+    @handler getServiceDetail
+    post /k8sservice/get_service_detail (GetServiceDetailReq) returns (GetServiceDetailResp)
+    // createService | 创建service
+    @handler createService
+    post /k8sservice/create_service (CreateServiceReq) returns (CreateServiceResp)
+    // deleteService | 删除service
+    @handler deleteService
+    delete /k8sservice/delete_service (DeleteServiceReq) returns (DeleteServiceResp)
+    // updateService | 更新service
+    @handler updateService
+    put /k8sservice/update_service (UpdateServiceReq) returns (UpdateServiceResp)
+}

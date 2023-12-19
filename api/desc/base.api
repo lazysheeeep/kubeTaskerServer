@@ -8,6 +8,13 @@ info(
     version: "v1.0"
 )
 
+type (
+    TypeNull {
+
+    }
+)
+
+
 // The basic response with data | 基础带数据信息
 type BaseDataInfo {
     // Error code | 错误代码

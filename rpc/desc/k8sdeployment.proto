@@ -1,0 +1,115 @@
+syntax = "proto3";
+
+import "k8s.io/api@v0.28.4/apps/v1/generated.proto";
+
+// getDeployments
+message GetDeploymentsReq {
+  string filter_name = 1;
+  string namespace = 2;
+  int64 page = 3;
+  int64 limit = 4;
+}
+message GetDeploymentsData {
+  repeated k8s.io.api.apps.v1.Deployment items = 1;
+  int64 total = 2;
+}
+message GetDeploymentsResp {
+  string meg = 1;
+  GetDeploymentsData data = 2;
+}
+
+// getDeploymentDetail
+message GetDeploymentDetailReq {
+  string deployment_name = 1;
+  string namespace = 2;
+}
+message GetDeploymentDetailResp {
+  string msg = 1;
+  k8s.io.api.apps.v1.Deployment data = 2;
+}
+
+// scaleDeployment
+message ScaleDeploymentReq {
+  string deployment_name = 1;
+  string namespace = 2;
+  int64 scale_num = 3;
+}
+message ScaleDeploymentResp {
+  string msg = 1;
+  string data = 2;
+}
+
+// createDeployment
+message CreateDeploymentReq {
+  string name = 1;
+  string namespace = 2;
+  int32 replicas = 3;
+  string image = 4;
+  map<string,string> label = 5;
+  string cpu = 6;
+  string memory = 7;
+  int32 container_port = 8;
+  bool health_check = 9;
+  string health_path = 10;
+}
+message CreateDeploymentResp {
+  string msg = 1;
+}
+
+// deleteDeployment
+message DeleteDeploymentReq {
+  string deployment_name = 1;
+  string namespace = 2;
+}
+message DeleteDeploymentResp {
+  string msg = 1;
+}
+
+// restartDeployment
+message RestartDeploymentReq {
+  string deployment_name = 1;
+  string namespace = 2;
+}
+message RestartDeploymentResp {
+  string msg = 1;
+}
+
+// updateDeployment
+message UpdateDeploymentReq {
+  string namespace = 1;
+  string content = 2;
+}
+message UpdateDeploymentResp {
+  string msg = 1;
+}
+
+// getDeployNumPerNp
+message GetDeployNumPerNpReq {}
+message GetDeployNumPerNpData {
+  string namespace = 1;
+  int64 deployment_num = 2;
+}
+message GetDeployNumPerNpResp {
+  string msg = 1;
+  repeated GetDeployNumPerNpData data = 2;
+}
+
+// K8sDeployment management
+service Core {
+  // group: k8sdeployment
+  rpc getDeployments (GetDeploymentsReq) returns (GetDeploymentsResp);
+  // group: k8sdeployment
+  rpc getDeploymentDetail (GetDeploymentDetailReq) returns (GetDeploymentDetailResp);
+  // group: k8sdeployment
+  rpc scaleDeployment (ScaleDeploymentReq) returns (ScaleDeploymentResp);
+  // group: k8sdeployment
+  rpc createDeployment (CreateDeploymentReq) returns (CreateDeploymentResp);
+  // group: k8sdeployment
+  rpc deleteDeployment (DeleteDeploymentReq) returns (DeleteDeploymentResp);
+  // group: k8sdeployment
+  rpc restartDeployment (RestartDeploymentReq) returns (RestartDeploymentResp);
+  // group: k8sdeployment
+  rpc updateDeployment (UpdateDeploymentReq) returns (UpdateDeploymentResp);
+  // group: k8sdeployment
+  rpc getDeployNumPerNp (GetDeployNumPerNpReq) returns (GetDeployNumPerNpResp);
+}

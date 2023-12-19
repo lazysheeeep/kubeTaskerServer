@@ -13,8 +13,12 @@ import (
 	dictionarydetail "github.com/kubeTasker/kubeTaskerServer/api/internal/handler/dictionarydetail"
 	emaillog "github.com/kubeTasker/kubeTaskerServer/api/internal/handler/emaillog"
 	emailprovider "github.com/kubeTasker/kubeTaskerServer/api/internal/handler/emailprovider"
+	k8sconfigmap "github.com/kubeTasker/kubeTaskerServer/api/internal/handler/k8sconfigmap"
+	k8sdeployment "github.com/kubeTasker/kubeTaskerServer/api/internal/handler/k8sdeployment"
 	k8snamespace "github.com/kubeTasker/kubeTaskerServer/api/internal/handler/k8snamespace"
 	k8snode "github.com/kubeTasker/kubeTaskerServer/api/internal/handler/k8snode"
+	k8spod "github.com/kubeTasker/kubeTaskerServer/api/internal/handler/k8spod"
+	k8sservice "github.com/kubeTasker/kubeTaskerServer/api/internal/handler/k8sservice"
 	menu "github.com/kubeTasker/kubeTaskerServer/api/internal/handler/menu"
 	messagesender "github.com/kubeTasker/kubeTaskerServer/api/internal/handler/messagesender"
 	oauthprovider "github.com/kubeTasker/kubeTaskerServer/api/internal/handler/oauthprovider"
@@ -780,45 +784,177 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	)
 
 	server.AddRoutes(
-		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.Authority},
-			[]rest.Route{
-				{
-					Method:  http.MethodGet,
-					Path:    "/k8s_namespace/get_namespaces",
-					Handler: k8snamespace.GetNamespacesHandler(serverCtx),
-				},
-				{
-					Method:  http.MethodGet,
-					Path:    "/k8s_namespace/get_namespace_detail",
-					Handler: k8snamespace.GetNamespaceDetailHandler(serverCtx),
-				},
-				{
-					Method:  http.MethodDelete,
-					Path:    "/k8s_namespace/delete_namespace",
-					Handler: k8snamespace.DeleteNamespaceHandler(serverCtx),
-				},
-			}...,
-		),
-		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+		[]rest.Route{
+			{
+				Method:  http.MethodPost,
+				Path:    "/k8sconfigmap/get_config_maps",
+				Handler: k8sconfigmap.GetConfigMapsHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/k8sconfigmap/get_config_map_detail",
+				Handler: k8sconfigmap.GetConfigMapDetailHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodDelete,
+				Path:    "/k8sconfigmap/delete_config_map",
+				Handler: k8sconfigmap.DeleteConfigMapHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPut,
+				Path:    "/k8sconfigmap/update_config_map",
+				Handler: k8sconfigmap.UpdateConfigMapHandler(serverCtx),
+			},
+		},
 	)
 
 	server.AddRoutes(
-		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.Authority},
-			[]rest.Route{
-				{
-					Method:  http.MethodGet,
-					Path:    "/k8s_node/get_nodes",
-					Handler: k8snode.GetNodesHandler(serverCtx),
-				},
-				{
-					Method:  http.MethodGet,
-					Path:    "/k8s_node/get_node_detail",
-					Handler: k8snode.GetNodeDetailHandler(serverCtx),
-				},
-			}...,
-		),
-		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+		[]rest.Route{
+			{
+				Method:  http.MethodPost,
+				Path:    "/k8sdeployment/get_deployments",
+				Handler: k8sdeployment.GetDeploymentsHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/k8sdeployment/get_deployment_detail",
+				Handler: k8sdeployment.GetDeploymentDetailHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPut,
+				Path:    "/k8sdeployment/scale_deployment",
+				Handler: k8sdeployment.ScaleDeploymentHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/k8sdeployment/create_deployment",
+				Handler: k8sdeployment.CreateDeploymentHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodDelete,
+				Path:    "/k8sdeployment/delete_deployment",
+				Handler: k8sdeployment.DeleteDeploymentHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPut,
+				Path:    "/k8sdeployment/restart_deployment",
+				Handler: k8sdeployment.RestartDeploymentHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPut,
+				Path:    "/k8sdeployment/update_deployment",
+				Handler: k8sdeployment.UpdateDeploymentHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/k8sdeployment/get_deploy_num_per_np",
+				Handler: k8sdeployment.GetDeployNumPerNpHandler(serverCtx),
+			},
+		},
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodPost,
+				Path:    "/k8spod/get_pods",
+				Handler: k8spod.GetPodsHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/k8spod/get_pod_detail",
+				Handler: k8spod.GetPodDetailHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/k8spod/delete_pod",
+				Handler: k8spod.DeletePodHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPut,
+				Path:    "/k8spod/update_pod",
+				Handler: k8spod.UpdatePodHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodGet,
+				Path:    "/k8spod/get_pod_container",
+				Handler: k8spod.GetPodContainerHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodGet,
+				Path:    "/k8spod/get_pod_log",
+				Handler: k8spod.GetPodLogHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/k8spod/get_pod_num_per_np",
+				Handler: k8spod.GetPodNumPerNpHandler(serverCtx),
+			},
+		},
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodPost,
+				Path:    "/k8sservice/get_services",
+				Handler: k8sservice.GetServicesHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/k8sservice/get_service_detail",
+				Handler: k8sservice.GetServiceDetailHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/k8sservice/create_service",
+				Handler: k8sservice.CreateServiceHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodDelete,
+				Path:    "/k8sservice/delete_service",
+				Handler: k8sservice.DeleteServiceHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPut,
+				Path:    "/k8sservice/update_service",
+				Handler: k8sservice.UpdateServiceHandler(serverCtx),
+			},
+		},
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodGet,
+				Path:    "/k8s_namespace/get_namespaces",
+				Handler: k8snamespace.GetNamespacesHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodGet,
+				Path:    "/k8s_namespace/get_namespace_detail",
+				Handler: k8snamespace.GetNamespaceDetailHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodDelete,
+				Path:    "/k8s_namespace/delete_namespace",
+				Handler: k8snamespace.DeleteNamespaceHandler(serverCtx),
+			},
+		},
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodGet,
+				Path:    "/k8s_node/get_nodes",
+				Handler: k8snode.GetNodesHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodGet,
+				Path:    "/k8s_node/get_node_detail",
+				Handler: k8snode.GetNodeDetailHandler(serverCtx),
+			},
+		},
 	)
 }

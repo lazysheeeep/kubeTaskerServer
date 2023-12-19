@@ -1,0 +1,180 @@
+import "../base.api"
+
+type (
+    // GetDeploymentsReq
+    GetDeploymentsReq {
+        // FilterName
+        FilterName  string `json:"filterName"`
+        // Namespace
+        Namespace  string `json:"namespace"`
+        // Limit
+        Limit  int64 `json:"limit"`
+        // Page
+        Page  int64 `json:"page"`
+    }
+    // GetDeploymentsResp
+    GetDeploymentsData {
+        // Items
+        // []k8s.io.api.apps.v1.Deployment
+        Items  TypeNull `json:"items,omitempty"`
+        // Total
+        Total  int64 `json:"total"`
+    }
+    GetDeploymentsResp {
+        // Msg
+        Msg string `json:"msg"`
+        // Data
+        Data *GetDeploymentsData `json:"data,omitempty"`
+    }
+
+    // GetDeploymentDetailReq
+    GetDeploymentDetailReq {
+        // DeploymentName
+        DeploymentName  string `json:"deploymentName"`
+        // Namespace
+        Namespace  string `json:"namespace"`
+    }
+        // GetDeploymentDetailResp
+    GetDeploymentDetailResp {
+        // Msg
+        Msg string `json:"msg"`
+        // Data
+        // k8s.io.api.apps.v1.Deployment
+        Data TypeNull `json:"data,omitempty"`
+    }
+
+
+        // ScaleDeploymentReq
+    ScaleDeploymentReq {
+        // DeploymentName
+        DeploymentName  string `json:"deploymentName"`
+        // Namespace
+        Namespace  string `json:"namespace"`
+        // ScaleNum
+        ScaleNum  int64 `json:"scaleNum"`
+    }
+    // ScaleDeploymentResp
+    ScaleDeploymentResp {
+        // Msg
+        Msg string `json:"msg"`
+        // Data
+        Data string `json:"data"`
+    }
+
+
+    // CreateDeploymentReq
+    CreateDeploymentReq {
+        // Name
+        Name  string `json:"name"`
+        // Namespace
+        Namespace  string `json:"namespace"`
+        // Replicas
+        Replicas  int32 `json:"replicas"`
+        // Image
+        Image  string `json:"image"`
+        // Label
+        // map[string]string
+        Label  TypeNull `json:"label,omitempty"`
+        // Cpu
+        Cpu  string `json:"cpu"`
+        // Memory
+        Memory  string `json:"memory"`
+        // ContainerPort
+        ContainerPort  int32 `json:"containerPort"`
+        // HealthCheck
+        HealthCheck  bool `json:"healthCheck"`
+        // HealthPath
+        HealthPath  string `json:"healthPath"`
+    }
+    // CreateDeploymentResp
+    CreateDeploymentResp {
+        // Msg
+        Msg string `json:"msg"`
+    }
+
+    // DeleteDeploymentReq
+    DeleteDeploymentReq {
+    // DeploymentName
+        DeploymentName  string `json:"deploymentName"`
+    // Namespace
+        Namespace  string `json:"namespace"`
+    }
+    // DeleteDeploymentResp
+    DeleteDeploymentResp {
+        // Msg
+        Msg string `json:"msg"`
+    }
+
+    // RestartDeploymentReq
+    RestartDeploymentReq {
+        // DeploymentName
+        DeploymentName  string `json:"deploymentName"`
+        // Namespace
+        Namespace  string `json:"namespace"`
+    }
+    // RestartDeploymentResp
+    RestartDeploymentResp {
+        // Msg
+        Msg string `json:"msg"`
+    }
+
+    // UpdateDeploymentReq
+    UpdateDeploymentReq {
+        // Namespace
+        Namespace  string `json:"namespace"`
+        // Content
+        Content  string `json:"content"`
+    }
+    // UpdateDeploymentResp
+    UpdateDeploymentResp {
+        // Msg
+        Msg string `json:"msg"`
+    }
+
+        // GetDeployNumPerNpReq
+    GetDeployNumPerNpReq {}
+    // DeploysNp
+    GetDeployNumPerNpData {
+        Namespace string `json:"namespace"`
+        DeploymentNum int64 `json:"deploymentNum"`
+    }
+        // GetDeployNumPerNpResp
+    GetDeployNumPerNpResp {
+        // Msg
+        Msg string `json:"msg"`
+        // Data
+        Data []*GetDeployNumPerNpData `json:"data,omitempty"`
+    }
+
+)
+@server(
+    //jwt: Auth
+    group: k8sdeployment
+    //middleware: Authority
+)
+service Core {
+    // getDeployments | 获取deployment列表，支持过滤、排序、分页
+    @handler getDeployments
+    post /k8sdeployment/get_deployments (GetDeploymentsReq) returns (GetDeploymentsResp)
+    // getDeploymentDetail | 获取deployment详情
+    @handler getDeploymentDetail
+    post /k8sdeployment/get_deployment_detail (GetDeploymentDetailReq) returns (GetDeploymentDetailResp)
+    // scaleDeployment | 设置deployment副本数
+    @handler scaleDeployment
+    put /k8sdeployment/scale_deployment (ScaleDeploymentReq) returns (ScaleDeploymentResp)
+    // createDeployment | 创建deployment
+    @handler createDeployment
+    post /k8sdeployment/create_deployment (CreateDeploymentReq) returns (CreateDeploymentResp)
+    // deleteDeployment | 删除deployment
+    @handler deleteDeployment
+    delete /k8sdeployment/delete_deployment (DeleteDeploymentReq) returns (DeleteDeploymentResp)
+    // restartDeployment | 重启deployment
+    @handler restartDeployment
+    put /k8sdeployment/restart_deployment (RestartDeploymentReq) returns (RestartDeploymentResp)
+    // updateDeployment | 更新deployment
+    @handler updateDeployment
+    put /k8sdeployment/update_deployment (UpdateDeploymentReq) returns (UpdateDeploymentResp)
+    // getDeployNumPerNp | 获取每个namespace的pod数量
+    @handler getDeployNumPerNp
+    post /k8sdeployment/get_deploy_num_per_np (GetDeployNumPerNpReq) returns (GetDeployNumPerNpResp)
+}
