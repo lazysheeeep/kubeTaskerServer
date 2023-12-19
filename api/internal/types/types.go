@@ -1689,5 +1689,5 @@ type GetNodesResp struct {
 // GetNodesData | 节点list信息
 type GetNodesData struct {
 	Items []*v1.Node `json:"items"`
-	Total int64 `json:"total"`
+	Total int64      `json:"total"`
 }
