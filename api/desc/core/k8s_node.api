@@ -1,0 +1,66 @@
+type(
+    // GetNodeDetailReq | 获取节点详情信息请求
+    GetNodeDetailReq {
+        // NodeName
+        NodeName  string `json:"nodeName"`
+
+    }
+
+    // GetNodeDetailResp | 获取节点详情信息应答
+    GetNodeDetailResp {
+        // Msg
+        Msg  string `json:"msg"`
+
+        // Data
+        Data  GetNodeDetailData `json:"data"`
+
+    }
+
+    //GetNodeDetailData | 节点详情信息
+    GetNodeDetailData {
+    }
+
+    // GetNodesReq
+    GetNodesReq {
+        // FilterName
+        FilterName  string `json:"filterName"`
+
+        // Page
+        Page  int64 `json:"page"`
+
+        // Limit
+        Limit  int64 `json:"limit"`
+
+    }
+
+    // GetNodesResp
+    GetNodesResp {
+        // Msg
+        Msg  string `json:"msg"`
+
+        // Data
+        Data  GetNodesData `json:"data"`
+
+    }
+
+    //GetNodesData | 节点list信息
+    GetNodesData{
+    }
+
+)
+
+@server(
+    jwt: Auth
+    group: k8snode
+    middleware: Authority
+)
+
+service Core {
+    // getNodes
+    @handler getNodes
+    get /k8s_node/get_nodes (GetNodesReq) returns (GetNodesResp)
+
+    // getNodeDetail
+    @handler getNodeDetail
+    get /k8s_node/get_node_detail (GetNodeDetailReq) returns (GetNodeDetailResp)
+}

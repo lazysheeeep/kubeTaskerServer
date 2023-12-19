@@ -12,6 +12,9 @@ import (
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/department"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/dictionary"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/dictionarydetail"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/k8sPod"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/k8snamespace"
+	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/k8snode"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/menu"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/oauthprovider"
 	"github.com/kubeTasker/kubeTaskerServer/rpc/internal/logic/position"
@@ -155,6 +158,67 @@ func (s *CoreServer) DeleteDictionaryDetail(ctx context.Context, in *core.IDsReq
 func (s *CoreServer) GetDictionaryDetailByDictionaryName(ctx context.Context, in *core.BaseMsg) (*core.DictionaryDetailListResp, error) {
 	l := dictionarydetail.NewGetDictionaryDetailByDictionaryNameLogic(ctx, s.svcCtx)
 	return l.GetDictionaryDetailByDictionaryName(in)
+}
+
+func (s *CoreServer) GetNamespaces(ctx context.Context, in *core.GetNamespacesReq) (*core.GetNamespacesResp, error) {
+	l := k8snamespace.NewGetNamespacesLogic(ctx, s.svcCtx)
+	return l.GetNamespaces(in)
+}
+
+func (s *CoreServer) GetNamespaceDetail(ctx context.Context, in *core.GetNamespaceDetailReq) (*core.GetNamespaceDetailResp, error) {
+	l := k8snamespace.NewGetNamespaceDetailLogic(ctx, s.svcCtx)
+	return l.GetNamespaceDetail(in)
+}
+
+func (s *CoreServer) DeleteNamespace(ctx context.Context, in *core.DeleteNamespaceReq) (*core.DeleteNamespaceResp, error) {
+	l := k8snamespace.NewDeleteNamespaceLogic(ctx, s.svcCtx)
+	return l.DeleteNamespace(in)
+}
+
+func (s *CoreServer) GetNodes(ctx context.Context, in *core.GetNodesReq) (*core.GetNodesResp, error) {
+	l := k8snode.NewGetNodesLogic(ctx, s.svcCtx)
+	return l.GetNodes(in)
+}
+
+func (s *CoreServer) GetNodeDetail(ctx context.Context, in *core.GetNodeDetailReq) (*core.GetNodeDetailResp, error) {
+	l := k8snode.NewGetNodeDetailLogic(ctx, s.svcCtx)
+	return l.GetNodeDetail(in)
+}
+
+// K8sPod management
+func (s *CoreServer) GetPods(ctx context.Context, in *core.GetPodsReq) (*core.GetPodsResp, error) {
+	l := k8sPod.NewGetPodsLogic(ctx, s.svcCtx)
+	return l.GetPods(in)
+}
+
+func (s *CoreServer) GetPodDetail(ctx context.Context, in *core.GetPodDetailReq) (*core.GetPodDetailResp, error) {
+	l := k8sPod.NewGetPodDetailLogic(ctx, s.svcCtx)
+	return l.GetPodDetail(in)
+}
+
+func (s *CoreServer) DeletePod(ctx context.Context, in *core.DeletePodReq) (*core.DeletePodResp, error) {
+	l := k8sPod.NewDeletePodLogic(ctx, s.svcCtx)
+	return l.DeletePod(in)
+}
+
+func (s *CoreServer) UpdatePod(ctx context.Context, in *core.UpdatePodReq) (*core.UpdatePodResp, error) {
+	l := k8sPod.NewUpdatePodLogic(ctx, s.svcCtx)
+	return l.UpdatePod(in)
+}
+
+func (s *CoreServer) GetPodContainer(ctx context.Context, in *core.GetPodContainerReq) (*core.GetPodContainerResp, error) {
+	l := k8sPod.NewGetPodContainerLogic(ctx, s.svcCtx)
+	return l.GetPodContainer(in)
+}
+
+func (s *CoreServer) GetPodLog(ctx context.Context, in *core.GetPodLogReq) (*core.GetPodLogResp, error) {
+	l := k8sPod.NewGetPodLogLogic(ctx, s.svcCtx)
+	return l.GetPodLog(in)
+}
+
+func (s *CoreServer) GetPodNumPerNp(ctx context.Context, in *core.GetPodNumPerNpReq) (*core.GetPodNumPerNpResp, error) {
+	l := k8sPod.NewGetPodNumPerNpLogic(ctx, s.svcCtx)
+	return l.GetPodNumPerNp(in)
 }
 
 func (s *CoreServer) CreateMenu(ctx context.Context, in *core.MenuInfo) (*core.BaseIDResp, error) {

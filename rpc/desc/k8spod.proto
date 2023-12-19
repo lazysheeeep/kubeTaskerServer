@@ -1,0 +1,86 @@
+syntax="proto3";
+
+import "k8s.io/api@v0.28.3/core/v1/generated.proto";
+
+
+// getPods
+message GetPodsReq {
+  string filterName = 1;
+  string namespace = 2;
+  int32 limit = 3;
+  int32 page = 4;
+}
+message GetPodsResp {
+  int32 total = 1;
+  repeated k8s.io.api.core.v1.Pod items = 2;
+}
+
+// getPodDetail
+message GetPodDetailReq {
+  string podName = 1;
+  string namespace = 2;
+}
+message GetPodDetailResp {
+  k8s.io.api.core.v1.Pod pod = 1;
+}
+
+// deletePod
+message DeletePodReq {
+  string podName = 1;
+  string namespace = 2;
+}
+message DeletePodResp {}
+
+// updatePod
+message UpdatePodReq {
+  string namespace = 1;
+  string content = 2;
+}
+message UpdatePodResp {}
+
+// getPodContainer
+message GetPodContainerReq {
+  string podName = 1;
+  string namespace = 2;
+}
+message GetPodContainerResp {
+  repeated string containers = 1;
+}
+
+// getPodLog
+message GetPodLogReq {
+  string containerName = 1;
+  string podName = 2;
+  string namespace = 3;
+}
+message GetPodLogResp {
+  string log = 1;
+}
+
+// getPodNumPerNp
+message GetPodNumPerNpReq {}
+message PodsNp {
+  string namespace = 1;
+  int32 podNum = 2;
+}
+message GetPodNumPerNpResp {
+  repeated PodsNp podsNps = 1;
+}
+
+service Core {
+  // K8sPod management
+  // group: k8sPod
+  rpc getPods (GetPodsReq) returns (GetPodsResp);
+  // group: k8sPod
+  rpc getPodDetail (GetPodDetailReq) returns (GetPodDetailResp);
+  // group: k8sPod
+  rpc deletePod (DeletePodReq) returns (DeletePodResp);
+  // group: k8sPod
+  rpc updatePod (UpdatePodReq) returns (UpdatePodResp);
+  // group: k8sPod
+  rpc getPodContainer (GetPodContainerReq) returns (GetPodContainerResp);
+  // group: k8sPod
+  rpc getPodLog (GetPodLogReq) returns (GetPodLogResp);
+  // group: k8sPod
+  rpc getPodNumPerNp (GetPodNumPerNpReq) returns (GetPodNumPerNpResp);
+}

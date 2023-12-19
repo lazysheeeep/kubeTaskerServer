@@ -13,9 +13,6 @@
   "info": {
     "description": "This is simple admin api doc",
     "title": "Simple Admin",
-    "contact": {
-      "email": "yuansu.china.work@gmail.com"
-    },
     "version": "1.2.0"
   },
   "host": "localhost:9100",
@@ -1151,6 +1148,146 @@
             "description": "BaseMsgResp",
             "schema": {
               "$ref": "#/definitions/BaseMsgResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8s_namespace/delete_namespace": {
+      "post": {
+        "description": "deleteNamespace",
+        "tags": [
+          "k8snamespace"
+        ],
+        "summary": "deleteNamespace",
+        "operationId": "DeleteNamespace",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/DeleteNamespaceReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "DeleteNamespaceResp",
+            "schema": {
+              "$ref": "#/definitions/DeleteNamespaceResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8s_namespace/get_namespace_detail": {
+      "post": {
+        "description": "getNamespaceDetail",
+        "tags": [
+          "k8snamespace"
+        ],
+        "summary": "getNamespaceDetail",
+        "operationId": "GetNamespaceDetail",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/GetNamespaceDetailReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GetNamespaceDetailResp",
+            "schema": {
+              "$ref": "#/definitions/GetNamespaceDetailResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8s_namespace/get_namespaces": {
+      "post": {
+        "description": "getNamespaces",
+        "tags": [
+          "k8snamespace"
+        ],
+        "summary": "getNamespaces",
+        "operationId": "GetNamespaces",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/GetNamespacesReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GetNamespacesResp",
+            "schema": {
+              "$ref": "#/definitions/GetNamespacesResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8snode/get_node_detail": {
+      "post": {
+        "description": "getNodeDetail",
+        "tags": [
+          "k8snode"
+        ],
+        "summary": "getNodeDetail",
+        "operationId": "GetNodeDetail",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/GetNodeDetailReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GetNodeDetailResp",
+            "schema": {
+              "$ref": "#/definitions/GetNodeDetailResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8snode/get_nodes": {
+      "post": {
+        "description": "getNodes",
+        "tags": [
+          "k8snode"
+        ],
+        "summary": "getNodes",
+        "operationId": "GetNodes",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/GetNodesReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GetNodesResp",
+            "schema": {
+              "$ref": "#/definitions/GetNodesResp"
             }
           }
         }
@@ -3012,7 +3149,7 @@
           "x-go-name": "Path"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "ApiAuthorityListInfo": {
       "description": "The  data of api authorization list | API授权列表数据",
@@ -3033,7 +3170,7 @@
           "x-go-name": "Total"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "ApiAuthorityListResp": {
       "description": "The response data of api authorization list | API授权列表返回数据",
@@ -3057,7 +3194,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "ApiInfo": {
       "description": "The API information | API信息",
@@ -3119,7 +3256,7 @@
           "x-go-name": "UpdatedAt"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "ApiInfoResp": {
       "description": "API information response | API信息返回体",
@@ -3143,7 +3280,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "ApiListInfo": {
       "description": "API list data | API 列表数据",
@@ -3164,7 +3301,7 @@
           "x-go-name": "Total"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "ApiListReq": {
       "description": "Get API list request params | API列表请求参数",
@@ -3219,7 +3356,7 @@
           "x-go-name": "Path"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "ApiListResp": {
       "description": "The response data of API list | API列表数据",
@@ -3243,7 +3380,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "BaseDataInfo": {
       "description": "The basic response with data | 基础带数据信息",
@@ -3266,7 +3403,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "BaseIDInfo": {
       "description": "The base ID response data | 基础ID信息",
@@ -3291,7 +3428,7 @@
           "x-go-name": "UpdatedAt"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "BaseListInfo": {
       "description": "The basic response with data | 基础带数据信息",
@@ -3309,7 +3446,7 @@
           "x-go-name": "Total"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "BaseMsgResp": {
       "description": "The basic response without data | 基础不带数据信息",
@@ -3327,7 +3464,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "BaseUUIDInfo": {
       "description": "The base UUID response data | 基础UUID信息",
@@ -3351,7 +3488,7 @@
           "x-go-name": "UpdatedAt"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "CallbackResp": {
       "description": "The oauth callback response data | Oauth回调数据",
@@ -3377,7 +3514,7 @@
           "x-go-name": "UserId"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "CaptchaInfo": {
       "description": "The information of captcha | 验证码数据",
@@ -3392,7 +3529,7 @@
           "x-go-name": "ImgPath"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "CaptchaResp": {
       "description": "The response data of captcha | 验证码返回数据",
@@ -3416,7 +3553,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "ChangePasswordReq": {
       "description": "change user's password request | 修改密码请求参数",
@@ -3439,7 +3576,7 @@
           "x-go-name": "OldPassword"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "CreateOrUpdateApiAuthorityReq": {
       "description": "Create or update api authorization information request | 创建或更新API授权信息",
@@ -3465,7 +3602,36 @@
           "x-go-name": "RoleId"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "DeleteNamespaceReq": {
+      "description": "DeleteNamespaceReq | 删除命名空间请求",
+      "type": "object",
+      "properties": {
+        "namespaceName": {
+          "description": "NamespaceName",
+          "type": "string",
+          "x-go-name": "NamespaceName"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "DeleteNamespaceResp": {
+      "description": "DeleteNamespaceResp | 删除命名空间返回值",
+      "type": "object",
+      "properties": {
+        "data": {
+          "description": "Data",
+          "type": "string",
+          "x-go-name": "Data"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "DepartmentInfo": {
       "description": "The response data of department information | 部门信息",
@@ -3553,7 +3719,7 @@
           "x-go-name": "UpdatedAt"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "DepartmentInfoResp": {
       "description": "Department information response | 部门信息返回体",
@@ -3577,7 +3743,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "DepartmentListInfo": {
       "description": "Department list data | 部门列表数据",
@@ -3598,7 +3764,7 @@
           "x-go-name": "Total"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "DepartmentListReq": {
       "description": "Get department list request params | 部门列表请求参数",
@@ -3635,7 +3801,7 @@
           "x-go-name": "PageSize"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "DepartmentListResp": {
       "description": "The response data of department list | 部门列表数据",
@@ -3659,7 +3825,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "DictionaryDetailInfo": {
       "description": "The response data of dictionary detail information | 字典键值信息",
@@ -3722,7 +3888,7 @@
           "x-go-name": "Value"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "DictionaryDetailInfoResp": {
       "description": "DictionaryDetail information response | 字典键值信息返回体",
@@ -3746,7 +3912,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "DictionaryDetailListInfo": {
       "description": "DictionaryDetail list data | 字典键值列表数据",
@@ -3767,7 +3933,7 @@
           "x-go-name": "Total"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "DictionaryDetailListReq": {
       "description": "Get dictionary detail list request params | 字典键值列表请求参数",
@@ -3804,7 +3970,7 @@
           "x-go-name": "PageSize"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "DictionaryDetailListResp": {
       "description": "The response data of dictionary detail list | 字典键值列表数据",
@@ -3828,7 +3994,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "DictionaryInfo": {
       "description": "The response data of dictionary information | 字典信息",
@@ -3885,7 +4051,7 @@
           "x-go-name": "UpdatedAt"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "DictionaryInfoResp": {
       "description": "Dictionary information response | 字典信息返回体",
@@ -3909,7 +4075,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "DictionaryListInfo": {
       "description": "Dictionary list data | 字典列表数据",
@@ -3930,7 +4096,7 @@
           "x-go-name": "Total"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "DictionaryListReq": {
       "description": "Get dictionary list request params | 字典列表请求参数",
@@ -3961,7 +4127,7 @@
           "x-go-name": "PageSize"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "DictionaryListResp": {
       "description": "The response data of dictionary list | 字典列表数据",
@@ -3985,7 +4151,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "EmailCaptchaReq": {
       "description": "The email captcha request | 邮箱验证码请求参数",
@@ -3997,7 +4163,7 @@
           "x-go-name": "Email"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "EmailLogInfo": {
       "description": "The response data of email log information | 电子邮件日志信息",
@@ -4047,7 +4213,7 @@
           "x-go-name": "UpdatedAt"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "EmailLogInfoResp": {
       "description": "EmailLog information response | 电子邮件日志信息返回体",
@@ -4071,7 +4237,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "EmailLogListInfo": {
       "description": "EmailLog list data | 电子邮件日志列表数据",
@@ -4092,7 +4258,7 @@
           "x-go-name": "Total"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "EmailLogListReq": {
       "description": "Get email log list request params | 电子邮件日志列表请求参数",
@@ -4138,7 +4304,7 @@
           "x-go-name": "Target"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "EmailLogListResp": {
       "description": "The response data of email log list | 电子邮件日志列表数据",
@@ -4162,7 +4328,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "EmailProviderInfo": {
       "description": "The response data of email provider information | 邮箱服务配置信息",
@@ -4239,7 +4405,7 @@
           "x-go-name": "UpdatedAt"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "EmailProviderInfoResp": {
       "description": "EmailProvider information response | 邮箱服务配置信息返回体",
@@ -4263,7 +4429,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "EmailProviderListInfo": {
       "description": "EmailProvider list data | 邮箱服务配置列表数据",
@@ -4284,7 +4450,7 @@
           "x-go-name": "Total"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "EmailProviderListReq": {
       "description": "Get email provider list request params | 邮箱服务配置列表请求参数",
@@ -4319,7 +4485,7 @@
           "x-go-name": "PageSize"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "EmailProviderListResp": {
       "description": "The response data of email provider list | 邮箱服务配置列表数据",
@@ -4343,7 +4509,159 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetNamespaceDetailData": {
+      "description": "GetNamespaceDetailData | 命名空间详细信息数据",
+      "type": "object",
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetNamespaceDetailReq": {
+      "description": "GetNamespaceDetailReq | 获取命名空间详细信息请求",
+      "type": "object",
+      "properties": {
+        "namespaceName": {
+          "description": "NamespaceName",
+          "type": "string",
+          "x-go-name": "NamespaceName"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetNamespaceDetailResp": {
+      "description": "GetNamespaceDetailResp | 返回命名空间详细信息",
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/GetNamespaceDetailData"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetNamespacesData": {
+      "description": "GetNamespacesData | 获取命名空间list数据",
+      "type": "object",
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetNamespacesReq": {
+      "description": "GetNamespacesReq | 请求获取命名空间list",
+      "type": "object",
+      "properties": {
+        "filterName": {
+          "description": "FilterName",
+          "type": "string",
+          "x-go-name": "FilterName"
+        },
+        "limit": {
+          "description": "Limit",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Limit"
+        },
+        "page": {
+          "description": "Page",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Page"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetNamespacesResp": {
+      "description": "GetNamespacesResp | 获取命名空间返回",
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/GetNamespacesData"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetNodeDetailData": {
+      "description": "GetNodeDetailData | 节点详情信息",
+      "type": "object",
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetNodeDetailReq": {
+      "description": "GetNodeDetailReq | 获取节点详情信息请求",
+      "type": "object",
+      "properties": {
+        "nodeName": {
+          "description": "NodeName",
+          "type": "string",
+          "x-go-name": "NodeName"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetNodeDetailResp": {
+      "description": "GetNodeDetailResp | 获取节点详情信息应答",
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/GetNodeDetailData"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetNodesData": {
+      "description": "GetNodesData | 节点list信息",
+      "type": "object",
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetNodesReq": {
+      "description": "GetNodesReq",
+      "type": "object",
+      "properties": {
+        "filterName": {
+          "description": "FilterName",
+          "type": "string",
+          "x-go-name": "FilterName"
+        },
+        "limit": {
+          "description": "Limit",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Limit"
+        },
+        "page": {
+          "description": "Page",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Page"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetNodesResp": {
+      "description": "GetNodesResp",
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/GetNodesData"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "IDPathReq": {
       "description": "Basic ID request | 基础ID地址参数请求",
@@ -4358,7 +4676,7 @@
           "format": "uint64"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "IDReq": {
       "description": "Basic ID request | 基础ID参数请求",
@@ -4374,7 +4692,7 @@
           "x-go-name": "Id"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "IDsReq": {
       "description": "Basic IDs request | 基础ID数组参数请求",
@@ -4393,7 +4711,7 @@
           "x-go-name": "Ids"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "LoginByEmailReq": {
       "description": "Log in by email request | 邮箱登录参数",
@@ -4416,7 +4734,7 @@
           "x-go-name": "Email"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "LoginBySmsReq": {
       "description": "Log in by SMS request | 短信登录参数",
@@ -4439,7 +4757,7 @@
           "x-go-name": "PhoneNumber"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "LoginInfo": {
       "description": "The log in information | 登陆返回的数据信息",
@@ -4462,7 +4780,7 @@
           "x-go-name": "UserId"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "LoginReq": {
       "description": "Login request | 登录参数",
@@ -4502,7 +4820,7 @@
           "x-go-name": "Username"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "LoginResp": {
       "description": "The log in response data | 登录返回数据",
@@ -4526,7 +4844,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "MenuAuthorityInfoReq": {
       "description": "Create or update menu authorization information request params | 创建或更新菜单授权信息参数",
@@ -4553,7 +4871,7 @@
           "x-go-name": "RoleId"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "MenuAuthorityInfoResp": {
       "description": "Menu authorization response data | 菜单授权信息数据",
@@ -4577,7 +4895,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "MenuInfo": {
       "description": "The response data of menu information | 菜单信息",
@@ -4659,7 +4977,7 @@
           "x-go-name": "UpdatedAt"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "MenuInfoResp": {
       "description": "Menu information response | 菜单信息返回体",
@@ -4683,7 +5001,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "MenuListInfo": {
       "description": "Menu list data | Menu列表数据",
@@ -4704,7 +5022,7 @@
           "x-go-name": "Total"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "MenuListResp": {
       "description": "The response data of menu list | 菜单列表返回数据",
@@ -4728,7 +5046,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "MenuPlainInfo": {
       "description": "Menu information plain | 菜单信息无嵌套",
@@ -4877,7 +5195,7 @@
           "x-go-name": "UpdatedAt"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "MenuPlainInfoList": {
       "description": "Menu list data | 菜单列表数据",
@@ -4898,7 +5216,7 @@
           "x-go-name": "Total"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "MenuPlainInfoListResp": {
       "description": "Menu list data response | 菜单列表数据返回体",
@@ -4922,7 +5240,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "Meta": {
       "description": "The meta data of menu | 菜单的meta数据",
@@ -4992,7 +5310,7 @@
           "x-go-name": "Title"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "OauthLoginReq": {
       "description": "Oauth log in request | Oauth 登录请求",
@@ -5016,7 +5334,7 @@
           "x-go-name": "State"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "OauthProviderInfo": {
       "description": "The response data of oauth provider information | 第三方信息",
@@ -5096,7 +5414,7 @@
           "x-go-name": "UpdatedAt"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "OauthProviderInfoResp": {
       "description": "Oauth provider information response | 第三方信息返回体",
@@ -5120,7 +5438,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "OauthProviderListInfo": {
       "description": "OauthProvider list data | 第三方列表数据",
@@ -5141,7 +5459,7 @@
           "x-go-name": "Total"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "OauthProviderListReq": {
       "description": "Get oauth provider list request params | 第三方列表请求参数",
@@ -5172,7 +5490,7 @@
           "x-go-name": "PageSize"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "OauthProviderListResp": {
       "description": "The response data of oauth provider list | 第三方列表数据",
@@ -5196,7 +5514,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "PageInfo": {
       "description": "The page request parameters | 列表请求参数",
@@ -5221,7 +5539,7 @@
           "x-go-name": "PageSize"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "PermCodeResp": {
       "description": "The permission code for front end permission control | 权限码： 用于前端权限控制",
@@ -5247,7 +5565,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "PositionInfo": {
       "description": "The response data of position information | 职位信息",
@@ -5309,7 +5627,7 @@
           "x-go-name": "UpdatedAt"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "PositionInfoResp": {
       "description": "Position information response | 职位信息返回体",
@@ -5333,7 +5651,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "PositionListInfo": {
       "description": "Position list data | 职位列表数据",
@@ -5354,7 +5672,7 @@
           "x-go-name": "Total"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "PositionListReq": {
       "description": "Get position list request params | 职位列表请求参数",
@@ -5397,7 +5715,7 @@
           "x-go-name": "Remark"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "PositionListResp": {
       "description": "The response data of position list | 职位列表数据",
@@ -5421,7 +5739,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "ProfileInfo": {
       "description": "The profile information | 个人信息",
@@ -5452,7 +5770,7 @@
           "x-go-name": "Nickname"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "ProfileResp": {
       "description": "The profile response data | 个人信息返回数据",
@@ -5476,7 +5794,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "RedirectInfo": {
       "description": "Redirect information | 跳转网址",
@@ -5487,7 +5805,7 @@
           "type": "string"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "RedirectResp": {
       "description": "Redirect response | 跳转网址返回信息",
@@ -5511,7 +5829,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "RegisterByEmailReq": {
       "description": "Register by email request | 邮箱注册参数",
@@ -5550,7 +5868,7 @@
           "x-go-name": "Username"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "RegisterBySmsReq": {
       "description": "Register by SMS request | 短信注册参数",
@@ -5589,7 +5907,7 @@
           "x-go-name": "Username"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "RegisterReq": {
       "description": "register request | 注册参数",
@@ -5636,7 +5954,7 @@
           "x-go-name": "Username"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "ResetPasswordByEmailReq": {
       "description": "Reset password by email request | 通过邮箱重置密码请求",
@@ -5655,7 +5973,7 @@
           "x-go-name": "Password"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "ResetPasswordBySmsReq": {
       "description": "Reset password by SMS request | 通过短信重置密码请求",
@@ -5674,7 +5992,7 @@
           "x-go-name": "PhoneNumber"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "RoleInfo": {
       "description": "The response data of role information | 角色信息",
@@ -5742,7 +6060,7 @@
           "x-go-name": "UpdatedAt"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "RoleInfoResp": {
       "description": "Role information response | 角色信息返回体",
@@ -5766,7 +6084,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "RoleInfoSimple": {
       "description": "The simple role data | 简单的角色数据",
@@ -5783,7 +6101,7 @@
           "x-go-name": "Value"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "RoleListInfo": {
       "description": "Role list data | 角色列表数据",
@@ -5804,7 +6122,7 @@
           "x-go-name": "Total"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "RoleListReq": {
       "description": "Get role list request params | 角色列表请求参数",
@@ -5834,7 +6152,7 @@
           "x-go-name": "PageSize"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "RoleListResp": {
       "description": "The response data of role list | 角色列表数据",
@@ -5858,7 +6176,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "SendEmailReq": {
       "type": "object",
@@ -5884,7 +6202,7 @@
           "x-go-name": "Target"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "SendSmsReq": {
       "type": "object",
@@ -5920,7 +6238,7 @@
           "x-go-name": "TemplateId"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "SmsCaptchaReq": {
       "description": "The sms captcha request | 短信验证码请求参数",
@@ -5932,7 +6250,7 @@
           "x-go-name": "PhoneNumber"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "SmsLogInfo": {
       "description": "The response data of sms log information | 短信日志信息",
@@ -5977,7 +6295,7 @@
           "x-go-name": "UpdatedAt"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "SmsLogInfoResp": {
       "description": "SmsLog information response | 短信日志信息返回体",
@@ -6001,7 +6319,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "SmsLogListInfo": {
       "description": "SmsLog list data | 短信日志列表数据",
@@ -6022,7 +6340,7 @@
           "x-go-name": "Total"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "SmsLogListReq": {
       "description": "Get sms log list request params | 短信日志列表请求参数",
@@ -6068,7 +6386,7 @@
           "x-go-name": "SendStatus"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "SmsLogListResp": {
       "description": "The response data of sms log list | 短信日志列表数据",
@@ -6092,7 +6410,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "SmsProviderInfo": {
       "description": "The response data of sms provider information | 短信配置信息",
@@ -6142,7 +6460,7 @@
           "x-go-name": "UpdatedAt"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "SmsProviderInfoResp": {
       "description": "SmsProvider information response | 短信配置信息返回体",
@@ -6166,7 +6484,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "SmsProviderListInfo": {
       "description": "SmsProvider list data | 短信配置列表数据",
@@ -6187,7 +6505,7 @@
           "x-go-name": "Total"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "SmsProviderListReq": {
       "description": "Get sms provider list request params | 短信配置列表请求参数",
@@ -6217,7 +6535,7 @@
           "x-go-name": "PageSize"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "SmsProviderListResp": {
       "description": "The response data of sms provider list | 短信配置列表数据",
@@ -6241,7 +6559,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "TaskInfo": {
       "description": "The response data of task information | 定时任务信息",
@@ -6302,7 +6620,7 @@
           "x-go-name": "UpdatedAt"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "TaskInfoResp": {
       "description": "Task information response | 定时任务信息返回体",
@@ -6326,7 +6644,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "TaskListInfo": {
       "description": "Task list data | 定时任务列表数据",
@@ -6347,7 +6665,7 @@
           "x-go-name": "Total"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "TaskListReq": {
       "description": "Get task list request params | 定时任务列表请求参数",
@@ -6382,7 +6700,7 @@
           "x-go-name": "TaskGroup"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "TaskListResp": {
       "description": "The response data of task list | 定时任务列表数据",
@@ -6406,7 +6724,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "TaskLogInfo": {
       "description": "The response data of task log information | 任务日志信息",
@@ -6437,7 +6755,7 @@
           "x-go-name": "StartedAt"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "TaskLogInfoResp": {
       "description": "TaskLog information response | 任务日志信息返回体",
@@ -6461,7 +6779,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "TaskLogListInfo": {
       "description": "TaskLog list data | 任务日志列表数据",
@@ -6482,7 +6800,7 @@
           "x-go-name": "Total"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "TaskLogListReq": {
       "description": "Get task log list request params | 任务日志列表请求参数",
@@ -6519,7 +6837,7 @@
           "x-go-name": "TaskId"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "TaskLogListResp": {
       "description": "The response data of task log list | 任务日志列表数据",
@@ -6543,7 +6861,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "TokenInfo": {
       "description": "The response data of token information | Token信息",
@@ -6594,7 +6912,7 @@
           "x-go-name": "Uuid"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "TokenInfoResp": {
       "description": "Token information response | Token信息返回体",
@@ -6618,7 +6936,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "TokenListInfo": {
       "description": "Token list data | Token列表数据",
@@ -6639,7 +6957,7 @@
           "x-go-name": "Total"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "TokenListReq": {
       "description": "Get token list request params | Token列表请求参数",
@@ -6684,7 +7002,7 @@
           "x-go-name": "Uuid"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "TokenListResp": {
       "description": "The response data of token list | Token列表数据",
@@ -6708,7 +7026,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "UUIDReq": {
       "description": "Basic UUID request | 基础UUID参数请求",
@@ -6724,7 +7042,7 @@
           "x-go-name": "Id"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "UUIDsReq": {
       "description": "Basic UUID array request | 基础UUID数组参数请求",
@@ -6742,7 +7060,7 @@
           "x-go-name": "Ids"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "UserBaseIDInfo": {
       "description": "The  data of user's basic information | 用户基本信息",
@@ -6787,7 +7105,7 @@
           "x-go-name": "Username"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "UserBaseIDInfoResp": {
       "description": "The response data of user's basic information | 用户基本信息返回数据",
@@ -6811,7 +7129,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "UserInfo": {
       "description": "The response data of user information | 用户信息",
@@ -6914,7 +7232,7 @@
           "x-go-name": "Username"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "UserInfoResp": {
       "description": "User information response | 用户信息返回体",
@@ -6938,7 +7256,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "UserListInfo": {
       "description": "User list data | 用户列表数据",
@@ -6959,7 +7277,7 @@
           "x-go-name": "Total"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "UserListReq": {
       "description": "Get user list request params | 用户列表请求参数",
@@ -7029,7 +7347,7 @@
           "x-go-name": "Username"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
     "UserListResp": {
       "description": "The response data of user list | 用户列表数据",
@@ -7053,7 +7371,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/suyuan32/simple-admin-core/api/internal/types"
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     }
   },
   "securityDefinitions": {

@@ -21,6 +21,10 @@ type (
 	BaseResp                 = core.BaseResp
 	BaseUUIDResp             = core.BaseUUIDResp
 	CallbackReq              = core.CallbackReq
+	DeleteNamespaceReq       = core.DeleteNamespaceReq
+	DeleteNamespaceResp      = core.DeleteNamespaceResp
+	DeletePodReq             = core.DeletePodReq
+	DeletePodResp            = core.DeletePodResp
 	DepartmentInfo           = core.DepartmentInfo
 	DepartmentListReq        = core.DepartmentListReq
 	DepartmentListResp       = core.DepartmentListResp
@@ -31,6 +35,28 @@ type (
 	DictionaryListReq        = core.DictionaryListReq
 	DictionaryListResp       = core.DictionaryListResp
 	Empty                    = core.Empty
+	GetNamespaceDetailData   = core.GetNamespaceDetailData
+	GetNamespaceDetailReq    = core.GetNamespaceDetailReq
+	GetNamespaceDetailResp   = core.GetNamespaceDetailResp
+	GetNamespacesData        = core.GetNamespacesData
+	GetNamespacesReq         = core.GetNamespacesReq
+	GetNamespacesResp        = core.GetNamespacesResp
+	GetNodeDetailData        = core.GetNodeDetailData
+	GetNodeDetailReq         = core.GetNodeDetailReq
+	GetNodeDetailResp        = core.GetNodeDetailResp
+	GetNodesData             = core.GetNodesData
+	GetNodesReq              = core.GetNodesReq
+	GetNodesResp             = core.GetNodesResp
+	GetPodContainerReq       = core.GetPodContainerReq
+	GetPodContainerResp      = core.GetPodContainerResp
+	GetPodDetailReq          = core.GetPodDetailReq
+	GetPodDetailResp         = core.GetPodDetailResp
+	GetPodLogReq             = core.GetPodLogReq
+	GetPodLogResp            = core.GetPodLogResp
+	GetPodNumPerNpReq        = core.GetPodNumPerNpReq
+	GetPodNumPerNpResp       = core.GetPodNumPerNpResp
+	GetPodsReq               = core.GetPodsReq
+	GetPodsResp              = core.GetPodsResp
 	IDReq                    = core.IDReq
 	IDsReq                   = core.IDsReq
 	MenuInfo                 = core.MenuInfo
@@ -44,6 +70,7 @@ type (
 	OauthProviderListResp    = core.OauthProviderListResp
 	OauthRedirectResp        = core.OauthRedirectResp
 	PageInfoReq              = core.PageInfoReq
+	PodsNp                   = core.PodsNp
 	PositionInfo             = core.PositionInfo
 	PositionListReq          = core.PositionListReq
 	PositionListResp         = core.PositionListResp
@@ -57,6 +84,8 @@ type (
 	TokenListResp            = core.TokenListResp
 	UUIDReq                  = core.UUIDReq
 	UUIDsReq                 = core.UUIDsReq
+	UpdatePodReq             = core.UpdatePodReq
+	UpdatePodResp            = core.UpdatePodResp
 	UserInfo                 = core.UserInfo
 	UserListReq              = core.UserListReq
 	UserListResp             = core.UserListResp
@@ -91,6 +120,19 @@ type (
 		GetDictionaryDetailById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*DictionaryDetailInfo, error)
 		DeleteDictionaryDetail(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error)
 		GetDictionaryDetailByDictionaryName(ctx context.Context, in *BaseMsg, opts ...grpc.CallOption) (*DictionaryDetailListResp, error)
+		GetNamespaces(ctx context.Context, in *GetNamespacesReq, opts ...grpc.CallOption) (*GetNamespacesResp, error)
+		GetNamespaceDetail(ctx context.Context, in *GetNamespaceDetailReq, opts ...grpc.CallOption) (*GetNamespaceDetailResp, error)
+		DeleteNamespace(ctx context.Context, in *DeleteNamespaceReq, opts ...grpc.CallOption) (*DeleteNamespaceResp, error)
+		GetNodes(ctx context.Context, in *GetNodesReq, opts ...grpc.CallOption) (*GetNodesResp, error)
+		GetNodeDetail(ctx context.Context, in *GetNodeDetailReq, opts ...grpc.CallOption) (*GetNodeDetailResp, error)
+		// K8sPod management
+		GetPods(ctx context.Context, in *GetPodsReq, opts ...grpc.CallOption) (*GetPodsResp, error)
+		GetPodDetail(ctx context.Context, in *GetPodDetailReq, opts ...grpc.CallOption) (*GetPodDetailResp, error)
+		DeletePod(ctx context.Context, in *DeletePodReq, opts ...grpc.CallOption) (*DeletePodResp, error)
+		UpdatePod(ctx context.Context, in *UpdatePodReq, opts ...grpc.CallOption) (*UpdatePodResp, error)
+		GetPodContainer(ctx context.Context, in *GetPodContainerReq, opts ...grpc.CallOption) (*GetPodContainerResp, error)
+		GetPodLog(ctx context.Context, in *GetPodLogReq, opts ...grpc.CallOption) (*GetPodLogResp, error)
+		GetPodNumPerNp(ctx context.Context, in *GetPodNumPerNpReq, opts ...grpc.CallOption) (*GetPodNumPerNpResp, error)
 		CreateMenu(ctx context.Context, in *MenuInfo, opts ...grpc.CallOption) (*BaseIDResp, error)
 		UpdateMenu(ctx context.Context, in *MenuInfo, opts ...grpc.CallOption) (*BaseResp, error)
 		DeleteMenu(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*BaseResp, error)
@@ -265,6 +307,67 @@ func (m *defaultCore) DeleteDictionaryDetail(ctx context.Context, in *IDsReq, op
 func (m *defaultCore) GetDictionaryDetailByDictionaryName(ctx context.Context, in *BaseMsg, opts ...grpc.CallOption) (*DictionaryDetailListResp, error) {
 	client := core.NewCoreClient(m.cli.Conn())
 	return client.GetDictionaryDetailByDictionaryName(ctx, in, opts...)
+}
+
+func (m *defaultCore) GetNamespaces(ctx context.Context, in *GetNamespacesReq, opts ...grpc.CallOption) (*GetNamespacesResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetNamespaces(ctx, in, opts...)
+}
+
+func (m *defaultCore) GetNamespaceDetail(ctx context.Context, in *GetNamespaceDetailReq, opts ...grpc.CallOption) (*GetNamespaceDetailResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetNamespaceDetail(ctx, in, opts...)
+}
+
+func (m *defaultCore) DeleteNamespace(ctx context.Context, in *DeleteNamespaceReq, opts ...grpc.CallOption) (*DeleteNamespaceResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.DeleteNamespace(ctx, in, opts...)
+}
+
+func (m *defaultCore) GetNodes(ctx context.Context, in *GetNodesReq, opts ...grpc.CallOption) (*GetNodesResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetNodes(ctx, in, opts...)
+}
+
+func (m *defaultCore) GetNodeDetail(ctx context.Context, in *GetNodeDetailReq, opts ...grpc.CallOption) (*GetNodeDetailResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetNodeDetail(ctx, in, opts...)
+}
+
+// K8sPod management
+func (m *defaultCore) GetPods(ctx context.Context, in *GetPodsReq, opts ...grpc.CallOption) (*GetPodsResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetPods(ctx, in, opts...)
+}
+
+func (m *defaultCore) GetPodDetail(ctx context.Context, in *GetPodDetailReq, opts ...grpc.CallOption) (*GetPodDetailResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetPodDetail(ctx, in, opts...)
+}
+
+func (m *defaultCore) DeletePod(ctx context.Context, in *DeletePodReq, opts ...grpc.CallOption) (*DeletePodResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.DeletePod(ctx, in, opts...)
+}
+
+func (m *defaultCore) UpdatePod(ctx context.Context, in *UpdatePodReq, opts ...grpc.CallOption) (*UpdatePodResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.UpdatePod(ctx, in, opts...)
+}
+
+func (m *defaultCore) GetPodContainer(ctx context.Context, in *GetPodContainerReq, opts ...grpc.CallOption) (*GetPodContainerResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetPodContainer(ctx, in, opts...)
+}
+
+func (m *defaultCore) GetPodLog(ctx context.Context, in *GetPodLogReq, opts ...grpc.CallOption) (*GetPodLogResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetPodLog(ctx, in, opts...)
+}
+
+func (m *defaultCore) GetPodNumPerNp(ctx context.Context, in *GetPodNumPerNpReq, opts ...grpc.CallOption) (*GetPodNumPerNpResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetPodNumPerNp(ctx, in, opts...)
 }
 
 func (m *defaultCore) CreateMenu(ctx context.Context, in *MenuInfo, opts ...grpc.CallOption) (*BaseIDResp, error) {
