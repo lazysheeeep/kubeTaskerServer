@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+import "k8s.io/api@v0.28.4/core/v1/generated.proto";
+
+message GetNamespacesReq { //获取namespace列表
+  string filterName = 1;
+  int64 page = 2;
+  int64 limit = 3;
+}
+
+message GetNamespacesResp {
+  string msg = 1;
+  GetNamespacesData data = 2;
+}
+
+message GetNamespacesData {
+  repeated k8s.io.api.core.v1.Namespace items = 1;
+  int64 total = 2;
+}
+
+message GetNamespaceDetailReq { //获取namespace详情
+  string namespaceName = 1;
+}
+
+message GetNamespaceDetailResp {
+  string msg = 1;
+  GetNamespaceDetailData data = 2;
+}
+
+message GetNamespaceDetailData {
+  k8s.io.api.core.v1.Namespace namespace = 2;
+}
+
+message DeleteNamespaceReq {
+  string namespaceName = 1;
+}
+
+message DeleteNamespaceResp {
+  string msg = 1;
+  string data = 2;
+}
+
+service Core {
+  //group: k8snamespace
+  rpc getNamespaces (GetNamespacesReq) returns (GetNamespacesResp);
+  //group: k8snamespace
+  rpc getNamespaceDetail (GetNamespaceDetailReq) returns (GetNamespaceDetailResp);
+  //group: k8snamespace
+  rpc deleteNamespace (DeleteNamespaceReq) returns (DeleteNamespaceResp);
+}

@@ -212,7 +212,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: filebeat
-  # should be the namespace where filebeat is running
+  # should be the k8sNamespace where filebeat is running
   namespace: default
   labels:
     k8s-app: filebeat

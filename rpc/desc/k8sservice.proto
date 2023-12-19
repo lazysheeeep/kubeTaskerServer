@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+import "k8s.io/api@v0.28.4/core/v1/generated.proto";
+
+// getServices
+message GetServicesReq {
+  string filter_name = 1;
+  string namespace = 2;
+  int64 page = 3;
+  int64 limit = 4;
+}
+message GetServicesData {
+  repeated k8s.io.api.core.v1.Service items = 1;
+  int64 total = 2;
+}
+message GetServicesResp {
+  string msg = 1;
+  GetServicesData data = 2;
+}
+
+// getServiceDetail
+message GetServiceDetailReq {
+  string service_name = 1;
+  string namespace = 2;
+}
+message GetServiceDetailResp {
+  string msg = 1;
+  k8s.io.api.core.v1.Service data = 2;
+}
+
+// createService
+message CreateServiceReq {
+  string name = 1;
+  string namespace = 2;
+  string type = 3;
+  int32 container_port = 4;
+  int32 port = 5;
+  int32 node_port = 6;
+  map<string,string> label = 7;
+}
+message CreateServiceResp {
+  string msg = 1;
+}
+
+// deleteService
+message DeleteServiceReq {
+  string service_name = 1;
+  string namespace = 2;
+}
+message DeleteServiceResp {
+  string msg = 1;
+}
+
+// updateService
+message UpdateServiceReq {
+  string namespace = 1;
+  string content = 2;
+}
+message UpdateServiceResp {
+  string msg = 1;
+}
+
+// K8sService management
+service Core {
+  // group: k8sservice
+  rpc getServices (GetServicesReq) returns (GetServicesResp);
+  // group: k8sservice
+  rpc getServiceDetail (GetServiceDetailReq) returns (GetServiceDetailResp);
+  // group: k8sservice
+  rpc createService (CreateServiceReq) returns (CreateServiceResp);
+  // group: k8sservice
+  rpc deleteService (DeleteServiceReq) returns (DeleteServiceResp);
+  // group: k8sservice
+  rpc updateService (UpdateServiceReq) returns (UpdateServiceResp);
+}

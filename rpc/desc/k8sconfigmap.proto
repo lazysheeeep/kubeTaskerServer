@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+import "k8s.io/api@v0.28.4/core/v1/generated.proto";
+
+// getConfigMaps
+message GetConfigMapsReq {
+  string filter_name = 1;
+  string namespace = 2;
+  int64 Page = 3;
+  int64 limit = 4;
+}
+message GetConfigMapsData {
+  repeated k8s.io.api.core.v1.ConfigMap items = 1;
+  int64 total = 2;
+}
+message GetConfigMapsResp {
+  string msg = 1;
+  GetConfigMapsData data = 2;
+}
+
+// getConfigMapDetail
+message GetConfigMapDetailReq {
+  string config_map_name = 1;
+  string namespace = 2;
+}
+message GetConfigMapDetailResp {
+  string msg = 1;
+  k8s.io.api.core.v1.ConfigMap data = 2;
+}
+
+// deleteConfigMap
+message DeleteConfigMapReq {
+  string config_map_name = 1;
+  string namespace = 2;
+}
+message DeleteConfigMapResp {
+  string msg = 1;
+}
+
+// updateConfigMap
+message UpdateConfigMapReq {
+  string namespace = 1;
+  string content = 2;
+}
+message UpdateConfigMapResp {
+  string msg = 1;
+}
+
+// K8sConfigMap management
+service Core {
+  // group: k8sconfigmap
+  rpc getConfigMaps (GetConfigMapsReq) returns (GetConfigMapsResp);
+  // group: k8sconfigmap
+  rpc getConfigMapDetail (GetConfigMapDetailReq) returns (GetConfigMapDetailResp);
+  // group: k8sconfigmap
+  rpc deleteConfigMap (DeleteConfigMapReq) returns (DeleteConfigMapResp);
+  // group: k8sconfigmap
+  rpc updateConfigMap (UpdateConfigMapReq) returns (UpdateConfigMapResp);
+}
