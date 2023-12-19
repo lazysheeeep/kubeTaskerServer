@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-import "k8s.io/api@v0.28.3/core/v1/generated.proto";
+import "k8s.io/api@v0.28.4/core/v1/generated.proto";
 
 message GetNamespacesReq { //获取namespace列表
   string filterName = 1;

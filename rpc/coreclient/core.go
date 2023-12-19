@@ -45,6 +45,19 @@ type (
 	DictionaryListReq        = core.DictionaryListReq
 	DictionaryListResp       = core.DictionaryListResp
 	Empty                    = core.Empty
+	GetConfigMapDetailReq    = core.GetConfigMapDetailReq
+	GetConfigMapDetailResp   = core.GetConfigMapDetailResp
+	GetConfigMapsData        = core.GetConfigMapsData
+	GetConfigMapsReq         = core.GetConfigMapsReq
+	GetConfigMapsResp        = core.GetConfigMapsResp
+	GetDeployNumPerNpData    = core.GetDeployNumPerNpData
+	GetDeployNumPerNpReq     = core.GetDeployNumPerNpReq
+	GetDeployNumPerNpResp    = core.GetDeployNumPerNpResp
+	GetDeploymentDetailReq   = core.GetDeploymentDetailReq
+	GetDeploymentDetailResp  = core.GetDeploymentDetailResp
+	GetDeploymentsData       = core.GetDeploymentsData
+	GetDeploymentsReq        = core.GetDeploymentsReq
+	GetDeploymentsResp       = core.GetDeploymentsResp
 	GetNamespaceDetailData   = core.GetNamespaceDetailData
 	GetNamespaceDetailReq    = core.GetNamespaceDetailReq
 	GetNamespaceDetailResp   = core.GetNamespaceDetailResp
@@ -163,7 +176,6 @@ type (
 		DeleteNamespace(ctx context.Context, in *DeleteNamespaceReq, opts ...grpc.CallOption) (*DeleteNamespaceResp, error)
 		GetNodes(ctx context.Context, in *GetNodesReq, opts ...grpc.CallOption) (*GetNodesResp, error)
 		GetNodeDetail(ctx context.Context, in *GetNodeDetailReq, opts ...grpc.CallOption) (*GetNodeDetailResp, error)
-		// K8sPod management
 		GetPods(ctx context.Context, in *GetPodsReq, opts ...grpc.CallOption) (*GetPodsResp, error)
 		GetPodDetail(ctx context.Context, in *GetPodDetailReq, opts ...grpc.CallOption) (*GetPodDetailResp, error)
 		DeletePod(ctx context.Context, in *DeletePodReq, opts ...grpc.CallOption) (*DeletePodResp, error)
@@ -437,7 +449,6 @@ func (m *defaultCore) GetNodeDetail(ctx context.Context, in *GetNodeDetailReq, o
 	return client.GetNodeDetail(ctx, in, opts...)
 }
 
-// K8sPod management
 func (m *defaultCore) GetPods(ctx context.Context, in *GetPodsReq, opts ...grpc.CallOption) (*GetPodsResp, error) {
 	client := core.NewCoreClient(m.cli.Conn())
 	return client.GetPods(ctx, in, opts...)

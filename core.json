@@ -1153,6 +1153,90 @@
         }
       }
     },
+    "/k8s_namespace/delete_namespace": {
+      "post": {
+        "description": "deleteNamespace",
+        "tags": [
+          "k8snamespace"
+        ],
+        "summary": "deleteNamespace",
+        "operationId": "DeleteNamespace",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/DeleteNamespaceReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "DeleteNamespaceResp",
+            "schema": {
+              "$ref": "#/definitions/DeleteNamespaceResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8s_namespace/get_namespace_detail": {
+      "post": {
+        "description": "getNamespaceDetail",
+        "tags": [
+          "k8snamespace"
+        ],
+        "summary": "getNamespaceDetail",
+        "operationId": "GetNamespaceDetail",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/GetNamespaceDetailReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GetNamespaceDetailResp",
+            "schema": {
+              "$ref": "#/definitions/GetNamespaceDetailResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8s_namespace/get_namespaces": {
+      "post": {
+        "description": "getNamespaces",
+        "tags": [
+          "k8snamespace"
+        ],
+        "summary": "getNamespaces",
+        "operationId": "GetNamespaces",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/GetNamespacesReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GetNamespacesResp",
+            "schema": {
+              "$ref": "#/definitions/GetNamespacesResp"
+            }
+          }
+        }
+      }
+    },
     "/k8sconfigmap/delete_config_map": {
       "delete": {
         "description": "deleteConfigMap",
@@ -1484,6 +1568,62 @@
             "description": "UpdateDeploymentResp",
             "schema": {
               "$ref": "#/definitions/UpdateDeploymentResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8snode/get_node_detail": {
+      "post": {
+        "description": "getNodeDetail",
+        "tags": [
+          "k8snode"
+        ],
+        "summary": "getNodeDetail",
+        "operationId": "GetNodeDetail",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/GetNodeDetailReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GetNodeDetailResp",
+            "schema": {
+              "$ref": "#/definitions/GetNodeDetailResp"
+            }
+          }
+        }
+      }
+    },
+    "/k8snode/get_nodes": {
+      "post": {
+        "description": "getNodes",
+        "tags": [
+          "k8snode"
+        ],
+        "summary": "getNodes",
+        "operationId": "GetNodes",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/GetNodesReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GetNodesResp",
+            "schema": {
+              "$ref": "#/definitions/GetNodesResp"
             }
           }
         }
@@ -4317,6 +4457,35 @@
       },
       "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
     },
+    "DeleteNamespaceReq": {
+      "description": "DeleteNamespaceReq | 删除命名空间请求",
+      "type": "object",
+      "properties": {
+        "namespaceName": {
+          "description": "NamespaceName",
+          "type": "string",
+          "x-go-name": "NamespaceName"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "DeleteNamespaceResp": {
+      "description": "DeleteNamespaceResp | 删除命名空间返回值",
+      "type": "object",
+      "properties": {
+        "data": {
+          "description": "Data",
+          "type": "string",
+          "x-go-name": "Data"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
     "DeletePodReq": {
       "description": "DeletePodReq",
       "type": "object",
@@ -5467,6 +5636,158 @@
       "properties": {
         "data": {
           "$ref": "#/definitions/GetDeploymentsData"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetNamespaceDetailData": {
+      "description": "GetNamespaceDetailData | 命名空间详细信息数据",
+      "type": "object",
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetNamespaceDetailReq": {
+      "description": "GetNamespaceDetailReq | 获取命名空间详细信息请求",
+      "type": "object",
+      "properties": {
+        "namespaceName": {
+          "description": "NamespaceName",
+          "type": "string",
+          "x-go-name": "NamespaceName"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetNamespaceDetailResp": {
+      "description": "GetNamespaceDetailResp | 返回命名空间详细信息",
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/GetNamespaceDetailData"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetNamespacesData": {
+      "description": "GetNamespacesData | 获取命名空间list数据",
+      "type": "object",
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetNamespacesReq": {
+      "description": "GetNamespacesReq | 请求获取命名空间list",
+      "type": "object",
+      "properties": {
+        "filterName": {
+          "description": "FilterName",
+          "type": "string",
+          "x-go-name": "FilterName"
+        },
+        "limit": {
+          "description": "Limit",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Limit"
+        },
+        "page": {
+          "description": "Page",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Page"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetNamespacesResp": {
+      "description": "GetNamespacesResp | 获取命名空间返回",
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/GetNamespacesData"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetNodeDetailData": {
+      "description": "GetNodeDetailData | 节点详情信息",
+      "type": "object",
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetNodeDetailReq": {
+      "description": "GetNodeDetailReq | 获取节点详情信息请求",
+      "type": "object",
+      "properties": {
+        "nodeName": {
+          "description": "NodeName",
+          "type": "string",
+          "x-go-name": "NodeName"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetNodeDetailResp": {
+      "description": "GetNodeDetailResp | 获取节点详情信息应答",
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/GetNodeDetailData"
+        },
+        "msg": {
+          "description": "Msg",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetNodesData": {
+      "description": "GetNodesData | 节点list信息",
+      "type": "object",
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetNodesReq": {
+      "description": "GetNodesReq",
+      "type": "object",
+      "properties": {
+        "filterName": {
+          "description": "FilterName",
+          "type": "string",
+          "x-go-name": "FilterName"
+        },
+        "limit": {
+          "description": "Limit",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Limit"
+        },
+        "page": {
+          "description": "Page",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Page"
+        }
+      },
+      "x-go-package": "github.com/kubeTasker/kubeTaskerServer/api/internal/types"
+    },
+    "GetNodesResp": {
+      "description": "GetNodesResp",
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/GetNodesData"
         },
         "msg": {
           "description": "Msg",
