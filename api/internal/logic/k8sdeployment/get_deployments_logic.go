@@ -26,24 +26,27 @@ func NewGetDeploymentsLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Ge
 
 func (l *GetDeploymentsLogic) GetDeployments(req *types.GetDeploymentsReq) (resp *types.GetDeploymentsResp, err error) {
 	// todo: add your logic here and delete this line
-	result, err := l.svcCtx.CoreRpc.GetDeployments(l.ctx, &core.GetDeploymentsReq{
+	result, _ := l.svcCtx.CoreRpc.GetDeployments(l.ctx, &core.GetDeploymentsReq{
 		FilterName: req.FilterName,
 		Namespace:  req.Namespace,
 		Limit:      req.Limit,
 		Page:       req.Page,
 	})
-	if err != nil {
-		return nil, err
+	if result.Data == nil {
+		return &types.GetDeploymentsResp{
+			Msg:  result.Meg,
+			Data: nil,
+		}, nil
 	}
 	items := make([]*v1.Deployment, 0)
-	for _, v := range resp.Data.Items {
+	for _, v := range result.Data.Items {
 		items = append(items, v)
 	}
 	return &types.GetDeploymentsResp{
 		Msg: result.Meg,
-		Data: types.GetDeploymentsData{
+		Data: &types.GetDeploymentsData{
 			Items: items,
 			Total: result.Data.Total,
 		},
-	}, err
+	}, nil
 }

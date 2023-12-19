@@ -24,6 +24,6 @@ func NewCreateDeploymentLogic(ctx context.Context, svcCtx *svc.ServiceContext) *
 // 创建deployment,接收DeployCreate对象
 func (l *CreateDeploymentLogic) CreateDeployment(in *core.CreateDeploymentReq) (*core.CreateDeploymentResp, error) {
 	deployment := &Deployment{}
-	resp, err := deployment.CreateDeployment(l, in)
-	return resp, err
+	resp, _ := deployment.CreateDeployment(l, in)
+	return resp, nil
 }

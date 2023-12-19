@@ -25,6 +25,6 @@ func NewUpdateConfigMapLogic(ctx context.Context, svcCtx *svc.ServiceContext) *U
 func (l *UpdateConfigMapLogic) UpdateConfigMap(in *core.UpdateConfigMapReq) (*core.UpdateConfigMapResp, error) {
 	// todo: add your logic here and delete this line
 	configMap := &ConfigMap{}
-	resp, err := configMap.UpdateConfigMap(l, in)
-	return resp, err
+	resp, _ := configMap.UpdateConfigMap(l, in)
+	return resp, nil
 }

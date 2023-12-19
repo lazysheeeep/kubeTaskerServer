@@ -819,7 +819,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: k8sdeployment.GetDeploymentDetailHandler(serverCtx),
 			},
 			{
-				Method:  http.MethodPost,
+				Method:  http.MethodPut,
 				Path:    "/k8sdeployment/scale_deployment",
 				Handler: k8sdeployment.ScaleDeploymentHandler(serverCtx),
 			},
@@ -829,17 +829,17 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: k8sdeployment.CreateDeploymentHandler(serverCtx),
 			},
 			{
-				Method:  http.MethodPost,
+				Method:  http.MethodDelete,
 				Path:    "/k8sdeployment/delete_deployment",
 				Handler: k8sdeployment.DeleteDeploymentHandler(serverCtx),
 			},
 			{
-				Method:  http.MethodPost,
+				Method:  http.MethodPut,
 				Path:    "/k8sdeployment/restart_deployment",
 				Handler: k8sdeployment.RestartDeploymentHandler(serverCtx),
 			},
 			{
-				Method:  http.MethodPost,
+				Method:  http.MethodPut,
 				Path:    "/k8sdeployment/update_deployment",
 				Handler: k8sdeployment.UpdateDeploymentHandler(serverCtx),
 			},
@@ -869,17 +869,17 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: k8spod.DeletePodHandler(serverCtx),
 			},
 			{
-				Method:  http.MethodPost,
+				Method:  http.MethodPut,
 				Path:    "/k8spod/update_pod",
 				Handler: k8spod.UpdatePodHandler(serverCtx),
 			},
 			{
-				Method:  http.MethodPost,
+				Method:  http.MethodGet,
 				Path:    "/k8spod/get_pod_container",
 				Handler: k8spod.GetPodContainerHandler(serverCtx),
 			},
 			{
-				Method:  http.MethodPost,
+				Method:  http.MethodGet,
 				Path:    "/k8spod/get_pod_log",
 				Handler: k8spod.GetPodLogHandler(serverCtx),
 			},
@@ -909,12 +909,12 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: k8sservice.CreateServiceHandler(serverCtx),
 			},
 			{
-				Method:  http.MethodPost,
+				Method:  http.MethodDelete,
 				Path:    "/k8sservice/delete_service",
 				Handler: k8sservice.DeleteServiceHandler(serverCtx),
 			},
 			{
-				Method:  http.MethodPost,
+				Method:  http.MethodPut,
 				Path:    "/k8sservice/update_service",
 				Handler: k8sservice.UpdateServiceHandler(serverCtx),
 			},

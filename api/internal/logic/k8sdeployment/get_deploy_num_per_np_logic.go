@@ -32,9 +32,9 @@ func (l *GetDeployNumPerNpLogic) GetDeployNumPerNp(req *types.GetDeployNumPerNpR
 			Data: nil,
 		}, err
 	}
-	getDeployNumPerNpData := make([]types.GetDeployNumPerNpData, 0)
+	getDeployNumPerNpData := make([]*types.GetDeployNumPerNpData, 0)
 	for _, v := range result.Data {
-		getDeployNumPerNpData = append(getDeployNumPerNpData, types.GetDeployNumPerNpData{
+		getDeployNumPerNpData = append(getDeployNumPerNpData, &types.GetDeployNumPerNpData{
 			Namespace:     v.Namespace,
 			DeploymentNum: v.DeploymentNum,
 		})

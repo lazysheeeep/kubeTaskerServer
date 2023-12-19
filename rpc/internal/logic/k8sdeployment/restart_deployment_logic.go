@@ -26,6 +26,6 @@ func NewRestartDeploymentLogic(ctx context.Context, svcCtx *svc.ServiceContext) 
 func (l *RestartDeploymentLogic) RestartDeployment(in *core.RestartDeploymentReq) (*core.RestartDeploymentResp, error) {
 	// todo: add your logic here and delete this line
 	deployment := &Deployment{}
-	resp, err := deployment.RestartDeployment(l, in)
-	return resp, err
+	resp, _ := deployment.RestartDeployment(l, in)
+	return resp, nil
 }

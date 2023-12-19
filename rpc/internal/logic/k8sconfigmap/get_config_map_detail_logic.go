@@ -25,6 +25,6 @@ func NewGetConfigMapDetailLogic(ctx context.Context, svcCtx *svc.ServiceContext)
 func (l *GetConfigMapDetailLogic) GetConfigMapDetail(in *core.GetConfigMapDetailReq) (*core.GetConfigMapDetailResp, error) {
 	// todo: add your logic here and delete this line
 	configMap := &ConfigMap{}
-	resp, err := configMap.GetConfigMapDetail(l, in)
-	return resp, err
+	resp, _ := configMap.GetConfigMapDetail(l, in)
+	return resp, nil
 }

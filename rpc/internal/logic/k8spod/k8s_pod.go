@@ -45,8 +45,8 @@ func (p *Pod) GetPods(l *GetPodsLogic, in *core.GetPodsReq) (getPodsResp *core.G
 	// 将DataCell类型转成Pod
 	pods := p.fromCells(data.GenericDataList)
 	items := make([]*v1.Pod, 0)
-	for _, value := range pods {
-		items = append(items, &value)
+	for i := range pods {
+		items = append(items, &pods[i])
 	}
 	return &core.GetPodsResp{
 		Msg: "获取Pod列表成功",
@@ -207,17 +207,17 @@ func (p *Pod) GetPodNumPerNp(l *GetPodNumPerNpLogic, in *core.GetPodNumPerNpReq)
 // 类型转换方法corev1.Pod --> DataCell,DataCell-->corev1.Pod
 func (p *Pod) toCells(pods []v1.Pod) []DataCell {
 	cells := make([]DataCell, 0)
-	for i := range pods {
-		cells[i] = podCell(pods[i])
+	for _, v := range pods {
+		cells = append(cells, podCell(v))
 	}
 	return cells
 }
 
 func (p *Pod) fromCells(cells []DataCell) []v1.Pod {
 	pods := make([]v1.Pod, 0)
-	for i := range cells {
+	for _, v := range cells {
 		// cells[i].(podCell)是将DataCell类型转换成podCell
-		pods[i] = v1.Pod(cells[i].(podCell))
+		pods = append(pods, v1.Pod(v.(podCell)))
 	}
 	return pods
 }

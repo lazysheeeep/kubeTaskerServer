@@ -40,7 +40,7 @@ func (l *GetPodsLogic) GetPods(req *types.GetPodsReq) (resp *types.GetPodsResp, 
 	}
 	return &types.GetPodsResp{
 		Msg: result.Msg,
-		Data: types.GetPodsData{
+		Data: &types.GetPodsData{
 			Total: result.Data.Total,
 			Items: items,
 		},

@@ -27,6 +27,6 @@ var podLogTailLine = 200
 func (l *GetPodLogLogic) GetPodLog(in *core.GetPodLogReq) (*core.GetPodLogResp, error) {
 	// todo: add your logic here and delete this line
 	pod := Pod{}
-	resp, err := pod.GetPodLog(l, in)
-	return resp, err
+	resp, _ := pod.GetPodLog(l, in)
+	return resp, nil
 }

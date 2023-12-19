@@ -16,14 +16,14 @@ type (
     GetServicesData {
         // Items
         // []k8s.io.api.core.v1.Service
-        Items  TypeNull `json:"items"`
+        Items  TypeNull `json:"items,omitempty"`
         // Total
         Total  int64 `json:"total"`
     }
     // GetServicesResp
     GetServicesResp {
         Msg string `json:"msg"`
-        Data GetServicesData `json:"data"`
+        Data *GetServicesData `json:"data"`
     }
 
     // GetServiceDetailReq
@@ -39,7 +39,7 @@ type (
         Msg string `json:"msg"`
         // Service
         // k8s.io.api.core.v1.Service
-        Data  TypeNull `json:"data"`
+        Data  TypeNull `json:"data,omitempty"`
     }
 
     // CreateServiceReq
@@ -57,8 +57,8 @@ type (
         // NodePort
         NodePort  int32 `json:"nodePort"`
         // Label
-        // map<string,string>
-        Label  TypeNull `json:"label"`
+        // map[string]string
+        Label  TypeNull `json:"label,omitempty"`
     }
     // CreateServiceResp
     CreateServiceResp {

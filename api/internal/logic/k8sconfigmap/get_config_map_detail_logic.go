@@ -26,12 +26,12 @@ func NewGetConfigMapDetailLogic(ctx context.Context, svcCtx *svc.ServiceContext)
 
 func (l *GetConfigMapDetailLogic) GetConfigMapDetail(req *types.GetConfigMapDetailReq) (resp *types.GetConfigMapDetailResp, err error) {
 	// todo: add your logic here and delete this line
-	result, err := l.svcCtx.CoreRpc.GetConfigMapDetail(l.ctx, &core.GetConfigMapDetailReq{
+	result, _ := l.svcCtx.CoreRpc.GetConfigMapDetail(l.ctx, &core.GetConfigMapDetailReq{
 		ConfigMapName: req.ConfigMapName,
 		Namespace:     req.Namespace,
 	})
 	return &types.GetConfigMapDetailResp{
 		Msg:  result.Msg,
 		Data: result.Data,
-	}, err
+	}, nil
 }

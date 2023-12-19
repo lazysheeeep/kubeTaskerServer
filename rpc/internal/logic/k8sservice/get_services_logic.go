@@ -26,6 +26,6 @@ func NewGetServicesLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetSe
 func (l *GetServicesLogic) GetServices(in *core.GetServicesReq) (*core.GetServicesResp, error) {
 	// todo: add your logic here and delete this line
 	service := &Service{}
-	resp, err := service.GetServices(l, in)
-	return resp, err
+	resp, _ := service.GetServices(l, in)
+	return resp, nil
 }

@@ -26,6 +26,6 @@ func NewUpdateDeploymentLogic(ctx context.Context, svcCtx *svc.ServiceContext) *
 func (l *UpdateDeploymentLogic) UpdateDeployment(in *core.UpdateDeploymentReq) (*core.UpdateDeploymentResp, error) {
 	// todo: add your logic here and delete this line
 	deployment := &Deployment{}
-	resp, err := deployment.UpdateDeployment(l, in)
-	return resp, err
+	resp, _ := deployment.UpdateDeployment(l, in)
+	return resp, nil
 }

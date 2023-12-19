@@ -1603,7 +1603,7 @@ type GetConfigMapsReq struct {
 type GetConfigMapsData struct {
 	// Items
 	// []k8s.io.api.core.v1.ConfigMap
-	Items []*v1.ConfigMap `json:"items"`
+	Items []*v1.ConfigMap `json:"items,omitempty"`
 	// Total
 	Total int64 `json:"total"`
 }
@@ -1614,7 +1614,7 @@ type GetConfigMapsResp struct {
 	// Msg
 	Msg string `json:"msg"`
 	// Data
-	Data GetConfigMapsData `json:"data"`
+	Data *GetConfigMapsData `json:"data,omitempty"`
 }
 
 // GetConfigMapDetailReq
@@ -1633,7 +1633,7 @@ type GetConfigMapDetailResp struct {
 	Msg string `json:"msg"`
 	// Data
 	// k8s.io.api.core.v1.ConfigMap
-	Data *v1.ConfigMap `json:"data"`
+	Data *v1.ConfigMap `json:"data,omitempty"`
 }
 
 // DeleteConfigMapReq
@@ -1685,7 +1685,7 @@ type GetDeploymentsReq struct {
 type GetDeploymentsData struct {
 	// Items
 	// []k8s.io.api.apps.v1.Deployment
-	Items []*v11.Deployment `json:"items"`
+	Items []*v11.Deployment `json:"items,omitempty"`
 	// Total
 	Total int64 `json:"total"`
 }
@@ -1695,7 +1695,7 @@ type GetDeploymentsResp struct {
 	// Msg
 	Msg string `json:"msg"`
 	// Data
-	Data GetDeploymentsData `json:"data"`
+	Data *GetDeploymentsData `json:"data,omitempty"`
 }
 
 // GetDeploymentDetailReq
@@ -1714,7 +1714,7 @@ type GetDeploymentDetailResp struct {
 	Msg string `json:"msg"`
 	// Data
 	// k8s.io.api.apps.v1.Deployment
-	Data *v11.Deployment `json:"data"`
+	Data *v11.Deployment `json:"data,omitempty"`
 }
 
 // ScaleDeploymentReq
@@ -1750,7 +1750,7 @@ type CreateDeploymentReq struct {
 	Image string `json:"image"`
 	// Label
 	// map[string]string
-	Label map[string]string `json:"label"`
+	Label map[string]string `json:"label,omitempty"`
 	// Cpu
 	Cpu string `json:"cpu"`
 	// Memory
@@ -1835,7 +1835,7 @@ type GetDeployNumPerNpResp struct {
 	// Msg
 	Msg string `json:"msg"`
 	// Data
-	Data []GetDeployNumPerNpData `json:"data"`
+	Data []*GetDeployNumPerNpData `json:"data,omitempty"`
 }
 
 // GetPodsReq
@@ -1857,7 +1857,7 @@ type GetPodsData struct {
 	Total int64 `json:"total"`
 	// Items
 	// []k8s.io.api.core.v1.Pod
-	Items []*v1.Pod `json:"items"`
+	Items []*v1.Pod `json:"items,omitempty"`
 }
 
 // GetPodsResp
@@ -1866,7 +1866,7 @@ type GetPodsResp struct {
 	// Msg
 	Msg string `json:"msg"`
 	// Data
-	Data GetPodsData `json:"data"`
+	Data *GetPodsData `json:"data,omitempty"`
 }
 
 // GetPodDetailReq
@@ -1885,7 +1885,7 @@ type GetPodDetailResp struct {
 	Msg string `json:"msg"`
 	// Data
 	// k8s.io.api.core.v1.Pod
-	Data *v1.Pod `json:"data"`
+	Data *v1.Pod `json:"data,omitempty"`
 }
 
 // DeletePodReq
@@ -1935,7 +1935,7 @@ type GetPodContainerResp struct {
 	// Msg
 	Msg string `json:"msg"`
 	// Data
-	Data []string `json:"data"`
+	Data []string `json:"data,omitempty"`
 }
 
 // GetPodLogReq
@@ -1975,7 +1975,7 @@ type GetPodNumPerNpResp struct {
 	// Msg
 	Msg string `json:"msg"`
 	// PodsNps
-	Data []GetPodNumPerNpData `json:"data"`
+	Data []*GetPodNumPerNpData `json:"data,omitempty"`
 }
 
 // GetServicesReq
@@ -1995,7 +1995,7 @@ type GetServicesReq struct {
 type GetServicesData struct {
 	// Items
 	// []k8s.io.api.core.v1.Service
-	Items []*v1.Service `json:"items"`
+	Items []*v1.Service `json:"items,omitempty"`
 	// Total
 	Total int64 `json:"total"`
 }
@@ -2003,8 +2003,8 @@ type GetServicesData struct {
 // GetServicesResp
 // swagger:model GetServicesResp
 type GetServicesResp struct {
-	Msg  string          `json:"msg"`
-	Data GetServicesData `json:"data"`
+	Msg  string           `json:"msg"`
+	Data *GetServicesData `json:"data"`
 }
 
 // GetServiceDetailReq
@@ -2023,7 +2023,7 @@ type GetServiceDetailResp struct {
 	Msg string `json:"msg"`
 	// Service
 	// k8s.io.api.core.v1.Service
-	Data *v1.Service `json:"data"`
+	Data *v1.Service `json:"data,omitempty"`
 }
 
 // CreateServiceReq
@@ -2043,7 +2043,7 @@ type CreateServiceReq struct {
 	NodePort int32 `json:"nodePort"`
 	// Label
 	// map<string,string>
-	Label map[string]string `json:"label"`
+	Label map[string]string `json:"label,omitempty"`
 }
 
 // CreateServiceResp

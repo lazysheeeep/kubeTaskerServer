@@ -25,12 +25,12 @@ func NewUpdateServiceLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Upd
 
 func (l *UpdateServiceLogic) UpdateService(req *types.UpdateServiceReq) (resp *types.UpdateServiceResp, err error) {
 	// todo: add your logic here and delete this line
-	result, err := l.svcCtx.CoreRpc.UpdateService(l.ctx, &core.UpdateServiceReq{
+	result, _ := l.svcCtx.CoreRpc.UpdateService(l.ctx, &core.UpdateServiceReq{
 		Namespace: req.Namespace,
 		Content:   req.Content,
 	})
 
 	return &types.UpdateServiceResp{
 		Msg: result.Msg,
-	}, err
+	}, nil
 }

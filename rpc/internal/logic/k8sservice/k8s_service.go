@@ -42,8 +42,8 @@ func (s *Service) GetServices(l *GetServicesLogic, in *core.GetServicesReq) (res
 	//将[]DataCell类型的service列表转为v1.service列表
 	services := s.fromCells(data.GenericDataList)
 	items := make([]*v1.Service, 0)
-	for _, v := range services {
-		items = append(items, &v)
+	for i := range services {
+		items = append(items, &services[i])
 	}
 	return &core.GetServicesResp{
 		Msg: "获取Servicet列表成功",
@@ -138,29 +138,35 @@ func (s *Service) UpdateService(l *UpdateServiceLogic, in *core.UpdateServiceReq
 	err = json.Unmarshal([]byte(in.Content), service)
 	if err != nil {
 		l.Error(errors.New("反序列化失败, " + err.Error()))
-		return nil, errors.New("反序列化失败, " + err.Error())
+		return &core.UpdateServiceResp{
+			Msg: err.Error(),
+		}, errors.New("反序列化失败, " + err.Error())
 	}
 
 	_, err = l.svcCtx.K8s.CoreV1().Services(in.Namespace).Update(context.TODO(), service, metav1.UpdateOptions{})
 	if err != nil {
 		l.Error(errors.New("更新service失败, " + err.Error()))
-		return nil, errors.New("更新service失败, " + err.Error())
+		return &core.UpdateServiceResp{
+			Msg: err.Error(),
+		}, errors.New("更新service失败, " + err.Error())
 	}
-	return nil, nil
+	return &core.UpdateServiceResp{
+		Msg: "更新Service成功",
+	}, nil
 }
 
 func (s *Service) toCells(std []v1.Service) []DataCell {
 	cells := make([]DataCell, 0)
-	for i := range std {
-		cells[i] = serviceCell(std[i])
+	for _, v := range std {
+		cells = append(cells, serviceCell(v))
 	}
 	return cells
 }
 
 func (s *Service) fromCells(cells []DataCell) []v1.Service {
 	services := make([]v1.Service, 0)
-	for i := range cells {
-		services[i] = v1.Service(cells[i].(serviceCell))
+	for _, v := range cells {
+		services = append(services, v1.Service(v.(serviceCell)))
 	}
 	return services
 }

@@ -25,6 +25,6 @@ func NewDeletePodLogic(ctx context.Context, svcCtx *svc.ServiceContext) *DeleteP
 func (l *DeletePodLogic) DeletePod(in *core.DeletePodReq) (*core.DeletePodResp, error) {
 	// todo: add your logic here and delete this line
 	pod := Pod{}
-	resp, err := pod.DeletePod(l, in)
-	return resp, err
+	resp, _ := pod.DeletePod(l, in)
+	return resp, nil
 }

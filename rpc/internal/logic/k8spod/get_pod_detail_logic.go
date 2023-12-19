@@ -25,6 +25,6 @@ func NewGetPodDetailLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetP
 func (l *GetPodDetailLogic) GetPodDetail(in *core.GetPodDetailReq) (*core.GetPodDetailResp, error) {
 	// todo: add your logic here and delete this line
 	pod := Pod{}
-	resp, err := pod.GetPodDetail(l, in)
-	return resp, err
+	resp, _ := pod.GetPodDetail(l, in)
+	return resp, nil
 }

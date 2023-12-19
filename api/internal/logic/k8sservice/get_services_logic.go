@@ -38,7 +38,7 @@ func (l *GetServicesLogic) GetServices(req *types.GetServicesReq) (resp *types.G
 	}
 	return &types.GetServicesResp{
 		Msg: result.Msg,
-		Data: types.GetServicesData{
+		Data: &types.GetServicesData{
 			Items: items,
 			Total: result.Data.Total,
 		},

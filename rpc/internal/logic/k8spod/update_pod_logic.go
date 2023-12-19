@@ -25,6 +25,6 @@ func NewUpdatePodLogic(ctx context.Context, svcCtx *svc.ServiceContext) *UpdateP
 func (l *UpdatePodLogic) UpdatePod(in *core.UpdatePodReq) (*core.UpdatePodResp, error) {
 	// todo: add your logic here and delete this line
 	pod := Pod{}
-	resp, err := pod.UpdatePod(l, in)
-	return resp, err
+	resp, _ := pod.UpdatePod(l, in)
+	return resp, nil
 }

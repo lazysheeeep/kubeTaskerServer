@@ -48,8 +48,8 @@ func (d *Deployment) GetDeployments(l *GetDeploymentsLogic, in *core.GetDeployme
 	//将[]DataCell类型的deployment列表转为appsv1.deployment列表
 	deployments := d.fromCells(dataSort.GenericDataList)
 	items := make([]*v1.Deployment, 0)
-	for _, v := range deployments {
-		items = append(items, &v)
+	for i := range deployments {
+		items = append(items, &deployments[i])
 	}
 	return &core.GetDeploymentsResp{
 		Meg: "获取Deployment列表成功",
@@ -101,7 +101,7 @@ func (d *Deployment) ScaleDeployment(l *ScaleDeploymentLogic, in *core.ScaleDepl
 
 	return &core.ScaleDeploymentResp{
 		Msg:  "设置Deployment副本数成功",
-		Data: fmt.Sprintf("最新副本数: %d", newScale),
+		Data: fmt.Sprintf("最新副本数: %d", newScale.Spec.Replicas),
 	}, nil
 }
 
@@ -325,16 +325,16 @@ func (d *Deployment) GetDeployNumPerNp(l *GetDeployNumPerNpLogic, in *core.GetDe
 
 func (d *Deployment) toCells(std []v1.Deployment) []DataCell {
 	cells := make([]DataCell, 0)
-	for i := range std {
-		cells[i] = deploymentCell(std[i])
+	for _, v := range std {
+		cells = append(cells, deploymentCell(v))
 	}
 	return cells
 }
 
 func (d *Deployment) fromCells(cells []DataCell) []v1.Deployment {
 	deployments := make([]v1.Deployment, 0)
-	for i := range cells {
-		deployments[i] = v1.Deployment(cells[i].(deploymentCell))
+	for _, v := range cells {
+		deployments = append(deployments, v1.Deployment(v.(deploymentCell)))
 	}
 	return deployments
 }

@@ -25,6 +25,6 @@ func NewGetPodNumPerNpLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Ge
 func (l *GetPodNumPerNpLogic) GetPodNumPerNp(in *core.GetPodNumPerNpReq) (*core.GetPodNumPerNpResp, error) {
 	// todo: add your logic here and delete this line
 	pod := Pod{}
-	resp, err := pod.GetPodNumPerNp(l, in)
-	return resp, err
+	resp, _ := pod.GetPodNumPerNp(l, in)
+	return resp, nil
 }

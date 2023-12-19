@@ -26,17 +26,25 @@ func NewGetConfigMapsLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Get
 // 获取configmap列表，支持过滤、排序、分页
 func (l *GetConfigMapsLogic) GetConfigMaps(req *types.GetConfigMapsReq) (resp *types.GetConfigMapsResp, err error) {
 	// todo: add your logic here and delete this line
-	result, err := l.svcCtx.CoreRpc.GetConfigMaps(l.ctx, &core.GetConfigMapsReq{
+	result, _ := l.svcCtx.CoreRpc.GetConfigMaps(l.ctx, &core.GetConfigMapsReq{
 		FilterName: req.FilterName,
 		Namespace:  req.Namespace,
 		Limit:      req.Limit,
 		Page:       req.Page,
 	})
-	return &types.GetConfigMapsResp{
-		Msg: result.Msg,
-		Data: types.GetConfigMapsData{
-			Items: result.Data.Items,
-			Total: resp.Data.Total,
-		},
-	}, err
+	if result.Data == nil {
+		resp = &types.GetConfigMapsResp{
+			Msg:  result.Msg,
+			Data: nil,
+		}
+	} else {
+		resp = &types.GetConfigMapsResp{
+			Msg: result.Msg,
+			Data: &types.GetConfigMapsData{
+				Items: result.Data.Items,
+				Total: result.Data.Total,
+			},
+		}
+	}
+	return resp, nil
 }

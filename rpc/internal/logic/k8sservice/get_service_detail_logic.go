@@ -25,6 +25,6 @@ func NewGetServiceDetailLogic(ctx context.Context, svcCtx *svc.ServiceContext) *
 func (l *GetServiceDetailLogic) GetServiceDetail(in *core.GetServiceDetailReq) (*core.GetServiceDetailResp, error) {
 	// todo: add your logic here and delete this line
 	service := &Service{}
-	resp, err := service.GetServiceDetail(l, in)
-	return resp, err
+	resp, _ := service.GetServiceDetail(l, in)
+	return resp, nil
 }

@@ -25,6 +25,6 @@ func NewGetDeployNumPerNpLogic(ctx context.Context, svcCtx *svc.ServiceContext) 
 func (l *GetDeployNumPerNpLogic) GetDeployNumPerNp(in *core.GetDeployNumPerNpReq) (*core.GetDeployNumPerNpResp, error) {
 	// todo: add your logic here and delete this line
 	deployment := &Deployment{}
-	resp, err := deployment.GetDeployNumPerNp(l, in)
-	return resp, err
+	resp, _ := deployment.GetDeployNumPerNp(l, in)
+	return resp, nil
 }

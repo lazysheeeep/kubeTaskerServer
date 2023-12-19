@@ -16,7 +16,7 @@ type (
     GetDeploymentsData {
         // Items
         // []k8s.io.api.apps.v1.Deployment
-        Items  TypeNull `json:"items"`
+        Items  TypeNull `json:"items,omitempty"`
         // Total
         Total  int64 `json:"total"`
     }
@@ -24,7 +24,7 @@ type (
         // Msg
         Msg string `json:"msg"`
         // Data
-        Data GetDeploymentsData `json:"data"`
+        Data *GetDeploymentsData `json:"data,omitempty"`
     }
 
     // GetDeploymentDetailReq
@@ -40,7 +40,7 @@ type (
         Msg string `json:"msg"`
         // Data
         // k8s.io.api.apps.v1.Deployment
-        Data TypeNull `json:"data"`
+        Data TypeNull `json:"data,omitempty"`
     }
 
 
@@ -74,7 +74,7 @@ type (
         Image  string `json:"image"`
         // Label
         // map[string]string
-        Label  TypeNull `json:"label"`
+        Label  TypeNull `json:"label,omitempty"`
         // Cpu
         Cpu  string `json:"cpu"`
         // Memory
@@ -143,7 +143,7 @@ type (
         // Msg
         Msg string `json:"msg"`
         // Data
-        Data []GetDeployNumPerNpData `json:"data"`
+        Data []*GetDeployNumPerNpData `json:"data,omitempty"`
     }
 
 )

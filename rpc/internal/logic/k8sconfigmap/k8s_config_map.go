@@ -52,8 +52,8 @@ func (c *ConfigMap) GetConfigMaps(l *GetConfigMapsLogic, in *core.GetConfigMapsR
 	//将[]DataCell类型的configmap列表转为v1.configmap列表
 	configMaps := c.fromCells(dataSort.GenericDataList)
 	items := make([]*v1.ConfigMap, 0)
-	for _, v := range configMaps {
-		items = append(items, &v)
+	for i := range configMaps {
+		items = append(items, &configMaps[i])
 	}
 
 	return &core.GetConfigMapsResp{
@@ -110,7 +110,9 @@ func (c *ConfigMap) UpdateConfigMap(l *UpdateConfigMapLogic, in *core.UpdateConf
 	_, err = l.svcCtx.K8s.CoreV1().ConfigMaps(in.Namespace).Update(context.TODO(), configMap, metav1.UpdateOptions{})
 	if err != nil {
 		l.Error(errors.New("更新ConfigMap失败, " + err.Error()))
-		return nil, errors.New("更新ConfigMap失败, " + err.Error())
+		return &core.UpdateConfigMapResp{
+			Msg: err.Error(),
+		}, errors.New("更新ConfigMap失败, " + err.Error())
 	}
 	return &core.UpdateConfigMapResp{
 		Msg: "更新ConfigMap成功",
@@ -119,16 +121,16 @@ func (c *ConfigMap) UpdateConfigMap(l *UpdateConfigMapLogic, in *core.UpdateConf
 
 func (c *ConfigMap) toCells(std []corev1.ConfigMap) []DataCell {
 	cells := make([]DataCell, 0)
-	for i := range std {
-		cells[i] = configMapCell(std[i])
+	for _, v := range std {
+		cells = append(cells, configMapCell(v))
 	}
 	return cells
 }
 
 func (c *ConfigMap) fromCells(cells []DataCell) []corev1.ConfigMap {
 	configMaps := make([]corev1.ConfigMap, 0)
-	for i := range cells {
-		configMaps[i] = corev1.ConfigMap(cells[i].(configMapCell))
+	for _, v := range cells {
+		configMaps = append(configMaps, corev1.ConfigMap(v.(configMapCell)))
 	}
 	return configMaps
 }

@@ -26,6 +26,6 @@ func NewGetDeploymentsLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Ge
 func (l *GetDeploymentsLogic) GetDeployments(in *core.GetDeploymentsReq) (*core.GetDeploymentsResp, error) {
 	// todo: add your logic here and delete this line
 	deployment := &Deployment{}
-	resp, err := deployment.GetDeployments(l, in)
-	return resp, err
+	resp, _ := deployment.GetDeployments(l, in)
+	return resp, nil
 }

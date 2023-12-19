@@ -25,6 +25,6 @@ func NewGetPodsLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetPodsLo
 func (l *GetPodsLogic) GetPods(in *core.GetPodsReq) (*core.GetPodsResp, error) {
 	// todo: add your logic here and delete this line
 	pod := Pod{}
-	resp, err := pod.GetPods(l, in)
-	return resp, err
+	resp, _ := pod.GetPods(l, in)
+	return resp, nil
 }

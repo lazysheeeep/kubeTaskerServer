@@ -29,9 +29,9 @@ func (l *GetPodNumPerNpLogic) GetPodNumPerNp(req *types.GetPodNumPerNpReq) (resp
 	if err != nil {
 		return nil, err
 	}
-	getPodNumPerNpData := make([]types.GetPodNumPerNpData, 0)
+	getPodNumPerNpData := make([]*types.GetPodNumPerNpData, 0)
 	for _, v := range result.Data {
-		getPodNumPerNpData = append(getPodNumPerNpData, types.GetPodNumPerNpData{
+		getPodNumPerNpData = append(getPodNumPerNpData, &types.GetPodNumPerNpData{
 			Namespace: v.Namespace,
 			PodNum:    v.PodNum,
 		})

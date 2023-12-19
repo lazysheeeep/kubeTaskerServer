@@ -26,6 +26,6 @@ func NewGetPodContainerLogic(ctx context.Context, svcCtx *svc.ServiceContext) *G
 func (l *GetPodContainerLogic) GetPodContainer(in *core.GetPodContainerReq) (*core.GetPodContainerResp, error) {
 	// todo: add your logic here and delete this line
 	pod := Pod{}
-	resp, err := pod.GetPodContainer(l, in)
-	return resp, err
+	resp, _ := pod.GetPodContainer(l, in)
+	return resp, nil
 }
