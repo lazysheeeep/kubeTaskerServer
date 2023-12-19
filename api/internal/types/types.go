@@ -2081,3 +2081,115 @@ type UpdateServiceReq struct {
 type UpdateServiceResp struct {
 	Msg string `json:"msg"`
 }
+
+// GetNamespacesReq | 请求获取命名空间list
+// swagger:model GetNamespacesReq
+type GetNamespacesReq struct {
+	// FilterName
+	FilterName string `json:"filterName"`
+	// Page
+	Page int64 `json:"page"`
+	// Limit
+	Limit int64 `json:"limit"`
+}
+
+// GetNamespaceDetailResp | 返回命名空间详细信息
+// swagger:model GetNamespaceDetailResp
+type GetNamespaceDetailResp struct {
+	// Msg
+	Msg string `json:"msg"`
+	// Data
+	Data GetNamespaceDetailData `json:"data"`
+}
+
+// GetNamespaceDetailData | 命名空间详细信息数据
+type GetNamespaceDetailData struct {
+	Namespace *v1.Namespace `json:"namespace"`
+}
+
+// DeleteNamespaceReq | 删除命名空间请求
+// swagger:model DeleteNamespaceReq
+type DeleteNamespaceReq struct {
+	// NamespaceName
+	NamespaceName string `json:"namespaceName"`
+}
+
+// DeleteNamespaceResp | 删除命名空间返回值
+// swagger:model DeleteNamespaceResp
+type DeleteNamespaceResp struct {
+	// Msg
+	Msg string `json:"msg"`
+	// Data
+	Data string `json:"data"`
+}
+
+// GetNamespacesResp | 获取命名空间返回
+// swagger:model GetNamespacesResp
+type GetNamespacesResp struct {
+	// Msg
+	Msg string `json:"msg"`
+	// Data
+	Data GetNamespacesData `json:"data"`
+}
+
+// GetNamespacesData | 获取命名空间list数据
+type GetNamespacesData struct {
+	//Items
+	Items []*v1.Namespace `json:"items"`
+	//Total
+	Total int64 `json:"total"`
+}
+
+// GetNamespaceDetailReq | 获取命名空间详细信息请求
+// swagger:model GetNamespaceDetailReq
+type GetNamespaceDetailReq struct {
+	// NamespaceName
+	NamespaceName string `json:"namespaceName"`
+}
+
+// GetNodeDetailReq | 获取节点详情信息请求
+// swagger:model GetNodeDetailReq
+type GetNodeDetailReq struct {
+	// NodeName
+	NodeName string `json:"nodeName"`
+}
+
+// GetNodeDetailResp | 获取节点详情信息应答
+// swagger:model GetNodeDetailResp
+type GetNodeDetailResp struct {
+	// Msg
+	Msg string `json:"msg"`
+	// Data
+	Data GetNodeDetailData `json:"data"`
+}
+
+// GetNodeDetailData | 节点详情信息
+type GetNodeDetailData struct {
+	Node *v1.Node `json:"node"`
+}
+
+// GetNodesReq
+// swagger:model GetNodesReq
+type GetNodesReq struct {
+	// FilterName
+	FilterName string `json:"filterName"`
+	// Page
+	Page int64 `json:"page"`
+	// Limit
+	Limit int64 `json:"limit"`
+}
+
+// GetNodesResp
+// swagger:model GetNodesResp
+type GetNodesResp struct {
+	// Msg
+	Msg string `json:"msg"`
+	// Data
+	Data GetNodesData `json:"data"`
+}
+
+// GetNodesData | 节点list信息
+type GetNodesData struct {
+	Items []*v1.Node `json:"items"`
+	Total int64 `json:"total"`
+}

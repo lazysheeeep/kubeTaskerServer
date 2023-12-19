@@ -1,6 +1,6 @@
 syntax="proto3";
 
-import "k8s.io/api@v0.28.4/core/v1/generated.proto";
+import "k8s.io/api@v0.28.3/core/v1/generated.proto";
 
 // getPods
 message GetPodsReq {

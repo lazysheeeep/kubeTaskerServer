@@ -43,18 +43,6 @@ const (
 	Core_GetDictionaryDetailById_FullMethodName             = "/core.Core/getDictionaryDetailById"
 	Core_DeleteDictionaryDetail_FullMethodName              = "/core.Core/deleteDictionaryDetail"
 	Core_GetDictionaryDetailByDictionaryName_FullMethodName = "/core.Core/getDictionaryDetailByDictionaryName"
-	Core_GetConfigMaps_FullMethodName                       = "/core.Core/getConfigMaps"
-	Core_GetConfigMapDetail_FullMethodName                  = "/core.Core/getConfigMapDetail"
-	Core_DeleteConfigMap_FullMethodName                     = "/core.Core/deleteConfigMap"
-	Core_UpdateConfigMap_FullMethodName                     = "/core.Core/updateConfigMap"
-	Core_GetDeployments_FullMethodName                      = "/core.Core/getDeployments"
-	Core_GetDeploymentDetail_FullMethodName                 = "/core.Core/getDeploymentDetail"
-	Core_ScaleDeployment_FullMethodName                     = "/core.Core/scaleDeployment"
-	Core_CreateDeployment_FullMethodName                    = "/core.Core/createDeployment"
-	Core_DeleteDeployment_FullMethodName                    = "/core.Core/deleteDeployment"
-	Core_RestartDeployment_FullMethodName                   = "/core.Core/restartDeployment"
-	Core_UpdateDeployment_FullMethodName                    = "/core.Core/updateDeployment"
-	Core_GetDeployNumPerNp_FullMethodName                   = "/core.Core/getDeployNumPerNp"
 	Core_GetPods_FullMethodName                             = "/core.Core/getPods"
 	Core_GetPodDetail_FullMethodName                        = "/core.Core/getPodDetail"
 	Core_DeletePod_FullMethodName                           = "/core.Core/deletePod"
@@ -62,11 +50,6 @@ const (
 	Core_GetPodContainer_FullMethodName                     = "/core.Core/getPodContainer"
 	Core_GetPodLog_FullMethodName                           = "/core.Core/getPodLog"
 	Core_GetPodNumPerNp_FullMethodName                      = "/core.Core/getPodNumPerNp"
-	Core_GetServices_FullMethodName                         = "/core.Core/getServices"
-	Core_GetServiceDetail_FullMethodName                    = "/core.Core/getServiceDetail"
-	Core_CreateService_FullMethodName                       = "/core.Core/createService"
-	Core_DeleteService_FullMethodName                       = "/core.Core/deleteService"
-	Core_UpdateService_FullMethodName                       = "/core.Core/updateService"
 	Core_CreateMenu_FullMethodName                          = "/core.Core/createMenu"
 	Core_UpdateMenu_FullMethodName                          = "/core.Core/updateMenu"
 	Core_DeleteMenu_FullMethodName                          = "/core.Core/deleteMenu"
@@ -159,54 +142,21 @@ type CoreClient interface {
 	DeleteDictionaryDetail(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error)
 	// group: dictionarydetail
 	GetDictionaryDetailByDictionaryName(ctx context.Context, in *BaseMsg, opts ...grpc.CallOption) (*DictionaryDetailListResp, error)
-	// group: k8sconfigmap
-	GetConfigMaps(ctx context.Context, in *GetConfigMapsReq, opts ...grpc.CallOption) (*GetConfigMapsResp, error)
-	// group: k8sconfigmap
-	GetConfigMapDetail(ctx context.Context, in *GetConfigMapDetailReq, opts ...grpc.CallOption) (*GetConfigMapDetailResp, error)
-	// group: k8sconfigmap
-	DeleteConfigMap(ctx context.Context, in *DeleteConfigMapReq, opts ...grpc.CallOption) (*DeleteConfigMapResp, error)
-	// group: k8sconfigmap
-	UpdateConfigMap(ctx context.Context, in *UpdateConfigMapReq, opts ...grpc.CallOption) (*UpdateConfigMapResp, error)
-	// group: k8sdeployment
-	GetDeployments(ctx context.Context, in *GetDeploymentsReq, opts ...grpc.CallOption) (*GetDeploymentsResp, error)
-	// group: k8sdeployment
-	GetDeploymentDetail(ctx context.Context, in *GetDeploymentDetailReq, opts ...grpc.CallOption) (*GetDeploymentDetailResp, error)
-	// group: k8sdeployment
-	ScaleDeployment(ctx context.Context, in *ScaleDeploymentReq, opts ...grpc.CallOption) (*ScaleDeploymentResp, error)
-	// group: k8sdeployment
-	CreateDeployment(ctx context.Context, in *CreateDeploymentReq, opts ...grpc.CallOption) (*CreateDeploymentResp, error)
-	// group: k8sdeployment
-	DeleteDeployment(ctx context.Context, in *DeleteDeploymentReq, opts ...grpc.CallOption) (*DeleteDeploymentResp, error)
-	// group: k8sdeployment
-	RestartDeployment(ctx context.Context, in *RestartDeploymentReq, opts ...grpc.CallOption) (*RestartDeploymentResp, error)
-	// group: k8sdeployment
-	UpdateDeployment(ctx context.Context, in *UpdateDeploymentReq, opts ...grpc.CallOption) (*UpdateDeploymentResp, error)
-	// group: k8sdeployment
-	GetDeployNumPerNp(ctx context.Context, in *GetDeployNumPerNpReq, opts ...grpc.CallOption) (*GetDeployNumPerNpResp, error)
-	// group: k8spod
+	// K8sPod management
+	// group: k8sPod
 	GetPods(ctx context.Context, in *GetPodsReq, opts ...grpc.CallOption) (*GetPodsResp, error)
-	// group: k8spod
+	// group: k8sPod
 	GetPodDetail(ctx context.Context, in *GetPodDetailReq, opts ...grpc.CallOption) (*GetPodDetailResp, error)
-	// group: k8spod
+	// group: k8sPod
 	DeletePod(ctx context.Context, in *DeletePodReq, opts ...grpc.CallOption) (*DeletePodResp, error)
-	// group: k8spod
+	// group: k8sPod
 	UpdatePod(ctx context.Context, in *UpdatePodReq, opts ...grpc.CallOption) (*UpdatePodResp, error)
-	// group: k8spod
+	// group: k8sPod
 	GetPodContainer(ctx context.Context, in *GetPodContainerReq, opts ...grpc.CallOption) (*GetPodContainerResp, error)
-	// group: k8spod
+	// group: k8sPod
 	GetPodLog(ctx context.Context, in *GetPodLogReq, opts ...grpc.CallOption) (*GetPodLogResp, error)
-	// group: k8spod
+	// group: k8sPod
 	GetPodNumPerNp(ctx context.Context, in *GetPodNumPerNpReq, opts ...grpc.CallOption) (*GetPodNumPerNpResp, error)
-	// group: k8sservice
-	GetServices(ctx context.Context, in *GetServicesReq, opts ...grpc.CallOption) (*GetServicesResp, error)
-	// group: k8sservice
-	GetServiceDetail(ctx context.Context, in *GetServiceDetailReq, opts ...grpc.CallOption) (*GetServiceDetailResp, error)
-	// group: k8sservice
-	CreateService(ctx context.Context, in *CreateServiceReq, opts ...grpc.CallOption) (*CreateServiceResp, error)
-	// group: k8sservice
-	DeleteService(ctx context.Context, in *DeleteServiceReq, opts ...grpc.CallOption) (*DeleteServiceResp, error)
-	// group: k8sservice
-	UpdateService(ctx context.Context, in *UpdateServiceReq, opts ...grpc.CallOption) (*UpdateServiceResp, error)
 	// group: menu
 	CreateMenu(ctx context.Context, in *MenuInfo, opts ...grpc.CallOption) (*BaseIDResp, error)
 	// group: menu
@@ -506,114 +456,6 @@ func (c *coreClient) GetDictionaryDetailByDictionaryName(ctx context.Context, in
 	return out, nil
 }
 
-func (c *coreClient) GetConfigMaps(ctx context.Context, in *GetConfigMapsReq, opts ...grpc.CallOption) (*GetConfigMapsResp, error) {
-	out := new(GetConfigMapsResp)
-	err := c.cc.Invoke(ctx, Core_GetConfigMaps_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *coreClient) GetConfigMapDetail(ctx context.Context, in *GetConfigMapDetailReq, opts ...grpc.CallOption) (*GetConfigMapDetailResp, error) {
-	out := new(GetConfigMapDetailResp)
-	err := c.cc.Invoke(ctx, Core_GetConfigMapDetail_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *coreClient) DeleteConfigMap(ctx context.Context, in *DeleteConfigMapReq, opts ...grpc.CallOption) (*DeleteConfigMapResp, error) {
-	out := new(DeleteConfigMapResp)
-	err := c.cc.Invoke(ctx, Core_DeleteConfigMap_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *coreClient) UpdateConfigMap(ctx context.Context, in *UpdateConfigMapReq, opts ...grpc.CallOption) (*UpdateConfigMapResp, error) {
-	out := new(UpdateConfigMapResp)
-	err := c.cc.Invoke(ctx, Core_UpdateConfigMap_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *coreClient) GetDeployments(ctx context.Context, in *GetDeploymentsReq, opts ...grpc.CallOption) (*GetDeploymentsResp, error) {
-	out := new(GetDeploymentsResp)
-	err := c.cc.Invoke(ctx, Core_GetDeployments_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *coreClient) GetDeploymentDetail(ctx context.Context, in *GetDeploymentDetailReq, opts ...grpc.CallOption) (*GetDeploymentDetailResp, error) {
-	out := new(GetDeploymentDetailResp)
-	err := c.cc.Invoke(ctx, Core_GetDeploymentDetail_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *coreClient) ScaleDeployment(ctx context.Context, in *ScaleDeploymentReq, opts ...grpc.CallOption) (*ScaleDeploymentResp, error) {
-	out := new(ScaleDeploymentResp)
-	err := c.cc.Invoke(ctx, Core_ScaleDeployment_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *coreClient) CreateDeployment(ctx context.Context, in *CreateDeploymentReq, opts ...grpc.CallOption) (*CreateDeploymentResp, error) {
-	out := new(CreateDeploymentResp)
-	err := c.cc.Invoke(ctx, Core_CreateDeployment_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *coreClient) DeleteDeployment(ctx context.Context, in *DeleteDeploymentReq, opts ...grpc.CallOption) (*DeleteDeploymentResp, error) {
-	out := new(DeleteDeploymentResp)
-	err := c.cc.Invoke(ctx, Core_DeleteDeployment_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *coreClient) RestartDeployment(ctx context.Context, in *RestartDeploymentReq, opts ...grpc.CallOption) (*RestartDeploymentResp, error) {
-	out := new(RestartDeploymentResp)
-	err := c.cc.Invoke(ctx, Core_RestartDeployment_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *coreClient) UpdateDeployment(ctx context.Context, in *UpdateDeploymentReq, opts ...grpc.CallOption) (*UpdateDeploymentResp, error) {
-	out := new(UpdateDeploymentResp)
-	err := c.cc.Invoke(ctx, Core_UpdateDeployment_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *coreClient) GetDeployNumPerNp(ctx context.Context, in *GetDeployNumPerNpReq, opts ...grpc.CallOption) (*GetDeployNumPerNpResp, error) {
-	out := new(GetDeployNumPerNpResp)
-	err := c.cc.Invoke(ctx, Core_GetDeployNumPerNp_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *coreClient) GetPods(ctx context.Context, in *GetPodsReq, opts ...grpc.CallOption) (*GetPodsResp, error) {
 	out := new(GetPodsResp)
 	err := c.cc.Invoke(ctx, Core_GetPods_FullMethodName, in, out, opts...)
@@ -671,51 +513,6 @@ func (c *coreClient) GetPodLog(ctx context.Context, in *GetPodLogReq, opts ...gr
 func (c *coreClient) GetPodNumPerNp(ctx context.Context, in *GetPodNumPerNpReq, opts ...grpc.CallOption) (*GetPodNumPerNpResp, error) {
 	out := new(GetPodNumPerNpResp)
 	err := c.cc.Invoke(ctx, Core_GetPodNumPerNp_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *coreClient) GetServices(ctx context.Context, in *GetServicesReq, opts ...grpc.CallOption) (*GetServicesResp, error) {
-	out := new(GetServicesResp)
-	err := c.cc.Invoke(ctx, Core_GetServices_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *coreClient) GetServiceDetail(ctx context.Context, in *GetServiceDetailReq, opts ...grpc.CallOption) (*GetServiceDetailResp, error) {
-	out := new(GetServiceDetailResp)
-	err := c.cc.Invoke(ctx, Core_GetServiceDetail_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *coreClient) CreateService(ctx context.Context, in *CreateServiceReq, opts ...grpc.CallOption) (*CreateServiceResp, error) {
-	out := new(CreateServiceResp)
-	err := c.cc.Invoke(ctx, Core_CreateService_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *coreClient) DeleteService(ctx context.Context, in *DeleteServiceReq, opts ...grpc.CallOption) (*DeleteServiceResp, error) {
-	out := new(DeleteServiceResp)
-	err := c.cc.Invoke(ctx, Core_DeleteService_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *coreClient) UpdateService(ctx context.Context, in *UpdateServiceReq, opts ...grpc.CallOption) (*UpdateServiceResp, error) {
-	out := new(UpdateServiceResp)
-	err := c.cc.Invoke(ctx, Core_UpdateService_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1084,54 +881,21 @@ type CoreServer interface {
 	DeleteDictionaryDetail(context.Context, *IDsReq) (*BaseResp, error)
 	// group: dictionarydetail
 	GetDictionaryDetailByDictionaryName(context.Context, *BaseMsg) (*DictionaryDetailListResp, error)
-	// group: k8sconfigmap
-	GetConfigMaps(context.Context, *GetConfigMapsReq) (*GetConfigMapsResp, error)
-	// group: k8sconfigmap
-	GetConfigMapDetail(context.Context, *GetConfigMapDetailReq) (*GetConfigMapDetailResp, error)
-	// group: k8sconfigmap
-	DeleteConfigMap(context.Context, *DeleteConfigMapReq) (*DeleteConfigMapResp, error)
-	// group: k8sconfigmap
-	UpdateConfigMap(context.Context, *UpdateConfigMapReq) (*UpdateConfigMapResp, error)
-	// group: k8sdeployment
-	GetDeployments(context.Context, *GetDeploymentsReq) (*GetDeploymentsResp, error)
-	// group: k8sdeployment
-	GetDeploymentDetail(context.Context, *GetDeploymentDetailReq) (*GetDeploymentDetailResp, error)
-	// group: k8sdeployment
-	ScaleDeployment(context.Context, *ScaleDeploymentReq) (*ScaleDeploymentResp, error)
-	// group: k8sdeployment
-	CreateDeployment(context.Context, *CreateDeploymentReq) (*CreateDeploymentResp, error)
-	// group: k8sdeployment
-	DeleteDeployment(context.Context, *DeleteDeploymentReq) (*DeleteDeploymentResp, error)
-	// group: k8sdeployment
-	RestartDeployment(context.Context, *RestartDeploymentReq) (*RestartDeploymentResp, error)
-	// group: k8sdeployment
-	UpdateDeployment(context.Context, *UpdateDeploymentReq) (*UpdateDeploymentResp, error)
-	// group: k8sdeployment
-	GetDeployNumPerNp(context.Context, *GetDeployNumPerNpReq) (*GetDeployNumPerNpResp, error)
-	// group: k8spod
+	// K8sPod management
+	// group: k8sPod
 	GetPods(context.Context, *GetPodsReq) (*GetPodsResp, error)
-	// group: k8spod
+	// group: k8sPod
 	GetPodDetail(context.Context, *GetPodDetailReq) (*GetPodDetailResp, error)
-	// group: k8spod
+	// group: k8sPod
 	DeletePod(context.Context, *DeletePodReq) (*DeletePodResp, error)
-	// group: k8spod
+	// group: k8sPod
 	UpdatePod(context.Context, *UpdatePodReq) (*UpdatePodResp, error)
-	// group: k8spod
+	// group: k8sPod
 	GetPodContainer(context.Context, *GetPodContainerReq) (*GetPodContainerResp, error)
-	// group: k8spod
+	// group: k8sPod
 	GetPodLog(context.Context, *GetPodLogReq) (*GetPodLogResp, error)
-	// group: k8spod
+	// group: k8sPod
 	GetPodNumPerNp(context.Context, *GetPodNumPerNpReq) (*GetPodNumPerNpResp, error)
-	// group: k8sservice
-	GetServices(context.Context, *GetServicesReq) (*GetServicesResp, error)
-	// group: k8sservice
-	GetServiceDetail(context.Context, *GetServiceDetailReq) (*GetServiceDetailResp, error)
-	// group: k8sservice
-	CreateService(context.Context, *CreateServiceReq) (*CreateServiceResp, error)
-	// group: k8sservice
-	DeleteService(context.Context, *DeleteServiceReq) (*DeleteServiceResp, error)
-	// group: k8sservice
-	UpdateService(context.Context, *UpdateServiceReq) (*UpdateServiceResp, error)
 	// group: menu
 	CreateMenu(context.Context, *MenuInfo) (*BaseIDResp, error)
 	// group: menu
@@ -1284,42 +1048,6 @@ func (UnimplementedCoreServer) DeleteDictionaryDetail(context.Context, *IDsReq) 
 func (UnimplementedCoreServer) GetDictionaryDetailByDictionaryName(context.Context, *BaseMsg) (*DictionaryDetailListResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDictionaryDetailByDictionaryName not implemented")
 }
-func (UnimplementedCoreServer) GetConfigMaps(context.Context, *GetConfigMapsReq) (*GetConfigMapsResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetConfigMaps not implemented")
-}
-func (UnimplementedCoreServer) GetConfigMapDetail(context.Context, *GetConfigMapDetailReq) (*GetConfigMapDetailResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetConfigMapDetail not implemented")
-}
-func (UnimplementedCoreServer) DeleteConfigMap(context.Context, *DeleteConfigMapReq) (*DeleteConfigMapResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteConfigMap not implemented")
-}
-func (UnimplementedCoreServer) UpdateConfigMap(context.Context, *UpdateConfigMapReq) (*UpdateConfigMapResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateConfigMap not implemented")
-}
-func (UnimplementedCoreServer) GetDeployments(context.Context, *GetDeploymentsReq) (*GetDeploymentsResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetDeployments not implemented")
-}
-func (UnimplementedCoreServer) GetDeploymentDetail(context.Context, *GetDeploymentDetailReq) (*GetDeploymentDetailResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetDeploymentDetail not implemented")
-}
-func (UnimplementedCoreServer) ScaleDeployment(context.Context, *ScaleDeploymentReq) (*ScaleDeploymentResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ScaleDeployment not implemented")
-}
-func (UnimplementedCoreServer) CreateDeployment(context.Context, *CreateDeploymentReq) (*CreateDeploymentResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateDeployment not implemented")
-}
-func (UnimplementedCoreServer) DeleteDeployment(context.Context, *DeleteDeploymentReq) (*DeleteDeploymentResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteDeployment not implemented")
-}
-func (UnimplementedCoreServer) RestartDeployment(context.Context, *RestartDeploymentReq) (*RestartDeploymentResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RestartDeployment not implemented")
-}
-func (UnimplementedCoreServer) UpdateDeployment(context.Context, *UpdateDeploymentReq) (*UpdateDeploymentResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateDeployment not implemented")
-}
-func (UnimplementedCoreServer) GetDeployNumPerNp(context.Context, *GetDeployNumPerNpReq) (*GetDeployNumPerNpResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetDeployNumPerNp not implemented")
-}
 func (UnimplementedCoreServer) GetPods(context.Context, *GetPodsReq) (*GetPodsResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPods not implemented")
 }
@@ -1340,21 +1068,6 @@ func (UnimplementedCoreServer) GetPodLog(context.Context, *GetPodLogReq) (*GetPo
 }
 func (UnimplementedCoreServer) GetPodNumPerNp(context.Context, *GetPodNumPerNpReq) (*GetPodNumPerNpResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPodNumPerNp not implemented")
-}
-func (UnimplementedCoreServer) GetServices(context.Context, *GetServicesReq) (*GetServicesResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetServices not implemented")
-}
-func (UnimplementedCoreServer) GetServiceDetail(context.Context, *GetServiceDetailReq) (*GetServiceDetailResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetServiceDetail not implemented")
-}
-func (UnimplementedCoreServer) CreateService(context.Context, *CreateServiceReq) (*CreateServiceResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateService not implemented")
-}
-func (UnimplementedCoreServer) DeleteService(context.Context, *DeleteServiceReq) (*DeleteServiceResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteService not implemented")
-}
-func (UnimplementedCoreServer) UpdateService(context.Context, *UpdateServiceReq) (*UpdateServiceResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateService not implemented")
 }
 func (UnimplementedCoreServer) CreateMenu(context.Context, *MenuInfo) (*BaseIDResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateMenu not implemented")
@@ -1903,222 +1616,6 @@ func _Core_GetDictionaryDetailByDictionaryName_Handler(srv interface{}, ctx cont
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Core_GetConfigMaps_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetConfigMapsReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CoreServer).GetConfigMaps(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Core_GetConfigMaps_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CoreServer).GetConfigMaps(ctx, req.(*GetConfigMapsReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Core_GetConfigMapDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetConfigMapDetailReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CoreServer).GetConfigMapDetail(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Core_GetConfigMapDetail_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CoreServer).GetConfigMapDetail(ctx, req.(*GetConfigMapDetailReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Core_DeleteConfigMap_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteConfigMapReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CoreServer).DeleteConfigMap(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Core_DeleteConfigMap_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CoreServer).DeleteConfigMap(ctx, req.(*DeleteConfigMapReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Core_UpdateConfigMap_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateConfigMapReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CoreServer).UpdateConfigMap(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Core_UpdateConfigMap_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CoreServer).UpdateConfigMap(ctx, req.(*UpdateConfigMapReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Core_GetDeployments_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetDeploymentsReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CoreServer).GetDeployments(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Core_GetDeployments_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CoreServer).GetDeployments(ctx, req.(*GetDeploymentsReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Core_GetDeploymentDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetDeploymentDetailReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CoreServer).GetDeploymentDetail(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Core_GetDeploymentDetail_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CoreServer).GetDeploymentDetail(ctx, req.(*GetDeploymentDetailReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Core_ScaleDeployment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ScaleDeploymentReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CoreServer).ScaleDeployment(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Core_ScaleDeployment_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CoreServer).ScaleDeployment(ctx, req.(*ScaleDeploymentReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Core_CreateDeployment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateDeploymentReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CoreServer).CreateDeployment(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Core_CreateDeployment_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CoreServer).CreateDeployment(ctx, req.(*CreateDeploymentReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Core_DeleteDeployment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteDeploymentReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CoreServer).DeleteDeployment(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Core_DeleteDeployment_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CoreServer).DeleteDeployment(ctx, req.(*DeleteDeploymentReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Core_RestartDeployment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RestartDeploymentReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CoreServer).RestartDeployment(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Core_RestartDeployment_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CoreServer).RestartDeployment(ctx, req.(*RestartDeploymentReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Core_UpdateDeployment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateDeploymentReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CoreServer).UpdateDeployment(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Core_UpdateDeployment_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CoreServer).UpdateDeployment(ctx, req.(*UpdateDeploymentReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Core_GetDeployNumPerNp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetDeployNumPerNpReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CoreServer).GetDeployNumPerNp(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Core_GetDeployNumPerNp_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CoreServer).GetDeployNumPerNp(ctx, req.(*GetDeployNumPerNpReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Core_GetPods_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetPodsReq)
 	if err := dec(in); err != nil {
@@ -2241,96 +1738,6 @@ func _Core_GetPodNumPerNp_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CoreServer).GetPodNumPerNp(ctx, req.(*GetPodNumPerNpReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Core_GetServices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetServicesReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CoreServer).GetServices(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Core_GetServices_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CoreServer).GetServices(ctx, req.(*GetServicesReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Core_GetServiceDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetServiceDetailReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CoreServer).GetServiceDetail(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Core_GetServiceDetail_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CoreServer).GetServiceDetail(ctx, req.(*GetServiceDetailReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Core_CreateService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateServiceReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CoreServer).CreateService(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Core_CreateService_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CoreServer).CreateService(ctx, req.(*CreateServiceReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Core_DeleteService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteServiceReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CoreServer).DeleteService(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Core_DeleteService_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CoreServer).DeleteService(ctx, req.(*DeleteServiceReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Core_UpdateService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateServiceReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CoreServer).UpdateService(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Core_UpdateService_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CoreServer).UpdateService(ctx, req.(*UpdateServiceReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3051,54 +2458,6 @@ var Core_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Core_GetDictionaryDetailByDictionaryName_Handler,
 		},
 		{
-			MethodName: "getConfigMaps",
-			Handler:    _Core_GetConfigMaps_Handler,
-		},
-		{
-			MethodName: "getConfigMapDetail",
-			Handler:    _Core_GetConfigMapDetail_Handler,
-		},
-		{
-			MethodName: "deleteConfigMap",
-			Handler:    _Core_DeleteConfigMap_Handler,
-		},
-		{
-			MethodName: "updateConfigMap",
-			Handler:    _Core_UpdateConfigMap_Handler,
-		},
-		{
-			MethodName: "getDeployments",
-			Handler:    _Core_GetDeployments_Handler,
-		},
-		{
-			MethodName: "getDeploymentDetail",
-			Handler:    _Core_GetDeploymentDetail_Handler,
-		},
-		{
-			MethodName: "scaleDeployment",
-			Handler:    _Core_ScaleDeployment_Handler,
-		},
-		{
-			MethodName: "createDeployment",
-			Handler:    _Core_CreateDeployment_Handler,
-		},
-		{
-			MethodName: "deleteDeployment",
-			Handler:    _Core_DeleteDeployment_Handler,
-		},
-		{
-			MethodName: "restartDeployment",
-			Handler:    _Core_RestartDeployment_Handler,
-		},
-		{
-			MethodName: "updateDeployment",
-			Handler:    _Core_UpdateDeployment_Handler,
-		},
-		{
-			MethodName: "getDeployNumPerNp",
-			Handler:    _Core_GetDeployNumPerNp_Handler,
-		},
-		{
 			MethodName: "getPods",
 			Handler:    _Core_GetPods_Handler,
 		},
@@ -3125,26 +2484,6 @@ var Core_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getPodNumPerNp",
 			Handler:    _Core_GetPodNumPerNp_Handler,
-		},
-		{
-			MethodName: "getServices",
-			Handler:    _Core_GetServices_Handler,
-		},
-		{
-			MethodName: "getServiceDetail",
-			Handler:    _Core_GetServiceDetail_Handler,
-		},
-		{
-			MethodName: "createService",
-			Handler:    _Core_CreateService_Handler,
-		},
-		{
-			MethodName: "deleteService",
-			Handler:    _Core_DeleteService_Handler,
-		},
-		{
-			MethodName: "updateService",
-			Handler:    _Core_UpdateService_Handler,
 		},
 		{
 			MethodName: "createMenu",
