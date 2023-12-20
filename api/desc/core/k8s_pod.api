@@ -4,117 +4,117 @@ type (
     // GetPodsReq
     GetPodsReq {
         // FilterName
-        FilterName  string `json:"filter_ame"`
+        FilterName  string `json:"filter_name,optional"`
         // Namespace
-        Namespace  string `json:"namespace"`
+        Namespace  string `json:"namespace,optional"`
         // Limit
-        Limit  int64 `json:"limit"`
+        Limit  int64 `json:"limit,optional"`
         // Page
-        Page  int64 `json:"page"`
+        Page  int64 `json:"page,optional"`
     }
     // GetPodsRespData
     GetPodsData {
         // Total
-        Total  int64 `json:"total"`
+        Total  int64 `json:"total,optional"`
         // Items
         // []k8s.io.api.core.v1.Pod
-        Items  TypeNull `json:"items,omitempty"`
+        Items  TypeNull `json:"items,optional"`
     }
     // GetPodsResp
     GetPodsResp {
         // Msg
-        Msg string `json:"msg"`
+        Msg string `json:"msg,optional"`
         // Data
-        Data *GetPodsData `json:"data,omitempty"`
+        Data *GetPodsData `json:"data,optional"`
     }
 
     // GetPodDetailReq
     GetPodDetailReq {
         // PodName
-        PodName  string `json:"pod_name"`
+        PodName  string `json:"pod_name,optional"`
         // Namespace
-        Namespace  string `json:"namespace"`
+        Namespace  string `json:"namespace,optional"`
     }
     // GetPodDetailResp
     GetPodDetailResp {
         // Msg
-        Msg string `json:"msg"`
+        Msg string `json:"msg,optional"`
         // Data
         // k8s.io.api.core.v1.Pod
-        Data TypeNull `json:"data,omitempty"`
+        Data TypeNull `json:"data,optional"`
     }
 
     // DeletePodReq
     DeletePodReq {
         // PodName
-        PodName  string `json:"pod_name"`
+        PodName  string `json:"pod_name,optional"`
         // Namespace
-        Namespace  string `json:"namespace"`
+        Namespace  string `json:"namespace,optional"`
     }
     // DeletePodResp
     DeletePodResp {
         // Msg
-        Msg string `json:"msg"`
+        Msg string `json:"msg,optional"`
     }
 
     // UpdatePodReq
     UpdatePodReq {
         // Namespace
-        Namespace  string `json:"namespace"`
+        Namespace  string `json:"namespace,optional"`
         // Content
-        Content  string `json:"content"`
+        Content  string `json:"content,optional"`
     }
     // UpdatePodResp
     UpdatePodResp {
         // Msg
-        Msg string `json:"msg"`
+        Msg string `json:"msg,optional"`
     }
 
     // GetPodContainerReq
     GetPodContainerReq {
         // PodName
-        PodName  string `json:"pod_name"`
+        PodName  string `json:"pod_name,optional"`
         // Namespace
-        Namespace  string `json:"namespace"`
+        Namespace  string `json:"namespace,optional"`
     }
     // GetPodContainerResp
     GetPodContainerResp {
         // Msg
-        Msg string `json:"msg"`
+        Msg string `json:"msg,optional"`
         // Data
-        Data []string `json:"data,omitempty"`
+        Data []string `json:"data,optional"`
     }
 
     // GetPodLogReq
     GetPodLogReq {
         // ContainerName
-        ContainerName  string `json:"containerName"`
+        ContainerName  string `json:"container_name,optional"`
         // PodName
-        PodName  string `json:"pod_name"`
+        PodName  string `json:"pod_name,optional"`
         // Namespace
-        Namespace  string `json:"namespace"`
+        Namespace  string `json:"namespace,optional"`
     }
     // GetPodLogResp
     GetPodLogResp {
         // Msg
-        Msg string `json:"msg"`
+        Msg string `json:"msg,optional"`
         // Data
-        Data string `json:"data"`
+        Data string `json:"data,optional"`
     }
 
     // GetPodNumPerNpReq
     GetPodNumPerNpReq {}
     // PodsNp
     GetPodNumPerNpData {
-        Namespace string `json:"namespace"`
-        PodNum int64 `json:"pod_num"`
+        Namespace string `json:"namespace,optional"`
+        PodNum int64 `json:"pod_num,optional"`
     }
     // GetPodNumPerNpResp
     GetPodNumPerNpResp {
         // Msg
-        Msg string `json:"msg"`
+        Msg string `json:"msg,optional"`
         // PodsNps
-        Data  []*GetPodNumPerNpData `json:"data,omitempty"`
+        Data  []*GetPodNumPerNpData `json:"data,optional"`
     }
 )
 @server(
@@ -125,10 +125,10 @@ type (
 service Core {
     // getPods | 获取pod列表,支持分页,过滤,排序
     @handler getPods
-    get /k8spod/get_pods (GetPodsReq) returns (GetPodsResp)
+    post /k8spod/get_pods (GetPodsReq) returns (GetPodsResp)
     // getPodDetail | 获取pod详情
     @handler getPodDetail
-    get /k8spod/get_pod_detail (GetPodDetailReq) returns (GetPodDetailResp)
+    post /k8spod/get_pod_detail (GetPodDetailReq) returns (GetPodDetailResp)
     // deletePod | 删除Pod
     @handler deletePod
     delete /k8spod/delete_pod (DeletePodReq) returns (DeletePodResp)
@@ -137,11 +137,11 @@ service Core {
     put /k8spod/update_pod (UpdatePodReq) returns (UpdatePodResp)
     // getPodContainer | 获取pod容器
     @handler getPodContainer
-    get /k8spod/get_pod_container (GetPodContainerReq) returns (GetPodContainerResp)
+    post /k8spod/get_pod_container (GetPodContainerReq) returns (GetPodContainerResp)
     // getPodLog | 获取pod中容器日志
     @handler getPodLog
-    get /k8spod/get_pod_log (GetPodLogReq) returns (GetPodLogResp)
+    post /k8spod/get_pod_log (GetPodLogReq) returns (GetPodLogResp)
     // getPodNumPerNp | 获取每个namespace的pod数量
     @handler getPodNumPerNp
-    get /k8spod/get_pod_num_per_np (GetPodNumPerNpReq) returns (GetPodNumPerNpResp)
+    post /k8spod/get_pod_num_per_np (GetPodNumPerNpReq) returns (GetPodNumPerNpResp)
 }

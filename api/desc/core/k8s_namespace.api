@@ -2,23 +2,23 @@ type (
     // GetNamespacesReq | 请求获取命名空间list
     GetNamespacesReq {
         // FilterName
-        FilterName  string `json:"filterName"`
+        FilterName  string `json:"filter_name,optional"`
 
         // Page
-        Page  int64 `json:"page"`
+        Page  int64 `json:"page,optional"`
 
         // Limit
-        Limit  int64 `json:"limit"`
+        Limit  int64 `json:"limit,optional"`
 
     }
 
     // GetNamespaceDetailResp | 返回命名空间详细信息
     GetNamespaceDetailResp {
         // Msg
-        Msg  string `json:"msg"`
+        Msg  string `json:"msg,optional"`
 
         // Data
-        Data  GetNamespaceDetailData `json:"data"`
+        Data  GetNamespaceDetailData `json:"data,optional"`
 
     }
 
@@ -29,27 +29,27 @@ type (
     // DeleteNamespaceReq | 删除命名空间请求
     DeleteNamespaceReq {
         // NamespaceName
-        NamespaceName  string `json:"namespaceName"`
+        NamespaceName  string `json:"namespace_name,optional"`
 
     }
 
     // DeleteNamespaceResp | 删除命名空间返回值
     DeleteNamespaceResp {
         // Msg
-        Msg  string `json:"msg"`
+        Msg  string `json:"msg,optional"`
 
         // Data
-        Data  string `json:"data"`
+        Data  string `json:"data,optional"`
 
     }
 
     // GetNamespacesResp | 获取命名空间返回
     GetNamespacesResp {
         // Msg
-        Msg  string `json:"msg"`
+        Msg  string `json:"msg,optional"`
 
         // Data
-        Data  GetNamespacesData `json:"data"`
+        Data  GetNamespacesData `json:"data,optional"`
 
     }
 
@@ -60,7 +60,7 @@ type (
     // GetNamespaceDetailReq | 获取命名空间详细信息请求
     GetNamespaceDetailReq {
         // NamespaceName
-        NamespaceName  string `json:"namespaceName"`
+        NamespaceName  string `json:"namespace_name,optional"`
 
     }
 )
@@ -74,11 +74,11 @@ type (
 service Core{
     // getNamespaces
     @handler getNamespaces
-    get /k8s_namespace/get_namespaces (GetNamespacesReq) returns (GetNamespacesResp)
+    post /k8s_namespace/get_namespaces (GetNamespacesReq) returns (GetNamespacesResp)
 
     // getNamespaceDetail
     @handler getNamespaceDetail
-    get /k8s_namespace/get_namespace_detail (GetNamespaceDetailReq) returns (GetNamespaceDetailResp)
+    post /k8s_namespace/get_namespace_detail (GetNamespaceDetailReq) returns (GetNamespaceDetailResp)
 
     // deleteNamespace
     @handler deleteNamespace

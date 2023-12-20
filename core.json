@@ -4254,7 +4254,7 @@
       "description": "CreateDeploymentReq",
       "type": "object",
       "properties": {
-        "containerPort": {
+        "container_port": {
           "description": "ContainerPort",
           "type": "integer",
           "format": "int32",
@@ -4265,12 +4265,12 @@
           "type": "string",
           "x-go-name": "Cpu"
         },
-        "healthCheck": {
+        "health_check": {
           "description": "HealthCheck",
           "type": "boolean",
           "x-go-name": "HealthCheck"
         },
-        "healthPath": {
+        "health_path": {
           "description": "HealthPath",
           "type": "string",
           "x-go-name": "HealthPath"
@@ -4349,7 +4349,7 @@
       "description": "CreateServiceReq",
       "type": "object",
       "properties": {
-        "containerPort": {
+        "container_port": {
           "description": "ContainerPort",
           "type": "integer",
           "format": "int32",
@@ -4368,7 +4368,7 @@
           "type": "string",
           "x-go-name": "Namespace"
         },
-        "nodePort": {
+        "node_port": {
           "description": "NodePort",
           "type": "integer",
           "format": "int32",
@@ -4403,7 +4403,7 @@
       "description": "DeleteConfigMapReq",
       "type": "object",
       "properties": {
-        "configMapName": {
+        "configmap_mame": {
           "description": "ConfigMapName",
           "type": "string",
           "x-go-name": "ConfigMapName"
@@ -4432,7 +4432,7 @@
       "description": "DeleteDeploymentReq",
       "type": "object",
       "properties": {
-        "deploymentName": {
+        "deployment_name": {
           "description": "DeploymentName",
           "type": "string",
           "x-go-name": "DeploymentName"
@@ -4461,7 +4461,7 @@
       "description": "DeleteNamespaceReq | 删除命名空间请求",
       "type": "object",
       "properties": {
-        "namespaceName": {
+        "namespace_name": {
           "description": "NamespaceName",
           "type": "string",
           "x-go-name": "NamespaceName"
@@ -4524,7 +4524,7 @@
           "type": "string",
           "x-go-name": "Namespace"
         },
-        "serviceName": {
+        "service_name": {
           "description": "ServiceName",
           "type": "string",
           "x-go-name": "ServiceName"
@@ -5425,7 +5425,7 @@
       "description": "GetConfigMapDetailReq",
       "type": "object",
       "properties": {
-        "configMapName": {
+        "configmap_name": {
           "description": "ConfigMapName",
           "type": "string",
           "x-go-name": "ConfigMapName"
@@ -5473,7 +5473,7 @@
       "description": "GetConfigMapsReq",
       "type": "object",
       "properties": {
-        "filterName": {
+        "filter_name": {
           "description": "FilterName",
           "type": "string",
           "x-go-name": "FilterName"
@@ -5517,7 +5517,7 @@
       "description": "DeploysNp",
       "type": "object",
       "properties": {
-        "deploymentNum": {
+        "deployment_num": {
           "type": "integer",
           "format": "int64",
           "x-go-name": "DeploymentNum"
@@ -5558,7 +5558,7 @@
       "description": "GetDeploymentDetailReq",
       "type": "object",
       "properties": {
-        "deploymentName": {
+        "deployment_name": {
           "description": "DeploymentName",
           "type": "string",
           "x-go-name": "DeploymentName"
@@ -5606,7 +5606,7 @@
       "description": "GetDeploymentsReq",
       "type": "object",
       "properties": {
-        "filterName": {
+        "filter_name": {
           "description": "FilterName",
           "type": "string",
           "x-go-name": "FilterName"
@@ -5654,7 +5654,7 @@
       "description": "GetNamespaceDetailReq | 获取命名空间详细信息请求",
       "type": "object",
       "properties": {
-        "namespaceName": {
+        "namespace_name": {
           "description": "NamespaceName",
           "type": "string",
           "x-go-name": "NamespaceName"
@@ -5686,7 +5686,7 @@
       "description": "GetNamespacesReq | 请求获取命名空间list",
       "type": "object",
       "properties": {
-        "filterName": {
+        "filter_name": {
           "description": "FilterName",
           "type": "string",
           "x-go-name": "FilterName"
@@ -5730,7 +5730,7 @@
       "description": "GetNodeDetailReq | 获取节点详情信息请求",
       "type": "object",
       "properties": {
-        "nodeName": {
+        "node_name": {
           "description": "NodeName",
           "type": "string",
           "x-go-name": "NodeName"
@@ -5762,7 +5762,7 @@
       "description": "GetNodesReq",
       "type": "object",
       "properties": {
-        "filterName": {
+        "filter_name": {
           "description": "FilterName",
           "type": "string",
           "x-go-name": "FilterName"
@@ -5870,7 +5870,7 @@
       "description": "GetPodLogReq",
       "type": "object",
       "properties": {
-        "containerName": {
+        "container_name": {
           "description": "ContainerName",
           "type": "string",
           "x-go-name": "ContainerName"
@@ -5966,7 +5966,7 @@
       "description": "GetPodsReq",
       "type": "object",
       "properties": {
-        "filter_ame": {
+        "filter_name": {
           "description": "FilterName",
           "type": "string",
           "x-go-name": "FilterName"
@@ -6015,7 +6015,7 @@
           "type": "string",
           "x-go-name": "Namespace"
         },
-        "serviceName": {
+        "service_name": {
           "description": "ServiceName",
           "type": "string",
           "x-go-name": "ServiceName"
@@ -6058,7 +6058,7 @@
       "description": "GetServicesReq",
       "type": "object",
       "properties": {
-        "filterName": {
+        "filter_name": {
           "description": "FilterName",
           "type": "string",
           "x-go-name": "FilterName"
@@ -7432,7 +7432,7 @@
       "description": "RestartDeploymentReq",
       "type": "object",
       "properties": {
-        "deploymentName": {
+        "deployment_name": {
           "description": "DeploymentName",
           "type": "string",
           "x-go-name": "DeploymentName"
@@ -7645,7 +7645,7 @@
       "description": "ScaleDeploymentReq",
       "type": "object",
       "properties": {
-        "deploymentName": {
+        "deployment_name": {
           "description": "DeploymentName",
           "type": "string",
           "x-go-name": "DeploymentName"
@@ -7655,7 +7655,7 @@
           "type": "string",
           "x-go-name": "Namespace"
         },
-        "scaleNum": {
+        "scale_num": {
           "description": "ScaleNum",
           "type": "integer",
           "format": "int64",

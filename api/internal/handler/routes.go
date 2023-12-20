@@ -786,12 +786,12 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	server.AddRoutes(
 		[]rest.Route{
 			{
-				Method:  http.MethodGet,
+				Method:  http.MethodPost,
 				Path:    "/k8sconfigmap/get_config_maps",
 				Handler: k8sconfigmap.GetConfigMapsHandler(serverCtx),
 			},
 			{
-				Method:  http.MethodGet,
+				Method:  http.MethodPost,
 				Path:    "/k8sconfigmap/get_config_map_detail",
 				Handler: k8sconfigmap.GetConfigMapDetailHandler(serverCtx),
 			},
@@ -811,12 +811,12 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	server.AddRoutes(
 		[]rest.Route{
 			{
-				Method:  http.MethodGet,
+				Method:  http.MethodPost,
 				Path:    "/k8sdeployment/get_deployments",
 				Handler: k8sdeployment.GetDeploymentsHandler(serverCtx),
 			},
 			{
-				Method:  http.MethodGet,
+				Method:  http.MethodPost,
 				Path:    "/k8sdeployment/get_deployment_detail",
 				Handler: k8sdeployment.GetDeploymentDetailHandler(serverCtx),
 			},
@@ -846,7 +846,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: k8sdeployment.UpdateDeploymentHandler(serverCtx),
 			},
 			{
-				Method:  http.MethodGet,
+				Method:  http.MethodPost,
 				Path:    "/k8sdeployment/get_deploy_num_per_np",
 				Handler: k8sdeployment.GetDeployNumPerNpHandler(serverCtx),
 			},
@@ -856,12 +856,12 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	server.AddRoutes(
 		[]rest.Route{
 			{
-				Method:  http.MethodGet,
+				Method:  http.MethodPost,
 				Path:    "/k8spod/get_pods",
 				Handler: k8spod.GetPodsHandler(serverCtx),
 			},
 			{
-				Method:  http.MethodGet,
+				Method:  http.MethodPost,
 				Path:    "/k8spod/get_pod_detail",
 				Handler: k8spod.GetPodDetailHandler(serverCtx),
 			},
@@ -876,17 +876,17 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: k8spod.UpdatePodHandler(serverCtx),
 			},
 			{
-				Method:  http.MethodGet,
+				Method:  http.MethodPost,
 				Path:    "/k8spod/get_pod_container",
 				Handler: k8spod.GetPodContainerHandler(serverCtx),
 			},
 			{
-				Method:  http.MethodGet,
+				Method:  http.MethodPost,
 				Path:    "/k8spod/get_pod_log",
 				Handler: k8spod.GetPodLogHandler(serverCtx),
 			},
 			{
-				Method:  http.MethodGet,
+				Method:  http.MethodPost,
 				Path:    "/k8spod/get_pod_num_per_np",
 				Handler: k8spod.GetPodNumPerNpHandler(serverCtx),
 			},
@@ -896,12 +896,12 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	server.AddRoutes(
 		[]rest.Route{
 			{
-				Method:  http.MethodGet,
+				Method:  http.MethodPost,
 				Path:    "/k8sservice/get_services",
 				Handler: k8sservice.GetServicesHandler(serverCtx),
 			},
 			{
-				Method:  http.MethodGet,
+				Method:  http.MethodPost,
 				Path:    "/k8sservice/get_service_detail",
 				Handler: k8sservice.GetServiceDetailHandler(serverCtx),
 			},
@@ -926,12 +926,12 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	server.AddRoutes(
 		[]rest.Route{
 			{
-				Method:  http.MethodGet,
+				Method:  http.MethodPost,
 				Path:    "/k8s_namespace/get_namespaces",
 				Handler: k8snamespace.GetNamespacesHandler(serverCtx),
 			},
 			{
-				Method:  http.MethodGet,
+				Method:  http.MethodPost,
 				Path:    "/k8s_namespace/get_namespace_detail",
 				Handler: k8snamespace.GetNamespaceDetailHandler(serverCtx),
 			},
@@ -946,12 +946,12 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	server.AddRoutes(
 		[]rest.Route{
 			{
-				Method:  http.MethodGet,
+				Method:  http.MethodPost,
 				Path:    "/k8s_node/get_nodes",
 				Handler: k8snode.GetNodesHandler(serverCtx),
 			},
 			{
-				Method:  http.MethodGet,
+				Method:  http.MethodPost,
 				Path:    "/k8s_node/get_node_detail",
 				Handler: k8snode.GetNodeDetailHandler(serverCtx),
 			},

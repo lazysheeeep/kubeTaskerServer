@@ -4,70 +4,70 @@ type (
     // GetConfigMapsReq
     GetConfigMapsReq {
         // FilterName
-        FilterName  string `json:"filterName"`
+        FilterName  string `json:"filter_name,optional"`
         // Namespace
-        Namespace  string `json:"namespace"`
+        Namespace  string `json:"namespace,optional"`
         // Limit
-        Limit  int64 `json:"limit"`
+        Limit  int64 `json:"limit,optional"`
         // Page
-        Page  int64 `json:"page"`
+        Page  int64 `json:"page,optional"`
     }
     // GetConfigMapsRespData
     GetConfigMapsData {
         // Items
         // []k8s.io.api.core.v1.ConfigMap
-        Items  TypeNull `json:"items,omitempty"`
+        Items  TypeNull `json:"items,optional"`
         // Total
-        Total  int64 `json:"total"`
+        Total  int64 `json:"total,optional"`
     }
     // GetConfigMapsResp
     GetConfigMapsResp {
         // Msg
-        Msg string `json:"msg"`
+        Msg string `json:"msg,optional"`
         // Data
-        Data *GetConfigMapsData `json:"data,omitempty"`
+        Data *GetConfigMapsData `json:"data,optional"`
     }
 
         // GetConfigMapDetailReq
     GetConfigMapDetailReq {
         // ConfigMapName
-        ConfigMapName  string `json:"configMapName"`
+        ConfigMapName  string `json:"configmap_name,optional"`
         // Namespace
-        Namespace  string `json:"namespace"`
+        Namespace  string `json:"namespace,optional"`
     }
     // GetConfigMapDetailResp
     GetConfigMapDetailResp {
         // Msg
-        Msg string `json:"msg"`
+        Msg string `json:"msg,optional"`
         // Data
         // k8s.io.api.core.v1.ConfigMap
-        Data TypeNull `json:"data,omitempty"`
+        Data TypeNull `json:"data,optional"`
     }
 
     // DeleteConfigMapReq
     DeleteConfigMapReq {
         // ConfigMapName
-        ConfigMapName  string `json:"configMapName"`
+        ConfigMapName  string `json:"configmap_mame,optional"`
         // Namespace
-        Namespace  string `json:"namespace"`
+        Namespace  string `json:"namespace,optional"`
     }
     // DeleteConfigMapResp
     DeleteConfigMapResp {
         // Msg
-        Msg string `json:"msg"`
+        Msg string `json:"msg,optional"`
     }
 
     // UpdateConfigMapReq
     UpdateConfigMapReq {
         // Namespace
-        Namespace  string `json:"namespace"`
+        Namespace  string `json:"namespace,optional"`
         // Content
-        Content  string `json:"content"`
+        Content  string `json:"content,optional"`
     }
     // UpdateConfigMapResp
     UpdateConfigMapResp {
         // Msg
-        Msg string `json:"msg"`
+        Msg string `json:"msg,optional"`
     }
 )
 
@@ -79,11 +79,11 @@ type (
 service Core {
     // getConfigMaps | 获取configmap列表，支持过滤、排序、分页
     @handler getConfigMaps
-    get /k8sconfigmap/get_config_maps (GetConfigMapsReq) returns (GetConfigMapsResp)
+    post /k8sconfigmap/get_config_maps (GetConfigMapsReq) returns (GetConfigMapsResp)
 
     // getConfigMapDetail | 获取configmap详情
     @handler getConfigMapDetail
-    get /k8sconfigmap/get_config_map_detail (GetConfigMapDetailReq) returns (GetConfigMapDetailResp)
+    post /k8sconfigmap/get_config_map_detail (GetConfigMapDetailReq) returns (GetConfigMapDetailResp)
 
     // deleteConfigMap | 删除configmap
     @handler deleteConfigMap

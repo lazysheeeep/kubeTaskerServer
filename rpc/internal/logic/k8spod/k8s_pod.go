@@ -41,7 +41,7 @@ func (p *Pod) GetPods(l *GetPodsLogic, in *core.GetPodsReq) (getPodsResp *core.G
 	total := len(filtered.GenericDataList)
 	// 排序和分页
 	data := filtered.Sort().Paginate()
-	println("Pod total: ", total)
+	//println("Pod total: ", total)
 	// 将DataCell类型转成Pod
 	pods := p.fromCells(data.GenericDataList)
 	items := make([]*v1.Pod, 0)

@@ -1590,232 +1590,232 @@ type SendEmailReq struct {
 // swagger:model GetConfigMapsReq
 type GetConfigMapsReq struct {
 	// FilterName
-	FilterName string `json:"filter_ame"`
+	FilterName string `json:"filter_name,optional"`
 	// Namespace
-	Namespace string `json:"namespace"`
+	Namespace string `json:"namespace,optional"`
 	// Limit
-	Limit int64 `json:"limit"`
+	Limit int64 `json:"limit,optional"`
 	// Page
-	Page int64 `json:"page"`
+	Page int64 `json:"page,optional"`
 }
 
 // GetConfigMapsRespData
 type GetConfigMapsData struct {
 	// Items
 	// []k8s.io.api.core.v1.ConfigMap
-	Items []*v1.ConfigMap `json:"items,omitempty"`
+	Items []*v1.ConfigMap `json:"items,optional"`
 	// Total
-	Total int64 `json:"total"`
+	Total int64 `json:"total,optional"`
 }
 
 // GetConfigMapsResp
 // swagger:model GetConfigMapsResp
 type GetConfigMapsResp struct {
 	// Msg
-	Msg string `json:"msg"`
+	Msg string `json:"msg,optional"`
 	// Data
-	Data *GetConfigMapsData `json:"data,omitempty"`
+	Data *GetConfigMapsData `json:"data,optional"`
 }
 
 // GetConfigMapDetailReq
 // swagger:model GetConfigMapDetailReq
 type GetConfigMapDetailReq struct {
 	// ConfigMapName
-	ConfigMapName string `json:"config_map_name"`
+	ConfigMapName string `json:"configmap_name,optional"`
 	// Namespace
-	Namespace string `json:"namespace"`
+	Namespace string `json:"namespace,optional"`
 }
 
 // GetConfigMapDetailResp
 // swagger:model GetConfigMapDetailResp
 type GetConfigMapDetailResp struct {
 	// Msg
-	Msg string `json:"msg"`
+	Msg string `json:"msg,optional"`
 	// Data
 	// k8s.io.api.core.v1.ConfigMap
-	Data *v1.ConfigMap `json:"data,omitempty"`
+	Data *v1.ConfigMap `json:"data,optional"`
 }
 
 // DeleteConfigMapReq
 // swagger:model DeleteConfigMapReq
 type DeleteConfigMapReq struct {
 	// ConfigMapName
-	ConfigMapName string `json:"config_map_name"`
+	ConfigMapName string `json:"configmap_mame,optional"`
 	// Namespace
-	Namespace string `json:"namespace"`
+	Namespace string `json:"namespace,optional"`
 }
 
 // DeleteConfigMapResp
 // swagger:model DeleteConfigMapResp
 type DeleteConfigMapResp struct {
 	// Msg
-	Msg string `json:"msg"`
+	Msg string `json:"msg,optional"`
 }
 
 // UpdateConfigMapReq
 // swagger:model UpdateConfigMapReq
 type UpdateConfigMapReq struct {
 	// Namespace
-	Namespace string `json:"namespace"`
+	Namespace string `json:"namespace,optional"`
 	// Content
-	Content string `json:"content"`
+	Content string `json:"content,optional"`
 }
 
 // UpdateConfigMapResp
 // swagger:model UpdateConfigMapResp
 type UpdateConfigMapResp struct {
 	// Msg
-	Msg string `json:"msg"`
+	Msg string `json:"msg,optional"`
 }
 
 // GetDeploymentsReq
 // swagger:model GetDeploymentsReq
 type GetDeploymentsReq struct {
 	// FilterName
-	FilterName string `json:"filter_name"`
+	FilterName string `json:"filter_name,optional"`
 	// Namespace
-	Namespace string `json:"namespace"`
+	Namespace string `json:"namespace,optional"`
 	// Limit
-	Limit int64 `json:"limit"`
+	Limit int64 `json:"limit,optional"`
 	// Page
-	Page int64 `json:"page"`
+	Page int64 `json:"page,optional"`
 }
 
 // GetDeploymentsResp
 type GetDeploymentsData struct {
 	// Items
 	// []k8s.io.api.apps.v1.Deployment
-	Items []*v11.Deployment `json:"items,omitempty"`
+	Items []*v11.Deployment `json:"items,optional"`
 	// Total
-	Total int64 `json:"total"`
+	Total int64 `json:"total,optional"`
 }
 
 // swagger:model GetDeploymentsResp
 type GetDeploymentsResp struct {
 	// Msg
-	Msg string `json:"msg"`
+	Msg string `json:"msg,optional"`
 	// Data
-	Data *GetDeploymentsData `json:"data,omitempty"`
+	Data *GetDeploymentsData `json:"data,optional"`
 }
 
 // GetDeploymentDetailReq
 // swagger:model GetDeploymentDetailReq
 type GetDeploymentDetailReq struct {
 	// DeploymentName
-	DeploymentName string `json:"deployment_name"`
+	DeploymentName string `json:"deployment_name,optional"`
 	// Namespace
-	Namespace string `json:"namespace"`
+	Namespace string `json:"namespace,optional"`
 }
 
 // GetDeploymentDetailResp
 // swagger:model GetDeploymentDetailResp
 type GetDeploymentDetailResp struct {
 	// Msg
-	Msg string `json:"msg"`
+	Msg string `json:"msg,optional"`
 	// Data
 	// k8s.io.api.apps.v1.Deployment
-	Data *v11.Deployment `json:"data,omitempty"`
+	Data *v11.Deployment `json:"data,optional"`
 }
 
 // ScaleDeploymentReq
 // swagger:model ScaleDeploymentReq
 type ScaleDeploymentReq struct {
 	// DeploymentName
-	DeploymentName string `json:"deployment_name"`
+	DeploymentName string `json:"deployment_name,optional"`
 	// Namespace
-	Namespace string `json:"namespace"`
+	Namespace string `json:"namespace,optional"`
 	// ScaleNum
-	ScaleNum int64 `json:"scaleNum"`
+	ScaleNum int64 `json:"scale_num,optional"`
 }
 
 // ScaleDeploymentResp
 // swagger:model ScaleDeploymentResp
 type ScaleDeploymentResp struct {
 	// Msg
-	Msg string `json:"msg"`
+	Msg string `json:"msg,optional"`
 	// Data
-	Data string `json:"data"`
+	Data string `json:"data,optional"`
 }
 
 // CreateDeploymentReq
 // swagger:model CreateDeploymentReq
 type CreateDeploymentReq struct {
 	// Name
-	Name string `json:"name"`
+	Name string `json:"name,optional"`
 	// Namespace
-	Namespace string `json:"namespace"`
+	Namespace string `json:"namespace,optional"`
 	// Replicas
-	Replicas int32 `json:"replicas"`
+	Replicas int32 `json:"replicas,optional"`
 	// Image
-	Image string `json:"image"`
+	Image string `json:"image,optional"`
 	// Label
 	// map[string]string
-	Label map[string]string `json:"label,omitempty"`
+	Label map[string]string `json:"label,optional"`
 	// Cpu
-	Cpu string `json:"cpu"`
+	Cpu string `json:"cpu,optional"`
 	// Memory
-	Memory string `json:"memory"`
+	Memory string `json:"memory,optional"`
 	// ContainerPort
-	ContainerPort int32 `json:"container_port"`
+	ContainerPort int32 `json:"container_port,optional"`
 	// HealthCheck
-	HealthCheck bool `json:"health_check"`
+	HealthCheck bool `json:"health_check,optional"`
 	// HealthPath
-	HealthPath string `json:"health_path"`
+	HealthPath string `json:"health_path,optional"`
 }
 
 // CreateDeploymentResp
 // swagger:model CreateDeploymentResp
 type CreateDeploymentResp struct {
 	// Msg
-	Msg string `json:"msg"`
+	Msg string `json:"msg,optional"`
 }
 
 // DeleteDeploymentReq
 // swagger:model DeleteDeploymentReq
 type DeleteDeploymentReq struct {
 	// DeploymentName
-	DeploymentName string `json:"deployment_name"`
+	DeploymentName string `json:"deployment_name,optional"`
 	// Namespace
-	Namespace string `json:"namespace"`
+	Namespace string `json:"namespace,optional"`
 }
 
 // DeleteDeploymentResp
 // swagger:model DeleteDeploymentResp
 type DeleteDeploymentResp struct {
 	// Msg
-	Msg string `json:"msg"`
+	Msg string `json:"msg,optional"`
 }
 
 // RestartDeploymentReq
 // swagger:model RestartDeploymentReq
 type RestartDeploymentReq struct {
 	// DeploymentName
-	DeploymentName string `json:"deployment_name"`
+	DeploymentName string `json:"deployment_name,optional"`
 	// Namespace
-	Namespace string `json:"namespace"`
+	Namespace string `json:"namespace,optional"`
 }
 
 // RestartDeploymentResp
 // swagger:model RestartDeploymentResp
 type RestartDeploymentResp struct {
 	// Msg
-	Msg string `json:"msg"`
+	Msg string `json:"msg,optional"`
 }
 
 // UpdateDeploymentReq
 // swagger:model UpdateDeploymentReq
 type UpdateDeploymentReq struct {
 	// Namespace
-	Namespace string `json:"namespace"`
+	Namespace string `json:"namespace,optional"`
 	// Content
-	Content string `json:"content"`
+	Content string `json:"content,optional"`
 }
 
 // UpdateDeploymentResp
 // swagger:model UpdateDeploymentResp
 type UpdateDeploymentResp struct {
 	// Msg
-	Msg string `json:"msg"`
+	Msg string `json:"msg,optional"`
 }
 
 // GetDeployNumPerNpReq
@@ -1825,17 +1825,17 @@ type GetDeployNumPerNpReq struct {
 
 // DeploysNp
 type GetDeployNumPerNpData struct {
-	Namespace     string `json:"namespace"`
-	DeploymentNum int64  `json:"deployment_num"`
+	Namespace     string `json:"namespace,optional"`
+	DeploymentNum int64  `json:"deployment_num,optional"`
 }
 
 // GetDeployNumPerNpResp
 // swagger:model GetDeployNumPerNpResp
 type GetDeployNumPerNpResp struct {
 	// Msg
-	Msg string `json:"msg"`
+	Msg string `json:"msg,optional"`
 	// Data
-	Data []*GetDeployNumPerNpData `json:"data,omitempty"`
+	Data []*GetDeployNumPerNpData `json:"data,omitempty,optional"`
 }
 
 // GetPodsReq
@@ -1854,108 +1854,108 @@ type GetPodsReq struct {
 // GetPodsRespData
 type GetPodsData struct {
 	// Total
-	Total int64 `json:"total"`
+	Total int64 `json:"total,optional"`
 	// Items
 	// []k8s.io.api.core.v1.Pod
-	Items []*v1.Pod `json:"items,omitempty"`
+	Items []*v1.Pod `json:"items,optional"`
 }
 
 // GetPodsResp
 // swagger:model GetPodsResp
 type GetPodsResp struct {
 	// Msg
-	Msg string `json:"msg"`
+	Msg string `json:"msg,optional"`
 	// Data
-	Data *GetPodsData `json:"data,omitempty"`
+	Data *GetPodsData `json:"data,optional"`
 }
 
 // GetPodDetailReq
 // swagger:model GetPodDetailReq
 type GetPodDetailReq struct {
 	// PodName
-	PodName string `json:"pod_name"`
+	PodName string `json:"pod_name,optional"`
 	// Namespace
-	Namespace string `json:"namespace"`
+	Namespace string `json:"namespace,optional"`
 }
 
 // GetPodDetailResp
 // swagger:model GetPodDetailResp
 type GetPodDetailResp struct {
 	// Msg
-	Msg string `json:"msg"`
+	Msg string `json:"msg,optional"`
 	// Data
 	// k8s.io.api.core.v1.Pod
-	Data *v1.Pod `json:"data,omitempty"`
+	Data *v1.Pod `json:"data,optional"`
 }
 
 // DeletePodReq
 // swagger:model DeletePodReq
 type DeletePodReq struct {
 	// PodName
-	PodName string `json:"pod_name"`
+	PodName string `json:"pod_name,optional"`
 	// Namespace
-	Namespace string `json:"namespace"`
+	Namespace string `json:"namespace,optional"`
 }
 
 // DeletePodResp
 // swagger:model DeletePodResp
 type DeletePodResp struct {
 	// Msg
-	Msg string `json:"msg"`
+	Msg string `json:"msg,optional"`
 }
 
 // UpdatePodReq
 // swagger:model UpdatePodReq
 type UpdatePodReq struct {
 	// Namespace
-	Namespace string `json:"namespace"`
+	Namespace string `json:"namespace,optional"`
 	// Content
-	Content string `json:"content"`
+	Content string `json:"content,optional"`
 }
 
 // UpdatePodResp
 // swagger:model UpdatePodResp
 type UpdatePodResp struct {
 	// Msg
-	Msg string `json:"msg"`
+	Msg string `json:"msg,optional"`
 }
 
 // GetPodContainerReq
 // swagger:model GetPodContainerReq
 type GetPodContainerReq struct {
 	// PodName
-	PodName string `json:"pod_name"`
+	PodName string `json:"pod_name,optional"`
 	// Namespace
-	Namespace string `json:"namespace"`
+	Namespace string `json:"namespace,optional"`
 }
 
 // GetPodContainerResp
 // swagger:model GetPodContainerResp
 type GetPodContainerResp struct {
 	// Msg
-	Msg string `json:"msg"`
+	Msg string `json:"msg,optional"`
 	// Data
-	Data []string `json:"data,omitempty"`
+	Data []string `json:"data,optional"`
 }
 
 // GetPodLogReq
 // swagger:model GetPodLogReq
 type GetPodLogReq struct {
 	// ContainerName
-	ContainerName string `json:"container_name"`
+	ContainerName string `json:"container_name,optional"`
 	// PodName
-	PodName string `json:"pod_name"`
+	PodName string `json:"pod_name,optional"`
 	// Namespace
-	Namespace string `json:"namespace"`
+	Namespace string `json:"namespace,optional"`
 }
 
 // GetPodLogResp
 // swagger:model GetPodLogResp
 type GetPodLogResp struct {
 	// Msg
-	Msg string `json:"msg"`
+	Msg string `json:"msg,optional"`
 	// Data
-	Data string `json:"data"`
+	Data string `json:"data,optional"`
 }
 
 // GetPodNumPerNpReq
@@ -1965,39 +1965,39 @@ type GetPodNumPerNpReq struct {
 
 // PodsNp
 type GetPodNumPerNpData struct {
-	Namespace string `json:"namespace"`
-	PodNum    int64  `json:"pod_num"`
+	Namespace string `json:"namespace,optional"`
+	PodNum    int64  `json:"pod_num,optional"`
 }
 
 // GetPodNumPerNpResp
 // swagger:model GetPodNumPerNpResp
 type GetPodNumPerNpResp struct {
 	// Msg
-	Msg string `json:"msg"`
+	Msg string `json:"msg,optional"`
 	// PodsNps
-	Data []*GetPodNumPerNpData `json:"data,omitempty"`
+	Data []*GetPodNumPerNpData `json:"data,optional"`
 }
 
 // GetServicesReq
 // swagger:model GetServicesReq
 type GetServicesReq struct {
 	// FilterName
-	FilterName string `json:"filter_name"`
+	FilterName string `json:"filter_name,optional"`
 	// Namespace
-	Namespace string `json:"namespace"`
+	Namespace string `json:"namespace,optional"`
 	// Limit
-	Limit int64 `json:"limit"`
+	Limit int64 `json:"limit,optional"`
 	// Page
-	Page int64 `json:"page"`
+	Page int64 `json:"page,optional"`
 }
 
 // GetServicesData
 type GetServicesData struct {
 	// Items
 	// []k8s.io.api.core.v1.Service
-	Items []*v1.Service `json:"items,omitempty"`
+	Items TypeNull `json:"items,optional"`
 	// Total
-	Total int64 `json:"total"`
+	Total int64 `json:"total,optional"`
 }
 
 // GetServicesResp
@@ -2011,75 +2011,75 @@ type GetServicesResp struct {
 // swagger:model GetServiceDetailReq
 type GetServiceDetailReq struct {
 	// ServiceName
-	ServiceName string `json:"service_name"`
+	ServiceName string `json:"service_name,optional"`
 	// Namespace
-	Namespace string `json:"namespace"`
+	Namespace string `json:"namespace,optional"`
 }
 
 // GetServiceDetailResp
 // swagger:model GetServiceDetailResp
 type GetServiceDetailResp struct {
 	// Msg
-	Msg string `json:"msg"`
+	Msg string `json:"msg,optional"`
 	// Service
 	// k8s.io.api.core.v1.Service
-	Data *v1.Service `json:"data,omitempty"`
+	Data *v1.Service `json:"data,optional"`
 }
 
 // CreateServiceReq
 // swagger:model CreateServiceReq
 type CreateServiceReq struct {
 	// Name
-	Name string `json:"name"`
+	Name string `json:"name,optional"`
 	// Namespace
-	Namespace string `json:"namespace"`
+	Namespace string `json:"namespace,optional"`
 	// Type
 	Type string `json:"type"`
 	// ContainerPort
-	ContainerPort int32 `json:"container_port"`
+	ContainerPort int32 `json:"container_port,optional"`
 	// Port
-	Port int32 `json:"port"`
+	Port int32 `json:"port,optional"`
 	// NodePort
-	NodePort int32 `json:"node_port"`
+	NodePort int32 `json:"node_port,optional"`
 	// Label
-	// map<string,string>
-	Label map[string]string `json:"label,omitempty"`
+	// map[string]string
+	Label map[string]string `json:"label,optional"`
 }
 
 // CreateServiceResp
 // swagger:model CreateServiceResp
 type CreateServiceResp struct {
-	Msg string `json:"msg"`
+	Msg string `json:"msg,optional"`
 }
 
 // DeleteServiceReq
 // swagger:model DeleteServiceReq
 type DeleteServiceReq struct {
 	// ServiceName
-	ServiceName string `json:"service_name"`
+	ServiceName string `json:"service_name,optional"`
 	// Namespace
-	Namespace string `json:"namespace"`
+	Namespace string `json:"namespace,optional"`
 }
 
 // DeleteServiceResp
 // swagger:model DeleteServiceResp
 type DeleteServiceResp struct {
-	Msg string `json:"msg"`
+	Msg string `json:"msg,optional"`
 }
 
 // UpdateServiceReq
 // swagger:model UpdateServiceReq
 type UpdateServiceReq struct {
 	// Namespace
-	Namespace string `json:"namespace"`
+	Namespace string `json:"namespace,optional"`
 	// Content
-	Content string `json:"content"`
+	Content string `json:"content,optional"`
 }
 
 // UpdateServiceResp
 // swagger:model UpdateServiceResp
 type UpdateServiceResp struct {
-	Msg string `json:"msg"`
+	Msg string `json:"msg,optional"`
 }
 
 // GetNamespacesReq | 请求获取命名空间list
@@ -2097,99 +2097,99 @@ type GetNamespacesReq struct {
 // swagger:model GetNamespaceDetailResp
 type GetNamespaceDetailResp struct {
 	// Msg
-	Msg string `json:"msg"`
+	Msg string `json:"msg,optional"`
 	// Data
-	Data GetNamespaceDetailData `json:"data"`
+	Data GetNamespaceDetailData `json:"data,optional"`
 }
 
 // GetNamespaceDetailData | 命名空间详细信息数据
 type GetNamespaceDetailData struct {
-	Namespace *v1.Namespace `json:"namespace"`
+	Namespace *v1.Namespace `json:"namespace,optional"`
 }
 
 // DeleteNamespaceReq | 删除命名空间请求
 // swagger:model DeleteNamespaceReq
 type DeleteNamespaceReq struct {
 	// NamespaceName
-	NamespaceName string `json:"namespace_name"`
+	NamespaceName string `json:"namespace_name,optional"`
 }
 
 // DeleteNamespaceResp | 删除命名空间返回值
 // swagger:model DeleteNamespaceResp
 type DeleteNamespaceResp struct {
 	// Msg
-	Msg string `json:"msg"`
+	Msg string `json:"msg,optional"`
 	// Data
-	Data string `json:"data"`
+	Data string `json:"data,optional"`
 }
 
 // GetNamespacesResp | 获取命名空间返回
 // swagger:model GetNamespacesResp
 type GetNamespacesResp struct {
 	// Msg
-	Msg string `json:"msg"`
+	Msg string `json:"msg,optional"`
 	// Data
-	Data GetNamespacesData `json:"data"`
+	Data GetNamespacesData `json:"data,optional"`
 }
 
 // GetNamespacesData | 获取命名空间list数据
 type GetNamespacesData struct {
 	//Items
-	Items []*v1.Namespace `json:"items"`
+	Items []*v1.Namespace `json:"items,optional"`
 	//Total
-	Total int64 `json:"total"`
+	Total int64 `json:"total,optional"`
 }
 
 // GetNamespaceDetailReq | 获取命名空间详细信息请求
 // swagger:model GetNamespaceDetailReq
 type GetNamespaceDetailReq struct {
 	// NamespaceName
-	NamespaceName string `json:"namespace_name"`
+	NamespaceName string `json:"namespace_name,optional"`
 }
 
 // GetNodeDetailReq | 获取节点详情信息请求
 // swagger:model GetNodeDetailReq
 type GetNodeDetailReq struct {
 	// NodeName
-	NodeName string `json:"node_name"`
+	NodeName string `json:"node_name,optional"`
 }
 
 // GetNodeDetailResp | 获取节点详情信息应答
 // swagger:model GetNodeDetailResp
 type GetNodeDetailResp struct {
 	// Msg
-	Msg string `json:"msg"`
+	Msg string `json:"msg,optional"`
 	// Data
-	Data GetNodeDetailData `json:"data"`
+	Data GetNodeDetailData `json:"data,optional"`
 }
 
 // GetNodeDetailData | 节点详情信息
 type GetNodeDetailData struct {
-	Node *v1.Node `json:"node"`
+	Node *v1.Node `json:"node,optional"`
 }
 
 // GetNodesReq
 // swagger:model GetNodesReq
 type GetNodesReq struct {
 	// FilterName
-	FilterName string `json:"filter_name"`
+	FilterName string `json:"filter_name,optional"`
 	// Page
-	Page int64 `json:"page"`
+	Page int64 `json:"page,optional"`
 	// Limit
-	Limit int64 `json:"limit"`
+	Limit int64 `json:"limit,optional"`
 }
 
 // GetNodesResp
 // swagger:model GetNodesResp
 type GetNodesResp struct {
 	// Msg
-	Msg string `json:"msg"`
+	Msg string `json:"msg,optional"`
 	// Data
-	Data GetNodesData `json:"data"`
+	Data GetNodesData `json:"data,optional"`
 }
 
 // GetNodesData | 节点list信息
 type GetNodesData struct {
-	Items []*v1.Node `json:"items"`
-	Total int64      `json:"total"`
+	Items []*v1.Node `json:"items,optional"`
+	Total int64      `json:"total,optional"`
 }

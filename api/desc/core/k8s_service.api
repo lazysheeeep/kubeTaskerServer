@@ -4,21 +4,21 @@ type (
     // GetServicesReq
     GetServicesReq {
         // FilterName
-        FilterName  string `json:"filterName"`
+        FilterName  string `json:"filter_name,optional"`
         // Namespace
-        Namespace  string `json:"namespace"`
+        Namespace  string `json:"namespace,optional"`
         // Limit
-        Limit  int64 `json:"limit"`
+        Limit  int64 `json:"limit,optional"`
         // Page
-        Page  int64 `json:"page"`
+        Page  int64 `json:"page,optional"`
     }
     // GetServicesData
     GetServicesData {
         // Items
         // []k8s.io.api.core.v1.Service
-        Items  TypeNull `json:"items,omitempty"`
+        Items  TypeNull `json:"items,optional"`
         // Total
-        Total  int64 `json:"total"`
+        Total  int64 `json:"total,optional"`
     }
     // GetServicesResp
     GetServicesResp {
@@ -29,64 +29,64 @@ type (
     // GetServiceDetailReq
     GetServiceDetailReq {
         // ServiceName
-        ServiceName  string `json:"serviceName"`
+        ServiceName  string `json:"service_name,optional"`
         // Namespace
-        Namespace  string `json:"namespace"`
+        Namespace  string `json:"namespace,optional"`
     }
     // GetServiceDetailResp
     GetServiceDetailResp {
         // Msg
-        Msg string `json:"msg"`
+        Msg string `json:"msg,optional"`
         // Service
         // k8s.io.api.core.v1.Service
-        Data  TypeNull `json:"data,omitempty"`
+        Data  TypeNull `json:"data,optional"`
     }
 
     // CreateServiceReq
     CreateServiceReq {
         // Name
-        Name  string `json:"name"`
+        Name  string `json:"name,optional"`
         // Namespace
-        Namespace  string `json:"namespace"`
+        Namespace  string `json:"namespace,optional"`
         // Type
         Type  string `json:"type"`
         // ContainerPort
-        ContainerPort  int32 `json:"containerPort"`
+        ContainerPort  int32 `json:"container_port,optional"`
         // Port
-        Port  int32 `json:"port"`
+        Port  int32 `json:"port,optional"`
         // NodePort
-        NodePort  int32 `json:"nodePort"`
+        NodePort  int32 `json:"node_port,optional"`
         // Label
         // map[string]string
-        Label  TypeNull `json:"label,omitempty"`
+        Label  TypeNull `json:"label,optional"`
     }
     // CreateServiceResp
     CreateServiceResp {
-        Msg string `json:"msg"`
+        Msg string `json:"msg,optional"`
     }
 
     // DeleteServiceReq
     DeleteServiceReq {
         // ServiceName
-        ServiceName  string `json:"serviceName"`
+        ServiceName  string `json:"service_name,optional"`
         // Namespace
-        Namespace  string `json:"namespace"`
+        Namespace  string `json:"namespace,optional"`
     }
     // DeleteServiceResp
     DeleteServiceResp {
-        Msg string `json:"msg"`
+        Msg string `json:"msg,optional"`
     }
 
     // UpdateServiceReq
     UpdateServiceReq {
         // Namespace
-        Namespace  string `json:"namespace"`
+        Namespace  string `json:"namespace,optional"`
         // Content
-        Content  string `json:"content"`
+        Content  string `json:"content,optional"`
     }
     // UpdateServiceResp
     UpdateServiceResp {
-        Msg string `json:"msg"`
+        Msg string `json:"msg,optional"`
     }
 )
 @server(
@@ -97,10 +97,10 @@ type (
 service Core {
     // getServices | 获取service列表，支持过滤、排序、分页
     @handler getServices
-    get /k8sservice/get_services (GetServicesReq) returns (GetServicesResp)
+    post /k8sservice/get_services (GetServicesReq) returns (GetServicesResp)
     // getServiceDetail | 获取service详情
     @handler getServiceDetail
-    get /k8sservice/get_service_detail (GetServiceDetailReq) returns (GetServiceDetailResp)
+    post /k8sservice/get_service_detail (GetServiceDetailReq) returns (GetServiceDetailResp)
     // createService | 创建service
     @handler createService
     post /k8sservice/create_service (CreateServiceReq) returns (CreateServiceResp)

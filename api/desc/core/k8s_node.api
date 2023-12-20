@@ -2,17 +2,17 @@ type(
     // GetNodeDetailReq | 获取节点详情信息请求
     GetNodeDetailReq {
         // NodeName
-        NodeName  string `json:"nodeName"`
+        NodeName  string `json:"node_name,optional"`
 
     }
 
     // GetNodeDetailResp | 获取节点详情信息应答
     GetNodeDetailResp {
         // Msg
-        Msg  string `json:"msg"`
+        Msg  string `json:"msg,optional"`
 
         // Data
-        Data  GetNodeDetailData `json:"data"`
+        Data  GetNodeDetailData `json:"data,optional"`
 
     }
 
@@ -23,23 +23,23 @@ type(
     // GetNodesReq
     GetNodesReq {
         // FilterName
-        FilterName  string `json:"filterName"`
+        FilterName  string `json:"filter_name,optional"`
 
         // Page
-        Page  int64 `json:"page"`
+        Page  int64 `json:"page,optional"`
 
         // Limit
-        Limit  int64 `json:"limit"`
+        Limit  int64 `json:"limit,optional"`
 
     }
 
     // GetNodesResp
     GetNodesResp {
         // Msg
-        Msg  string `json:"msg"`
+        Msg  string `json:"msg,optional"`
 
         // Data
-        Data  GetNodesData `json:"data"`
+        Data  GetNodesData `json:"data,optional"`
 
     }
 
@@ -58,9 +58,9 @@ type(
 service Core {
     // getNodes
     @handler getNodes
-    get /k8s_node/get_nodes (GetNodesReq) returns (GetNodesResp)
+    post /k8s_node/get_nodes (GetNodesReq) returns (GetNodesResp)
 
     // getNodeDetail
     @handler getNodeDetail
-    get /k8s_node/get_node_detail (GetNodeDetailReq) returns (GetNodeDetailResp)
+    post /k8s_node/get_node_detail (GetNodeDetailReq) returns (GetNodeDetailResp)
 }
