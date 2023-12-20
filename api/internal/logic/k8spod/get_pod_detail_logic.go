@@ -25,15 +25,12 @@ func NewGetPodDetailLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetP
 
 func (l *GetPodDetailLogic) GetPodDetail(req *types.GetPodDetailReq) (resp *types.GetPodDetailResp, err error) {
 	// todo: add your logic here and delete this line
-	result, err := l.svcCtx.CoreRpc.GetPodDetail(l.ctx, &core.GetPodDetailReq{
+	result, _ := l.svcCtx.CoreRpc.GetPodDetail(l.ctx, &core.GetPodDetailReq{
 		PodName:   req.PodName,
 		Namespace: req.Namespace,
 	})
-	if err != nil {
-		return nil, err
-	}
 	return &types.GetPodDetailResp{
 		Msg:  result.Msg,
 		Data: result.Data,
-	}, err
+	}, nil
 }

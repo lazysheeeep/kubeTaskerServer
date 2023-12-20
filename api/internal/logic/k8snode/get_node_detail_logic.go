@@ -25,7 +25,7 @@ func NewGetNodeDetailLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Get
 
 func (l *GetNodeDetailLogic) GetNodeDetail(req *types.GetNodeDetailReq) (resp *types.GetNodeDetailResp, err error) {
 	// todo: add your logic here and delete this line
-	result, err := l.svcCtx.CoreRpc.GetNodeDetail(l.ctx, &core.GetNodeDetailReq{
+	result, _ := l.svcCtx.CoreRpc.GetNodeDetail(l.ctx, &core.GetNodeDetailReq{
 		NodeName: req.NodeName,
 	})
 	return &types.GetNodeDetailResp{
@@ -33,5 +33,5 @@ func (l *GetNodeDetailLogic) GetNodeDetail(req *types.GetNodeDetailReq) (resp *t
 		Data: types.GetNodeDetailData{
 			Node: result.Data.Node,
 		},
-	}, err
+	}, nil
 }

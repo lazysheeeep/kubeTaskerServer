@@ -25,7 +25,7 @@ func NewGetNodesLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetNodes
 
 func (l *GetNodesLogic) GetNodes(req *types.GetNodesReq) (resp *types.GetNodesResp, err error) {
 	// todo: add your logic here and delete this line
-	result, err := l.svcCtx.CoreRpc.GetNodes(l.ctx, &core.GetNodesReq{
+	result, _ := l.svcCtx.CoreRpc.GetNodes(l.ctx, &core.GetNodesReq{
 		FilterName: req.FilterName,
 		Page:       req.Page,
 		Limit:      req.Limit,
@@ -36,5 +36,5 @@ func (l *GetNodesLogic) GetNodes(req *types.GetNodesReq) (resp *types.GetNodesRe
 			Items: result.Data.Items,
 			Total: result.Data.Total,
 		},
-	}, err
+	}, nil
 }

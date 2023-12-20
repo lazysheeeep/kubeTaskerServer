@@ -25,11 +25,11 @@ func NewUpdateDeploymentLogic(ctx context.Context, svcCtx *svc.ServiceContext) *
 
 func (l *UpdateDeploymentLogic) UpdateDeployment(req *types.UpdateDeploymentReq) (resp *types.UpdateDeploymentResp, err error) {
 	// todo: add your logic here and delete this line
-	result, err := l.svcCtx.CoreRpc.UpdateDeployment(l.ctx, &core.UpdateDeploymentReq{
+	result, _ := l.svcCtx.CoreRpc.UpdateDeployment(l.ctx, &core.UpdateDeploymentReq{
 		Namespace: req.Namespace,
 		Content:   req.Content,
 	})
 	return &types.UpdateDeploymentResp{
 		Msg: result.Msg,
-	}, err
+	}, nil
 }

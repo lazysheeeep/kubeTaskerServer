@@ -25,7 +25,7 @@ func NewGetNamespacesLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Get
 
 func (l *GetNamespacesLogic) GetNamespaces(req *types.GetNamespacesReq) (resp *types.GetNamespacesResp, err error) {
 	// todo: add your logic here and delete this line
-	result, err := l.svcCtx.CoreRpc.GetNamespaces(l.ctx, &core.GetNamespacesReq{
+	result, _ := l.svcCtx.CoreRpc.GetNamespaces(l.ctx, &core.GetNamespacesReq{
 		FilterName: req.FilterName,
 		Page:       req.Page,
 		Limit:      req.Limit,
@@ -36,5 +36,5 @@ func (l *GetNamespacesLogic) GetNamespaces(req *types.GetNamespacesReq) (resp *t
 			Items: result.Data.Items,
 			Total: result.Data.Total,
 		},
-	}, err
+	}, nil
 }

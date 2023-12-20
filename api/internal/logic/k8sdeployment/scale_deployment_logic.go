@@ -25,7 +25,7 @@ func NewScaleDeploymentLogic(ctx context.Context, svcCtx *svc.ServiceContext) *S
 
 func (l *ScaleDeploymentLogic) ScaleDeployment(req *types.ScaleDeploymentReq) (resp *types.ScaleDeploymentResp, err error) {
 	// todo: add your logic here and delete this line
-	result, err := l.svcCtx.CoreRpc.ScaleDeployment(l.ctx, &core.ScaleDeploymentReq{
+	result, _ := l.svcCtx.CoreRpc.ScaleDeployment(l.ctx, &core.ScaleDeploymentReq{
 		DeploymentName: req.DeploymentName,
 		Namespace:      req.Namespace,
 		ScaleNum:       req.ScaleNum,
@@ -36,5 +36,5 @@ func (l *ScaleDeploymentLogic) ScaleDeployment(req *types.ScaleDeploymentReq) (r
 	return &types.ScaleDeploymentResp{
 		Msg:  result.Msg,
 		Data: result.Data,
-	}, err
+	}, nil
 }

@@ -79,11 +79,11 @@ type (
 service Core {
     // getConfigMaps | 获取configmap列表，支持过滤、排序、分页
     @handler getConfigMaps
-    post /k8sconfigmap/get_config_maps (GetConfigMapsReq) returns (GetConfigMapsResp)
+    get /k8sconfigmap/get_config_maps (GetConfigMapsReq) returns (GetConfigMapsResp)
 
     // getConfigMapDetail | 获取configmap详情
     @handler getConfigMapDetail
-    post /k8sconfigmap/get_config_map_detail (GetConfigMapDetailReq) returns (GetConfigMapDetailResp)
+    get /k8sconfigmap/get_config_map_detail (GetConfigMapDetailReq) returns (GetConfigMapDetailResp)
 
     // deleteConfigMap | 删除configmap
     @handler deleteConfigMap

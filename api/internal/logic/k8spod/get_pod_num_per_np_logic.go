@@ -25,10 +25,7 @@ func NewGetPodNumPerNpLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Ge
 
 func (l *GetPodNumPerNpLogic) GetPodNumPerNp(req *types.GetPodNumPerNpReq) (resp *types.GetPodNumPerNpResp, err error) {
 	// todo: add your logic here and delete this line
-	result, err := l.svcCtx.CoreRpc.GetPodNumPerNp(l.ctx, &core.GetPodNumPerNpReq{})
-	if err != nil {
-		return nil, err
-	}
+	result, _ := l.svcCtx.CoreRpc.GetPodNumPerNp(l.ctx, &core.GetPodNumPerNpReq{})
 	getPodNumPerNpData := make([]*types.GetPodNumPerNpData, 0)
 	for _, v := range result.Data {
 		getPodNumPerNpData = append(getPodNumPerNpData, &types.GetPodNumPerNpData{
@@ -39,5 +36,5 @@ func (l *GetPodNumPerNpLogic) GetPodNumPerNp(req *types.GetPodNumPerNpReq) (resp
 	return &types.GetPodNumPerNpResp{
 		Msg:  result.Msg,
 		Data: getPodNumPerNpData,
-	}, err
+	}, nil
 }

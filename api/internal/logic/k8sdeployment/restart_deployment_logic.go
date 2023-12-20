@@ -25,12 +25,12 @@ func NewRestartDeploymentLogic(ctx context.Context, svcCtx *svc.ServiceContext) 
 
 func (l *RestartDeploymentLogic) RestartDeployment(req *types.RestartDeploymentReq) (resp *types.RestartDeploymentResp, err error) {
 	// todo: add your logic here and delete this line
-	result, err := l.svcCtx.CoreRpc.RestartDeployment(l.ctx, &core.RestartDeploymentReq{
+	result, _ := l.svcCtx.CoreRpc.RestartDeployment(l.ctx, &core.RestartDeploymentReq{
 		DeploymentName: req.DeploymentName,
 		Namespace:      req.Namespace,
 	})
 
 	return &types.RestartDeploymentResp{
 		Msg: result.Msg,
-	}, err
+	}, nil
 }

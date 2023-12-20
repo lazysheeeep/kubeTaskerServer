@@ -9,8 +9,8 @@ Auth:
 
 Log:
   ServiceName: coreApiLogger
-  Mode: file
-  Path: /home/data/logs/core/api
+  Mode: console
+  Path: /root/termProject/.logs/core/api
   Level: info
   Compress: false
   KeepDays: 7
@@ -26,9 +26,9 @@ DatabaseConf:
   Type: mysql
   Host: 127.0.0.1
   Port: 3306
-  DBName: simple_admin
-  Username: # set your username
-  Password: # set your password
+  DBName: core
+  Username: uroot # set your username
+  Password: uroot # set your password
   MaxOpenConn: 100
   SSLMode: disable
   CacheTime: 5

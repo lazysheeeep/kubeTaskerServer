@@ -97,10 +97,10 @@ type (
 service Core {
     // getServices | 获取service列表，支持过滤、排序、分页
     @handler getServices
-    post /k8sservice/get_services (GetServicesReq) returns (GetServicesResp)
+    get /k8sservice/get_services (GetServicesReq) returns (GetServicesResp)
     // getServiceDetail | 获取service详情
     @handler getServiceDetail
-    post /k8sservice/get_service_detail (GetServiceDetailReq) returns (GetServiceDetailResp)
+    get /k8sservice/get_service_detail (GetServiceDetailReq) returns (GetServiceDetailResp)
     // createService | 创建service
     @handler createService
     post /k8sservice/create_service (CreateServiceReq) returns (CreateServiceResp)

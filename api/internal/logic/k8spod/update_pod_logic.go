@@ -25,11 +25,11 @@ func NewUpdatePodLogic(ctx context.Context, svcCtx *svc.ServiceContext) *UpdateP
 
 func (l *UpdatePodLogic) UpdatePod(req *types.UpdatePodReq) (resp *types.UpdatePodResp, err error) {
 	// todo: add your logic here and delete this line
-	result, err := l.svcCtx.CoreRpc.UpdatePod(l.ctx, &core.UpdatePodReq{
+	result, _ := l.svcCtx.CoreRpc.UpdatePod(l.ctx, &core.UpdatePodReq{
 		Namespace: req.Namespace,
 		Content:   req.Content,
 	})
 	return &types.UpdatePodResp{
 		Msg: result.Msg,
-	}, err
+	}, nil
 }

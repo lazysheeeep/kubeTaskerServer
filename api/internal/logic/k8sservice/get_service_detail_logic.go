@@ -25,12 +25,12 @@ func NewGetServiceDetailLogic(ctx context.Context, svcCtx *svc.ServiceContext) *
 
 func (l *GetServiceDetailLogic) GetServiceDetail(req *types.GetServiceDetailReq) (resp *types.GetServiceDetailResp, err error) {
 	// todo: add your logic here and delete this line
-	result, err := l.svcCtx.CoreRpc.GetServiceDetail(l.ctx, &core.GetServiceDetailReq{
+	result, _ := l.svcCtx.CoreRpc.GetServiceDetail(l.ctx, &core.GetServiceDetailReq{
 		ServiceName: req.ServiceName,
 		Namespace:   req.Namespace,
 	})
 	return &types.GetServiceDetailResp{
 		Msg:  result.Msg,
 		Data: result.Data,
-	}, err
+	}, nil
 }

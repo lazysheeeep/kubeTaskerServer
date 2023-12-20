@@ -155,10 +155,10 @@ type (
 service Core {
     // getDeployments | 获取deployment列表，支持过滤、排序、分页
     @handler getDeployments
-    post /k8sdeployment/get_deployments (GetDeploymentsReq) returns (GetDeploymentsResp)
+    get /k8sdeployment/get_deployments (GetDeploymentsReq) returns (GetDeploymentsResp)
     // getDeploymentDetail | 获取deployment详情
     @handler getDeploymentDetail
-    post /k8sdeployment/get_deployment_detail (GetDeploymentDetailReq) returns (GetDeploymentDetailResp)
+    get /k8sdeployment/get_deployment_detail (GetDeploymentDetailReq) returns (GetDeploymentDetailResp)
     // scaleDeployment | 设置deployment副本数
     @handler scaleDeployment
     put /k8sdeployment/scale_deployment (ScaleDeploymentReq) returns (ScaleDeploymentResp)
@@ -176,5 +176,5 @@ service Core {
     put /k8sdeployment/update_deployment (UpdateDeploymentReq) returns (UpdateDeploymentResp)
     // getDeployNumPerNp | 获取每个namespace的pod数量
     @handler getDeployNumPerNp
-    post /k8sdeployment/get_deploy_num_per_np (GetDeployNumPerNpReq) returns (GetDeployNumPerNpResp)
+    get /k8sdeployment/get_deploy_num_per_np (GetDeployNumPerNpReq) returns (GetDeployNumPerNpResp)
 }

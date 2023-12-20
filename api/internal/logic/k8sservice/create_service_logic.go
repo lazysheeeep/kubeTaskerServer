@@ -25,7 +25,7 @@ func NewCreateServiceLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Cre
 
 func (l *CreateServiceLogic) CreateService(req *types.CreateServiceReq) (resp *types.CreateServiceResp, err error) {
 	// todo: add your logic here and delete this line
-	result, err := l.svcCtx.CoreRpc.CreateService(l.ctx, &core.CreateServiceReq{
+	result, _ := l.svcCtx.CoreRpc.CreateService(l.ctx, &core.CreateServiceReq{
 		Name:          req.Name,
 		Namespace:     req.Namespace,
 		Type:          req.Type,
@@ -36,5 +36,5 @@ func (l *CreateServiceLogic) CreateService(req *types.CreateServiceReq) (resp *t
 	})
 	return &types.CreateServiceResp{
 		Msg: result.Msg,
-	}, err
+	}, nil
 }

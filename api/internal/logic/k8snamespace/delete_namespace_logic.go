@@ -25,11 +25,11 @@ func NewDeleteNamespaceLogic(ctx context.Context, svcCtx *svc.ServiceContext) *D
 
 func (l *DeleteNamespaceLogic) DeleteNamespace(req *types.DeleteNamespaceReq) (resp *types.DeleteNamespaceResp, err error) {
 	// todo: add your logic here and delete this line
-	result, err := l.svcCtx.CoreRpc.DeleteNamespace(l.ctx, &core.DeleteNamespaceReq{
+	result, _ := l.svcCtx.CoreRpc.DeleteNamespace(l.ctx, &core.DeleteNamespaceReq{
 		NamespaceName: req.NamespaceName,
 	})
 	return &types.DeleteNamespaceResp{
 		Msg:  result.Msg,
 		Data: result.Data,
-	}, err
+	}, nil
 }

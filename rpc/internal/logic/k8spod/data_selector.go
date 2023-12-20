@@ -67,15 +67,11 @@ func (d *dataSelector) Filter() *dataSelector {
 	filtered := make([]DataCell, 0)
 	for _, value := range d.GenericDataList {
 		// 定义是否匹配的标签变量,默认是匹配的
-		matches := true
 		objName := value.GetName()
 		if !strings.Contains(objName, d.DataSelect.Filter.Name) {
-			matches = false
 			continue
 		}
-		if matches {
-			filtered = append(filtered, value)
-		}
+		filtered = append(filtered, value)
 	}
 	d.GenericDataList = filtered
 	return d

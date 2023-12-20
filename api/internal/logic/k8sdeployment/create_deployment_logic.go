@@ -25,7 +25,7 @@ func NewCreateDeploymentLogic(ctx context.Context, svcCtx *svc.ServiceContext) *
 
 func (l *CreateDeploymentLogic) CreateDeployment(req *types.CreateDeploymentReq) (resp *types.CreateDeploymentResp, err error) {
 	// todo: add your logic here and delete this line
-	result, err := l.svcCtx.CoreRpc.CreateDeployment(l.ctx, &core.CreateDeploymentReq{
+	result, _ := l.svcCtx.CoreRpc.CreateDeployment(l.ctx, &core.CreateDeploymentReq{
 		Name:          req.Name,
 		Namespace:     req.Namespace,
 		Replicas:      req.Replicas,
@@ -39,5 +39,5 @@ func (l *CreateDeploymentLogic) CreateDeployment(req *types.CreateDeploymentReq)
 	})
 	return &types.CreateDeploymentResp{
 		Msg: result.Msg,
-	}, err
+	}, nil
 }

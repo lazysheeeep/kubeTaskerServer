@@ -5,17 +5,17 @@ DatabaseConf:
   Type: mysql
   Host: 127.0.0.1
   Port: 3306
-  DBName: simple_admin
-  Username: # set your username
-  Password: # set your password
+  DBName: core
+  Username: uroot # set your username
+  Password: uroot # set your password
   MaxOpenConn: 100
   SSLMode: disable # disable or require
   CacheTime: 5
 
 Log:
   ServiceName: coreRpcLogger
-  Mode: file
-  Path: /home/data/logs/core/rpc
+  Mode: console
+  Path: /root/termProject/.logs/core/api
   Encoding: json
   Level: info
   Compress: false

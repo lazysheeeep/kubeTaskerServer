@@ -26,21 +26,20 @@ func NewGetServicesLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetSe
 
 func (l *GetServicesLogic) GetServices(req *types.GetServicesReq) (resp *types.GetServicesResp, err error) {
 	// todo: add your logic here and delete this line
-	result, err := l.svcCtx.CoreRpc.GetServices(l.ctx, &core.GetServicesReq{
+	result, _ := l.svcCtx.CoreRpc.GetServices(l.ctx, &core.GetServicesReq{
 		FilterName: req.FilterName,
 		Namespace:  req.Namespace,
 		Limit:      req.Limit,
 		Page:       req.Page,
 	})
 	items := make([]*v1.Service, 0)
-	for _, v := range result.Data.Items {
-		items = append(items, v)
-	}
+	items = append(items, result.Data.Items...)
+
 	return &types.GetServicesResp{
 		Msg: result.Msg,
 		Data: &types.GetServicesData{
 			Items: items,
 			Total: result.Data.Total,
 		},
-	}, err
+	}, nil
 }

@@ -23,6 +23,10 @@ type AuthorityMiddleware struct {
 	BanRoleData map[string]bool
 }
 
+type langKey string
+
+const LangKey langKey = "lang"
+
 func NewAuthorityMiddleware(cbn *casbin.Enforcer, rds *redis.Redis, trans *i18n.Translator, banRoleData map[string]bool) *AuthorityMiddleware {
 	return &AuthorityMiddleware{
 		Cbn:         cbn,
@@ -77,7 +81,7 @@ func (m *AuthorityMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc {
 			logx.Errorw("the role is not permitted to access the API", logx.Field("roleId", roleIds),
 				logx.Field("path", obj), logx.Field("method", act))
 			httpx.Error(w, errorx.NewCodeError(errorcode.PermissionDenied, m.Trans.Trans(
-				context.WithValue(context.Background(), "lang", r.Header.Get("Accept-Language")),
+				context.WithValue(context.Background(), LangKey, r.Header.Get("Accept-Language")),
 				"common.permissionDeny")))
 			return
 		}

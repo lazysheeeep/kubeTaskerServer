@@ -57,8 +57,8 @@ func (l *GetNamespacesLogic) GetNamespaces(in *core.GetNamespacesReq) (*core.Get
 	//将[]DataCell类型的namespace列表转为v1.namespace列表
 	namespaces := fromCells(data.GenericDataList)
 	items := make([]*corev1.Namespace, 0)
-	for _, item := range namespaces {
-		items = append(items, &item)
+	for i := range namespaces {
+		items = append(items, &namespaces[i])
 	}
 
 	return &core.GetNamespacesResp{

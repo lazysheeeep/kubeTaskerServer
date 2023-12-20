@@ -4,7 +4,7 @@ type (
     // GetPodsReq
     GetPodsReq {
         // FilterName
-        FilterName  string `json:"filterName"`
+        FilterName  string `json:"filter_ame"`
         // Namespace
         Namespace  string `json:"namespace"`
         // Limit
@@ -31,7 +31,7 @@ type (
     // GetPodDetailReq
     GetPodDetailReq {
         // PodName
-        PodName  string `json:"podName"`
+        PodName  string `json:"pod_name"`
         // Namespace
         Namespace  string `json:"namespace"`
     }
@@ -47,7 +47,7 @@ type (
     // DeletePodReq
     DeletePodReq {
         // PodName
-        PodName  string `json:"podName"`
+        PodName  string `json:"pod_name"`
         // Namespace
         Namespace  string `json:"namespace"`
     }
@@ -73,7 +73,7 @@ type (
     // GetPodContainerReq
     GetPodContainerReq {
         // PodName
-        PodName  string `json:"podName"`
+        PodName  string `json:"pod_name"`
         // Namespace
         Namespace  string `json:"namespace"`
     }
@@ -90,7 +90,7 @@ type (
         // ContainerName
         ContainerName  string `json:"containerName"`
         // PodName
-        PodName  string `json:"podName"`
+        PodName  string `json:"pod_name"`
         // Namespace
         Namespace  string `json:"namespace"`
     }
@@ -107,7 +107,7 @@ type (
     // PodsNp
     GetPodNumPerNpData {
         Namespace string `json:"namespace"`
-        PodNum int64 `json:"podNum"`
+        PodNum int64 `json:"pod_num"`
     }
     // GetPodNumPerNpResp
     GetPodNumPerNpResp {
@@ -125,13 +125,13 @@ type (
 service Core {
     // getPods | 获取pod列表,支持分页,过滤,排序
     @handler getPods
-    post /k8spod/get_pods (GetPodsReq) returns (GetPodsResp)
+    get /k8spod/get_pods (GetPodsReq) returns (GetPodsResp)
     // getPodDetail | 获取pod详情
     @handler getPodDetail
-    post /k8spod/get_pod_detail (GetPodDetailReq) returns (GetPodDetailResp)
+    get /k8spod/get_pod_detail (GetPodDetailReq) returns (GetPodDetailResp)
     // deletePod | 删除Pod
     @handler deletePod
-    post /k8spod/delete_pod (DeletePodReq) returns (DeletePodResp)
+    delete /k8spod/delete_pod (DeletePodReq) returns (DeletePodResp)
     // updatePod | 更新pod
     @handler updatePod
     put /k8spod/update_pod (UpdatePodReq) returns (UpdatePodResp)
@@ -143,5 +143,5 @@ service Core {
     get /k8spod/get_pod_log (GetPodLogReq) returns (GetPodLogResp)
     // getPodNumPerNp | 获取每个namespace的pod数量
     @handler getPodNumPerNp
-    post /k8spod/get_pod_num_per_np (GetPodNumPerNpReq) returns (GetPodNumPerNpResp)
+    get /k8spod/get_pod_num_per_np (GetPodNumPerNpReq) returns (GetPodNumPerNpResp)
 }

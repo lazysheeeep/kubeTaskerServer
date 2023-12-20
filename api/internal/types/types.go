@@ -1590,7 +1590,7 @@ type SendEmailReq struct {
 // swagger:model GetConfigMapsReq
 type GetConfigMapsReq struct {
 	// FilterName
-	FilterName string `json:"filterName"`
+	FilterName string `json:"filter_ame"`
 	// Namespace
 	Namespace string `json:"namespace"`
 	// Limit
@@ -1621,7 +1621,7 @@ type GetConfigMapsResp struct {
 // swagger:model GetConfigMapDetailReq
 type GetConfigMapDetailReq struct {
 	// ConfigMapName
-	ConfigMapName string `json:"configMapName"`
+	ConfigMapName string `json:"config_map_name"`
 	// Namespace
 	Namespace string `json:"namespace"`
 }
@@ -1640,7 +1640,7 @@ type GetConfigMapDetailResp struct {
 // swagger:model DeleteConfigMapReq
 type DeleteConfigMapReq struct {
 	// ConfigMapName
-	ConfigMapName string `json:"configMapName"`
+	ConfigMapName string `json:"config_map_name"`
 	// Namespace
 	Namespace string `json:"namespace"`
 }
@@ -1672,7 +1672,7 @@ type UpdateConfigMapResp struct {
 // swagger:model GetDeploymentsReq
 type GetDeploymentsReq struct {
 	// FilterName
-	FilterName string `json:"filterName"`
+	FilterName string `json:"filter_name"`
 	// Namespace
 	Namespace string `json:"namespace"`
 	// Limit
@@ -1702,7 +1702,7 @@ type GetDeploymentsResp struct {
 // swagger:model GetDeploymentDetailReq
 type GetDeploymentDetailReq struct {
 	// DeploymentName
-	DeploymentName string `json:"deploymentName"`
+	DeploymentName string `json:"deployment_name"`
 	// Namespace
 	Namespace string `json:"namespace"`
 }
@@ -1721,7 +1721,7 @@ type GetDeploymentDetailResp struct {
 // swagger:model ScaleDeploymentReq
 type ScaleDeploymentReq struct {
 	// DeploymentName
-	DeploymentName string `json:"deploymentName"`
+	DeploymentName string `json:"deployment_name"`
 	// Namespace
 	Namespace string `json:"namespace"`
 	// ScaleNum
@@ -1756,11 +1756,11 @@ type CreateDeploymentReq struct {
 	// Memory
 	Memory string `json:"memory"`
 	// ContainerPort
-	ContainerPort int32 `json:"containerPort"`
+	ContainerPort int32 `json:"container_port"`
 	// HealthCheck
-	HealthCheck bool `json:"healthCheck"`
+	HealthCheck bool `json:"health_check"`
 	// HealthPath
-	HealthPath string `json:"healthPath"`
+	HealthPath string `json:"health_path"`
 }
 
 // CreateDeploymentResp
@@ -1774,7 +1774,7 @@ type CreateDeploymentResp struct {
 // swagger:model DeleteDeploymentReq
 type DeleteDeploymentReq struct {
 	// DeploymentName
-	DeploymentName string `json:"deploymentName"`
+	DeploymentName string `json:"deployment_name"`
 	// Namespace
 	Namespace string `json:"namespace"`
 }
@@ -1790,7 +1790,7 @@ type DeleteDeploymentResp struct {
 // swagger:model RestartDeploymentReq
 type RestartDeploymentReq struct {
 	// DeploymentName
-	DeploymentName string `json:"deploymentName"`
+	DeploymentName string `json:"deployment_name"`
 	// Namespace
 	Namespace string `json:"namespace"`
 }
@@ -1826,7 +1826,7 @@ type GetDeployNumPerNpReq struct {
 // DeploysNp
 type GetDeployNumPerNpData struct {
 	Namespace     string `json:"namespace"`
-	DeploymentNum int64  `json:"deploymentNum"`
+	DeploymentNum int64  `json:"deployment_num"`
 }
 
 // GetDeployNumPerNpResp
@@ -1842,13 +1842,13 @@ type GetDeployNumPerNpResp struct {
 // swagger:model GetPodsReq
 type GetPodsReq struct {
 	// FilterName
-	FilterName string `json:"filterName"`
+	FilterName string `json:"filter_name,optional"`
 	// Namespace
-	Namespace string `json:"namespace"`
+	Namespace string `json:"namespace,optional"`
 	// Limit
-	Limit int64 `json:"limit"`
+	Limit int64 `json:"limit,optional"`
 	// Page
-	Page int64 `json:"page"`
+	Page int64 `json:"page,optional"`
 }
 
 // GetPodsRespData
@@ -1873,7 +1873,7 @@ type GetPodsResp struct {
 // swagger:model GetPodDetailReq
 type GetPodDetailReq struct {
 	// PodName
-	PodName string `json:"podName"`
+	PodName string `json:"pod_name"`
 	// Namespace
 	Namespace string `json:"namespace"`
 }
@@ -1892,7 +1892,7 @@ type GetPodDetailResp struct {
 // swagger:model DeletePodReq
 type DeletePodReq struct {
 	// PodName
-	PodName string `json:"podName"`
+	PodName string `json:"pod_name"`
 	// Namespace
 	Namespace string `json:"namespace"`
 }
@@ -1924,7 +1924,7 @@ type UpdatePodResp struct {
 // swagger:model GetPodContainerReq
 type GetPodContainerReq struct {
 	// PodName
-	PodName string `json:"podName"`
+	PodName string `json:"pod_name"`
 	// Namespace
 	Namespace string `json:"namespace"`
 }
@@ -1942,9 +1942,9 @@ type GetPodContainerResp struct {
 // swagger:model GetPodLogReq
 type GetPodLogReq struct {
 	// ContainerName
-	ContainerName string `json:"containerName"`
+	ContainerName string `json:"container_name"`
 	// PodName
-	PodName string `json:"podName"`
+	PodName string `json:"pod_name"`
 	// Namespace
 	Namespace string `json:"namespace"`
 }
@@ -1966,7 +1966,7 @@ type GetPodNumPerNpReq struct {
 // PodsNp
 type GetPodNumPerNpData struct {
 	Namespace string `json:"namespace"`
-	PodNum    int64  `json:"podNum"`
+	PodNum    int64  `json:"pod_num"`
 }
 
 // GetPodNumPerNpResp
@@ -1982,7 +1982,7 @@ type GetPodNumPerNpResp struct {
 // swagger:model GetServicesReq
 type GetServicesReq struct {
 	// FilterName
-	FilterName string `json:"filterName"`
+	FilterName string `json:"filter_name"`
 	// Namespace
 	Namespace string `json:"namespace"`
 	// Limit
@@ -2011,7 +2011,7 @@ type GetServicesResp struct {
 // swagger:model GetServiceDetailReq
 type GetServiceDetailReq struct {
 	// ServiceName
-	ServiceName string `json:"serviceName"`
+	ServiceName string `json:"service_name"`
 	// Namespace
 	Namespace string `json:"namespace"`
 }
@@ -2036,11 +2036,11 @@ type CreateServiceReq struct {
 	// Type
 	Type string `json:"type"`
 	// ContainerPort
-	ContainerPort int32 `json:"containerPort"`
+	ContainerPort int32 `json:"container_port"`
 	// Port
 	Port int32 `json:"port"`
 	// NodePort
-	NodePort int32 `json:"nodePort"`
+	NodePort int32 `json:"node_port"`
 	// Label
 	// map<string,string>
 	Label map[string]string `json:"label,omitempty"`
@@ -2056,7 +2056,7 @@ type CreateServiceResp struct {
 // swagger:model DeleteServiceReq
 type DeleteServiceReq struct {
 	// ServiceName
-	ServiceName string `json:"serviceName"`
+	ServiceName string `json:"service_name"`
 	// Namespace
 	Namespace string `json:"namespace"`
 }
@@ -2086,11 +2086,11 @@ type UpdateServiceResp struct {
 // swagger:model GetNamespacesReq
 type GetNamespacesReq struct {
 	// FilterName
-	FilterName string `json:"filterName"`
+	FilterName string `json:"filter_name,optional"`
 	// Page
-	Page int64 `json:"page"`
+	Page int64 `json:"page,optional"`
 	// Limit
-	Limit int64 `json:"limit"`
+	Limit int64 `json:"limit,optional"`
 }
 
 // GetNamespaceDetailResp | 返回命名空间详细信息
@@ -2111,7 +2111,7 @@ type GetNamespaceDetailData struct {
 // swagger:model DeleteNamespaceReq
 type DeleteNamespaceReq struct {
 	// NamespaceName
-	NamespaceName string `json:"namespaceName"`
+	NamespaceName string `json:"namespace_name"`
 }
 
 // DeleteNamespaceResp | 删除命名空间返回值
@@ -2144,14 +2144,14 @@ type GetNamespacesData struct {
 // swagger:model GetNamespaceDetailReq
 type GetNamespaceDetailReq struct {
 	// NamespaceName
-	NamespaceName string `json:"namespaceName"`
+	NamespaceName string `json:"namespace_name"`
 }
 
 // GetNodeDetailReq | 获取节点详情信息请求
 // swagger:model GetNodeDetailReq
 type GetNodeDetailReq struct {
 	// NodeName
-	NodeName string `json:"nodeName"`
+	NodeName string `json:"node_name"`
 }
 
 // GetNodeDetailResp | 获取节点详情信息应答
@@ -2172,7 +2172,7 @@ type GetNodeDetailData struct {
 // swagger:model GetNodesReq
 type GetNodesReq struct {
 	// FilterName
-	FilterName string `json:"filterName"`
+	FilterName string `json:"filter_name"`
 	// Page
 	Page int64 `json:"page"`
 	// Limit
@@ -2191,5 +2191,5 @@ type GetNodesResp struct {
 // GetNodesData | 节点list信息
 type GetNodesData struct {
 	Items []*v1.Node `json:"items"`
-	Total int64 `json:"total"`
+	Total int64      `json:"total"`
 }

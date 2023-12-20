@@ -4495,7 +4495,7 @@
           "type": "string",
           "x-go-name": "Namespace"
         },
-        "podName": {
+        "pod_name": {
           "description": "PodName",
           "type": "string",
           "x-go-name": "PodName"
@@ -5806,7 +5806,7 @@
           "type": "string",
           "x-go-name": "Namespace"
         },
-        "podName": {
+        "pod_name": {
           "description": "PodName",
           "type": "string",
           "x-go-name": "PodName"
@@ -5843,7 +5843,7 @@
           "type": "string",
           "x-go-name": "Namespace"
         },
-        "podName": {
+        "pod_name": {
           "description": "PodName",
           "type": "string",
           "x-go-name": "PodName"
@@ -5880,7 +5880,7 @@
           "type": "string",
           "x-go-name": "Namespace"
         },
-        "podName": {
+        "pod_name": {
           "description": "PodName",
           "type": "string",
           "x-go-name": "PodName"
@@ -5913,7 +5913,7 @@
           "type": "string",
           "x-go-name": "Namespace"
         },
-        "podNum": {
+        "pod_num": {
           "type": "integer",
           "format": "int64",
           "x-go-name": "PodNum"
@@ -5966,7 +5966,7 @@
       "description": "GetPodsReq",
       "type": "object",
       "properties": {
-        "filterName": {
+        "filter_ame": {
           "description": "FilterName",
           "type": "string",
           "x-go-name": "FilterName"

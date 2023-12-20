@@ -26,11 +26,11 @@ func NewDeleteConfigMapLogic(ctx context.Context, svcCtx *svc.ServiceContext) *D
 
 func (l *DeleteConfigMapLogic) DeleteConfigMap(req *types.DeleteConfigMapReq) (resp *types.DeleteConfigMapResp, err error) {
 	// todo: add your logic here and delete this line
-	result, err := l.svcCtx.CoreRpc.DeleteConfigMap(l.ctx, &core.DeleteConfigMapReq{
+	result, _ := l.svcCtx.CoreRpc.DeleteConfigMap(l.ctx, &core.DeleteConfigMapReq{
 		ConfigMapName: req.ConfigMapName,
 		Namespace:     req.Namespace,
 	})
 	return &types.DeleteConfigMapResp{
 		Msg: result.Msg,
-	}, err
+	}, nil
 }

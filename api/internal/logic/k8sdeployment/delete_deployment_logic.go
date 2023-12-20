@@ -25,11 +25,11 @@ func NewDeleteDeploymentLogic(ctx context.Context, svcCtx *svc.ServiceContext) *
 
 func (l *DeleteDeploymentLogic) DeleteDeployment(req *types.DeleteDeploymentReq) (resp *types.DeleteDeploymentResp, err error) {
 	// todo: add your logic here and delete this line
-	result, err := l.svcCtx.CoreRpc.DeleteDeployment(l.ctx, &core.DeleteDeploymentReq{
+	result, _ := l.svcCtx.CoreRpc.DeleteDeployment(l.ctx, &core.DeleteDeploymentReq{
 		DeploymentName: req.DeploymentName,
 		Namespace:      req.Namespace,
 	})
 	return &types.DeleteDeploymentResp{
 		Msg: result.Msg,
-	}, err
+	}, nil
 }
