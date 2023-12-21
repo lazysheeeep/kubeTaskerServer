@@ -53,8 +53,12 @@ func (l *InitDatabaseLogic) InitDatabase(_ *core.Empty) (*core.BaseResp, error) 
 		}
 	}
 	defer func() {
-		recover()
-		lock.Release()
+		if err := recover(); err != nil {
+			panic(err)
+		}
+		if _, err := lock.Release(); err != nil {
+			panic(err)
+		}
 	}()
 
 	// initialize table structure
@@ -74,7 +78,7 @@ func (l *InitDatabaseLogic) InitDatabase(_ *core.Empty) (*core.BaseResp, error) 
 	}
 
 	// judge if the initialization had been done
-	check, err := l.svcCtx.DB.API.Query().Count(l.ctx)
+	check, _ := l.svcCtx.DB.API.Query().Count(l.ctx)
 
 	if check != 0 {
 		err := l.svcCtx.Redis.Set("database_init_state", "1")
@@ -228,8 +232,7 @@ func (l *InitDatabaseLogic) insertRoleMenuAuthorityData() error {
 		return errorx.NewInternalError(err.Error())
 	}
 
-	var menuIds []uint64
-	menuIds = make([]uint64, count)
+	menuIds := make([]uint64, count)
 
 	for i := range menuIds {
 		menuIds[i] = uint64(i + 1)
@@ -276,8 +279,7 @@ func (l *InitDatabaseLogic) insertCasbinPoliciesData() error {
 	}
 
 	// clear old policy belongs to super admin
-	var oldPolicies [][]string
-	oldPolicies = csb.GetFilteredPolicy(0, roleCode)
+	oldPolicies := csb.GetFilteredPolicy(0, roleCode)
 	if len(oldPolicies) != 0 {
 		removeResult, err := csb.RemoveFilteredPolicy(0, roleCode)
 		if err != nil {

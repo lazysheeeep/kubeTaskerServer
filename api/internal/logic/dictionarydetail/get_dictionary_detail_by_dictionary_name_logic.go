@@ -68,7 +68,7 @@ func (l *GetDictionaryDetailByDictionaryNameLogic) GetDictionaryDetailByDictiona
 			})
 	}
 
-	storeData, err := json.Marshal(&resp.Data)
+	storeData, _ := json.Marshal(&resp.Data)
 	err = l.svcCtx.Redis.SetexCtx(l.ctx, fmt.Sprintf("dict_%d", req.Name), string(storeData), 3600)
 	if err != nil {
 		logx.Errorw("failed to set dictionary detail data to redis", logx.Field("detail", err))
