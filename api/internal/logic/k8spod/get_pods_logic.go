@@ -35,9 +35,8 @@ func (l *GetPodsLogic) GetPods(req *types.GetPodsReq) (resp *types.GetPodsResp, 
 		return nil, err
 	}
 	items := make([]*v1.Pod, 0)
-	for _, v := range result.Data.Items {
-		items = append(items, v)
-	}
+	items = append(items, result.Data.Items...)
+
 	return &types.GetPodsResp{
 		Msg: result.Msg,
 		Data: &types.GetPodsData{

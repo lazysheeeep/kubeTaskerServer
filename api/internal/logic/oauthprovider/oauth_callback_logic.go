@@ -41,7 +41,7 @@ func (l *OauthCallbackLogic) OauthCallback() (resp *types.CallbackResp, err erro
 		return nil, err
 	}
 
-	token, err := jwt.NewJwtToken(l.svcCtx.Config.Auth.AccessSecret, time.Now().Unix(),
+	token, _ := jwt.NewJwtToken(l.svcCtx.Config.Auth.AccessSecret, time.Now().Unix(),
 		l.svcCtx.Config.Auth.AccessExpire, jwt.WithOption("userId", result.Id), jwt.WithOption("roleId",
 			strings.Join(result.RoleCodes, ",")))
 

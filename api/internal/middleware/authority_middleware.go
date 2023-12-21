@@ -16,6 +16,12 @@ import (
 	"github.com/suyuan32/simple-admin-common/utils/jwt"
 )
 
+type contextString string
+
+const (
+	langKey contextString = "lang"
+)
+
 type AuthorityMiddleware struct {
 	Cbn         *casbin.Enforcer
 	Rds         *redis.Redis
@@ -77,7 +83,7 @@ func (m *AuthorityMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc {
 			logx.Errorw("the role is not permitted to access the API", logx.Field("roleId", roleIds),
 				logx.Field("path", obj), logx.Field("method", act))
 			httpx.Error(w, errorx.NewCodeError(errorcode.PermissionDenied, m.Trans.Trans(
-				context.WithValue(context.Background(), "lang", r.Header.Get("Accept-Language")),
+				context.WithValue(context.Background(), langKey, r.Header.Get("Accept-Language")),
 				"common.permissionDeny")))
 			return
 		}

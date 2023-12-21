@@ -33,9 +33,8 @@ func (l *GetServicesLogic) GetServices(req *types.GetServicesReq) (resp *types.G
 		Page:       req.Page,
 	})
 	items := make([]*v1.Service, 0)
-	for _, v := range result.Data.Items {
-		items = append(items, v)
-	}
+	items = append(items, result.Data.Items...)
+
 	return &types.GetServicesResp{
 		Msg: result.Msg,
 		Data: &types.GetServicesData{

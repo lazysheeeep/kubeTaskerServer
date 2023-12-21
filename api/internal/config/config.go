@@ -26,15 +26,15 @@ type Config struct {
 }
 
 type ProjectConf struct {
-	DefaultRoleId           uint64 `json:",default=1"`
-	DefaultDepartmentId     uint64 `json:",default=1"`
-	DefaultPositionId       uint64 `json:",default=1"`
-	EmailCaptchaExpiredTime int    `json:",default=600"`
-	SmsTemplateId           string `json:",optional"`
-	SmsAppId                string `json:",optional"`
-	SmsSignName             string `json:",optional"`
-	RegisterVerify          string `json:",default=captcha,options=[captcha,email,sms,sms_or_email]"`
-	LoginVerify             string `json:",default=captcha,options=[captcha,email,sms,sms_or_email,all]"`
-	ResetVerify             string `json:",default=email,options=[email,sms,sms_or_email]"`
-	AllowInit               bool   `json:",default=true"`
+	DefaultRoleId           uint64 `json:"defaultRoleId,omitempty"`
+	DefaultDepartmentId     uint64 `json:"defaultDepartmentId,omitempty"`
+	DefaultPositionId       uint64 `json:"defaultPositionId,omitempty"`
+	EmailCaptchaExpiredTime int    `json:"emailCaptchaExpiredTime,omitempty"`
+	SmsTemplateId           string `json:"smsTemplateId,omitempty"`
+	SmsAppId                string `json:"smsAppId,omitempty"`
+	SmsSignName             string `json:"smsSignName,omitempty"`
+	RegisterVerify          string `json:"registerVerify,omitempty"`
+	LoginVerify             string `json:"loginVerify,omitempty"`
+	ResetVerify             string `json:"resetVerify,omitempty"`
+	AllowInit               bool   `json:"allowInit,omitempty"`
 }
