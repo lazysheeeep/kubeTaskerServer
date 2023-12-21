@@ -25,6 +25,9 @@ func NewGetPodsLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetPodsLo
 
 func (l *GetPodsLogic) GetPods(req *types.GetPodsReq) (resp *types.GetPodsResp, err error) {
 	// todo: add your logic here and delete this line
+	if req.Namespace == "default" {
+		req.Namespace = ""
+	}
 	result, _ := l.svcCtx.CoreRpc.GetPods(l.ctx, &core.GetPodsReq{
 		FilterName: req.FilterName,
 		Namespace:  req.Namespace,
