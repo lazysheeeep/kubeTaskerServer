@@ -1995,7 +1995,7 @@ type GetServicesReq struct {
 type GetServicesData struct {
 	// Items
 	// []k8s.io.api.core.v1.Service
-	Items TypeNull `json:"items,optional"`
+	Items []*v1.Service `json:"items,optional"`
 	// Total
 	Total int64 `json:"total,optional"`
 }
