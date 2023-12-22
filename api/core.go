@@ -26,11 +26,12 @@ package main
 import (
 	"flag"
 	"fmt"
+	"net/http"
 
 	"github.com/kubeTasker/kubeTaskerServer/api/internal/config"
 	"github.com/kubeTasker/kubeTaskerServer/api/internal/handler"
+	"github.com/kubeTasker/kubeTaskerServer/api/internal/k8s_terminal"
 	"github.com/kubeTasker/kubeTaskerServer/api/internal/svc"
-
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/rest"
 )
@@ -48,6 +49,10 @@ func main() {
 
 	ctx := svc.NewServiceContext(c)
 	handler.RegisterHandlers(server, ctx)
+	go func() {
+		http.HandleFunc("/ws", k8s_terminal.Terminal.WsHandler)
+		http.ListenAndServe(":8081", nil)
+	}()
 
 	fmt.Printf("Starting server at %s:%d...\n", c.Host, c.Port)
 	server.Start()
